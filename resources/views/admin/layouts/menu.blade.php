@@ -326,8 +326,8 @@
                     <a href="index.html"><i class="bx bxs-group"></i><span class="menu-title">Manajemen
                             Karyawan</span></a>
                     <ul class="menu-content">
-                        <li @if (Request::segment(3) == 'master-employee') class="active" @endif>
-                            <a href="{{ route('master-employee.index') }}"><i
+                        <li @if (Request::segment(3) == 'master-employee-list-data') class="active" @endif>
+                            <a href="{{ route('human-resource-master-employee-list-data') }}"><i
                                     class="bx bx-right-arrow-alt"></i><span class="menu-item ">Master
                                     Karyawan</span></a>
                         </li>

@@ -117,6 +117,25 @@ Route::group(
         #endregion
         Route::middleware(['auth'])->group(function () {
 
+            //DATA EMPLOYEE
+            Route::prefix('human-resource')->group(function () {
+                Route::get('/master-employee-list-data', 'HumanResource\EmployeeController@listData')->name('human-resource-master-employee-list-data');
+                Route::get(' /master-employee-form-add', 'HumanResource\EmployeeController@formAdd')->name('human-resource-master-employee-form-add');
+                Route::post(' /master-employee-store-data', 'HumanResource\EmployeeController@storeData')->name('human-resource-master-employee-store-data');
+
+                Route::get(' /master-employee/form-detail/{id}', 'HumanResource\EmployeeController@formDetail')->name('human-resource-master-employee-form-detail');
+                Route::get(' /master-employee/form-edit/{id}/edit', 'HumanResource\EmployeeController@formEdit')->name('human-resource-master-employee-form-edit');
+                Route::post(' /master-employee/form-update/{id}', 'HumanResource\EmployeeController@formUpdate')->name('human-resource-master-employee-form-update');
+                Route::post(' /master-employee/keluarga-update/{id}', 'HumanResource\EmployeeController@formUpdatekeluarga')->name('human-resource-master-employee-form-update-keluarga');
+                Route::get(' /master-employee/cetak-pdf', 'HumanResource\EmployeeController@cetakPDF')->name('human-resource-master-employee-cetak-pdf');
+
+                Route::prefix('daftar-gaji')->group(function () {
+                    Route::get('/list-data', 'HumanResource\DaftarGajiController@listData')->name('human-resource-pegawai-list-data');
+                    Route::get('/get-gaji', 'HumanResource\DaftarGajiController@getEmployee')->name('human-resource-pegawai-getEmployee');
+                    Route::post(' /form-simpan', 'HumanResource\DaftarGajiController@formSimpan')->name('human-resource-pegawai-form-simpan');
+                });
+            });
+
             #region Dashboard
             Route::get('dashboard', 'Dashboard\DashboardController@index')->name('dashboard');
             #endregion
