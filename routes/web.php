@@ -1,0 +1,289 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use App\Models\MasterData\Service;
+use App\Models\MasterData\Facility;
+use App\Models\MasterData\Office;
+use App\Models\MasterData\Bus;
+
+
+#region CLIENT
+Route::group(
+    ['namespace' => 'Client'],
+    function () {
+        #Page
+        Route::get('/', 'PageController@index')->name('home');
+        Route::get('/travel', function () {
+            $facilities = Facility::get();
+            $offices = Office::get();
+            return view('client.pages.travel.index', ['facilities' => $facilities, 'offices' => $offices]);
+        })->name('travel');
+        Route::get('/armada', function () {
+            $facilities = Facility::get();
+            $buses = Bus::get();
+            return view('client.pages.armada.index', ['facilities' => $facilities, 'buses' => $buses]);
+        })->name('armada');
+        Route::get('/about', function () {
+            $services = Service::get();
+            return view('client.pages.about.index', ['services' => $services]);
+        })->name('about');
+        Route::get('/support', function () {
+            $offices = Office::get();
+            return view('client.pages.contact.support', ['offices' => $offices]);
+        })->name('support');
+        Route::get('/faq', function () {
+            return view('client.pages.contact.faq');
+        })->name('faq');
+        Route::get('/coming-soon', function () {
+            return view('client.pages.coming-soon');
+        })->name('coming-soon');
+        #EndPage
+
+        // Dashboard
+        Route::get('/account/info', function () {
+            return view('client.dashboard.pages.info');
+        })->name('information');
+
+        Route::get('/account/general', function () {
+            return view('client.dashboard.pages.general');
+        })->name('general');
+
+        Route::get('/account/account-password', function () {
+            return view('client.dashboard.pages.account-password');
+        })->name('account-password');
+
+        Route::get('/account/transaction', function () {
+            return view('client.dashboard.pages.transaction');
+        })->name('transaction');
+
+        Route::get('/account/inbox', function () {
+            return view('client.dashboard.pages.inbox');
+        })->name('inbox');
+
+
+        // Functional
+        // Reservation
+        Route::get('/master-data/bank/get-data-by-id/{id}', 'MasterData\MainMasterDataController@getBankById');
+        Route::post('/reservation/reguler/check-schedule-reguler', 'Reservation\BookingReservationController@getScheduleReguler');
+        Route::post('/reservation/reguler/pick-seat-reguler', 'Reservation\BookingReservationController@getSeatReguler');
+
+
+        // Customer
+        Route::post('/customer/login', 'Customer\AuthController@loginCustomer');
+        Route::post('/customer/register', 'Customer\AuthController@registerCustomer');
+        Route::post('/customer/confirmation-otp', 'Customer\AuthController@confrimationOtp');
+        Route::post('/customer/create-password', 'Customer\AuthController@createPassword');
+    }
+
+    // Re Function Client
+
+);
+#endregion
+
+#region FUNCTION
+// Open Function
+Route::get('admin/master-data/pick-point/get-pick-by-destination/{code}', 'Admin\MasterData\PickPointController@getPickByDestination');
+Route::get('send-email', 'MailController@sendEmail');
+Route::get('helper', 'HomeController@testCreateJournal');
+#endregion
+
+#region ADMIN
+Auth::routes();
+Route::group(
+    ['namespace' => 'Admin', 'prefix' => 'admin'],
+    function () {
+        #region Authentication
+        Route::get(
+            '/login',
+            function () {
+                $app_env = env("APP_ENV");
+                $target_url = '';
+                if ($app_env == 'local') {
+                    $target_url = 'Location: http://127.0.0.1:8000/admin/dashboard';
+                } else if ($app_env == 'development') {
+                    $target_url = 'Location: https://tamijaya-utama/admin/dashboard';
+                } else if ($app_env == 'production') {
+                    $target_url = 'Location: https://tamijaya-utama/admin/dashboard';
+                }
+                if (Auth::user()) {
+                    header($target_url);
+                    exit;
+                }
+                return view('admin.auth.login');
+            }
+        )->name('admin.login');
+        #endregion
+        #endregion
+        Route::middleware(['auth'])->group(function () {
+
+            #region Dashboard
+            Route::get('dashboard', 'Dashboard\DashboardController@index')->name('dashboard');
+            #endregion
+
+            #region General
+            Route::resource('general/notification', 'General\NotificationController');
+            #endregion
+
+            #region Master Data
+            Route::resource('master-data/pick-point', 'MasterData\PickPointController');
+            Route::resource('master-data/premi', 'MasterData\PremiController');
+            Route::resource('master-data/salary', 'MasterData\SalaryController');
+            Route::resource('master-data/armada', 'MasterData\ArmadaController');
+            Route::resource('master-data/unit', 'MasterData\UnitController');
+            Route::resource('master-data/facility', 'MasterData\FacilityController');
+            Route::resource('master-data/service', 'MasterData\ServiceController');
+            Route::resource('master-data/office', 'MasterData\OfficeController');
+            Route::resource('master-data/department', 'MasterData\DepartmentController');
+            Route::resource('master-data/position', 'MasterData\PositionController');
+            Route::resource('master-data/province', 'MasterData\ProvinceController');
+            Route::resource('master-data/city', 'MasterData\CityController');
+            Route::resource('master-data/status', 'MasterData\StatusController');
+            Route::resource('master-data/schedule', 'MasterData\ScheduleController');
+            Route::resource('master-data/day-off', 'MasterData\DayOffController');
+            Route::resource('master-data/bus', 'MasterData\BusController');
+            Route::resource('master-data/location-wisata', 'MasterData\LocationWisataController');
+            Route::resource('master-data/destination-wisata', 'MasterData\DestinationWisataController');
+            Route::resource('master-data/route-wisata', 'MasterData\RouteWisataController');
+            // Route::resource('master-data/price-bus-wisata', 'MasterData\PriceBusWisataController');
+
+            // Wisata
+
+            // Additional
+            Route::get('master-data/department/get-position-by-department/{id}', 'MasterData\DepartmentController@getPositionByDepartment');
+            Route::get('master-data/province/get-city-by-province/{id}', 'MasterData\ProvinceController@getCityByProvince');
+
+            #endregion
+
+            #region Management Customer
+            Route::resource('management-customer/customer', 'ManagementCustomer\CustomerController');
+            Route::resource('management-customer/inbox', 'ManagementCustomer\InboxController');
+            #endregion
+
+            #region Human Resource
+            Route::resource('human-resource/master-employee', 'HumanResource\EmployeeController');
+            #endregion
+
+            #region Finance & Accounting
+            Route::get('master-data/department/get-position-by-department/{id}', 'MasterData\DepartmentController@getPositionByDepartment');
+            Route::get('master-data/province/get-city-by-province/{id}', 'MasterData\ProvinceController@getCityByProvince');
+            #endregion
+
+            #region Management Customer
+            Route::resource('management-customer/customer', 'ManagementCustomer\CustomerController');
+            #endregion
+
+            #region Human Resource
+            Route::resource('human-resource/master-employee', 'HumanResource\EmployeeController');
+            Route::resource('human-resource/driver-conductor', 'HumanResource\DriverConductorController');
+            Route::resource('human-resource/agent', 'HumanResource\AgentController');
+            #endregion
+
+            #region Transaction
+            // REGULER
+            Route::resource('transaction/reguler/booking-reguler', 'Transaction\Reguler\BookingRegulerController');
+            Route::get('transaction/reguler/booking/get/master-customer', 'Transaction\Reguler\BookingRegulerController@getMasterCustomer');
+            Route::get('transaction/reguler/booking/get/master-pick-point', 'Transaction\Reguler\BookingRegulerController@getMasterPickPoint');
+            Route::post('transaction/reguler/booking/check-schedule', 'Transaction\Reguler\BookingRegulerController@getScheduleReguler');
+            Route::post('transaction/reguler/booking/pick-seat', 'Transaction\Reguler\BookingRegulerController@getSeatReguler');
+            Route::post('transaction/reguler/booking/submit-reguler', 'Transaction\Reguler\BookingRegulerController@submitTransactionReguler');
+            Route::resource('transaction/reguler/data-transaction-reguler', 'Transaction\Reguler\DataTransactionRegulerController');
+            Route::post('transaction/reguler/data-transaction-reguler/submit-payment', 'Transaction\Reguler\DataTransactionRegulerController@submitPayment');
+            Route::get('transaction/reguler/data-transaction-reguler/print-invoice/{booking_code}', 'Transaction\Reguler\DataTransactionRegulerController@printInvoice');
+            Route::get('transaction/reguler/data-transaction-reguler/print-kwitansi/{booking_code}', 'Transaction\Reguler\DataTransactionRegulerController@printKwitansi');
+            Route::resource('transaction/reguler/report-transaction-reguler', 'Transaction\Reguler\ReportTransactionRegulerController');
+            // Scheduling
+            // REGULER
+            Route::resource('transaction/reguler/schedule-reguler', 'Transaction\Reguler\ScheduleRegulerController');
+            Route::get('transaction/reguler/schedule-reguler/get-data/armada', 'Transaction\Reguler\ScheduleRegulerController@getDataArmada');
+            Route::get('transaction/reguler/schedule-reguler/get-data/driver', 'Transaction\Reguler\ScheduleRegulerController@getDataDriver');
+            Route::get('transaction/reguler/schedule-reguler/get-data/conductor', 'Transaction\Reguler\ScheduleRegulerController@getDataConductor');
+            Route::post('transaction/reguler/schedule-reguler/check-schedule-reguler', 'Transaction\Reguler\ScheduleRegulerController@checkScheduleRegulerz');
+            Route::resource('transaction/reguler/reschedule-reguler', 'Transaction\Reguler\RescheduleRegulerController');
+            Route::post('transaction/reguler/reschedule-reguler/re-schedule', 'Transaction\Reguler\RescheduleRegulerController@rescheduleReguler');
+            // PARIWISATA
+            Route::resource('transaction/pariwisata/schedule-pariwisata', 'Transaction\Pariwisata\SchedulePariwisataController');
+
+
+            // PARIWISATA
+            Route::resource('transaction/pariwisata/booking-pariwisata', 'Transaction\Pariwisata\BookingPariwisataController');
+            Route::get('transaction/pariwisata/booking/get/master-customer', 'Transaction\Pariwisata\BookingPariwisataController@getMasterCustomer');
+            Route::post('transaction/pariwisata/booking/schedule-bus', 'Transaction\Pariwisata\BookingPariwisataController@scheduleBus');
+            Route::post('transaction/pariwisata/booking/calculate-estimation', 'Transaction\Pariwisata\BookingPariwisataController@calculateEstimation');
+            Route::post('transaction/pariwisata/booking/calculate-estimation-day', 'Transaction\Pariwisata\BookingPariwisataController@getEstimationDayRouteWisata');
+            Route::post('transaction/pariwisata/booking/check-available-bus', 'Transaction\Pariwisata\BookingPariwisataController@checkAvailableBus');
+            Route::post('transaction/pariwisata/booking/check-available-armada', 'Transaction\Pariwisata\BookingPariwisataController@checkAvailableArmada');
+            Route::post('transaction/pariwisata/booking/save-offering-pariwisata', 'Transaction\Pariwisata\BookingPariwisataController@savePariwisataOffering');
+            Route::post('transaction/pariwisata/booking/submit-pariwisata', 'Transaction\Pariwisata\BookingPariwisataController@submitTransactionPariwisata');
+            Route::get('transaction/pariwisata/data-transaction-pariwisata/print-invoice/{booking_code}', 'Transaction\Pariwisata\DataTransactionPariwisataController@printInvoice');
+
+
+            // NEW
+            Route::post('transaction/pariwisata/booking/check-bus-availability', 'Transaction\Pariwisata\BookingPariwisataController@checkBusAvailability');
+
+
+
+
+            // PRINT
+            Route::get('transaction/pariwisata/booking/print-offering-wisata/{data}', 'Transaction\Pariwisata\BookingPariwisataController@printOfferingWisata');
+            // Route::post('transaction/pariwisata/booking/print/print-offering/wisata/{data}', 'Transaction\Pariwisata\BookingPariwisataController@printDataOfferingWisata');
+
+            Route::resource('transaction/pariwisata/data-transaction-pariwisata', 'Transaction\Pariwisata\DataTransactionPariwisataController');
+            // PARIWISATA
+            #endregion
+
+            #region Finance & Accounting
+            // MASTER DATA
+            Route::resource('finance-accounting/master-data/account', 'FinanceAccounting\MasterData\AccountController');
+            Route::resource('finance-accounting/master-data/group-account', 'FinanceAccounting\MasterData\GroupAccountController');
+            Route::post('finance-accounting/master-data/group-account/update-group-account', 'FinanceAccounting\MasterData\GroupAccountController@updateGroupAccount');
+            Route::resource('finance-accounting/master-data/bank', 'FinanceAccounting\MasterData\BankController');
+            Route::resource('finance-accounting/master-data/balance-aktiva', 'FinanceAccounting\MasterData\BalanceAktivaController');
+            Route::resource('finance-accounting/master-data/balance-pasiva', 'FinanceAccounting\MasterData\BalancePasivaController');
+            Route::get('finance-accounting/master-data/balance-aktiva/get-detail-balance-aktiva/{id}', 'FinanceAccounting\MasterData\BalanceAktivaController@getAccountByAktiva');
+            Route::post('finance-accounting/master-data/balance-aktiva/submit-account-aktiva/{id}', 'FinanceAccounting\MasterData\BalanceAktivaController@submitAccountAktiva');
+            Route::get('finance-accounting/master-data/balance-pasiva/get-detail-balance-pasiva/{id}', 'FinanceAccounting\MasterData\BalancePasivaController@getAccountByPasiva');
+            Route::post('finance-accounting/master-data/balance-pasiva/submit-account-pasiva/{id}', 'FinanceAccounting\MasterData\BalancePasivaController@submitAccountPasiva');
+            // Journal
+            Route::resource('finance-accounting/journal', 'FinanceAccounting\JournalController');
+            Route::get('finance-accounting/journal/get-data/account', 'FinanceAccounting\JournalController@getDataAccount');
+            Route::post('finance-accounting/journal/convert-data/excel', 'FinanceAccounting\JournalController@generateExceltoJSON');
+            Route::resource('finance-accounting/filter-accounting', 'FinanceAccounting\FilterAccountingController');
+            Route::get('finance-accounting/filter-accounting/get-data/all-data-finance-accounting', 'FinanceAccounting\FilterAccountingController@getAllDataFinance');
+            Route::post('finance-accounting/filter-accounting/get-data/filtered', 'FinanceAccounting\FilterAccountingController@getFilteredDataJournal');
+            Route::resource('finance-accounting/cash-flow', 'FinanceAccounting\CashFlowController');
+
+            // TRANSACTION
+            Route::resource('finance-accounting/reservation-transaction', 'FinanceAccounting\ReservationTransactionController');
+            Route::resource('finance-accounting/payment-request', 'FinanceAccounting\PaymentRequestController');
+            Route::post('finance-accounting/payment-request/payment-approve-reject', 'FinanceAccounting\PaymentRequestController@paymentApproveReject');
+            #endregion
+
+
+            #region General
+            #endregion
+            // REGION MANAGEMNET USER
+            Route::resource('management-user/role', 'ManagementUser\RoleController');
+        });
+    }
+);
+#endregion
+
+
+#region AGENT
+Route::get('/agent/login', function () {
+    return view('agent.auth.login');
+})->name('login-agent');
+Route::get('/agent/dashboard', function () {
+    return view('agent.dashboard.index');
+})->name('dashboard-agent');
+
+
+Route::resource('agent/agent-dashboard', 'Agent\DashboardAgentController');
+Route::resource('agent/agent-reservation', 'Agent\ReservationController');
+Route::resource('agent/report/schedule-report', 'Agent\Report\ScheduleReportController');
+Route::resource('agent/report/transaction-report', 'Agent\Report\TransactionReportController');
+Route::get('agent/report/detail-transaction/{booking_code}', 'Agent\Report\TransactionReportController@showDataTransaction')->name('detail-transaction-reservation');
+Route::resource('agent/profile', 'Agent\ProfileController');
+Route::resource('agent/agent-schedule', 'Agent\ScheduleAgentController');
+#endregion
