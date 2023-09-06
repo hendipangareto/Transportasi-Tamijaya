@@ -215,4 +215,119 @@ class EmployeeController extends Controller
         ]);
     }
 
+    public function formEdit(Request $request, $id)
+    {
+        $departemen = Department::get();
+        $position = Position::get();
+        $employee = Employee::find($id);
+        $keluargaEmployees = KeluargaEmployee::where('employee_id', '=', $employee->id)->get();
+
+        return view('admin.human-resource.master-employee.form-edit', [
+            'departemen' => $departemen,
+            'jabatan' => $position,
+            'employee' => $employee,
+            'keluargaEmployees' => $keluargaEmployees]);
+    }
+
+    public function formUpdate(Request $request, $id)
+    {
+        DB::beginTransaction();
+        try {
+
+            $employee = Employee::findOrFail($id);
+
+            $employee->employee_name = $request->edit_nama_pegawai;
+            $employee->departemen_id = $request->edit_departemen;
+            $employee->position_id = $request->edit_jabatan;
+            $employee->employee_status = $request->edit_status_pegawai_id;
+            $employee->awal_kontrak = $request->edit_tgl_awal_kontrak;
+            $employee->jenis_kelamin = $request->edit_jk_pegawai_id;
+            $employee->tanggal_lahir = $request->edit_tgl_lahir_id;
+            $employee->status_perkawinan = $request->edit_status_nikah;
+            $employee->selesai_kontrak = $request->selesai_kontak_pegawai;
+            $employee->alamat = $request->edit_alamat_pegawai;
+            $employee->alamat_domisili = $request->edit_domisili_pegawai;
+            $employee->nik = $request->edit_nik_pegawai;
+            $employee->npwp = $request->edit_npwp_pegawai;
+            $employee->bpjs_kesehatan = $request->edit_bpjs_kesehatan_pegawai;
+            $employee->bpjs_ketenagakerjaan = $request->edit_bpjs_ketenagakerjaan;
+            $employee->telepon = $request->edit_hp_pegawai;
+            $employee->email = $request->edit_email_pegawai;
+            $employee->rekening_name = $request->edit_nama_rekening;
+            $employee->no_rekening = $request->edit_rekening_pegawai;
+
+            $employee->save();
+
+            DB::commit();
+            Session::flash('message', ['Berhasil mengubah data karyawan', 'success']);
+        } catch (\Exception $e) {
+            DB::rollback();
+            Session::flash('message', ['Gagal mengubah data karyawan', 'error']);
+        }
+//        dd($employee);
+        return redirect()->route('human-resource-master-employee-list-data');
+    }
+
+    public function formUpdatekeluarga(Request $request, $id)
+    {
+
+        DB::beginTransaction();
+        $keluargaEmployee = KeluargaEmployee::findOrFail($request->id_keluarga_employees);
+
+        try {
+            $keluargaEmployee->nama_keluarga = $request->nama_keluarga_edit;
+            $keluargaEmployee->jenis_kelamin = $request->jk_keluarga_edit;
+            $keluargaEmployee->tanggal_lahir = $request->tgl_lahir_edit;
+            $keluargaEmployee->status_keluarga = $request->status_keluarga_edit;
+            $keluargaEmployee->alamat_ktp = $request->ktp_kelaurga_edit;
+            $keluargaEmployee->alamat_domisili = $request->alamat_domisili_edit;
+            $keluargaEmployee->nik = $request->nik_keluarga_edit;
+            $keluargaEmployee->npwp = $request->npwp_keluarga_edit;
+            $keluargaEmployee->bpjs_kesehatan = $request->bpjs_kesehatan_keluarga_edit;
+            $keluargaEmployee->telepon = $request->hp_keluarga_edit;
+            $keluargaEmployee->email = $request->email_keluarga_edit;
+            $keluargaEmployee->kontak_darurat = $request->kontak_darurat_keluarga_edit;
+            $keluargaEmployee->save();
+
+            DB::commit();
+            Session::flash('message', ['Berhasil mengubah data keluarga', 'success']);
+        } catch (\Exception $e) {
+            DB::rollback();
+            Session::flash('message', ['Gagal mengubah data keluarga', 'error']);
+        }
+        return redirect()->route('human-resource-master-employee-form-edit', $keluargaEmployee->employee_id);
+    }
+    public function cetakPDF()
+    {
+        $departemen = request()->departemen;
+        $position = request()->position;
+        $status = request()->status;
+
+        $employee = DB::table('employees')
+            ->select('employees.*', 'departments.department_name', 'positions.position_name')
+            ->join('departments', 'employees.departemen_id', 'departments.id')
+            ->join('positions', 'employees.position_id', 'positions.id')
+            ->when(!empty($departemen), function ($query) use ($departemen) {
+                $query->where('employees.departemen_id', $departemen);
+            })
+            ->when(!empty($position), function ($query) use ($position) {
+                $query->where('employees.position_id', $position);
+            })
+            ->when(!empty($status), function ($query) use ($status) {
+                $query->where('employees.employee_status', $status);
+            })
+            ->get();
+
+        $filename = 'employee' . "_" . Carbon::create(now())->format('Y_m_d_H_i_s') . '.pdf';
+        $pdf = PDF::loadView('admin.human-resource.master-employee.cetak-pdf', ['employee' => $employee]);
+        $pdf->setPaper('A4', 'portrait');
+
+        #Set Page Number
+        $canvas = $pdf->getDomPDF()->get_canvas();
+        $pdf->getDomPDF()->set_option('isPhpEnabled', true);
+        $canvas->page_text(550, 820, "Page {PAGE_NUM}", null, 8);
+        $canvas->page_text(550 / 2, 820, date('d-m-Y'), null, 8);
+        return $pdf->stream($filename);
+    }
+
 }

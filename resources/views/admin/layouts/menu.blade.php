@@ -332,7 +332,7 @@
                                     Karyawan</span></a>
                         </li>
                         <li @if (Request::segment(4) == 'about-us') class="active" @endif>
-                            <a href="#"><i class="bx bx-right-arrow-alt"></i><span class="menu-item ">Data
+                            <a href="{{route('human-resource-pegawai-list-data')}}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item ">Data
                                     Karyawan</span></a>
                         </li>
                         <li @if (Request::segment(3) == 'driver-conductor') class="active" @endif>
