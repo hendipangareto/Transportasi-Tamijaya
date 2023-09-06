@@ -57,5 +57,14 @@ class UserSeeder extends Seeder
             'id_role' => 4,
             'remember_token' => Str::random(50),
         ] );
+
+        User::create( [
+            'name' => 'Logistik',
+            'username' => 'Logistik',
+            'email' => 'logistik@gmail.com',
+            'password' => bcrypt("logistik"),
+            'id_role' => 6,
+            'remember_token' => Str::random(50),
+        ] );
     }
 }

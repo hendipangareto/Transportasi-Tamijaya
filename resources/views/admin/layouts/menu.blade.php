@@ -348,6 +348,39 @@
                     </ul>
                 </li>
             @endif
+
+            @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 6)
+                <li class="navigation-header"><span>Logistik</span></li>
+                <li class="nav-item @if (Request::segment(2) == 'master-logistik') open @endif">
+                    <a href="#"><i class="bx bxs-categories"></i><span class="menu-title">Master Logistik</span></a>
+                    <ul class="menu-content">
+                        <li @if (Request::segment(3) == 'supplier-barang') class="active" @endif>
+                            <a href="{{ route('master-logistik-list-supplier-barang') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item">Supplier Barang</span></a>
+                        </li>
+                        <li @if (Request::segment(3) == 'kategori-barang') class="active" @endif>
+                            <a href="{{ route('master-logistik-list-kategori-barang') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item">Kategori Barang</span></a>
+                        </li>
+                        <li @if (Request::segment(3) == 'barang') class="active" @endif>
+                            <a href="{{ route('master-logistik-list-barang') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item">Barang</span></a>
+                        </li>
+                        <li @if (Request::segment(3) == 'rekap-keluar') class="active" @endif>
+                            <a href="{{ route('master-logistik.rekap-keluar-logistik.list-data-keluar') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item">Logistik Keluar</span></a>
+                        </li>
+                        <li @if (Request::segment(4) == 'rekap-masuk') class="active" @endif>
+                            <a href="{{ route('master-logistik-masuk-list-rekap-data') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item">Logistik Masuk</span></a>
+                        </li>
+                        <li @if (Request::segment(4) == 'pengajuan-pembelian') class="active" @endif>
+                            <a href="{{ route('master-logistik-list-pengajuan-pembelian') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item">Pengajuan Pembelian</span></a>
+                        </li>
+                        <li @if (Request::segment(4) == 'rekap-pembelian') class="active" @endif>
+                            <a href="{{ route('master-logistik-rekap-pengajuan-pembelian') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item">Rekap Pembelian</span></a>
+                        </li>
+                        <li @if (Request::segment(4) == 'laporan-pembelian') class="active" @endif>
+                            <a href="{{route ('master-logistik-laporan-pengajuan-pembelian')}}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item">Laporan Pembelian</span></a>
+                        </li>
+                    </ul>
+                </li>
+            @endif
             {{-- <li class=" nav-item"><a href="index.html"><i class="bx bx-money"></i><span
                         class="menu-title">Payroll</span></a>
                 <ul class="menu-content">

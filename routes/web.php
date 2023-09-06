@@ -136,6 +136,78 @@ Route::group(
                 });
             });
 
+
+            //MANAJEMEN LOGISTIK
+            Route::prefix('master-logistik')->group(function () {
+
+                Route::prefix('barang')->group(function () {
+                    Route::get('/list-barang', 'MasterLogistik\BarangController@getListBarang')->name('master-logistik-list-barang');
+                });
+
+                Route::prefix('kategori-barang')->group(function () {
+                    Route::get('/list-kategori-barang', 'MasterLogistik\KategoriBarangController@getKategoriBarang')->name('master-logistik-list-kategori-barang');
+                });
+
+                Route::prefix('supplier-barang')->group(function () {
+                    Route::get('/list-supplier-barang', 'MasterLogistik\SupplierBarangController@getSupplierBarang')->name('master-logistik-list-supplier-barang');
+                    Route::post('/create-supplier-barang', 'MasterLogistik\SupplierBarangController@postCreateBarang')->name('master-logistik-create-supplier-barang');
+                    Route::post('/simpan-supplier-barang', 'MasterLogistik\SupplierBarangController@postSimpanBarang')->name('master-logistik-simpan-supplier-barang');
+
+                });
+
+
+                Route::prefix('rekap-keluar-masuk-logistik')->group(function () {
+                    Route::get('/list-data-keluar', 'MasterLogistik\RekapKeluarMasuk\Keluar\LogistikKeluarController@getRekapKeluar')->name('master-logistik.rekap-keluar-logistik.list-data-keluar');
+
+//
+                    Route::prefix('sparepart')->group(function () {
+                        Route::get('/list-data', 'MasterLogistik\RekapKeluarMasuk\Keluar\SparePartController@getSparepart')->name('master-logistik-logbook-sparepart-list-data');
+                    });
+                    Route::prefix('logistik')->group(function () {
+                        Route::get('/list-data-logistik', 'MasterLogistik\RekapKeluarMasuk\Keluar\LogistikController@getLogistik')->name('master-logistik-logbook-logistik-list-data');
+                    });
+                    Route::prefix('atk')->group(function () {
+                        Route::get('/list-data-atk', 'MasterLogistik\RekapKeluarMasuk\Keluar\AtkController@getAtk')->name('master-logistik-logbook-atk-list-data');
+                    });
+                    //rekap Data Masuk
+                    Route::prefix('rekap-masuk')->group(function () {
+                        Route::get('/list-data-masuk', 'MasterLogistik\RekapKeluarMasuk\Masuk\RekapMasukController@getDataMasuk')->name('master-logistik-masuk-list-rekap-data');
+
+
+                        Route::prefix('sparepart-masuk')->group(function () {
+                            Route::get('/list-sparepart-masuk', 'MasterLogistik\RekapKeluarMasuk\Masuk\SparepartController@getSparepartMasuk')->name('master-logistik-masuk-list-sparepart');
+                        });
+
+                        Route::prefix('logistik-masuk')->group(function () {
+                            Route::get('/list-logistik-masuk', 'MasterLogistik\RekapKeluarMasuk\Masuk\LogistikController@getLogistikMasuk')->name('master-logistik-masuk-list-logistik');
+                        });
+
+                        Route::prefix('atk-masuk')->group(function () {
+                            Route::get('/list-atk-masuk', 'MasterLogistik\RekapKeluarMasuk\Masuk\AtkController@getAtkMasuk')->name('master-logistik-masuk-list-atk');
+                        });
+                    });
+
+                    //Pengajuan Pembelian
+                    Route::prefix('pengajuan-pembelian')->group(function () {
+                        Route::get('/list-pengajuan-pembelian', 'MasterLogistik\PengajuanPembelianController@getPengajuanPembelian')->name('master-logistik-list-pengajuan-pembelian');
+
+                    });
+
+
+                    //Rekap Pembelian
+                    Route::prefix('rekap-pembelian')->group(function () {
+                        Route::get('/rekap-pengajuan-pembelian', 'MasterLogistik\RekapPengajuanPembelianController@getRekapPengajuanPembelian')->name('master-logistik-rekap-pengajuan-pembelian');
+                    });
+
+                    //Laporan Pembelian
+                    Route::prefix('laporan-pembelian')->group(function () {
+                        Route::get('/laporan-pengajuan-pembelian', 'MasterLogistik\LaporanPembelianController@getLaporanPembelian')->name('master-logistik-laporan-pengajuan-pembelian');
+                    });
+                });
+            });
+
+
+
             #region Dashboard
             Route::get('dashboard', 'Dashboard\DashboardController@index')->name('dashboard');
             #endregion
