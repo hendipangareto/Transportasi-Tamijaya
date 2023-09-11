@@ -384,7 +384,7 @@
                                     class="menu-item">Aset</span></a>
                             <ul class="menu-content">
                                 <li @if (Request::segment(3) == 'day-off') class="active" @endif>
-                                    <a href=" "><i class="bx bx-right-arrow-alt"></i><span
+                                    <a href="{{ route('master-keuangan.aset.data-aset') }}"><i class="bx bx-right-arrow-alt"></i><span
                                             class="menu-item">Data Aset</span></a>
                                 </li>
                                 <li @if (Request::segment(3) == 'day-off') class="active" @endif>

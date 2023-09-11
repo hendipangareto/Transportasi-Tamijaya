@@ -142,7 +142,17 @@ Route::group(
                     Route::get('/list-akun', 'MasterKeuangan\AkunController@getListAkun')->name('master-keuangan.akun.list-akun');
                 });
                 Route::prefix('sub-akun')->group(function () {
-                    Route::get('/list-sub-akun', 'MasterKeuangan\SubAkunController@getListAkun')->name('master-keuangan.sub-akun.list-sub-akun');
+                    Route::get('/list-sub-akun', 'MasterKeuangan\SubAkunController@getListSubAkun')->name('master-keuangan.sub-akun.list-sub-akun');
+                });
+
+                Route::prefix('aset')->group(function () {
+                    Route::get('/data-aset', 'MasterKeuangan\AsetController@getListAset')->name('master-keuangan.aset.data-aset');
+                    Route::get('/tambah-data-aset', 'MasterKeuangan\AsetController@getTambahDataAset')->name('master-keuangan.aset.data-aset.tambah-data-aset');
+                });
+
+                Route::prefix('tipe-aset')->group(function () {
+                    Route::get('/list-tipe-aset', 'MasterKeuangan\AsetController@getTipeAset')->name('master-keuangan.aset.tipe-aset');
+                    Route::get('/tambah-data-aset', 'MasterKeuangan\AsetController@getTambahDataAset')->name('master-keuangan.aset.data-aset.tambah-data-aset');
                 });
             });
 
