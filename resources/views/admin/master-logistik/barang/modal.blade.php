@@ -36,11 +36,7 @@
                             <option value="JOGJAKARTA">PT.Maju Bersama</option>
                         </select>
                     </div>
-{{--                    <label>Deskripsi Kategori: </label>--}}
-{{--                    <div class="form-group">--}}
-{{--                        <textarea class="form-control" name="agent_description" id="agent_description" cols="30"--}}
-{{--                                  rows="3" placeholder="Silahkan masukan deskripsi agent"></textarea>--}}
-{{--                    </div>--}}
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="add-agent" class="btn btn-warning mr-1"  data-dismiss="modal"><i

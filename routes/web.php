@@ -141,6 +141,9 @@ Route::group(
                 Route::prefix('akun')->group(function () {
                     Route::get('/list-akun', 'MasterKeuangan\AkunController@getListAkun')->name('master-keuangan.akun.list-akun');
                 });
+                Route::prefix('sub-akun')->group(function () {
+                    Route::get('/list-sub-akun', 'MasterKeuangan\SubAkunController@getListAkun')->name('master-keuangan.sub-akun.list-sub-akun');
+                });
             });
 
 

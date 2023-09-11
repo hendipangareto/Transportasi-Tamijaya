@@ -1,9 +1,9 @@
-<div class="modal fade text-left" id="TambahAkun" tabindex="-1" role="dialog" aria-labelledby="modal-title"
+<div class="modal fade text-left" id="EditSubAkun" tabindex="-1" role="dialog" aria-labelledby="modal-title"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="modal-title">Form Tambah Akun</h4>
+                <h4 class="modal-title" id="modal-title">Form Ubah Sub Akun</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i class="bx bx-x"></i>
                 </button>
@@ -18,6 +18,11 @@
                                class="form-control bg-transparent" placeholder="kode akun">
                     </div>
                     <label>Nama Akun: </label>
+                    <div class="form-group">
+                        <input type="text" id="nama_akun" name="nama_akun"
+                               class="form-control bg-transparent" placeholder="nama akun">
+                    </div>
+                    <label>Nama Sub Akun: </label>
                     <div class="form-group">
                         <input type="text" id="nama_akun" name="nama_akun"
                                class="form-control bg-transparent" placeholder="nama akun">

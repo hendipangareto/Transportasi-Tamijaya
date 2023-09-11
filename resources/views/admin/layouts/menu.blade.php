@@ -375,7 +375,7 @@
                                     class="menu-item">Akun</span></a>
                         </li>
                         <li @if (Request::segment(3) == 'day-off') class="active" @endif>
-                            <a href=" "><i class="bx bx-file"></i><span
+                            <a href="{{ route('master-keuangan.sub-akun.list-sub-akun') }}"><i class="bx bx-file"></i><span
                                     class="menu-item">Sub-Akun</span></a>
                         </li>
 

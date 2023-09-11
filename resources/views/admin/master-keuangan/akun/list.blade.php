@@ -23,7 +23,7 @@
                 <div class="card-header" style="background-color: #00b3ff">
                     <div class="toolbar row ">
                         <div class="col-md-12 d-flex">
-                            <h2 class="h4 mb-1">Data Master || Akun</h2>
+                            <h2 class="h4 mb-1">List Data Master Akun</h2>
                             <div class="col ml-auto">
                                 <div class="dropdown float-right">
 
@@ -39,8 +39,8 @@
                             <div class="col ml-auto">
                                 <div class="dropdown float-right">
                                     <a href=" "
-                                       class="btn btn-primary mr-1">
-                                        <i class="fe fe-plus" data-toggle="modal" data-target="#TambahAkun"></i> Tambah Data</a>
+                                       class="btn btn-primary mr-1" data-toggle="modal" data-target="#TambahAkun">
+                                        <i class="fe fe-plus" ></i> Tambah Data</a>
                                     <a target="_blank"
                                        href=" "
                                        type="button"
@@ -67,17 +67,17 @@
                             </thead>
                             <tbody id="show-data-employee">
                                 <tr class="text-center">
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>1</td>
+                                    <td>1101</td>
+                                    <td>Kas & Bank</td>
+                                    <td>orem ipsum</td>
                                     <td>
                                         <a href=""
-                                           class="btn btn-sm btn-outline-primary"><i
-                                                class="bx bx-detail font-size-base"></i>
+                                           class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#DetailAkun"><i
+                                                class="bx bx-info-circle font-size-base"></i>
                                         </a>
                                         <a href=""
-                                           class="btn btn-sm btn-outline-warning"><i
+                                           class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#EditAkun"><i
                                                 class="bx bx-pencil font-size-base"></i>
                                         </a>
                                         <button class="btn btn-sm btn-outline-danger btn-delete-employee "
@@ -93,16 +93,15 @@
         </div>
     </div>
 
-    @include('admin.master-keuangan.akun.list')
+    @include('admin.master-keuangan.akun.modal-tambah')
+    @include('admin.master-keuangan.akun.modal-edit')
+    @include('admin.master-keuangan.akun.modal-detail')
 @endsection
 
 @push('page-scripts')
     <script>
-
         $(document).ready(function () {
             $("#table-employee").DataTable();
         });
-
     </script>
-
 @endpush
