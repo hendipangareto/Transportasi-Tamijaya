@@ -20,10 +20,19 @@
 <div class="row">
     <div class="col-12">
         <div class="card">
-            <div class="card-header pb-0 d-flex justify-content-between">
-                <h5 class="card-title">List Data Master Provinsi</h5>
+            <div class="card-header" style="background-color: #00b3ff">
+                <div class="toolbar row ">
+                    <div class="col-md-12 d-flex">
+                        <h5 class="card-title">List Data Master Provinsi</h5>
+                        <div class="col ml-auto">
+                            <div class="dropdown float-right">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="card-content">
+            <div class="card-content mt-3">
                 <div class="card-body card-dashboard">
                     <div class="table-responsive" id="show-data-province">
                         <div class="text-center">

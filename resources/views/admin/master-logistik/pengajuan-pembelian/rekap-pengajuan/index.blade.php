@@ -19,7 +19,7 @@
     <div class="row mt-3">
         <div class="col-12">
             <div class="card">
-                <div class="card-header d-flex justify-content-between" style="background-color: #4bdce8">
+                <div class="card-header d-flex justify-content-between" style="background-color: #00b3ff">
                     <h4 class="card-title" style="color: black"><b>LOGISTIK </b>| Rekap Pengajuan Pembelian</h4>
                 </div>
                 <div class="card-content mt-2">

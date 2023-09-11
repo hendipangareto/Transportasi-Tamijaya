@@ -6,7 +6,7 @@
             <h5 class="content-header-title float-left pr-1 mb-0">Master Data</h5>
             <div class="breadcrumb-wrapper col-12">
                 <ol class="breadcrumb p-0 mb-0">
-                    <li class="breadcrumb-item"><a href="index.html"><i class="bx bx-home-alt"></i></a>
+                    <li class="breadcrumb-item"><a href=" "><i class="bx bx-home-alt"></i></a>
                     </li>
                     <li class="breadcrumb-item active">Hari Libur
                     </li>
@@ -20,14 +20,26 @@
 <div class="row">
     <div class="col-12">
         <div class="card">
-            <div class="card-header pb-0 d-flex justify-content-between">
-                <h4 class="card-title">List Data Master Hari Libur</h4>
+            <div class="card-header" style="background-color: #00b3ff">
+                <div class="toolbar row ">
+                    <div class="col-md-12 d-flex">
+                        <h4 class="card-title">List Data Master Hari Libur</h4>
+                        <div class="col ml-auto">
+                            <div class="dropdown float-right">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-header pb-0 d-flex justify-content-between mt-2">
+                <h4 class="card-title"> </h4>
                 <button type="button" class="btn btn-primary mr-1" onclick="openModal('day-off','add')"><i
                         class="bx bx-plus-circle"></i> Tambah Data</button>
             </div>
             <div class="card-content pt-1">
                 <div class="card-body card-dashboard">
-                    <div class="table-responsive" id="show-data-day-off">                       
+                    <div class="table-responsive" id="show-data-day-off">
                             <div class="text-center">
                                 <div class="spinner-border mr-3 spinner-border text-center" role="day-off">
                                     <span class="sr-only">Loading...</span>
@@ -47,7 +59,7 @@
 @push('page-scripts')
 <script src="{{ asset('script/admin/master-data/index.js') }}"></script>
 <script>
-    
+
 
 </script>
 @endpush

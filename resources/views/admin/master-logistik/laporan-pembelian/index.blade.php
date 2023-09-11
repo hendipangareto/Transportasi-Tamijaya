@@ -19,7 +19,7 @@
     <div class="row mt-3">
         <div class="col-12">
             <div class="card">
-                <div class="card-header d-flex justify-content-between" style="background-color: #4bdce8">
+                <div class="card-header d-flex justify-content-between" style="background-color: #00b3ff">
                     <h4 class="card-title" style="color: black"><b>LOGISTIK </b>| Laporan Pembelian</h4>
                 </div>
                 <div class="card-content mt-2">
@@ -29,7 +29,7 @@
                             <div class="col-md-12">
                                 <div class="card-header  pb-0  d-flex justify-content-between">
                                     <h4 class="card-title"></h4>
-                                    <a href="" class="btn btn-success mr-1" data-toggle="modal"
+                                    <a href="" class="btn btn-primary mr-1" data-toggle="modal"
                                        data-target="#TambahPengajuanPembelian"><i class="bx bx-plus-circle"></i>Tambah Data</a>
                                 </div>
                                 <div class="row">

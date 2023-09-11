@@ -136,6 +136,13 @@ Route::group(
                 });
             });
 
+            //MASTER KEUANGAN
+            Route::prefix('master-keuangan')->group(function () {
+                Route::prefix('akun')->group(function () {
+                    Route::get('/list-akun', 'MasterKeuangan\AkunController@getListAkun')->name('master-keuangan.akun.list-akun');
+                });
+            });
+
 
             //MANAJEMEN LOGISTIK
             Route::prefix('master-logistik')->group(function () {

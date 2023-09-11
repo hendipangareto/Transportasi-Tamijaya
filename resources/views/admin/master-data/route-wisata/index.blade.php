@@ -6,7 +6,7 @@
                 <h5 class="content-header-title float-left pr-1 mb-0">Master Data</h5>
                 <div class="breadcrumb-wrapper col-12">
                     <ol class="breadcrumb p-0 mb-0">
-                        <li class="breadcrumb-item"><a href="index.html"><i class="bx bx-home-alt"></i></a>
+                        <li class="breadcrumb-item"><a href=" "><i class="bx bx-home-alt"></i></a>
                         </li>
                         <li class="breadcrumb-item active">Rute Wisata
                         </li>
@@ -20,8 +20,18 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-header pb-0 d-flex justify-content-between">
-                    <h4 class="card-title">List Data Master Rute Wisata</h4>
+                <div class="card-header" style="background-color: #00b3ff">
+                    <div class="toolbar row ">
+                        <div class="col-md-12 d-flex">
+                            <h4 class="card-title">List Data Master Rute Wisata</h4>
+                            <div class="col ml-auto">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-header pb-0 d-flex justify-content-between mt-2">
+                    <h4 class="card-title"> </h4>
                     <button type="button" class="btn btn-primary mr-1" onclick="openModal('route-wisata','add')"><i
                             class="bx bx-plus-circle"></i> Tambah Data</button>
                 </div>

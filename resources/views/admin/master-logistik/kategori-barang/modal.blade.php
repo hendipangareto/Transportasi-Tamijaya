@@ -3,7 +3,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="modal-title">Form Tambah Kategori Barang</h4>
+                <h4 class="modal-title" id="modal-title">Form Tambah Kategori</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i class="bx bx-x"></i>
                 </button>
@@ -14,12 +14,12 @@
                     <input type="hidden" id="id" name="id" value="">
                     <label>Kategori Barang: </label>
                     <div class="form-group">
-                        <input type="text" readonly id="agent_code" name="agent_code"
+                        <input type="text"  id="" name=""
                                class="form-control bg-transparent" placeholder="kategori barang">
                     </div>
-                    <label>Deskripsi Kategori: </label>
+                    <label>Keterangan : </label>
                     <div class="form-group">
-                        <textarea class="form-control" name="agent_description" id="agent_description" cols="30"
+                        <textarea class="form-control" name="" id="" cols="30"
                                   rows="3" placeholder="Silahkan masukan deskripsi agent"></textarea>
                     </div>
                 </div>
@@ -28,7 +28,7 @@
                             class="bx bx-arrow-back"></i> Kembali
                     </button>
                     <button type="submit" id="edit-agent" class="btn btn-success mr-1" onclick="manageData('update')"><i
-                            class="bx bx-save mt"></i> Update
+                            class="bx bx-save mt"></i> Submit
                     </button>
                 </div>
             </form>

@@ -20,14 +20,26 @@
 <div class="row">
     <div class="col-12">
         <div class="card">
-            <div class="card-header pb-0 d-flex justify-content-between">
-                <h4 class="card-title">List Data Master Department</h4>
+            <div class="card-header" style="background-color: #00b3ff">
+                <div class="toolbar row ">
+                    <div class="col-md-12 d-flex">
+                        <h4 class="card-title">List Data Master Department</h4>
+                        <div class="col ml-auto">
+                            <div class="dropdown float-right">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-header pb-0 d-flex justify-content-between mt-2">
+                <h4 class="card-title"> </h4>
                 <button type="button" class="btn btn-primary mr-1" onclick="openModal('department','add')"><i
                         class="bx bx-plus-circle"></i> Tambah Data</button>
             </div>
             <div class="card-content pt-1">
                 <div class="card-body card-dashboard">
-                    <div class="table-responsive" id="show-data-department">                       
+                    <div class="table-responsive" id="show-data-department">
                             <div class="text-center">
                                 <div class="spinner-border mr-3 spinner-border text-center" role="department">
                                     <span class="sr-only">Loading...</span>
@@ -47,7 +59,7 @@
 @push('page-scripts')
 <script src="{{ asset('script/admin/master-data/index.js') }}"></script>
 <script>
-    
+
 
 </script>
 @endpush

@@ -16,7 +16,7 @@
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation" data-icon-style="">
             <li class=" nav-item  @if (Request::segment(2) == 'dashboard' || Request::segment(2) == 'dashboard-customer') open @endif">
-                <a href="index.html"><i class="bx bx-home-alt"></i><span class="menu-title">Dashboard</span></a>
+                <a href=""><i class="bx bx-home-alt"></i><span class="menu-title">Dashboard</span></a>
                 <ul class="menu-content">
                     <li><a @if (Request::segment(2) == 'dashboard') class="text-primary" @endif href=""><i
                                 class="bx bx-right-arrow-alt"></i><span class="menu-item">Administrator</span></a>
@@ -26,75 +26,6 @@
                     </li>
                 </ul>
             </li>
-            @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 2 || Auth::user()->id_role == 3)
-                <li class="nav-item @if (Request::segment(2) == 'master-data' && Request::segment(3) !== 'armada') open @endif">
-                    <a href="index.html"><i class="bx bx-folder"></i><span class="menu-title">Master
-                            Data</span></a>
-                    <ul class="menu-content">
-                        <li @if (Request::segment(3) == 'destination-wisata') class="active" @endif>
-                            <a href="{{ route('destination-wisata.index') }}"><i
-                                    class="bx bx-right-arrow-alt"></i><span class="menu-item">Destinasi
-                                    Wisata</span></a>
-                        </li>
-                        <li @if (Request::segment(3) == 'route-wisata') class="active" @endif>
-                            <a href="{{ route('route-wisata.index') }}"><i class="bx bx-right-arrow-alt"></i><span
-                                    class="menu-item">Rute Wisata</span></a>
-                        </li>
-                        <li @if (Request::segment(3) == 'bus') class="active" @endif>
-                            <a href="{{ route('bus.index') }}"><i class="bx bx-right-arrow-alt"></i><span
-                                    class="menu-item">Bus</span></a>
-                        </li>
-                        <li @if (Request::segment(3) == 'pick-point') class="active" @endif>
-                            <a href="{{ route('pick-point.index') }}"><i class="bx bx-right-arrow-alt"></i><span
-                                    class="menu-item">Titik Penjemputan</span></a>
-                        </li>
-                        <li @if (Request::segment(3) == 'facility') class="active" @endif>
-                            <a href="{{ route('facility.index') }}"><i class="bx bx-right-arrow-alt"></i><span
-                                    class="menu-item">Fasilitas</span></a>
-                        </li>
-                        <li @if (Request::segment(3) == 'salary') class="active" @endif>
-                            <a href="{{ route('salary.index') }}"><i class="bx bx-right-arrow-alt"></i><span
-                                    class="menu-item">Gaji</span></a>
-                        </li>
-                        <li @if (Request::segment(3) == 'office') class="active" @endif>
-                            <a href="{{ route('office.index') }}"><i class="bx bx-right-arrow-alt"></i><span
-                                    class="menu-item">Kantor</span></a>
-                        </li>
-                        <li @if (Request::segment(3) == 'service') class="active" @endif>
-                            <a href="{{ route('service.index') }}"><i class="bx bx-right-arrow-alt"></i><span
-                                    class="menu-item">Layanan</span></a>
-                        </li>
-                        <li @if (Request::segment(3) == 'schedule') class="active" @endif>
-                            <a href="{{ route('schedule.index') }}"><i class="bx bx-right-arrow-alt"></i><span
-                                    class="menu-item">Jadwal</span></a>
-                        </li>
-                        <li @if (Request::segment(3) == 'day-off') class="active" @endif>
-                            <a href="{{ route('day-off.index') }}"><i class="bx bx-right-arrow-alt"></i><span
-                                    class="menu-item">Hari Libur</span></a>
-                        </li>
-                        <li @if (Request::segment(3) == 'department') class="active" @endif>
-                            <a href="{{ route('department.index') }}"><i class="bx bx-right-arrow-alt"></i><span
-                                    class="menu-item">Department</span></a>
-                        </li>
-                        <li @if (Request::segment(3) == 'position') class="active" @endif>
-                            <a href="{{ route('position.index') }}"><i class="bx bx-right-arrow-alt"></i><span
-                                    class="menu-item">Jabatan</span></a>
-                        </li>
-                        <li @if (Request::segment(3) == 'province') class="active" @endif>
-                            <a href="{{ route('province.index') }}"><i class="bx bx-right-arrow-alt"></i><span
-                                    class="menu-item">Provinsi</span></a>
-                        </li>
-                        <li @if (Request::segment(3) == 'city') class="active" @endif>
-                            <a href="{{ route('city.index') }}"><i class="bx bx-right-arrow-alt"></i><span
-                                    class="menu-item ">Kota</span></a>
-                        </li>
-                        <li @if (Request::segment(3) == 'status') class="active" @endif>
-                            <a href="{{ route('status.index') }}"><i class="bx bx-right-arrow-alt"></i><span
-                                    class="menu-item">Status</span></a>
-                        </li>
-                    </ul>
-                </li>
-            @endif
 
             @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 2 || Auth::user()->id_role == 3)
                 <li class=" navigation-header"><span>Pengelolaan Armada</span>
@@ -296,7 +227,7 @@
                         href="{{ route('filter-accounting.index') }}"><i class="bx bx-filter-alt"></i><span
                             class="menu-title">Filter Data</span></a>
                 </li> --}}
-                <li class=" nav-item"><a href="index.html"><i class="bx bx-file"></i><span
+                <li class=" nav-item"><a href=" "><i class="bx bx-file"></i><span
                             class="menu-title">Laporan</span></a>
                     <ul class="menu-content">
                         <li @if (Request::segment(4) == 'account') class="active" @endif>
@@ -349,16 +280,67 @@
                 </li>
             @endif
 
-            @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 6)
-                <li class="navigation-header"><span>Logistik</span></li>
-                <li class="nav-item @if (Request::segment(2) == 'master-logistik') open @endif">
-                    <a href="#"><i class="bx bxs-categories"></i><span class="menu-title">Master Logistik</span></a>
+            @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 2 || Auth::user()->id_role == 3)
+                <li class=" navigation-header" style="color: #af0303"><span>DATA MASTER</span>
+                </li>
+                <li class="nav-item @if (Request::segment(2) == 'master-data' && Request::segment(3) !== 'armada') open @endif">
+                    <a href="index.html"> <span class="menu-title">
+                            MASTER TICKETING</span></a>
                     <ul class="menu-content">
-                        <li @if (Request::segment(3) == 'supplier-barang') class="active" @endif>
-                            <a href="{{ route('master-logistik-list-supplier-barang') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item">Supplier Barang</span></a>
+                        <li @if (Request::segment(3) == 'bus') class="active" @endif>
+                            <a href="{{ route('bus.index') }}"><i class="bx bx-right-arrow-alt"></i><span
+                                    class="menu-item">Armada</span></a>
                         </li>
+                        <li @if (Request::segment(3) == 'facility') class="active" @endif>
+                            <a href="{{ route('facility.index') }}"><i class="bx bx-right-arrow-alt"></i><span
+                                    class="menu-item">Fasilitas Armada</span></a>
+                        </li>
+                        <li @if (Request::segment(3) == 'province') class="active" @endif>
+                            <a href="{{ route('province.index') }}"><i class="bx bx-right-arrow-alt"></i><span
+                                    class="menu-item">Provinsi</span></a>
+                        </li>
+                        <li @if (Request::segment(3) == 'city') class="active" @endif>
+                            <a href="{{ route('city.index') }}"><i class="bx bx-right-arrow-alt"></i><span
+                                    class="menu-item ">Kota</span></a>
+                        </li>
+                        <li @if (Request::segment(3) == 'status') class="active" @endif>
+                            <a href="{{ route('status.index') }}"><i class="bx bx-right-arrow-alt"></i><span
+                                    class="menu-item">Status</span></a>
+                        </li>
+                        <li @if (Request::segment(3) == 'pick-point') class="active" @endif>
+                            <a href="{{ route('pick-point.index') }}"><i class="bx bx-right-arrow-alt"></i><span
+                                    class="menu-item">Titik Penjemputan</span></a>
+                        </li>
+                        <li @if (Request::segment(3) == 'destination-wisata') class="active" @endif>
+                            <a href="{{ route('destination-wisata.index') }}"><i
+                                    class="bx bx-right-arrow-alt"></i><span class="menu-item">Destinasi
+                                    Wisata</span></a>
+                        </li>
+                        <li @if (Request::segment(3) == 'route-wisata') class="active" @endif>
+                            <a href="{{ route('route-wisata.index') }}"><i class="bx bx-right-arrow-alt"></i><span
+                                    class="menu-item">Rute Wisata</span></a>
+                        </li>
+
+                        <li @if (Request::segment(3) == 'service') class="active" @endif>
+                            <a href="{{ route('service.index') }}"><i class="bx bx-right-arrow-alt"></i><span
+                                    class="menu-item">Layanan</span></a>
+                        </li>
+                    </ul>
+                </li>
+            @endif
+
+
+
+            @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 6)
+                {{--                <li class="navigation-header"><span>Logistik</span></li>--}}
+                <li class="nav-item @if (Request::segment(2) == 'master-logistik') open @endif">
+                    <a href="#"> <span class="menu-title">PERAWATAN & LOGISTIK</span></a>
+                    <ul class="menu-content">
+                        {{--                        <li @if (Request::segment(3) == 'supplier-barang') class="active" @endif>--}}
+                        {{--                            <a href="{{ route('master-logistik-list-supplier-barang') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item">Supplier Barang</span></a>--}}
+                        {{--                        </li>--}}
                         <li @if (Request::segment(3) == 'kategori-barang') class="active" @endif>
-                            <a href="{{ route('master-logistik-list-kategori-barang') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item">Kategori Barang</span></a>
+                            <a href="{{ route('master-logistik-list-kategori-barang') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item">Kategori</span></a>
                         </li>
                         <li @if (Request::segment(3) == 'barang') class="active" @endif>
                             <a href="{{ route('master-logistik-list-barang') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item">Barang</span></a>
@@ -381,6 +363,78 @@
                     </ul>
                 </li>
             @endif
+
+            @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 2 || Auth::user()->id_role == 3)
+
+                <li class="nav-item @if (Request::segment(2) == 'master-keuangan' && Request::segment(3) !== 'armada') open @endif">
+                    <a href="#"> <span class="menu-title">
+                           MASTER KEUANGAN</span></a>
+                    <ul class="menu-content">
+                        <li @if (Request::segment(3) == 'akun') class="active" @endif>
+                            <a href="{{ route('master-keuangan.akun.list-akun') }}"><i class="bx bx-file"></i><span
+                                    class="menu-item">Akun</span></a>
+                        </li>
+                        <li @if (Request::segment(3) == 'day-off') class="active" @endif>
+                            <a href=" "><i class="bx bx-file"></i><span
+                                    class="menu-item">Sub-Akun</span></a>
+                        </li>
+
+                        <li @if (Request::segment(3) == 'department') class="active" @endif>
+                            <a href= ""><i class="bx bx-folder-plus"></i><span
+                                    class="menu-item">Aset</span></a>
+                            <ul class="menu-content">
+                                <li @if (Request::segment(3) == 'day-off') class="active" @endif>
+                                    <a href=" "><i class="bx bx-right-arrow-alt"></i><span
+                                            class="menu-item">Data Aset</span></a>
+                                </li>
+                                <li @if (Request::segment(3) == 'day-off') class="active" @endif>
+                                    <a href=" "><i class="bx bx-right-arrow-alt"></i><span
+                                            class="menu-item">Tipe Aset</span></a>
+                                </li>
+                                <li @if (Request::segment(3) == 'day-off') class="active" @endif>
+                                    <a href=" "><i class="bx bx-right-arrow-alt"></i><span
+                                            class="menu-item">Kategori Aset</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li @if (Request::segment(3) == 'position') class="active" @endif>
+                            <a href=" "><i class="bx bx-file"></i><span
+                                    class="menu-item">Kategori Pajak</span></a>
+                        </li>
+                        <li @if (Request::segment(3) == 'position') class="active" @endif>
+                            <a href=" "><i class="bx bx-file"></i><span
+                                    class="menu-item">Metode Penyusutan</span></a>
+                        </li>
+                    </ul>
+                </li>
+            @endif
+
+            @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 2 || Auth::user()->id_role == 3)
+
+                <li class="nav-item @if (Request::segment(2) == 'master-' && Request::segment(3) !== 'armada') open @endif">
+                    <a href="#"> <span class="menu-title">
+                           MASTER HRD</span></a>
+                    <ul class="menu-content">
+                        <li @if (Request::segment(3) == 'office') class="active" @endif>
+                            <a href="{{ route('office.index') }}"><i class="bx bx-right-arrow-alt"></i><span
+                                    class="menu-item">Kantor</span></a>
+                        </li>
+                        <li @if (Request::segment(3) == 'day-off') class="active" @endif>
+                            <a href="{{ route('day-off.index') }}"><i class="bx bx-right-arrow-alt"></i><span
+                                    class="menu-item">Hari Libur</span></a>
+                        </li>
+                        <li @if (Request::segment(3) == 'department') class="active" @endif>
+                            <a href="{{ route('department.index') }}"><i class="bx bx-right-arrow-alt"></i><span
+                                    class="menu-item">Departemen</span></a>
+                        </li>
+                        <li @if (Request::segment(3) == 'position') class="active" @endif>
+                            <a href="{{ route('position.index') }}"><i class="bx bx-right-arrow-alt"></i><span
+                                    class="menu-item">Jabatan</span></a>
+                        </li>
+                    </ul>
+                </li>
+            @endif
+
             {{-- <li class=" nav-item"><a href="index.html"><i class="bx bx-money"></i><span
                         class="menu-title">Payroll</span></a>
                 <ul class="menu-content">
