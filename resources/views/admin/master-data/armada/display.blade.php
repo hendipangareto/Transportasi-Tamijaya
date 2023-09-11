@@ -1,4 +1,4 @@
-<table class="table table-bordered table-hover" id="table-armada">
+<table class="table table-bordered table-hover table-responsive-lg" id="table-armada">
     <thead>
         <tr>
             <th class="w-5p">No</th>

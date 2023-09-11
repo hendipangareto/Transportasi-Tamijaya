@@ -20,7 +20,7 @@
     <div class="row">
         <div class="col-12">
             <div class="card shadow">
-                <div class="card-header">
+                <div class="card-header" style="background-color: #00b3ff">
                     <div class="toolbar row ">
                         <div class="col-md-12 d-flex">
                             <h2 class="h4 mb-1">Data Master Karyawan</h2>
@@ -40,8 +40,7 @@
                         </div>
                     </div>
                 </div>
-                <hr>
-                <div class="card-body">
+                <div class="card-body mt-2">
                     <form action="">
                         @csrf
                         <div class="row">

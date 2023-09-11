@@ -20,10 +20,20 @@
     <div class="row">
         <div class="col-5 col-md-5">
             <div class="card">
-                <div class="card-header pb-0 d-flex justify-content-between">
-                    <h6 class="font-weight-bold">NERACA (PASIVA)</h6>
-                    <button type="button" class="btn btn-sm btn-primary mr-1 text-uppercase"
-                        onclick="openModal('balance-pasiva','add')"><i class="bx bx-plus-circle"></i> Tambah</button>
+                <div class="card-header" style="background-color: #00b3ff">
+                    <div class="toolbar row ">
+                        <div class="col-md-12 d-flex">
+                            <h6 class="font-weight-bold">NERACA (PASIVA)</h6>
+                            <div class="col ml-auto">
+                                <div class="dropdown float-right">
+                                    <button type="button" class="btn btn-sm btn-primary mr-1 text-uppercase"
+                                            onclick="openModal('balance-pasiva','add')"><i
+                                            class="bx bx-plus-circle"></i> Tambah
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-content pt-1">
                     <div class="card-body card-dashboard">
@@ -44,9 +54,11 @@
                 <div class="card-header pb-0 d-flex justify-content-between">
                     <h6 class="font-weight-bold" id="title-pasiva">DETAIL ACCOUNT PASIVA</h6>
                     <input type="hidden" id="selected_pasiva" value="">
-                    <button type="button" class="btn btn-sm btn-primary mr-1 text-uppercase" id="btn-balance-detail-pasiva"
-                        onclick="openModalDetail('balance-detail-pasiva','add')" style="display: none"><i
-                            class="bx bx-plus-circle"></i> Tambah</button>
+                    <button type="button" class="btn btn-sm btn-primary mr-1 text-uppercase"
+                            id="btn-balance-detail-pasiva"
+                            onclick="openModalDetail('balance-detail-pasiva','add')" style="display: none"><i
+                            class="bx bx-plus-circle"></i> Tambah
+                    </button>
                 </div>
                 <div class="card-content pt-1">
                     <div class="card-body card-dashboard">

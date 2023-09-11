@@ -20,8 +20,20 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-header pb-0 d-flex justify-content-between">
-                    <h4 class="card-title">Reservasi Transaksi</h4>
+                <div class="card-header" style="background-color: #00b3ff">
+                    <div class="toolbar row ">
+                        <div class="col-md-12 d-flex">
+                            <h4 class="card-title">Reservasi Transaksi</h4>
+                            <div class="col ml-auto">
+                                <div class="dropdown float-right">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-header pb-0 d-flex justify-content-between mt-2">
+                    <h4 class="card-title"></h4>
                     <div class="d-flex">
                         <button onclick="filterData()" type="button" class="btn btn-outline-warning mr-1 "><i
                                 class="bx bx-filter-alt"></i><span class="align-middle ml-25">Filter</span></button>
@@ -52,7 +64,7 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="pariwisata-transaction-tab" data-toggle="tab"
-                                    href="#pariwisata-transaction" 
+                                    href="#pariwisata-transaction"
                                     role="tab" aria-controls="pariwisata-transaction" aria-selected="false">
                                     Pariwisata
                                 </a>

@@ -19,7 +19,7 @@
 @section('content')
     <div class="col-md-12 my-4">
         <div class="card shadow">
-            <div class="card-header">
+            <div class="card-header" style="background-color: #00b3ff">
                 <div class="toolbar row ">
                     <div class="col-md-12 d-flex">
                         <h2 class="h4 mb-1">Daftar Gaji Pegawai</h2>
@@ -30,7 +30,6 @@
                                         class="btn btn-primary mr-1">
                                     <i class="fe fe-plus"></i> Tambah Data
                                 </button>
-
                                 <a target="_blank" id="btn-report"
                                    href=" "
                                    type="button" class="btn btn-danger text-white mr-1">

@@ -328,11 +328,11 @@
                     <ul class="menu-content">
                         <li @if (Request::segment(3) == 'master-employee-list-data') class="active" @endif>
                             <a href="{{ route('human-resource-master-employee-list-data') }}"><i
-                                    class="bx bx-right-arrow-alt"></i><span class="menu-item ">Master
+                                    class="bx bx-right-arrow-alt"></i><span class="menu-item ">Data
                                     Karyawan</span></a>
                         </li>
-                        <li @if (Request::segment(4) == 'about-us') class="active" @endif>
-                            <a href="{{route('human-resource-pegawai-list-data')}}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item ">Data
+                        <li @if (Request::segment(3) == 'daftar-gaji') class="active" @endif>
+                            <a href="{{route('human-resource-pegawai-list-data')}}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item ">Daftar Gaji
                                     Karyawan</span></a>
                         </li>
                         <li @if (Request::segment(3) == 'driver-conductor') class="active" @endif>

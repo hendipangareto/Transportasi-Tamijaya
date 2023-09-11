@@ -19,10 +19,21 @@
 @section('content')
     <div class="row">
         <div class="col-12">
+            <div class="card-header" style="background-color: #00b3ff">
+                <div class="toolbar row ">
+                    <div class="col-md-12 d-flex">
+                        <h4 class="card-title">List Data Master Jurnal</h4>
+                        <div class="col ml-auto">
+                            <div class="dropdown float-right">
 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="card">
-                <div class="card-header d-flex justify-content-between">
-                    <h4 class="card-title">List Data Master Jurnal</h4>
+                <div class="card-header d-flex justify-content-between mt-2">
+                    <h4 class="card-title"></h4>
                     <div class="d-flex">
                         <button type="button" class="btn btn-success mr-1" id="btn-import-journal"
                             onclick="openModal('journal','import')"><i class="bx bx-import"></i> Import Journal</button>

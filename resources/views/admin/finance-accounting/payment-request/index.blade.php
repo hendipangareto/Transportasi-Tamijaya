@@ -20,12 +20,19 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-header pb-0 d-flex justify-content-between">
-                    <h4 class="card-title">List Request Pembayaran</h4>
-                    {{-- <button type="button" class="btn btn-primary mr-1" onclick="openModal('payment-request','add')"><i
-                            class="bx bx-plus-circle"></i> Tambah Data</button> --}}
+                <div class="card-header" style="background-color: #00b3ff">
+                    <div class="toolbar row ">
+                        <div class="col-md-12 d-flex">
+                            <h4 class="card-title">List Request Pembayaran</h4>
+                            <div class="col ml-auto">
+                                <div class="dropdown float-right">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-content pt-1">
+                <div class="card-content pt-1 mt-2">
                     <div class="card-body card-dashboard">
                         <div class="table-responsive" id="show-data-payment-request">
                             <div class="text-center">

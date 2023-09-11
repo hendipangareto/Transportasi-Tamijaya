@@ -20,11 +20,19 @@
 <div class="row">
     <div class="col-12">
         <div class="card">
-            <div class="card-header  pb-0  d-flex justify-content-between">
-                <h4 class="card-title">List Data Master Armada</h4>
-                <button type="button" class="btn btn-primary mr-1" onclick="openModal('armada','add')"> <i class="bx bx-plus-circle"></i> Tambah Data</button>
+            <div class="card-header" style="background-color: #00b3ff">
+                <div class="toolbar row ">
+                    <div class="col-md-12 d-flex">
+                        <h4 class="card-title">List Data Master Armada</h4>
+                        <div class="col ml-auto">
+                            <div class="dropdown float-right">
+                                <button type="button" class="btn btn-primary mr-1" onclick="openModal('armada','add')"> <i class="bx bx-plus-circle"></i> Tambah Data</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="card-content">
+            <div class="card-content mt-2">
                 <div class="card-body card-dashboard">
                     <div class="table" id="show-data-armada">
                             <div class="text-center">

@@ -20,10 +20,18 @@
     <div class="row">
         <div class="col-12 col-md-12">
             <div class="card">
-                <div class="card-header pb-0 d-flex justify-content-between">
-                    <h4 class="card-title">List Data Group Account</h4>
-                    <button type="button" class="btn btn-sm btn-primary mr-1 text-uppercase"
-                        onclick="openModal('group-account','add')"><i class="bx bx-plus-circle"></i> Tambah</button>
+                <div class="card-header" style="background-color: #00b3ff">
+                    <div class="toolbar row ">
+                        <div class="col-md-12 d-flex">
+                            <h4 class="card-title">List Data Group Account</h4>
+                            <div class="col ml-auto">
+                                <div class="dropdown float-right">
+                                    <button type="button" class="btn btn-sm btn-primary mr-1 text-uppercase"
+                                            onclick="openModal('group-account','add')"><i class="bx bx-plus-circle"></i> Tambah</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-content pt-1">
                     <div class="card-body card-dashboard">

@@ -20,8 +20,20 @@
 <div class="row">
     <div class="col-12">
         <div class="card">
-            <div class="card-header d-flex justify-content-between">
-                <h4 class="card-title">List Data Master Peran</h4>
+            <div class="card-header" style="background-color: #00b3ff">
+                <div class="toolbar row ">
+                    <div class="col-md-12 d-flex">
+                        <h4 class="card-title">List Data Master Peran</h4>
+                        <div class="col ml-auto">
+                            <div class="dropdown float-right">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-header d-flex justify-content-between mt-2">
+                <h4 class="card-title"> </h4>
                 <button type="button" id="btn-add-role" class="btn btn-primary mr-1" onclick="openForm('role','add')">
                     <i class="bx bx-plus-circle"></i> Tambah Data</button>
                 <button type="button" id="btn-cancel-role" style="display:none" class="btn btn-danger mr-1" onclick="openForm('role','cancel')">
