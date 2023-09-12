@@ -167,6 +167,10 @@ Route::group(
                         Route::get('/list-kategori-pajak', 'MasterKeuangan\KategoriPajakController@getKategoriPajak')->name('master-keuangan.aset.list-kategori-pajak');
                     });
 
+                    Route::prefix('metode-penyusutan')->group(function () {
+                        Route::get('/list-metode-penyusutan', 'MasterKeuangan\MetodePenyusutanController@getMetodePenyusutan')->name('master-keuangan.metode-penyusutan.list-metode-penyusutan');
+                    });
+
                 });
 
 

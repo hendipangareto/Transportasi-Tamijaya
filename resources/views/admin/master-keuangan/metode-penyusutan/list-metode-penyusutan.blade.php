@@ -8,7 +8,7 @@
                     <ol class="breadcrumb p-0 mb-0">
                         <li class="breadcrumb-item"><a href=" "><i class="bx bx-home-alt"></i></a>
                         </li>
-                        <li class="breadcrumb-item active">Master Kategori Pajak
+                        <li class="breadcrumb-item active">Master Metode Penyusutan
                         </li>
                     </ol>
                 </div>
@@ -23,7 +23,7 @@
                 <div class="card-header" style="background-color: #00b3ff">
                     <div class="toolbar row ">
                         <div class="col-md-12 d-flex">
-                            <h2 class="h4 ">Data Master Kategori Pajak</h2>
+                            <h2 class="h4 ">Data Master Metode Penyusutan</h2>
                             <div class="col ml-auto">
                                 <div class="dropdown float-right">
 
@@ -39,7 +39,7 @@
                             <div class="col ml-auto">
                                 <div class="dropdown float-right">
                                     <a href="#"
-                                       class="btn btn-primary mr-1" data-toggle="modal" data-target="#TambahKategoriPajak">
+                                       class="btn btn-primary mr-1" data-toggle="modal" data-target="#TambahMetodePenyusutan">
                                         <i class="bx bx-plus-circle"></i> Tambah Data</a>
                                     <a target="_blank"
                                        href=" "
@@ -78,32 +78,26 @@
                             <thead>
                             <tr class="text-uppercase text-center">
                                 <th class="w-2p">No</th>
-                                <th class="w-5p">Nama Kategori</th>
-                                <th class="w-3p">Umur Ekonomis <br> (tahun)</th>
                                 <th class="w-3p">Metode Penyusutan</th>
-                                <th class="w-3p">Tarif <br> (%)</th>
                                 <th class="w-10p">Keterangan</th>
-                                <th class="w-10p">Action</th>
+                                <th class="w-2p">Action</th>
                             </tr>
                             </thead>
                             <tbody id="show-data-employee">
                             <tr class="text-center">
                                 <td>1</td>
                                 <td>1101</td>
-                                <td>1101</td>
-                                <td>1101</td>
-                                <td>Mobil Pickup</td>
                                 <td>Kendaraan</td>
 
                                 <td>
                                     <a href=""
                                        class="btn btn-sm btn-outline-primary" data-toggle="modal"
-                                       data-target="#DetailKategoriPajak"><i
+                                       data-target="#DetailMetodePenyusutan"><i
                                             class="bx bx-info-circle font-size-base"></i>
                                     </a>
                                     <a href=""
                                        class="btn btn-sm btn-outline-warning" data-toggle="modal"
-                                       data-target="#EditKategoriPajak"><i
+                                       data-target="#EditMetodePenyusutan"><i
                                             class="bx bx-edit-alt font-size-base"></i>
                                     </a>
                                     <button class="btn btn-sm btn-outline-danger btn-delete-employee "
@@ -118,9 +112,9 @@
             </div>
         </div>
     </div>
-    @include('admin.master-keuangan.kategori-pajak.modal-tambah')
-    @include('admin.master-keuangan.kategori-pajak.modal-detail')
-    @include('admin.master-keuangan.kategori-pajak.modal-edit')
+    @include('admin.master-keuangan.metode-penyusutan.modal-tambah')
+    @include('admin.master-keuangan.metode-penyusutan.modal-detail')
+    @include('admin.master-keuangan.metode-penyusutan.modal-edit')
     {{--    @include('admin.master-keuangan.aset.data-aset.modal-tambah')--}}
 @endsection
 

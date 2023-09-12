@@ -75,19 +75,7 @@
                 </ul>
             </li> --}}
 
-            @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 2 || Auth::user()->id_role == 3)
-                <li class=" navigation-header"><span>Management Customer</span>
-                </li>
 
-                <li class=" nav-item @if (Request::segment(3) == 'customer') active @endif"><a
-                        href="{{ route('customer.index') }}"><i class="bx bx-group"></i><span
-                            class="menu-title">Data Customer</span></a>
-                </li>
-                <li class=" nav-item @if (Request::segment(3) == 'inbox') active @endif"><a
-                        href="{{ route('inbox.index') }}"><i class="bx bxs-inbox"></i><span
-                            class="menu-title">Inbox</span></a>
-                </li>
-            @endif
 
 
             @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 2 || Auth::user()->id_role == 5)
@@ -401,8 +389,8 @@
                             <a href="{{ route('master-keuangan.aset.list-kategori-pajak') }}"><i class="bx bx-file"></i><span
                                     class="menu-item">Kategori Pajak</span></a>
                         </li>
-                        <li @if (Request::segment(3) == 'position') class="active" @endif>
-                            <a href=" "><i class="bx bx-file"></i><span
+                        <li @if (Request::segment(4) == 'metode-penyusutan') class="active" @endif>
+                            <a href="{{ route('master-keuangan.metode-penyusutan.list-metode-penyusutan') }}"><i class="bx bx-file"></i><span
                                     class="menu-item">Metode Penyusutan</span></a>
                         </li>
                     </ul>
@@ -432,6 +420,30 @@
                                     class="menu-item">Jabatan</span></a>
                         </li>
                     </ul>
+                </li>
+            @endif
+
+            @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 2 || Auth::user()->id_role == 3)
+
+                <li class="nav-item @if (Request::segment(2) == 'master-' && Request::segment(3) !== 'armada') open @endif">
+                    <a href="#"> <span class="menu-title">
+                           MASTER UMUM</span></a>
+                    <ul class="menu-content">
+                        <li class=" nav-item @if (Request::segment(3) == 'customer') active @endif"><a
+                                href="{{ route('customer.index') }}"><i class="bx bx-group"></i><span
+                                    class="menu-title">Data Customer</span></a>
+                        </li>
+                    </ul>
+                </li>
+            @endif
+
+
+            @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 2 || Auth::user()->id_role == 3)
+                <li class=" navigation-header"><span>MANAJEMEN CUSTOMER</span>
+                </li>
+                <li class=" nav-item @if (Request::segment(3) == 'inbox') active @endif"><a
+                        href="{{ route('inbox.index') }}"><i class="bx bxs-inbox"></i><span
+                            class="menu-title">Inbox</span></a>
                 </li>
             @endif
 
