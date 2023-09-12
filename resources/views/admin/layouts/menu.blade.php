@@ -351,8 +351,8 @@
                         <li @if (Request::segment(3) == 'komponen') class="active" @endif>
                             <a href="{{ route('admin.master-logistik.komponen.list-komponen') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item">Komponen</span></a>
                         </li>
-                        <li @if (Request::segment(4) == 'pengajuan-pembelian') class="active" @endif>
-                            <a href="{{ route('master-logistik-list-pengajuan-pembelian') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item">Pengajuan Pembelian</span></a>
+                        <li @if (Request::segment(3) == 'alat-kerja-bengkel') class="active" @endif>
+                            <a href="{{ route('admin.master-logistik.alat-kerja-bengkel.list-alat-kerja-bengkel') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item">Alat Kerja Bengkel</span></a>
                         </li>
                         <li @if (Request::segment(4) == 'rekap-pembelian') class="active" @endif>
                             <a href="{{ route('master-logistik-rekap-pengajuan-pembelian') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item">Rekap Pembelian</span></a>

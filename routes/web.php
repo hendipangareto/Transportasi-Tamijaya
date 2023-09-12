@@ -172,6 +172,11 @@ Route::group(
                     Route::get('/list-komponen', 'MasterLogistik\KomponenController@getKomponen')->name('admin.master-logistik.komponen.list-komponen');
                 });
 
+
+                Route::prefix('alat-kerja-bengkel')->group(function () {
+                    Route::get('/list-alat-kerja-bengkel', 'MasterLogistik\AlatBengkelController@getAlatBengkel')->name('admin.master-logistik.alat-kerja-bengkel.list-alat-kerja-bengkel');
+                });
+
                 Route::prefix('kategori-barang')->group(function () {
                     Route::get('/list-kategori-barang', 'MasterLogistik\KategoriBarangController@getKategoriBarang')->name('master-logistik-list-kategori-barang');
                 });
