@@ -239,7 +239,7 @@
             @endif
 
             @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 2)
-                <li class=" navigation-header"><span>Human Resource</span>
+                <li class=" navigation-header" style="color: darkred"><span>Human Resource</span>
                 </li>
                 <li class="nav-item @if (Request::segment(2) == 'human-resource') open @endif">
                     <a href="index.html"><i class="bx bxs-group"></i><span class="menu-title">Manajemen
@@ -449,7 +449,7 @@
 
 
             @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 2 || Auth::user()->id_role == 3)
-                <li class=" navigation-header"><span>MANAJEMEN CUSTOMER</span>
+                <li class=" navigation-header" STYLE="color: darkred"><span>MANAJEMEN CUSTOMER</span>
                 </li>
                 <li class=" nav-item @if (Request::segment(3) == 'inbox') active @endif"><a
                         href="{{ route('inbox.index') }}"><i class="bx bxs-inbox"></i><span
@@ -488,7 +488,7 @@
             </li> --}}
 
             @if (Auth::user()->id_role == 1)
-                <li class=" navigation-header"><span>Management Users</span>
+                <li class=" navigation-header" style="color: darkred"><span>Management Users</span>
                 </li>
                 <li class="nav-item @if (Request::segment(3) == 'role') active @endif"><a
                         href="{{ route('role.index') }}"><i class="bx bx-key"></i><span
