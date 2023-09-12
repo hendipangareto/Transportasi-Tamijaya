@@ -164,6 +164,10 @@ Route::group(
                     Route::get('/list-bagian', 'MasterLogistik\BagianController@getListBagian')->name('admin.master-logistik.bagian.list-bagian');
                 });
 
+                Route::prefix('sub-bagian')->group(function () {
+                    Route::get('/list-bagian', 'MasterLogistik\SubBagianController@getSubBagian')->name('admin.master-logistik.bagian.sub-bagian');
+                });
+
                 Route::prefix('kategori-barang')->group(function () {
                     Route::get('/list-kategori-barang', 'MasterLogistik\KategoriBarangController@getKategoriBarang')->name('master-logistik-list-kategori-barang');
                 });
