@@ -32,17 +32,26 @@
                     </div>
                 </div>
             </div>
-            <div class="card-header pb-0 d-flex justify-content-between">
-                <h4 class="card-title"></h4>
-                <button type="button" class="btn btn-primary mr-1" onclick="openModal('customer','add')"><i
-                        class="bx bx-plus-circle"></i> Tambah Data</button>
-                <a target="_blank"
-                   href=" "
-                   type="button"
-                   class="btn btn-danger text-white mr-1">
-                    <i class="bx bxs-file-pdf"></i> Report PDF
-                </a>
+            <div class="card-header">
+                <div class="toolbar row ">
+                    <div class="col-md-12 d-flex">
+                        <h2 class="h4"></h2>
+                        <div class="col ml-auto">
+                            <div class="dropdown float-right">
+                                <button type="button" class="btn btn-primary mr-1" onclick="openModal('customer','add')"><i
+                                        class="bx bx-plus-circle"></i> Tambah Data</button>
+                                <a target="_blank"
+                                   href=" "
+                                   type="button"
+                                   class="btn btn-danger text-white mr-1">
+                                    <i class="bx bxs-file-pdf"></i> Report PDF
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+
             <div class="card-content pt-1">
                 <div class="card-body card-dashboard">
                     <div class="table-responsive" id="show-data-customer">
