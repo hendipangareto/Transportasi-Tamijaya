@@ -354,11 +354,11 @@
                         <li @if (Request::segment(3) == 'alat-kerja-bengkel') class="active" @endif>
                             <a href="{{ route('admin.master-logistik.alat-kerja-bengkel.list-alat-kerja-bengkel') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item">Alat Kerja Bengkel</span></a>
                         </li>
-                        <li @if (Request::segment(4) == 'rekap-pembelian') class="active" @endif>
-                            <a href="{{ route('master-logistik-rekap-pengajuan-pembelian') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item">Rekap Pembelian</span></a>
+                        <li @if (Request::segment(3) == 'bengkel-luar') class="active" @endif>
+                            <a href="{{ route('admin.master-logistik.bengkel-luar.list-bengkel-luar') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item">Bengkel Luar</span></a>
                         </li>
-                        <li @if (Request::segment(4) == 'laporan-pembelian') class="active" @endif>
-                            <a href="{{route ('master-logistik-laporan-pengajuan-pembelian')}}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item">Laporan Pembelian</span></a>
+                        <li @if (Request::segment(3) == 'toko') class="active" @endif>
+                            <a href="{{route ('admin.master-logistik.toko.list-toko')}}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item">Toko</span></a>
                         </li>
                     </ul>
                 </li>

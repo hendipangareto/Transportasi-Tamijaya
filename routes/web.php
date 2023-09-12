@@ -177,6 +177,16 @@ Route::group(
                     Route::get('/list-alat-kerja-bengkel', 'MasterLogistik\AlatBengkelController@getAlatBengkel')->name('admin.master-logistik.alat-kerja-bengkel.list-alat-kerja-bengkel');
                 });
 
+
+                Route::prefix('bengkel-luar')->group(function () {
+                    Route::get('/list-bengkel-luar', 'MasterLogistik\BengkelLuarController@getBengkelLuar')->name('admin.master-logistik.bengkel-luar.list-bengkel-luar');
+                });
+
+                Route::prefix('toko')->group(function () {
+                    Route::get('/list-toko', 'MasterLogistik\TokoController@getToko')->name('admin.master-logistik.toko.list-toko');
+                });
+
+
                 Route::prefix('kategori-barang')->group(function () {
                     Route::get('/list-kategori-barang', 'MasterLogistik\KategoriBarangController@getKategoriBarang')->name('master-logistik-list-kategori-barang');
                 });
