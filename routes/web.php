@@ -160,8 +160,8 @@ Route::group(
             //MANAJEMEN LOGISTIK
             Route::prefix('master-logistik')->group(function () {
 
-                Route::prefix('barang')->group(function () {
-                    Route::get('/list-barang', 'MasterLogistik\BarangController@getListBarang')->name('master-logistik-list-barang');
+                Route::prefix('bagian')->group(function () {
+                    Route::get('/list-bagian', 'MasterLogistik\BagianController@getListBagian')->name('admin.master-logistik.bagian.list-bagian');
                 });
 
                 Route::prefix('kategori-barang')->group(function () {

@@ -342,8 +342,8 @@
                         <li @if (Request::segment(3) == 'kategori-barang') class="active" @endif>
                             <a href="{{ route('master-logistik-list-kategori-barang') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item">Kategori</span></a>
                         </li>
-                        <li @if (Request::segment(3) == 'barang') class="active" @endif>
-                            <a href="{{ route('master-logistik-list-barang') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item">Barang</span></a>
+                        <li @if (Request::segment(3) == 'bagian') class="active" @endif>
+                            <a href="{{ route('admin.master-logistik.bagian.list-bagian') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item">Bagian</span></a>
                         </li>
                         <li @if (Request::segment(3) == 'rekap-keluar') class="active" @endif>
                             <a href="{{ route('master-logistik.rekap-keluar-logistik.list-data-keluar') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item">Logistik Keluar</span></a>
