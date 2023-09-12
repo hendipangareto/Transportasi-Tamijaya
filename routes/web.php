@@ -136,6 +136,17 @@ Route::group(
                 });
             });
 
+
+            //HUMAN RESOURCE   Route::resource('human-resource/agent', 'HumanResource\AgentController');
+            Route::prefix('status')->group(function () {
+                Route::get('/list-status', 'HumanResource\StatusController@getListStatus')->name('human-resource.status.list-status');
+                Route::get('/tambah-data-aset', 'HumanResource\Aset\DataAsetController@getTambahDataAset')->name('master-keuangan.aset.data-aset.tambah-data-aset');
+            });
+            Route::prefix('satuan')->group(function () {
+                Route::get('/list-satuan', 'HumanResource\StatusController@getListStatus')->name('human-resource.status.list-satuan');
+                Route::get('/tambah-data-aset', 'HumanResource\Aset\DataAsetController@getTambahDataAset')->name('master-keuangan.aset.data-aset.tambah-data-aset');
+            });
+
             //MASTER KEUANGAN
             Route::prefix('master-keuangan')->group(function () {
                 Route::prefix('akun')->group(function () {

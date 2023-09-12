@@ -1,49 +1,135 @@
 <div class="modal fade text-left" id="modal-agent" tabindex="-1" role="dialog" aria-labelledby="modal-title"
-    aria-hidden="true">
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="modal-title">Form Agent</h4>
+                <h4 class="modal-title" id="modal-title">Form Tambah Agent</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i class="bx bx-x"></i>
                 </button>
             </div>
-            <form action="javascript:void(0)" id="form-agent" enctype="multipart/form-data">
-                @csrf
-                <div class="modal-body">
-                    <input type="hidden" id="id" name="id" value="">
-                    <label>Kode Agent: </label>
-                    <div class="form-group">
-                        <input type="text" readonly id="agent_code" name="agent_code"
-                            class="form-control bg-transparent">
+            {{--            <form action="javascript:void(0)" id="form-agent" enctype="multipart/form-data">--}}
+            {{--                @csrf--}}
+            {{--                <div class="modal-body">--}}
+            {{--                    <input type="hidden" id="id" name="id" value="">--}}
+            {{--                    <label>Kode Agent: </label>--}}
+            {{--                    <div class="form-group">--}}
+            {{--                        <input type="text" readonly id="agent_code" name="agent_code"--}}
+            {{--                            class="form-control bg-transparent">--}}
+            {{--                    </div>--}}
+            {{--                    <label>Domisili: </label>--}}
+            {{--                    <div class="form-group">--}}
+            {{--                        <select name="agent_domicile" id="agent_domicile" class="form-control">--}}
+            {{--                            <option value="">--Pilih Domisili Agen--</option>--}}
+            {{--                            <option value="JOGJAKARTA">JOGJAKARTA</option>--}}
+            {{--                            <option value="KLATEN">KLATEN</option>--}}
+            {{--                            <option value="SOLO">SOLO</option>--}}
+            {{--                            <option value="JAKARTA">JAKARTA</option>--}}
+            {{--                            <option value="DENPASAR">DENPASAR</option>--}}
+            {{--                        </select>--}}
+            {{--                    </div>--}}
+            {{--                    <label>Nama Agent: </label>--}}
+            {{--                    <div class="form-group">--}}
+            {{--                        <input type="text" placeholder="Silahkan masukan nama Agent" id="agent_name" name="agent_name"--}}
+            {{--                            class="form-control">--}}
+            {{--                    </div>--}}
+            {{--                    <label>Deskripsi Agent: </label>--}}
+            {{--                    <div class="form-group">--}}
+            {{--                        <textarea class="form-control" name="agent_description" id="agent_description" cols="30"--}}
+            {{--                            rows="3" placeholder="Silahkan masukan deskripsi agent"></textarea>--}}
+            {{--                    </div>--}}
+            {{--                </div>--}}
+            {{--                <div class="modal-footer">--}}
+            {{--                    <button type="submit" id="add-agent" class="btn btn-success mr-1" onclick="manageData('save')"><i--}}
+            {{--                            class="bx bx-check"></i> Submit</button>--}}
+            {{--                    <button type="submit" id="edit-agent" class="btn btn-warning mr-1" onclick="manageData('update')"><i--}}
+            {{--                            class="bx bx-pencil mt"></i> Update</button>--}}
+            {{--                </div>--}}
+            {{--            </form>--}}
+
+            <form action="" method="get">
+                <div class="col-xxl">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <form>
+                                <div class="row mb-1">
+                                    <label class="col-sm-3 col-form-label" for="basic-default-name">Kode</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="basic-default-name" readonly/>
+                                    </div>
+                                </div>
+                                <div class="row mb-1">
+                                    <label class="col-sm-3 col-form-label" for="basic-default-name">Nama Agent</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="basic-default-name"/>
+                                    </div>
+                                </div>
+                                <div class="row mb-1">
+                                    <label class="col-sm-3 col-form-label" for="basic-default-name">Provinsi</label>
+                                    <div class="col-sm-9">
+                                        <select id="largeSelect" class="form-select form-select-lg form-control">
+                                            <option>Pilih Provinsi</option>
+                                            <option value="1">One</option>
+                                            <option value="2">Two</option>
+                                            <option value="3">Three</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row mb-1">
+                                    <label class="col-sm-3 col-form-label" for="basic-default-name">Kota</label>
+                                    <div class="col-sm-9">
+                                        <select id="largeSelect" class="form-select form-select-lg form-control">
+                                            <option>Pilih Kota</option>
+                                            <option value="1">One</option>
+                                            <option value="2">Two</option>
+                                            <option value="3">Three</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row mb-1">
+                                    <label class="col-sm-3 col-form-label" for="basic-default-name">No. Telepon</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="basic-default-name"/>
+                                    </div>
+                                </div>
+                                <div class="row mb-1">
+                                    <label class="col-sm-3 col-form-label" for="basic-default-name">No. HP</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="basic-default-name"/>
+                                    </div>
+                                </div>
+                                <div class="row mb-1">
+                                    <label class="col-sm-3 col-form-label" for="basic-default-name">Email</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="basic-default-name"/>
+                                    </div>
+                                </div>
+                                <div class="row mb-1">
+                                    <label class="col-sm-3 col-form-label" for="basic-default-name">Alamat</label>
+                                    <div class="col-sm-9">
+                                      <textarea class="form-control" name="agent_description"
+                                                id="agent_description" cols="30"
+                                                rows="3">
+                                        </textarea>
+                                    </div>
+                                </div>
+                                <div class="row mb-1">
+                                    <label class="col-sm-3 col-form-label" for="basic-default-name">Keterangan</label>
+                                    <div class="col-sm-9">
+                                      <textarea class="form-control" name="agent_description"
+                                                id="agent_description" cols="30"
+                                                rows="3">
+                                        </textarea>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" id="edit-agent" class="btn btn-success mr-1"><i
+                                            class="bx bx-save"></i> Submit
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                    <label>Domisili: </label>
-                    <div class="form-group">
-                        <select name="agent_domicile" id="agent_domicile" class="form-control">
-                            <option value="">--Pilih Domisili Agen--</option>
-                            <option value="JOGJAKARTA">JOGJAKARTA</option>
-                            <option value="KLATEN">KLATEN</option>
-                            <option value="SOLO">SOLO</option>
-                            <option value="JAKARTA">JAKARTA</option>
-                            <option value="DENPASAR">DENPASAR</option>
-                        </select>
-                    </div>
-                    <label>Nama Agent: </label>
-                    <div class="form-group">
-                        <input type="text" placeholder="Silahkan masukan nama Agent" id="agent_name" name="agent_name"
-                            class="form-control">
-                    </div>
-                    <label>Deskripsi Agent: </label>
-                    <div class="form-group">
-                        <textarea class="form-control" name="agent_description" id="agent_description" cols="30"
-                            rows="3" placeholder="Silahkan masukan deskripsi agent"></textarea>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" id="add-agent" class="btn btn-success mr-1" onclick="manageData('save')"><i
-                            class="bx bx-check"></i> Submit</button>
-                    <button type="submit" id="edit-agent" class="btn btn-warning mr-1" onclick="manageData('update')"><i
-                            class="bx bx-pencil mt"></i> Update</button>
                 </div>
             </form>
         </div>
@@ -51,7 +137,7 @@
 </div>
 
 <div class="modal fade text-left" id="modal-detail-agent" tabindex="-1" role="dialog" aria-labelledby="modal-title"
-    aria-hidden="true">
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -68,21 +154,22 @@
                             <label>Nama Agent: </label>
                             <div class="form-group">
                                 <input type="text" readonly id="detail-agent_name" name="detail-agent_name"
-                                    class="form-control bg-transparent">
+                                       class="form-control bg-transparent">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <label>Domisili: </label>
                             <div class="form-group">
                                 <input type="text" readonly id="detail-agent_domicile" name="detail-agent_domicile"
-                                    class="form-control bg-transparent">
+                                       class="form-control bg-transparent">
                             </div>
                         </div>
                     </div>
                     <div class="row mb-1">
                         <div class="col-md-12">
                             <button class="btn btn-block btn-outline-primary"><i class="bx bx-user-check"></i> Manage
-                                Akun Agent</button>
+                                Akun Agent
+                            </button>
                         </div>
                     </div>
                     <div class="row">
@@ -90,7 +177,7 @@
                             <label>Username: </label>
                             <div class="form-group">
                                 <input type="text" id="username_agent" name="username_agent"
-                                    class="form-control bg-transparent">
+                                       class="form-control bg-transparent">
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -98,7 +185,7 @@
                             <div class="form-group position-relative">
                                 <input type="password" class="form-control">
                                 <div class="form-control-position">
-                                    <i class="bx 
+                                    <i class="bx
                                     bx-show-alt pointer"></i>
                                 </div>
                             </div>
@@ -108,20 +195,24 @@
                             <div class="form-group position-relative">
                                 <input type="password" class="form-control">
                                 <div class="form-control-position">
-                                    <i class="bx 
+                                    <i class="bx
                                     bx-show-alt pointer"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6"><button type="submit" id="add-agent"
-                                class="btn btn-block btn-success mr-1" onclick="manageData('save')"><i
-                                    class="bx bxs-save"></i> Create Account</button>
+                        <div class="col-md-6">
+                            <button type="submit" id="add-agent"
+                                    class="btn btn-block btn-success mr-1" onclick="manageData('save')"><i
+                                    class="bx bxs-save"></i> Create Account
+                            </button>
                         </div>
-                        <div class="col-md-6"><button type="submit" id="add-agent"
-                                class="btn btn-block btn-warning mr-1" onclick="manageData('save')"><i
-                                    class="bx bx-edit-alt"></i> Update Account</button>
+                        <div class="col-md-6">
+                            <button type="submit" id="add-agent"
+                                    class="btn btn-block btn-warning mr-1" onclick="manageData('save')"><i
+                                    class="bx bx-edit-alt"></i> Update Account
+                            </button>
                         </div>
                     </div>
                 </div>

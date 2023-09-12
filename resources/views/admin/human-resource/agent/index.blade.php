@@ -20,10 +20,36 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-header pb-0 d-flex justify-content-between">
-                    <h4 class="card-title">List Data Agent</h4>
-                    <button type="button" class="btn btn-primary mr-1" onclick="openModal('agent','add')"><i
-                            class="bx bx-plus-circle"></i> Tambah Data</button>
+                <div class="card-header" style="background-color: #00b3ff">
+                    <div class="toolbar row ">
+                        <div class="col-md-12 d-flex">
+                            <h2 class="h4 ">List Data Agent</h2>
+                            <div class="col ml-auto">
+                                <div class="dropdown float-right">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-header">
+                    <div class="toolbar row ">
+                        <div class="col-md-12 d-flex">
+                            <h2 class="h4"></h2>
+                            <div class="col ml-auto">
+                                <div class="dropdown float-right">
+                                    <button type="button" class="btn btn-primary mr-1" onclick="openModal('agent','add')"><i
+                                            class="bx bx-plus-circle"></i> Tambah Data</button>
+                                    <a target="_blank"
+                                       href=" "
+                                       type="button"
+                                       class="btn btn-danger text-white mr-1">
+                                        <i class="bx bxs-file-pdf"></i> Report PDF
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-content pt-1">
                     <div class="card-body card-dashboard">

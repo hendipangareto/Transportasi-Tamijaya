@@ -259,11 +259,7 @@
                                     class="bx bx-right-arrow-alt"></i><span class="menu-item">Data
                                     Supir & Kernet</span></a>
                         </li>
-                        <li @if (Request::segment(3) == 'agent') class="active" @endif>
-                            <a href="{{ route('agent.index') }}"><i class="bx bx-right-arrow-alt"></i><span
-                                    class="menu-item">Data
-                                    Agent</span></a>
-                        </li>
+
                     </ul>
                 </li>
             @endif
@@ -433,6 +429,17 @@
                                 href="{{ route('customer.index') }}"><i class="bx bx-group"></i><span
                                     class="menu-title">Data Customer</span></a>
                         </li>
+                        <li @if (Request::segment(3) == 'agent') class="active" @endif>
+                            <a href="{{ route('agent.index') }}"><i class="bx bx-file"></i><span
+                                    class="menu-item">Data
+                                    Agent</span></a>
+                        </li>
+                        <li @if (Request::segment(2) == 'status') class="active" @endif>
+                            <a href="{{ route('human-resource.status.list-status') }}"><i class="bx bx-file"></i><span
+                                    class="menu-item">Status</span></a>
+                        </li>
+
+
                     </ul>
                 </li>
             @endif
