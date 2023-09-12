@@ -8,7 +8,7 @@
                     <ol class="breadcrumb p-0 mb-0">
                         <li class="breadcrumb-item"><a href=" "><i class="bx bx-home-alt"></i></a>
                         </li>
-                        <li class="breadcrumb-item active">Master Status
+                        <li class="breadcrumb-item active">Master Satuan
                         </li>
                     </ol>
                 </div>
@@ -23,7 +23,7 @@
                 <div class="card-header" style="background-color: #00b3ff">
                     <div class="toolbar row ">
                         <div class="col-md-12 d-flex">
-                            <h2 class="h4 ">Data Master Status</h2>
+                            <h2 class="h4 ">Data Master Satuan</h2>
                             <div class="col ml-auto">
                                 <div class="dropdown float-right">
 
@@ -39,7 +39,7 @@
                             <div class="col ml-auto">
                                 <div class="dropdown float-right">
                                     <a href="#"
-                                       class="btn btn-primary mr-1" data-toggle="modal" data-target="#TambahModalStatus">
+                                       class="btn btn-primary mr-1" data-toggle="modal" data-target="#TambahModalSatuan">
                                         <i class="bx bx-plus-circle"></i> Tambah Data</a>
                                     <a target="_blank"
                                        href=" "
@@ -53,24 +53,24 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form action="">
-                        @csrf
-                        <div class="row">
-                            <div class="col-md-2 col-sm-12">
-                                <div class="form-group">
-                                    <label for="">Metode Penyusutan</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-md-2 col-sm-12">
-                                <div class="form-group">
-                                    <label for="" style="color: white">Filter</label><br>
-                                    <button class="btn btn-outline-primary">Filter <i
-                                            class="bx bx-filter"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
+{{--                    <form action="">--}}
+{{--                        @csrf--}}
+{{--                        <div class="row">--}}
+{{--                            <div class="col-md-2 col-sm-12">--}}
+{{--                                <div class="form-group">--}}
+{{--                                    <label for="">Metode Penyusutan</label>--}}
+{{--                                    <input type="text" class="form-control">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <div class="col-md-2 col-sm-12">--}}
+{{--                                <div class="form-group">--}}
+{{--                                    <label for="" style="color: white">Filter</label><br>--}}
+{{--                                    <button class="btn btn-outline-primary">Filter <i--}}
+{{--                                            class="bx bx-filter"></i></button>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </form>--}}
                     <br>
                     <div class="table-responsive">
                         <input type="hidden" id="Tablesemployee" value="">
@@ -79,7 +79,7 @@
                             <tr class="text-uppercase text-center">
                                 <th class="w-2p">No</th>
                                 <th class="w-3p">Kode Status</th>
-                                <th class="w-3p">Status</th>
+                                <th class="w-3p">Nama Satuan</th>
                                 <th class="w-10p">Deskripsi</th>
                                 <th class="w-3p">Action</th>
                             </tr>
@@ -94,12 +94,12 @@
                                 <td>
                                     <a href=""
                                        class="btn btn-sm btn-outline-primary" data-toggle="modal"
-                                       data-target="#DetailModalStatus"><i
+                                       data-target="#DetailModalSatuan"><i
                                             class="bx bx-info-circle font-size-base"></i>
                                     </a>
                                     <a href=""
                                        class="btn btn-sm btn-outline-warning" data-toggle="modal"
-                                       data-target="#EditModalStatus"><i
+                                       data-target="#EditModalSatuan"><i
                                             class="bx bx-edit-alt font-size-base"></i>
                                     </a>
                                     <button class="btn btn-sm btn-outline-danger btn-delete-employee "
@@ -114,9 +114,9 @@
             </div>
         </div>
     </div>
-    @include('admin.human-resource.status.modal-tambah')
-    @include('admin.human-resource.status.modal-detail')
-    @include('admin.human-resource.status.modal-edit')
+    @include('admin.human-resource.satuan.modal-tambah')
+    @include('admin.human-resource.satuan.modal-detail')
+    @include('admin.human-resource.satuan.modal-edit')
     {{--    @include('admin.master-keuangan.aset.data-aset.modal-tambah')--}}
 @endsection
 

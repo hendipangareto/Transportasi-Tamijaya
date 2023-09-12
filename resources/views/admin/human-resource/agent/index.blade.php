@@ -6,7 +6,7 @@
                 <h5 class="content-header-title float-left pr-1 mb-0">Human Resource</h5>
                 <div class="breadcrumb-wrapper col-12">
                     <ol class="breadcrumb p-0 mb-0">
-                        <li class="breadcrumb-item"><a href="index.html"><i class="bx bx-home-alt"></i></a>
+                        <li class="breadcrumb-item"><a href=" "><i class="bx bx-home-alt"></i></a>
                         </li>
                         <li class="breadcrumb-item active">Data Agent
                         </li>
@@ -44,7 +44,7 @@
                                        href=" "
                                        type="button"
                                        class="btn btn-danger text-white mr-1">
-                                        <i class="bx bxs-file-pdf"></i> Report PDF
+                                        <i class="bx bx-printer"></i> Report PDF
                                     </a>
                                 </div>
                             </div>

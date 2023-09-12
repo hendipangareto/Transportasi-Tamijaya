@@ -44,7 +44,7 @@
                                    href=" "
                                    type="button"
                                    class="btn btn-danger text-white mr-1">
-                                    <i class="bx bxs-file-pdf"></i> Report PDF
+                                    <i class="bx bx-printer"></i> Report PDF
                                 </a>
                             </div>
                         </div>

@@ -438,7 +438,10 @@
                             <a href="{{ route('human-resource.status.list-status') }}"><i class="bx bx-file"></i><span
                                     class="menu-item">Status</span></a>
                         </li>
-
+                        <li @if (Request::segment(2) == 'satuan') class="active" @endif>
+                            <a href="{{ route('human-resource.status.list-satuan') }}"><i class="bx bx-file"></i><span
+                                    class="menu-item">Satuan</span></a>
+                        </li>
 
                     </ul>
                 </li>

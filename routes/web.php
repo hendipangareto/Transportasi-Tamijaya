@@ -143,7 +143,7 @@ Route::group(
                 Route::get('/tambah-data-aset', 'HumanResource\Aset\DataAsetController@getTambahDataAset')->name('master-keuangan.aset.data-aset.tambah-data-aset');
             });
             Route::prefix('satuan')->group(function () {
-                Route::get('/list-satuan', 'HumanResource\StatusController@getListStatus')->name('human-resource.status.list-satuan');
+                Route::get('/list-satuan', 'HumanResource\SatuanController@getListSatuan')->name('human-resource.status.list-satuan');
                 Route::get('/tambah-data-aset', 'HumanResource\Aset\DataAsetController@getTambahDataAset')->name('master-keuangan.aset.data-aset.tambah-data-aset');
             });
 
