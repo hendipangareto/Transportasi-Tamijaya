@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Admin\MasterKeuangan;
+namespace App\Http\Controllers\Admin\MasterKeuangan\Aset;
 
 use App\Http\Controllers\Controller;
 
-class AsetController extends Controller
+class DataAsetController extends Controller
 {
     public function getListAset()
     {
-        return view('admin.master-keuangan.aset.data-aset');
+        return view('admin.master-keuangan.aset.data-aset.list-data-aset');
     }
 
     public function getTambahDataAset()
     {
-        return view('admin.master-keuangan.aset.tambah-data-aset');
+        return view('admin.master-keuangan.aset.data-aset.tambah');
     }
 
 

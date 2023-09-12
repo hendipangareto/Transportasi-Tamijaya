@@ -379,26 +379,26 @@
                                     class="menu-item">Sub-Akun</span></a>
                         </li>
 
-                        <li @if (Request::segment(3) == 'department') class="active" @endif>
+                        <li @if (Request::segment(3) == 'aset') class="active" @endif>
                             <a href= ""><i class="bx bx-folder-plus"></i><span
                                     class="menu-item">Aset</span></a>
                             <ul class="menu-content">
-                                <li @if (Request::segment(3) == 'day-off') class="active" @endif>
-                                    <a href="{{ route('master-keuangan.aset.data-aset') }}"><i class="bx bx-right-arrow-alt"></i><span
+                                <li @if (Request::segment(4) == 'data-aset') class="active" @endif>
+                                    <a href="{{ route('master-keuangan.aset.list-data-aset') }}"><i class="bx bx-right-arrow-alt"></i><span
                                             class="menu-item">Data Aset</span></a>
                                 </li>
-                                <li @if (Request::segment(3) == 'day-off') class="active" @endif>
-                                    <a href=" "><i class="bx bx-right-arrow-alt"></i><span
+                                <li @if (Request::segment(4) == 'tipe-aset') class="active" @endif>
+                                    <a href="{{ route('master-keuangan.aset.tipe-aset') }}"><i class="bx bx-right-arrow-alt"></i><span
                                             class="menu-item">Tipe Aset</span></a>
                                 </li>
-                                <li @if (Request::segment(3) == 'day-off') class="active" @endif>
-                                    <a href=" "><i class="bx bx-right-arrow-alt"></i><span
+                                <li @if (Request::segment(4) == 'kategori-aset') class="active" @endif>
+                                    <a href="{{ route('master-keuangan.aset.list-kategori-aset') }}"><i class="bx bx-right-arrow-alt"></i><span
                                             class="menu-item">Kategori Aset</span></a>
                                 </li>
                             </ul>
                         </li>
-                        <li @if (Request::segment(3) == 'position') class="active" @endif>
-                            <a href=" "><i class="bx bx-file"></i><span
+                        <li @if (Request::segment(4) == 'kategori-pajak') class="active" @endif>
+                            <a href="{{ route('master-keuangan.aset.list-kategori-pajak') }}"><i class="bx bx-file"></i><span
                                     class="menu-item">Kategori Pajak</span></a>
                         </li>
                         <li @if (Request::segment(3) == 'position') class="active" @endif>

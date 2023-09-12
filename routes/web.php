@@ -76,7 +76,7 @@ Route::group(
         Route::post('/customer/create-password', 'Customer\AuthController@createPassword');
     }
 
-    // Re Function Client
+// Re Function Client
 
 );
 #endregion
@@ -146,14 +146,30 @@ Route::group(
                 });
 
                 Route::prefix('aset')->group(function () {
-                    Route::get('/data-aset', 'MasterKeuangan\AsetController@getListAset')->name('master-keuangan.aset.data-aset');
-                    Route::get('/tambah-data-aset', 'MasterKeuangan\AsetController@getTambahDataAset')->name('master-keuangan.aset.data-aset.tambah-data-aset');
+
+
+                    Route::prefix('data-aset')->group(function () {
+                        Route::get('/list-aset', 'MasterKeuangan\Aset\DataAsetController@getListAset')->name('master-keuangan.aset.list-data-aset');
+                        Route::get('/tambah-data-aset', 'MasterKeuangan\Aset\DataAsetController@getTambahDataAset')->name('master-keuangan.aset.data-aset.tambah-data-aset');
+                    });
+
+                    Route::prefix('tipe-aset')->group(function () {
+                        Route::get('/list-tipe-aset', 'MasterKeuangan\Aset\TipeAsetController@getTipeAset')->name('master-keuangan.aset.tipe-aset');
+//                        Route::get('/tambah-data-aset', 'MasterKeuangan\AsetController@getTambahDataAset')->name('master-keuangan.aset.data-aset.tambah-data-aset');
+                    });
+
+                    Route::prefix('kategori-aset')->group(function () {
+                        Route::get('/list-kategori-aset', 'MasterKeuangan\Aset\KategoriAsetController@getKategoriAset')->name('master-keuangan.aset.list-kategori-aset');
+//                        Route::get('/tambah-data-aset', 'MasterKeuangan\Aset\DataAsetController@getTambahDataAset')->name('master-keuangan.aset.data-aset.tambah-data-aset');
+                    });
+
+                    Route::prefix('kategori-pajak')->group(function () {
+                        Route::get('/list-kategori-pajak', 'MasterKeuangan\KategoriPajakController@getKategoriPajak')->name('master-keuangan.aset.list-kategori-pajak');
+                    });
+
                 });
 
-                Route::prefix('tipe-aset')->group(function () {
-                    Route::get('/list-tipe-aset', 'MasterKeuangan\AsetController@getTipeAset')->name('master-keuangan.aset.tipe-aset');
-                    Route::get('/tambah-data-aset', 'MasterKeuangan\AsetController@getTambahDataAset')->name('master-keuangan.aset.data-aset.tambah-data-aset');
-                });
+
             });
 
 
@@ -248,7 +264,6 @@ Route::group(
                     });
                 });
             });
-
 
 
             #region Dashboard
@@ -354,8 +369,6 @@ Route::group(
 
             // NEW
             Route::post('transaction/pariwisata/booking/check-bus-availability', 'Transaction\Pariwisata\BookingPariwisataController@checkBusAvailability');
-
-
 
 
             // PRINT

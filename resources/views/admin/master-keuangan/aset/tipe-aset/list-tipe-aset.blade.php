@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 @section('content-header')
-    <div class="content-header-left col-12 mb-2 mt-1">
+    <div class="content-header-left col-12 ">
         <div class="row breadcrumbs-top">
             <div class="col-12">
                 <h5 class="content-header-title float-left pr-1 mb-0">Master Keuangan</h5>
@@ -8,7 +8,7 @@
                     <ol class="breadcrumb p-0 mb-0">
                         <li class="breadcrumb-item"><a href=" "><i class="bx bx-home-alt"></i></a>
                         </li>
-                        <li class="breadcrumb-item active">Master Aset
+                        <li class="breadcrumb-item active">Master Tipe Aset
                         </li>
                     </ol>
                 </div>
@@ -17,13 +17,13 @@
     </div>
 @endsection
 @section('content')
-    <div class="row">
+    <div class="row mt-2">
         <div class="col-12">
             <div class="card shadow">
                 <div class="card-header" style="background-color: #00b3ff">
                     <div class="toolbar row ">
                         <div class="col-md-12 d-flex">
-                            <h2 class="h4 ">Data Master Data Aset</h2>
+                            <h2 class="h4 ">Data Master Tipe Aset</h2>
                             <div class="col ml-auto">
                                 <div class="dropdown float-right">
 
@@ -32,14 +32,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-header" >
+                <div class="card-header">
                     <div class="toolbar row ">
                         <div class="col-md-12 d-flex">
-                            <h2 class="h4"> </h2>
+                            <h2 class="h4"></h2>
                             <div class="col ml-auto">
                                 <div class="dropdown float-right">
-                                    <a href="{{ route('master-keuangan.aset.data-aset.tambah-data-aset') }} "
-                                       class="btn btn-primary mr-1">
+                                    <a href="#"
+                                       class="btn btn-primary mr-1" data-toggle="modal" data-target="#TambahTipeAset">
                                         <i class="bx bx-plus-circle"></i> Tambah Data</a>
                                     <a target="_blank"
                                        href=" "
@@ -78,13 +78,9 @@
                             <thead>
                             <tr class="text-uppercase text-center">
                                 <th class="w-2p">No</th>
-                                <th class="w-2p">Id Aset</th>
-                                <th class="w-10p">Nama Aset</th>
-                                <th class="w-10p">Kategori Aset</th>
-                                <th class="w-10p">Merk</th>
-                                <th class="w-10p">Spesifikasi</th>
-                                <th class="w-10p">Kuantitas</th>
-                                <th class="w-10p">Satuan</th>
+                                <th class="w-2p">Id Tipe Aset</th>
+                                <th class="w-10p">Tipe Aset</th>
+                                <th class="w-10p">Deskripsi</th>
                                 <th class="w-3p">Action</th>
                             </tr>
                             </thead>
@@ -94,18 +90,16 @@
                                 <td>1101</td>
                                 <td>Mobil Pickup</td>
                                 <td>Kendaraan</td>
-                                <td>Izuzu</td>
-                                <td> </td>
-                                <td>2 </td>
 
-                                <td>unit</td>
                                 <td>
                                     <a href=""
-                                       class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#DetailAkun"><i
+                                       class="btn btn-sm btn-outline-primary" data-toggle="modal"
+                                       data-target="#DetailTipeAset"><i
                                             class="bx bx-info-circle font-size-base"></i>
                                     </a>
                                     <a href=""
-                                       class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#EditSubAkun"><i
+                                       class="btn btn-sm btn-outline-warning" data-toggle="modal"
+                                       data-target="#EditTipeAset"><i
                                             class="bx bx-pencil font-size-base"></i>
                                     </a>
                                     <button class="btn btn-sm btn-outline-danger btn-delete-employee "
@@ -120,8 +114,10 @@
             </div>
         </div>
     </div>
-    @include('admin.master-keuangan.aset.modal-edit')
-    @include('admin.master-keuangan.aset.modal-tambah')
+    @include('admin.master-keuangan.aset.tipe-aset.modal-tambah')
+    @include('admin.master-keuangan.aset.tipe-aset.modal-detail')
+    @include('admin.master-keuangan.aset.tipe-aset.modal-edit')
+    {{--    @include('admin.master-keuangan.aset.data-aset.modal-tambah')--}}
 @endsection
 
 @push('page-scripts')
