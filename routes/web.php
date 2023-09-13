@@ -141,7 +141,8 @@ Route::group(
 
                 Route::prefix('supervisor-check-armada')->group(function () {
                     Route::get('/list-approval-sparepart', 'PerawatanPemeliharaan\SupervisorCheckArmadaController@listApprovalSparepart')->name('perawatan-pemeliharaan.supervisor-check-armada.list-approval-sparepart');
-                    Route::get('/list-approval-logistik-perjalanan', 'PerawatanPemeliharaan\SupervisorCheckArmadaController@listApprovalLogistik')->name('perawatan-pemeliharaan.supervisor-cuci-mobil.list-approval-logistik-perjalanan');
+                    Route::get('/list-approval-logistik-perjalanan', 'PerawatanPemeliharaan\SupervisorCheckArmadaController@listApprovalLogistik')->name('perawatan-pemeliharaan.supervisor-check-armada.list-approval-logistik-perjalanan');
+                    Route::get('/list-penentuan-bengkel', 'PerawatanPemeliharaan\SupervisorCheckArmadaController@listPenentuanBengkel')->name('perawatan-pemeliharaan.supervisor-check-armada.list-penentuan-bengkel');
                 });
 
             });

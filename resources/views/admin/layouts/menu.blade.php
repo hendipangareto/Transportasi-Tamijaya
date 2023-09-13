@@ -543,9 +543,17 @@
                                     class="bx bx-file"></i><span class="menu-item ">Approval Sparepart</span></a>
                         </li>
                         <li @if (Request::segment(4) == 'list-approval-logistik-perjalanan') class="active" @endif>
-                            <a href="{{ route('perawatan-pemeliharaan.supervisor-cuci-mobil.list-approval-logistik-perjalanan') }}"><i
+                            <a href="{{ route('perawatan-pemeliharaan.supervisor-check-armada.list-approval-logistik-perjalanan') }}"><i
                                     class="bx bx-file"></i><span class="menu-item ">Approval Logistik Perjalanan</span></a>
                         </li>
+                        <li @if (Request::segment(4) == 'list-penentuan-bengkel') class="active" @endif>
+                            <a href="{{ route('perawatan-pemeliharaan.supervisor-check-armada.list-penentuan-bengkel') }}"><i
+                                    class="bx bx-file"></i><span class="menu-item ">Penentuan Bengkel Luar/Bengkel</span></a>
+                        </li>
+{{--                        <li @if (Request::segment(4) == 'list-approval-logistik-perjalanan') class="active" @endif>--}}
+{{--                            <a href=" "><i--}}
+{{--                                    class="bx bx-file"></i><span class="menu-item ">Report Kerusakan</span></a>--}}
+{{--                        </li>--}}
                     </ul>
                 </li>
             @endif

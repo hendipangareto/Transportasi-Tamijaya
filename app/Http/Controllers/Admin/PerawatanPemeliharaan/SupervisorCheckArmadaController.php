@@ -16,4 +16,9 @@ class SupervisorCheckArmadaController extends Controller
         return view('admin.perawatan-pemeliharaan.supervisor-check-armada.approval-logistik-perjalanan.list');
     }
 
+    public function listPenentuanBengkel()
+    {
+        return view('admin.perawatan-pemeliharaan.supervisor-check-armada.penentuan-bengkel-luar-dalam.list');
+    }
+
 }
