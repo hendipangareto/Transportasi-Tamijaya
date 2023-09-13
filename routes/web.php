@@ -139,6 +139,11 @@ Route::group(
                     Route::get('/list-check-armada', 'PerawatanPemeliharaan\CheckRutinController@listCheckArmada')->name('perawatan-pemeliharaan.check-rutin-armada.list-check-armada');
                 });
 
+                Route::prefix('supervisor-check-armada')->group(function () {
+                    Route::get('/list-approval-sparepart', 'PerawatanPemeliharaan\SupervisorCheckArmadaController@listApprovalSparepart')->name('perawatan-pemeliharaan.supervisor-check-armada.list-approval-sparepart');
+                    Route::get('/report-cuci-mobil', 'PerawatanPemeliharaan\SupervisorCuciController@ReportCuci')->name('perawatan-pemeliharaan.supervisor-cuci-mobil.report-cuci-mobil');
+                });
+
             });
 
             //DATA EMPLOYEE

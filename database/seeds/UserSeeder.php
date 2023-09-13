@@ -102,5 +102,14 @@ class UserSeeder extends Seeder
             'id_role' => 10,
             'remember_token' => Str::random(50),
         ] );
+
+        User::create( [
+            'name' => 'Perawatan',
+            'username' => 'svp Petugas Check',
+            'email' => 'svppetugascheck@gmail.com',
+            'password' => bcrypt("svppetugascheck"),
+            'id_role' => 11,
+            'remember_token' => Str::random(50),
+        ] );
     }
 }
