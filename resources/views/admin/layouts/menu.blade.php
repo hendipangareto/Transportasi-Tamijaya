@@ -542,8 +542,8 @@
                             <a href="{{ route('perawatan-pemeliharaan.supervisor-check-armada.list-approval-sparepart') }}"><i
                                     class="bx bx-file"></i><span class="menu-item ">Approval Sparepart</span></a>
                         </li>
-                        <li @if (Request::segment(4) == 'list-approval-sparepart') class="active" @endif>
-                            <a href=" "><i
+                        <li @if (Request::segment(4) == 'list-approval-logistik-perjalanan') class="active" @endif>
+                            <a href="{{ route('perawatan-pemeliharaan.supervisor-cuci-mobil.list-approval-logistik-perjalanan') }}"><i
                                     class="bx bx-file"></i><span class="menu-item ">Approval Logistik Perjalanan</span></a>
                         </li>
                     </ul>

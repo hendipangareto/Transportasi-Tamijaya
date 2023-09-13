@@ -6,10 +6,14 @@ use App\Http\Controllers\Controller;
 
 class SupervisorCheckArmadaController extends Controller
 {
-
     public  function listApprovalSparepart()
     {
-        return view('admin.perawatan-pemeliharaan.supervisor-check-armada.list-approval-sparepart');
+        return view('admin.perawatan-pemeliharaan.supervisor-check-armada.approval-sparepart.list');
+    }
+
+    public function listApprovalLogistik ()
+    {
+        return view('admin.perawatan-pemeliharaan.supervisor-check-armada.approval-logistik-perjalanan.list');
     }
 
 }
