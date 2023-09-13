@@ -117,6 +117,14 @@ Route::group(
         #endregion
         Route::middleware(['auth'])->group(function () {
 
+            //PERAWATAN & PEMELIHARAAN
+            Route::prefix('perawatan-pemeliharaan')->group(function () {
+                Route::prefix('sopir')->group(function () {
+                    Route::get('/check-fisik-layanan', 'PerawatanPemeliharaan\SopirController@listCheckFisik')->name('perawatan-pemeliharaan.sopir.check-fisik-layanan');
+                    Route::get('/report-perjalanan', 'PerawatanPemeliharaan\SopirController@listCheckFisik')->name('perawatan-pemeliharaan.sopir.report-perjalanan');
+                });
+            });
+
             //DATA EMPLOYEE
             Route::prefix('human-resource')->group(function () {
                 Route::get('/master-employee-list-data', 'HumanResource\EmployeeController@listData')->name('human-resource-master-employee-list-data');

@@ -38,5 +38,11 @@ class RoleSeeder extends Seeder
             'role_name' => 'Repairs & Maintenance',
             'role_level' => 4,
         ]);
+
+        Role::create([
+            'role_code' => 'PRT-007',
+            'role_name' => 'Perawatan & Pemeliharaan',
+            'role_level' => 7,
+        ]);
     }
 }
