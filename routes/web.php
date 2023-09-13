@@ -121,8 +121,15 @@ Route::group(
             Route::prefix('perawatan-pemeliharaan')->group(function () {
                 Route::prefix('sopir')->group(function () {
                     Route::get('/check-fisik-layanan', 'PerawatanPemeliharaan\SopirController@listCheckFisik')->name('perawatan-pemeliharaan.sopir.check-fisik-layanan');
-                    Route::get('/report-perjalanan', 'PerawatanPemeliharaan\SopirController@listCheckFisik')->name('perawatan-pemeliharaan.sopir.report-perjalanan');
+                    Route::get('/report-perjalanan', 'PerawatanPemeliharaan\SopirController@ReportPerjalanan')->name('perawatan-pemeliharaan.sopir.report-perjalanan');
                 });
+
+                Route::prefix('petugas-cuci')->group(function () {
+                    Route::get('/list-notifikasi-cuci', 'PerawatanPemeliharaan\PetugasCuciController@listNotifikasi')->name('perawatan-pemeliharaan.petugas-cuci.list-notifikasi-cuci');
+                    Route::get('/list-form-cuci', 'PerawatanPemeliharaan\PetugasCuciController@FormCuci')->name('perawatan-pemeliharaan.petugas-cuci.list-form-cuci');
+
+                });
+
             });
 
             //DATA EMPLOYEE

@@ -498,9 +498,22 @@
                                     class="bx bx-right-arrow-alt"></i><span class="menu-item ">Check Fisik Layanan</span></a>
                         </li>
                         <li @if (Request::segment(3) == 'daftar-gaji') class="active" @endif>
-                            <a href=" "><i class="bx bx-right-arrow-alt"></i><span class="menu-item ">Report Laporan Perjalanan</span></a>
+                            <a href="{{ route('perawatan-pemeliharaan.sopir.report-perjalanan') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item ">Report Laporan Perjalanan</span></a>
                         </li>
 
+                    </ul>
+                </li>
+            @endif
+            @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 8)
+{{--                <li class=" navigation-header" style="color: darkred"><span>PERAWATAN & PEMELIHARAAN</span>--}}
+{{--                </li>--}}
+                <li class="nav-item @if (Request::segment(2) == 'perawatan-pemeliharaan') open @endif">
+                    <a href=""><i class="bx bxs-group"></i><span class="menu-title">Petugas Cuci</span></a>
+                    <ul class="menu-content">
+                        <li @if (Request::segment(3) == 'petugas-cuci') class="active" @endif>
+                            <a href="{{ route('perawatan-pemeliharaan.petugas-cuci.list-notifikasi-cuci') }}"><i
+                                    class="bx bx-right-arrow-alt"></i><span class="menu-item ">Cuci Armada</span></a>
+                        </li>
                     </ul>
                 </li>
             @endif
