@@ -550,10 +550,32 @@
                             <a href="{{ route('perawatan-pemeliharaan.supervisor-check-armada.list-penentuan-bengkel') }}"><i
                                     class="bx bx-file"></i><span class="menu-item ">Penentuan Bengkel Luar/Bengkel</span></a>
                         </li>
-{{--                        <li @if (Request::segment(4) == 'list-approval-logistik-perjalanan') class="active" @endif>--}}
-{{--                            <a href=" "><i--}}
-{{--                                    class="bx bx-file"></i><span class="menu-item ">Report Kerusakan</span></a>--}}
-{{--                        </li>--}}
+                        <li @if (Request::segment(4) == 'list-approval-logistik-perjalanan') class="active" @endif>
+                            <a href=" "><i
+                                    class="bx bx-file"></i><span class="menu-item ">Report Kerusakan</span></a>
+                        </li>
+                        <li @if (Request::segment(4) == 'list-approval-logistik-perjalanan') class="active" @endif>
+                            <a href=" "><i
+                                    class="bx bx-file"></i><span class="menu-item ">Report All</span></a>
+                        </li>
+                        <li @if (Request::segment(3) == 'bengkel-dalam') class="active" @endif>
+                            <a href= ""><i class="bx bx-file"></i><span
+                                    class="menu-item">Bengkel Dalam</span></a>
+                            <ul class="menu-content">
+                                <li @if (Request::segment(4) == 'list-bengkel-dalam') class="active" @endif>
+                                    <a href="{{ route('perawatan-pemeliharaan.bengkel-dalam.list-bengkel-dalam') }} "><i class="bx bx-right-arrow-alt"></i><span
+                                            class="menu-item">Data Bengkel Dalam</span></a>
+                                </li>
+                                <li @if (Request::segment(4) == 'checklist-perbaikan-bengkel') class="active" @endif>
+                                    <a href="{{ route('perawatan-pemeliharaan.bengkel-dalam.checklist-perbaikan-bengkel') }}"><i class="bx bx-right-arrow-alt"></i><span
+                                            class="menu-item">Checklist Perbaikan Bengkel</span></a>
+                                </li>
+                                <li @if (Request::segment(4) == 'tipe-aset') class="active" @endif>
+                                    <a href=" "><i class="bx bx-right-arrow-alt"></i><span
+                                            class="menu-item">Pengajuan ke Logistik</span></a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </li>
             @endif

@@ -8,7 +8,7 @@
                     <ol class="breadcrumb p-0 mb-0">
                         <li class="breadcrumb-item"><a href=" "><i class="bx bx-bus"></i></a>
                         </li>
-                        <li class="breadcrumb-item active">Supervisor Check Armada
+                        <li class="breadcrumb-item active">Penentuan Perawatan Bengkel Dalam / Bengkel Luar
                         </li>
                     </ol>
                 </div>
@@ -21,7 +21,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between" style="background-color: #00b3ff">
-                    <h4 class="card-title" style="color: black"><b>PEMELIHARAAN </b>| Form Approval Check Armada | Sparepart</h4>
+                    <h4 class="card-title" style="color: black"><b>PEMELIHARAAN </b>| Form Penentuan Perawatan Bengkel Dalam / Bengkel Luar</h4>
                 </div>
                 <div class="card-content mt-2">
                     <div class="card-body card-dashboard">

@@ -145,6 +145,13 @@ Route::group(
                     Route::get('/list-penentuan-bengkel', 'PerawatanPemeliharaan\SupervisorCheckArmadaController@listPenentuanBengkel')->name('perawatan-pemeliharaan.supervisor-check-armada.list-penentuan-bengkel');
                 });
 
+                Route::prefix('bengkel-dalam')->group(function () {
+                    Route::get('/list-bengkel-dalam', 'PerawatanPemeliharaan\BengkelDalam\BengkelDalamController@listBengkelDalam')->name('perawatan-pemeliharaan.bengkel-dalam.list-bengkel-dalam');
+                    Route::get('/checklist-perbaikan-bengkel', 'PerawatanPemeliharaan\BengkelDalam\CheckListPerbaikanController@checklistPerbaikan')->name('perawatan-pemeliharaan.bengkel-dalam.checklist-perbaikan-bengkel');
+                    Route::get('/list-pengajuan-logistik', 'PerawatanPemeliharaan\BengkelDalam\PengajuanLogistikController@PengajuanLogistik')->name('perawatan-pemeliharaan.bengkel-dalam.list-pengajuan-logistik');
+
+                });
+
             });
 
             //DATA EMPLOYEE
