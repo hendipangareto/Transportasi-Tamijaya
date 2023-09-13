@@ -518,6 +518,22 @@
                 </li>
             @endif
 
+            @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 9)
+                <li class="nav-item @if (Request::segment(3) == 'supervisor-cuci-mobil') open @endif">
+                    <a href=""><i class="bx bxs-group"></i><span class="menu-title">SPV CUCI</span></a>
+                    <ul class="menu-content">
+                        <li @if (Request::segment(4) == 'list-approval-laporan') class="active" @endif>
+                            <a href="{{ route('perawatan-pemeliharaan.supervisor-cuci-mobil.list-approval-laporan') }}"><i
+                                    class="bx bx-file"></i><span class="menu-item ">Approval Laporan</span></a>
+                        </li>
+                        <li @if (Request::segment(4) == 'report-cuci-mobil') class="active" @endif>
+                            <a href="{{ route('perawatan-pemeliharaan.supervisor-cuci-mobil.report-cuci-mobil') }}"><i
+                                    class="bx bxs-file-pdf"></i><span class="menu-item ">Report Cuci Armada</span></a>
+                        </li>
+                    </ul>
+                </li>
+            @endif
+
             @if (Auth::user()->id_role == 1)
                 <li class=" navigation-header" style="color: darkred"><span>Management Users</span>
                 </li>

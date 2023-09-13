@@ -93,5 +93,14 @@ class UserSeeder extends Seeder
             'id_role' => 9,
             'remember_token' => Str::random(50),
         ] );
+
+        User::create( [
+            'name' => 'Perawatan',
+            'username' => 'Petugas Check',
+            'email' => 'petugascheck@gmail.com',
+            'password' => bcrypt("petugascheck"),
+            'id_role' => 9,
+            'remember_token' => Str::random(50),
+        ] );
     }
 }

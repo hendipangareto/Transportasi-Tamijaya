@@ -130,6 +130,16 @@ Route::group(
 
                 });
 
+                Route::prefix('supervisor-cuci-mobil')->group(function () {
+                    Route::get('/list-approval-laporan', 'PerawatanPemeliharaan\SupervisorCuciController@listApproval')->name('perawatan-pemeliharaan.supervisor-cuci-mobil.list-approval-laporan');
+                    Route::get('/report-cuci-mobil', 'PerawatanPemeliharaan\SupervisorCuciController@ReportCuci')->name('perawatan-pemeliharaan.supervisor-cuci-mobil.report-cuci-mobil');
+                });
+
+                Route::prefix('supervisor-cuci-mobil')->group(function () {
+                    Route::get('/list-approval-laporan', 'PerawatanPemeliharaan\SupervisorCuciController@listApproval')->name('perawatan-pemeliharaan.supervisor-cuci-mobil.list-approval-laporan');
+                    Route::get('/report-cuci-mobil', 'PerawatanPemeliharaan\SupervisorCuciController@ReportCuci')->name('perawatan-pemeliharaan.supervisor-cuci-mobil.report-cuci-mobil');
+                });
+
             });
 
             //DATA EMPLOYEE

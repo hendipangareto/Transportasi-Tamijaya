@@ -55,5 +55,11 @@ class RoleSeeder extends Seeder
             'role_name' => 'Perawatan & Pemeliharaan',
             'role_level' => 9,
         ]);
+
+        Role::create([
+            'role_code' => 'PTC-0010',
+            'role_name' => 'Perawatan & Pemeliharaan',
+            'role_level' => 10,
+        ]);
     }
 }
