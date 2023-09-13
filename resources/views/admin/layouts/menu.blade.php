@@ -570,8 +570,8 @@
                                     <a href="{{ route('perawatan-pemeliharaan.bengkel-dalam.checklist-perbaikan-bengkel') }}"><i class="bx bx-right-arrow-alt"></i><span
                                             class="menu-item">Checklist Perbaikan Bengkel</span></a>
                                 </li>
-                                <li @if (Request::segment(4) == 'tipe-aset') class="active" @endif>
-                                    <a href=" "><i class="bx bx-right-arrow-alt"></i><span
+                                <li @if (Request::segment(4) == 'list-pengajuan-logistik') class="active" @endif>
+                                    <a href="{{ route('perawatan-pemeliharaan.bengkel-dalam.list-pengajuan-logistik') }}"><i class="bx bx-right-arrow-alt"></i><span
                                             class="menu-item">Pengajuan ke Logistik</span></a>
                                 </li>
                             </ul>
