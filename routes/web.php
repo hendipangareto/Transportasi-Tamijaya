@@ -135,9 +135,8 @@ Route::group(
                     Route::get('/report-cuci-mobil', 'PerawatanPemeliharaan\SupervisorCuciController@ReportCuci')->name('perawatan-pemeliharaan.supervisor-cuci-mobil.report-cuci-mobil');
                 });
 
-                Route::prefix('supervisor-cuci-mobil')->group(function () {
-                    Route::get('/list-approval-laporan', 'PerawatanPemeliharaan\SupervisorCuciController@listApproval')->name('perawatan-pemeliharaan.supervisor-cuci-mobil.list-approval-laporan');
-                    Route::get('/report-cuci-mobil', 'PerawatanPemeliharaan\SupervisorCuciController@ReportCuci')->name('perawatan-pemeliharaan.supervisor-cuci-mobil.report-cuci-mobil');
+                Route::prefix('check-rutin-armada')->group(function () {
+                    Route::get('/list-check-armada', 'PerawatanPemeliharaan\CheckRutinController@listCheckArmada')->name('perawatan-pemeliharaan.check-rutin-armada.list-check-armada');
                 });
 
             });

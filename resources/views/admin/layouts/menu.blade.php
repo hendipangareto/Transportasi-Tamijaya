@@ -534,6 +534,17 @@
                 </li>
             @endif
 
+            @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 10)
+                <li class="nav-item @if (Request::segment(3) == 'check-rutin-armada') open @endif">
+                    <a href=""><i class="bx bxs-group"></i><span class="menu-title">PETUGAS CHECK ARMADA</span></a>
+                    <ul class="menu-content">
+                        <li @if (Request::segment(4) == 'list-check-armada') class="active" @endif>
+                            <a href="{{ route('perawatan-pemeliharaan.check-rutin-armada.list-check-armada') }}"><i
+                                    class="bx bx-file"></i><span class="menu-item ">Check Armada</span></a>
+                        </li>
+                    </ul>
+                </li>
+            @endif
             @if (Auth::user()->id_role == 1)
                 <li class=" navigation-header" style="color: darkred"><span>Management Users</span>
                 </li>

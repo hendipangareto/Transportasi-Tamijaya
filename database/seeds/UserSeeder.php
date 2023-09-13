@@ -99,7 +99,7 @@ class UserSeeder extends Seeder
             'username' => 'Petugas Check',
             'email' => 'petugascheck@gmail.com',
             'password' => bcrypt("petugascheck"),
-            'id_role' => 9,
+            'id_role' => 10,
             'remember_token' => Str::random(50),
         ] );
     }

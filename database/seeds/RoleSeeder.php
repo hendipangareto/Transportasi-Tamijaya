@@ -51,13 +51,13 @@ class RoleSeeder extends Seeder
             'role_level' => 8,
         ]);
         Role::create([
-            'role_code' => 'SPV-009',
+            'role_code' => 'SPVC-009',
             'role_name' => 'Perawatan & Pemeliharaan',
             'role_level' => 9,
         ]);
 
         Role::create([
-            'role_code' => 'PTC-0010',
+            'role_code' => 'CRT-0010',
             'role_name' => 'Perawatan & Pemeliharaan',
             'role_level' => 10,
         ]);
