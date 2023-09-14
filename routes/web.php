@@ -155,7 +155,7 @@ Route::group(
                 Route::prefix('bengkel-luar')->group(function () {
                     Route::get('/list-bengkel-luar', 'PerawatanPemeliharaan\BengkelLuar\BengkelLuarController@listBengkelLuar')->name('perawatan-pemeliharaan.bengkel-dalam.list-bengkel-luar');
                     Route::get('/checklist-perbaikan-bengkel-luar', 'PerawatanPemeliharaan\BengkelLuar\CheckListPerbaikanController@checklistPerbaikan')->name('perawatan-pemeliharaan.bengkel-luar.checklist-perbaikan-bengkel-luar');
-                    Route::get('/laporan-perbaikan-bengkel-luar', 'PerawatanPemeliharaan\BengkelLuar\PengajuanLogistikController@PengajuanLogistikLuar')->name('perawatan-pemeliharaan.bengkel-luar.list-pengajuan-logistik');
+                    Route::get('/laporan-perbaikan-bengkel-luar', 'PerawatanPemeliharaan\BengkelLuar\LaporanPerbaikanController@LaporanPerbaikan')->name('perawatan-pemeliharaan.bengkel-luar.laporan-perbaikan-bengkel-luar');
 
                 });
 

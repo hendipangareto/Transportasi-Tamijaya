@@ -589,7 +589,7 @@
                                             class="menu-item">Checklist Perbaikan Bengkel</span></a>
                                 </li>
                                 <li @if (Request::segment(4) == 'list-pengajuan-logistik-luar') class="active" @endif>
-                                    <a href=" "><i class="bx bx-right-arrow-alt"></i><span
+                                    <a href=" {{ route('perawatan-pemeliharaan.bengkel-luar.laporan-perbaikan-bengkel-luar') }}"><i class="bx bx-right-arrow-alt"></i><span
                                             class="menu-item">Laporan Perbaikan Bengkel</span></a>
                                 </li>
                             </ul>
