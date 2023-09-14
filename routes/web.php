@@ -148,14 +148,14 @@ Route::group(
                 Route::prefix('bengkel-dalam')->group(function () {
                     Route::get('/list-bengkel-dalam', 'PerawatanPemeliharaan\BengkelDalam\BengkelDalamController@listBengkelDalam')->name('perawatan-pemeliharaan.bengkel-dalam.list-bengkel-dalam');
                     Route::get('/checklist-perbaikan-bengkel', 'PerawatanPemeliharaan\BengkelDalam\CheckListPerbaikanController@checklistPerbaikan')->name('perawatan-pemeliharaan.bengkel-dalam.checklist-perbaikan-bengkel');
-                    Route::get('/list-pengajuan-logistik', 'PerawatanPemeliharaan\BengkelDalam\PengajuanLogistikController@PengajuanLogistik')->name('perawatan-pemeliharaan.bengkel-dalam.list-pengajuan-logistik');
+                    Route::get('/list-pengajuan-logistik-dalam', 'PerawatanPemeliharaan\BengkelDalam\PengajuanLogistikController@PengajuanLogistikDalam')->name('perawatan-pemeliharaan.bengkel-dalam.list-pengajuan-logistik');
 
                 });
 
                 Route::prefix('bengkel-luar')->group(function () {
                     Route::get('/list-bengkel-luar', 'PerawatanPemeliharaan\BengkelLuar\BengkelLuarController@listBengkelLuar')->name('perawatan-pemeliharaan.bengkel-dalam.list-bengkel-luar');
                     Route::get('/checklist-perbaikan-bengkel-luar', 'PerawatanPemeliharaan\BengkelLuar\CheckListPerbaikanController@checklistPerbaikan')->name('perawatan-pemeliharaan.bengkel-luar.checklist-perbaikan-bengkel-luar');
-                    Route::get('/laporan-perbaikan-bengkel-luar', 'PerawatanPemeliharaan\BengkelLuar\PengajuanLogistikController@PengajuanLogistik')->name('perawatan-pemeliharaan.bengkel-dalam.list-pengajuan-logistik');
+                    Route::get('/laporan-perbaikan-bengkel-luar', 'PerawatanPemeliharaan\BengkelLuar\PengajuanLogistikController@PengajuanLogistikLuar')->name('perawatan-pemeliharaan.bengkel-luar.list-pengajuan-logistik');
 
                 });
 
