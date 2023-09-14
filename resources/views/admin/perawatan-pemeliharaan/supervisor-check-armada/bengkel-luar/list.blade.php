@@ -23,7 +23,7 @@
                 <div class="card-header" style="background-color: #00b3ff">
                     <div class="toolbar row ">
                         <div class="col-md-12 d-flex">
-                            <h4 class="card-title" style="color: black"><b>PERAWATAN </b>| Bengkel Dalam | Notifikasi Perbaikan Komponen</h4>
+                            <h4 class="card-title" style="color: black"><b>PERAWATAN </b>| Bengkel Luar | Form Perbaikan Komponen</h4>
                             <div class="col ml-auto">
                                 <div class="dropdown float-right">
 
@@ -32,46 +32,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-header" >
-                    <div class="toolbar row ">
-                        <div class="col-md-12 d-flex">
-                            <h2 class="h4"> </h2>
-                            <div class="col ml-auto">
-                                <div class="dropdown float-right">
-                                    <a href=" "
-                                       class="btn btn-primary mr-1" data-toggle="modal" data-target="#TambahToko">
-                                        <i class="bx bx-plus-circle"></i> Tambah Data</a>
-                                    <a target="_blank"
-                                       href=" "
-                                       type="button"
-                                       class="btn btn-danger text-white mr-1">
-                                        <i class="bx bxs-file-pdf"></i> Report PDF
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <form action="">
-                        @csrf
-                        <div class="row">
-                            <div class="col-md-2 col-sm-12">
-                                <div class="form-group">
-                                    <label for="">Provinsi/Kota:</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-md-2 col-sm-12">
-                                <div class="form-group">
-                                    <label for="" style="color: white">Filter</label><br>
-                                    <button class="btn btn-outline-primary">Filter <i
-                                            class="bx bx-filter"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                    <br>
+
+                <div class="card-body mt-3">
                     <div class="table-responsive">
                         <input type="hidden" id="Tablesemployee" value="">
                         <table class="table table-bordered table-hover" id="table-list-employees">
@@ -79,12 +41,13 @@
                             <tr class="text-uppercase text-center">
                                 <th class="w-2p">No</th>
                                 <th class="w-2p">Armada</th>
-                                <th class="w-10p">Tipe Armada</th>
-                                <th class="w-10p">Tipe <br> Perjalanan</th>
+                                <th class="w-10p">Bagian</th>
                                 <th class="w-10p">Keluhan</th>
-                                <th class="w-10p">PIC Checker</th>
-                                <th class="w-10p">Tanggal <br> Check</th>
-                                <th class="w-10p">SVP Checker</th>
+                                <th class="w-10p">Nama Bengkel Luar</th>
+                                <th class="w-10p">Tanggal Masuk</th>
+                                <th class="w-10p">Estimasi Harga <br> (Rp.)</th>
+                                <th class="w-10p">Estimasi Selesai <br> Waktu</th>
+                                <th class="w-3p">Ajukan</th>
                                 <th class="w-3p">Status</th>
                                 <th class="w-3p">Action</th>
                             </tr>
@@ -95,17 +58,39 @@
                                 <td>asdfasdfas </td>
                                 <td>asdas </td>
                                 <td>asdas </td>
-                                <td><a href=""  data-toggle="modal" data-target="#DetailBengkelDalam"><i class="bx bx-street-view btn btn-outline-primary"></i></a></td>
+                                <td>#</td>
                                 <td>asdas </td>
                                 <td>asdas </td>
                                 <td>adsfasfasfasffas </td>
                                 <td>adsfasfasfasffas </td>
                                 <td>
-                                    <a href="" class="btn btn-sm btn-primary"> Check Sekarang</a>
+                                    <a href="" class="btn btn-sm btn-primary">Diajukan</a>
                                 </td>
+                                <td><a href="" class="btn-outline-warning"> <i class="bx bx-edit"></i></a></td>
                             </tr>
                             </tbody>
                         </table>
+                    </div>
+                    <div class="card-header" >
+                        <div class="toolbar row ">
+                            <div class="col-md-12 d-flex">
+                                <h2 class="h4"> </h2>
+                                <div class="col ml-auto">
+                                    <div class="dropdown float-right">
+
+                                        <a target="_blank"
+                                           href=" "
+                                           type="button"
+                                           class="btn btn-danger text-white mr-1">
+                                            <i class="bx bxs-file-pdf"></i> Cetak SPJ
+                                        </a>
+                                        <a href=" "
+                                           class="btn btn-success mr-1" data-toggle="modal" data-target="#TambahToko">
+                                            <i class="bx bx-check-circle"></i> konfirmasi Keuangan</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -127,3 +112,4 @@
     </script>
 
 @endpush
+

@@ -576,6 +576,24 @@
                                 </li>
                             </ul>
                         </li>
+                        <li @if (Request::segment(3) == 'bengkel-luar') class="active" @endif>
+                            <a href= ""><i class="bx bx-file"></i><span
+                                    class="menu-item">Bengkel Luar</span></a>
+                            <ul class="menu-content">
+                                <li @if (Request::segment(4) == 'list-bengkel-luar') class="active" @endif>
+                                    <a href="{{ route('perawatan-pemeliharaan.bengkel-dalam.list-bengkel-luar') }}"><i class="bx bx-right-arrow-alt"></i><span
+                                            class="menu-item">Data Bengkel Luar</span></a>
+                                </li>
+                                <li @if (Request::segment(4) == 'checklist-perbaikan-bengkel-luar') class="active" @endif>
+                                    <a href="{{ route('perawatan-pemeliharaan.bengkel-luar.checklist-perbaikan-bengkel-luar') }}"><i class="bx bx-right-arrow-alt"></i><span
+                                            class="menu-item">Checklist Perbaikan Bengkel</span></a>
+                                </li>
+                                <li @if (Request::segment(4) == 'list-pengajuan-logistik') class="active" @endif>
+                                    <a href=" "><i class="bx bx-right-arrow-alt"></i><span
+                                            class="menu-item">Laporan Perbaikan Bengkel</span></a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </li>
             @endif
