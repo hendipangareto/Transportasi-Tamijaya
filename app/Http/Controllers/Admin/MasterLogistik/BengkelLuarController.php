@@ -52,4 +52,27 @@ class BengkelLuarController extends Controller
             return redirect(route('admin.master-logistik.bengkel-luar.list-bengkel-luar'))->with('pesan-gagal','Anda gagal menambah data bengkel luar');
         }
     }
+
+    public function EditBengkelLuar(Request $request, $id)
+    {
+        $BengkelLuar = BengkelLuar::findOrFail($id);
+        $BengkelLuar->nama_bengkel_luar = $request->nama_bengkel_luar;
+        $BengkelLuar->hp_bengkel_luar = $request->hp_bengkel_luar;
+        $BengkelLuar->tlp_bengkel_luar = $request->tlp_bengkel_luar;
+
+        $BengkelLuar->pic_bengkel_luar = $request->pic_bengkel_luar;
+        $BengkelLuar->alamat_bengkel_luar = $request->alamat_bengkel_luar;
+        $BengkelLuar->id_city = $request->id_city;
+        $BengkelLuar->id_province = $request->id_province;
+        $BengkelLuar->deskripsi_bengkel_luar = $request->deskripsi_bengkel_luar;
+
+//        dd($BengkelLuar);
+        try {
+            $BengkelLuar->save();
+
+            return redirect(route('admin.master-logistik.bengkel-luar.list-bengkel-luar'))->with('pesan-berhasil','Anda berhasil menambah data bengkel luar');
+        } catch (\Exception $e) {
+            return redirect(route('admin.master-logistik.bengkel-luar.list-bengkel-luar'))->with('pesan-gagal','Anda gagal menambah data bengkel luar');
+        }
+    }
 }
