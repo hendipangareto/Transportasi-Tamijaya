@@ -57,14 +57,14 @@
                                         <td>{{ $item->deskripsi_komponen}}</td>
                                         <td>
                                             <a href=""
-                                               class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#DetailKomponen"><i
+                                               class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#DetailKomponen-{{ $item->id }}"><i
                                                     class="bx bx-info-circle font-size-base"></i>
                                             </a>
                                             <a href=""
                                                class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#EditKomponen-{{ $item->id }}"><i
                                                     class="bx bx-edit font-size-base"></i>
                                             </a>
-                                            <a href="{{ route('admin.master-logistik.komponen.delete-komponen',$item->id) }}" class="btn btn-outline-danger btn-sm delete-button"><i class="bx bx-trash"></i></a>
+                                            <a href="{{ route('admin.master-logistik.komponen.delete-komponen', ['id' => $item->id]) }}" class="btn btn-outline-danger btn-sm delete-button"><i class="bx bx-trash"></i></a>
                                         </td>
                                     </tr>
                                 @empty
@@ -84,6 +84,7 @@
 
     @include('admin.master-logistik.komponen.modal-tambah')
     @include('admin.master-logistik.komponen.modal-edit')
+    @include('admin.master-logistik.komponen.modal-detail')
 
 @endsection
 

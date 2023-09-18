@@ -99,7 +99,7 @@
                                     <td>{{ $item->kode_sub_bagian }}</td>
                                     <td>{{ $item->nama_sub_bagian }}</td>
                                     <td>{{ $item->bagian}}</td>
-                                    <td>{{ $item->deskripsi}}</td>
+                                    <td>{{ $item->deskripsi_sub_bagian}}</td>
                                     <td>
                                         <a href=""
                                            class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#DetailAkun"><i
@@ -107,7 +107,7 @@
                                         </a>
                                         <a href=""
                                            class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#UpdateSubBagian-{{ $item->id }}"><i
-                                                class="bx bx-pencil font-size-base"></i>
+                                                class="bx bx-edit font-size-base"></i>
                                         </a>
                                         <button class="btn btn-sm btn-outline-danger btn-delete-employee "
                                                 data-iddelete=""><i class="bx bx-trash font-size-base"></i>

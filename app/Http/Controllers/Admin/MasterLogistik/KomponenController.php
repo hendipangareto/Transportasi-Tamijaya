@@ -75,4 +75,11 @@ class KomponenController extends Controller
             return redirect(route('admin.master-logistik.komponen.list-komponen'))->with('pesan-gagal','Anda gagal mengubah data komponen');
         }
     }
+
+    public function DetailKomponen(Request $request,$id)
+    {
+        $komponen = Komponen::findOrFail($id);
+
+        return view('admin.master-logistik.komponen.list-komponen', compact('komponen'));
+    }
 }
