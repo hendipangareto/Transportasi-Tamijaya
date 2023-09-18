@@ -104,7 +104,7 @@
 @foreach($SubBagian as $item)
     <div class="modal fade text-left" id="DetailSubBagian-{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="modal-title"
          aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
 
                 <div class="modal-body">
@@ -115,26 +115,26 @@
                                 <tbody>
                                 <tr>
                                     <th>Kode Sub Bagian</th>
-                                    <th>:</th>
-                                    <th>  {{ $item->kode_sub_bagian }}</th>
+
+                                    <th>:  {{ $item->kode_sub_bagian }}</th>
                                 </tr>
 
                                 <tr>
                                     <th>Nama Sub Bagian</th>
-                                    <th> : </th>
-                                    <th>{{ $item->nama_sub_bagian }}</th>
+
+                                    <th>: {{ $item->nama_sub_bagian }}</th>
                                 </tr>
 
                                 <tr>
                                     <th>Bagian</th>
-                                    <th> : </th>
-                                    <th> {{ $item->bagian }}</th>
+
+                                    <th>: {{ $item->bagian }}</th>
                                 </tr>
 
                                 <tr>
                                     <th>Deskripsi</th>
-                                    <th> : </th>
-                                    <th>{{ $item->deskripsi_sub_bagian}}</th>
+
+                                    <th>: {{ $item->deskripsi_sub_bagian}}</th>
                                 </tr>
                                 </tbody>
 
