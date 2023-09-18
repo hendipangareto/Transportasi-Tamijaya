@@ -71,14 +71,14 @@
                                                class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#EditBengkel-{{ $item->id }}"><i
                                                     class="bx bx-edit font-size-base"></i>
                                             </a>
-                                            <button class="btn btn-sm btn-outline-danger btn-delete-employee "
-                                                    data-iddelete=""><i class="bx bx-trash font-size-base"></i>
-                                            </button>
+                                            <a href="{{ route('admin.master-logistik.bengkel-luar.delete-bengkel-luar', ['id' => $item->id]) }}"
+                                               class="btn btn-outline-danger btn-sm delete-button"><i
+                                                    class="bx bx-trash"></i></a>
                                         </td>
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="5" class="text-center">Tidak ada data bagian.</td>
+                                        <td colspan="9" class="text-center">Tidak ada data bengkel luar !</td>
                                     </tr>
                                 @endforelse
                                 </tbody>

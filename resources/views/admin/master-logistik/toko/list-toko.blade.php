@@ -19,119 +19,116 @@
 @section('content')
     <div class="row">
         <div class="col-12">
-            <div class="card shadow">
-                <div class="card-header" style="background-color: #00b3ff">
-                    <div class="toolbar row ">
-                        <div class="col-md-12 d-flex">
-                            <h2 class="h4 ">Data Master Toko</h2>
-                            <div class="col ml-auto">
-                                <div class="dropdown float-right">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between" style="background-color: #00b3ff">
+                    <h4 class="card-title" style="color: black"><b>Data Master </b>| Toko</h4>
+                </div>
+                <div class="card-content mt-2">
+                    <div class="card-body card-dashboard">
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-header" >
-                    <div class="toolbar row ">
-                        <div class="col-md-12 d-flex">
-                            <h2 class="h4"> </h2>
-                            <div class="col ml-auto">
-                                <div class="dropdown float-right">
-                                    <a href=" "
-                                       class="btn btn-primary mr-1" data-toggle="modal" data-target="#TambahToko">
-                                        <i class="bx bx-plus-circle"></i> Tambah Data</a>
-                                    <a target="_blank"
-                                       href=" "
-                                       type="button"
-                                       class="btn btn-danger text-white mr-1">
-                                        <i class="bx bxs-file-pdf"></i> Report PDF
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <form action="">
-                        @csrf
                         <div class="row">
-                            <div class="col-md-2 col-sm-12">
-                                <div class="form-group">
-                                    <label for="">Provinsi/Kota:</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-md-2 col-sm-12">
-                                <div class="form-group">
-                                    <label for="" style="color: white">Filter</label><br>
-                                    <button class="btn btn-outline-primary">Filter <i
-                                            class="bx bx-filter"></i></button>
+                            <div class="col-md-12">
+                                <div class="card-header  pb-0  d-flex justify-content-between">
+                                    <h4 class="card-title"></h4>
+                                    <a href="" class="btn btn-success mr-1" data-toggle="modal"
+                                       data-target="#TambahBagian"><i class="bx bx-plus-circle"></i> Tambah Data</a>
                                 </div>
                             </div>
                         </div>
-                    </form>
-                    <br>
-                    <div class="table-responsive">
-                        <input type="hidden" id="Tablesemployee" value="">
-                        <table class="table table-bordered table-hover" id="table-list-employees">
-                            <thead>
-                            <tr class="text-uppercase text-center">
-                                <th class="w-2p">No</th>
-                                <th class="w-2p">Id Toko</th>
-                                <th class="w-10p">Nama Toko</th>
-                                <th class="w-10p">Nomor Telepon</th>
-                                <th class="w-10p">Nomor HP</th>
-                                <th class="w-10p">PIC</th>
-                                <th class="w-10p">Alamat</th>
-                                <th class="w-10p">Provinsi/Kota</th>
-                                <th class="w-3p">Action</th>
-                            </tr>
-                            </thead>
-                            <tbody id="show-data-employee">
-                            <tr class="text-center">
-                                <td>1</td>
-                                <td>asdfasdfas </td>
-                                <td>asdas </td>
-                                <td>asdas </td>
-                                <td>asdas </td>
-                                <td>asdas </td>
-                                <td>asdas </td>
-                                <td>adsfasfasfasffas </td>
-                                <td>
-                                    <a href=""
-                                       class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#DetailToko"><i
-                                            class="bx bx-info-circle font-size-base"></i>
-                                    </a>
-                                    <a href=""
-                                       class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#EditToko"><i
-                                            class="bx bx-pencil font-size-base"></i>
-                                    </a>
-                                    <button class="btn btn-sm btn-outline-danger btn-delete-employee "
-                                            data-iddelete=""><i class="bx bx-trash font-size-base"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+
+                        <div class="table-responsive mt-2">
+                            <table class="table table-bordered table-hover" id="table-bagian">
+                                <thead>
+                                <tr class="text-center">
+                                    <th class="w-2p">No</th>
+                                    <th class="w-4p">Kode Bagian</th>
+                                    <th class="w-4p">Nama Bagian</th>
+                                    <th class="w-4p">Deskripsi</th>
+                                    <th class="w-4p">Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @forelse ($toko as $index => $item)
+                                    <tr class="text-center">
+                                        <td>{{ $index + 1 }}</td>
+                                        <td>{{ $item->kode_bagian }}</td>
+                                        <td>{{ $item->nama_bagian }}</td>
+                                        <td>{{ $item->deskripsi_bagian }}</td>
+                                        <td class="text-center">
+                                            <a href="#" class="btn btn-outline-primary" data-toggle="modal"
+                                               data-target="#DetailBagian-{{ $item->id }}"><i class="bx bx-info-circle"></i></a>
+                                            <a href="#" class="btn btn-outline-warning" data-toggle="modal"
+                                               data-target="#EditBagian-{{ $item->id }}"><i class="bx bx-edit"></i></a>
+                                            {{--                                                <a href="{{ route('admin.master-logistik.bagian.delete-bagian', $item->id) }}" class="btn btn-outline-danger"><i class="bx bx-trash"></i></a>--}}
+                                            <a href="{{ route('admin.master-logistik.bagian.delete-bagian', ['id' => $item->id]) }}"
+                                               class="btn btn-outline-danger btn-sm delete-button"><i
+                                                    class="bx bx-trash"></i></a>
+
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="5" class="text-center">Tidak ada data bagian.</td>
+                                    </tr>
+                                @endforelse
+                                </tbody>
+                            </table>
+                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    @include('admin.master-logistik.toko.modal-tambah')
-    @include('admin.master-logistik.toko.modal-detail')
-    @include('admin.master-logistik.toko.modal-edit')
+
+{{--    @include('admin.master-logistik.bagian.modal-tambah')--}}
+{{--    @include('admin.master-logistik.bagian.modal-edit')--}}
+{{--    @include('admin.master-logistik.bagian.modal-detail')--}}
+{{--    @include('admin.master-logistik.bagian.modal-delete')--}}
 @endsection
 
 @push('page-scripts')
     <script>
-
-
         $(document).ready(function () {
-            $("#table-employee").DataTable();
+            $("#table-bagian").DataTable();
         });
 
+
+        @if(session('pesan-berhasil'))
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: '{{ session("pesan-berhasil") }}'
+        });
+        @elseif(session('pesan-gagal'))
+        Swal.fire({
+            icon: 'error',
+            title: 'Gagal',
+            text: '{{ session("pesan-gagal") }}'
+        });
+        @endif
+
+
+        //konfimarsi delete
+        document.addEventListener('click', function (e) {
+            if (e.target.classList.contains('delete-button')) {
+                e.preventDefault();
+
+                Swal.fire({
+                    title: 'Apakah Anda yakin?',
+                    text: 'Data ini akan dihapus!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Ya, Hapus!',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Jika pengguna mengonfirmasi penghapusan, lanjutkan ke tautan penghapusan
+                        window.location.href = e.target.href;
+                    }
+                });
+            }
+        });
     </script>
 
 @endpush

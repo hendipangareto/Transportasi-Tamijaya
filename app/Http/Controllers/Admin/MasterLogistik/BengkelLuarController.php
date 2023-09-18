@@ -70,9 +70,22 @@ class BengkelLuarController extends Controller
         try {
             $BengkelLuar->save();
 
-            return redirect(route('admin.master-logistik.bengkel-luar.list-bengkel-luar'))->with('pesan-berhasil','Anda berhasil menambah data bengkel luar');
+            return redirect(route('admin.master-logistik.bengkel-luar.list-bengkel-luar'))->with('pesan-berhasil','Anda berhasil mengubah data bengkel luar');
         } catch (\Exception $e) {
-            return redirect(route('admin.master-logistik.bengkel-luar.list-bengkel-luar'))->with('pesan-gagal','Anda gagal menambah data bengkel luar');
+            return redirect(route('admin.master-logistik.bengkel-luar.list-bengkel-luar'))->with('pesan-gagal','Anda gagal mengubah data bengkel luar');
+        }
+    }
+
+    public function DeleteBengkelLuar($id)
+    {
+        $BengkelLuar = BengkelLuar::findOrFail($id);
+
+        try {
+            $BengkelLuar->delete();
+
+            return redirect(route('admin.master-logistik.bengkel-luar.list-bengkel-luar'))->with('pesan-berhasil','Anda berhasil menghapus data bengkel luar');
+        } catch (\Exception $e) {
+            return redirect(route('admin.master-logistik.bengkel-luar.list-bengkel-luar'))->with('pesan-gagal','Anda gagal menghapus data bengkel luar');
         }
     }
 }
