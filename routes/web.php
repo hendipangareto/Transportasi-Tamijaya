@@ -258,6 +258,8 @@ Route::group(
 
                 Route::prefix('komponen')->group(function () {
                     Route::get('/list-komponen', 'MasterLogistik\KomponenController@getKomponen')->name('admin.master-logistik.komponen.list-komponen');
+                    Route::post('/simpan-komponen', 'MasterLogistik\KomponenController@SimpanKomponen')->name('admin.master-logistik.komponen.simpan-komponen');
+
                 });
 
 
