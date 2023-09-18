@@ -64,4 +64,18 @@ class KategoriBarangController
             return redirect(route('master-logistik-list-kategori-barang'))->with('pesan-gagal','Anda gagal mengubah data kategori');
         }
     }
+
+    public function DeleteKategoriBarang($id){
+        $kategori = Kategori::find($id);
+
+
+
+        try{
+            $kategori->delete();
+            return redirect(route('master-logistik-list-kategori-barang'))->with('pesan-berhasil','Anda berhasil menghapus data kategori');
+
+        }catch (\Exception $e){
+            return redirect(route('master-logistik-list-kategori-barang'))->with('pesan-gagal','Anda gagal menghapus data kategori');
+        }
+    }
 }
