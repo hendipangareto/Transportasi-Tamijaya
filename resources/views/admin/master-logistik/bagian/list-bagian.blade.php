@@ -32,30 +32,10 @@
                                     <h4 class="card-title"></h4>
                                     <a href="" class="btn btn-success mr-1" data-toggle="modal" data-target="#TambahBagian"><i class="bx bx-plus-circle"></i>   Tambah Data</a>
                                 </div>
-                                {{--                                <div class="row">--}}
-                                {{--                                    <div class="col-md-6">--}}
-                                {{--                                        <div class="row">--}}
-                                {{--                                            <div class="col-md-4">--}}
-                                {{--                                                <label for="defaultFormControlInput" class="form-label">No Pengajuan</label>--}}
-                                {{--                                                <input type="text" class="form-control" id="defaultFormControlInput"--}}
-                                {{--                                                       placeholder="Auto generate"--}}
-                                {{--                                                       aria-describedby="defaultFormControlHelp" readonly/>--}}
-                                {{--                                            </div>--}}
-                                {{--                                            <div class="col-md-4">--}}
-                                {{--                                                <label for="defaultFormControlInput" class="form-label">Tanggal Pengajuan</label>--}}
-                                {{--                                                <input type="date" class="form-control" id="defaultFormControlInput"--}}
-                                {{--                                                       placeholder="John Doe"--}}
-                                {{--                                                       aria-describedby="defaultFormControlHelp"/>--}}
-                                {{--                                            </div>--}}
-                                {{--                                        </div>--}}
-                                {{--                                    </div>--}}
-                                {{--                                    <div class="col-md-6">--}}
-                                {{--                                    </div>--}}
-                                {{--                                </div>--}}
                             </div>
                         </div>
-                        <form action="" method="">
-                            <div class="table-responsive mt-2" id="show-data-filter-accounting">
+
+                            <div class="table-responsive mt-2"  >
                                 <table class="table table-bordered table-hover" id="table-bagian">
                                     <thead>
                                     <tr class="text-center">
@@ -90,7 +70,6 @@
                                 </table>
                             </div>
 
-                        </form>
                     </div>
                 </div>
             </div>

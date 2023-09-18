@@ -8,7 +8,7 @@
                     <ol class="breadcrumb p-0 mb-0">
                         <li class="breadcrumb-item"><a href=" "><i class="bx bx-home-alt"></i></a>
                         </li>
-                        <li class="breadcrumb-item active">Master Komponen
+                        <li class="breadcrumb-item active">Master Bagian
                         </li>
                     </ol>
                 </div>
@@ -19,118 +19,81 @@
 @section('content')
     <div class="row">
         <div class="col-12">
-            <div class="card shadow">
-                <div class="card-header" style="background-color: #00b3ff">
-                    <div class="toolbar row ">
-                        <div class="col-md-12 d-flex">
-                            <h2 class="h4 ">Data Master Komponen</h2>
-                            <div class="col ml-auto">
-                                <div class="dropdown float-right">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between" style="background-color: #00b3ff">
+                    <h4 class="card-title" style="color: black"><b>Data Master </b>| Bagian</h4>
+                </div>
+                <div class="card-content mt-2">
+                    <div class="card-body card-dashboard">
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-header" >
-                    <div class="toolbar row ">
-                        <div class="col-md-12 d-flex">
-                            <h2 class="h4"> </h2>
-                            <div class="col ml-auto">
-                                <div class="dropdown float-right">
-                                    <a href=" "
-                                       class="btn btn-primary mr-1" data-toggle="modal" data-target="#TambahKomponen">
-                                        <i class="bx bx-plus-circle"></i> Tambah Data</a>
-                                    <a target="_blank"
-                                       href=" "
-                                       type="button"
-                                       class="btn btn-danger text-white mr-1">
-                                        <i class="bx bxs-file-pdf"></i> Report PDF
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <form action="">
-                        @csrf
                         <div class="row">
-                            <div class="col-md-2 col-sm-12">
-                                <div class="form-group">
-                                    <label for="">Bagian :</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-md-2 col-sm-12">
-                                <div class="form-group">
-                                    <label for="" style="color: white">Filter</label><br>
-                                    <button class="btn btn-outline-primary">Filter <i
-                                            class="bx bx-filter"></i></button>
+                            <div class="col-md-12">
+                                <div class="card-header  pb-0  d-flex justify-content-between">
+                                    <h4 class="card-title"></h4>
+                                    <a href="" class="btn btn-success mr-1" data-toggle="modal" data-target="#TambahKomponen"><i class="bx bx-plus-circle"></i>   Tambah Data</a>
                                 </div>
                             </div>
                         </div>
-                    </form>
-                    <br>
-                    <div class="table-responsive">
-                        <input type="hidden" id="Tablesemployee" value="">
-                        <table class="table table-bordered table-hover" id="table_komponen">
-                            <thead>
-                            <tr class="text-uppercase text-center">
-                                <th class="w-2p">No</th>
-                                <th class="w-2p">Kode Komponen</th>
-                                <th class="w-10p">Nama Komponen</th>
-                                <th class="w-10p">Sub Bagian</th>
-                                <th class="w-10p">Deskripsi</th>
-                                <th class="w-3p">Action</th>
-                            </tr>
-                            </thead>
-                            <tbody id="show-data-employee">
-                            @forelse($komponen as $item)
+
+                        <div class="table-responsive mt-2"  >
+                            <table class="table table-bordered table-hover" id="table-bagian">
+                                <thead>
                                 <tr class="text-center">
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->kode_komponen}} </td>
-                                    <td>{{ $item->nama_komponen}}</td>
-                                    <td>{{ $item->sub_bagian}}</td>
-                                    <td>{{ $item->deskripsi}}</td>
-                                    <td>
-                                        <a href=""
-                                           class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#DetailKomponen"><i
-                                                class="bx bx-info-circle font-size-base"></i>
-                                        </a>
-                                        <a href=""
-                                           class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#EditKomponen"><i
-                                                class="bx bx-pencil font-size-base"></i>
-                                        </a>
-                                        <button class="btn btn-sm btn-outline-danger btn-delete-employee "
-                                                data-iddelete=""><i class="bx bx-trash font-size-base"></i>
-                                        </button>
-                                    </td>
+                                    <th class="w-2p">No</th>
+                                    <th class="w-4p">Kode Komponen</th>
+                                    <th class="w-4p">Nama Komponen</th>
+                                    <th class="w-4p">Sub Bagian</th>
+                                    <th class="w-4p">Deskripsi Komponen</th>
+                                    <th class="w-4p">Action</th>
                                 </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="5" class="text-center">Tidak ada data Komponen.</td>
-                                </tr>
-                            @endforelse
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                @forelse($komponen as $item)
+                                    <tr class="text-center">
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $item->kode_komponen}} </td>
+                                        <td>{{ $item->nama_komponen}}</td>
+                                        <td>{{ $item->sub_bagian}}</td>
+                                        <td>{{ $item->deskripsi_komponen}}</td>
+                                        <td>
+                                            <a href=""
+                                               class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#DetailKomponen"><i
+                                                    class="bx bx-info-circle font-size-base"></i>
+                                            </a>
+                                            <a href=""
+                                               class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#EditKomponen"><i
+                                                    class="bx bx-pencil font-size-base"></i>
+                                            </a>
+                                            <button class="btn btn-sm btn-outline-danger btn-delete-employee "
+                                                    data-iddelete=""><i class="bx bx-trash font-size-base"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="5" class="text-center">Tidak ada data bagian.</td>
+                                    </tr>
+                                @endforelse
+                                </tbody>
+                            </table>
+                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
     @include('admin.master-logistik.komponen.modal-tambah')
-    @include('admin.master-logistik.komponen.modal-edit')
-    @include('admin.master-logistik.komponen.modal-detail')
+
 @endsection
 
 @push('page-scripts')
     <script>
-
-
         $(document).ready(function () {
-            $("#table_komponen").DataTable();
+            $("#table-bagian").DataTable();
         });
+
 
         @if(session('pesan-berhasil'))
         Swal.fire({
@@ -167,7 +130,6 @@
                 });
             }
         });
-
     </script>
 
 @endpush

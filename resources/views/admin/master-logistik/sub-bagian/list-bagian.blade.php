@@ -81,8 +81,8 @@
                     </form>
                     <br>
                     <div class="table-responsive">
-                        <input type="hidden" id="Tablesemployee" value="">
-                        <table class="table table-bordered table-hover" id="table-sub-bagian">
+
+                        <table class="table table-bordered table-hover" id="table-bagian">
                             <thead>
                             <tr class="text-uppercase text-center">
                                 <th class="w-2p">No</th>
@@ -135,7 +135,7 @@
 @push('page-scripts')
     <script>
         $(document).ready(function () {
-            $("#table-sub-bagian").DataTable();
+            $("#table-bagian").DataTable();
         });
 
 

@@ -118,7 +118,8 @@
 
                 Swal.fire({
                     title: 'Apakah Anda yakin?',
-                    text: 'Data (" {{ $item->nama_kategori }} ") akan dihapus!',
+                    {{--text: 'Data (" {{ $item->nama_kategori }} ") akan dihapus!',--}}
+                    text: 'Data ini akan dihapus!',
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonText: 'Ya, Hapus!',

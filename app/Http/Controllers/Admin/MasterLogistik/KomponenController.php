@@ -33,7 +33,7 @@ class KomponenController extends Controller
         $komponen->sub_bagian_id = $request->sub_bagian_id;
         $komponen->deskripsi_komponen = $request->deskripsi_komponen;
 
-        //   dd($komponen);
+//           dd($komponen);
         try {
             $komponen->save();
             // Tampilkan pesan SweetAlert2 berhasil

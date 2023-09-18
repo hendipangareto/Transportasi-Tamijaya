@@ -8,29 +8,29 @@
                     <i class="bx bx-x"></i>
                 </button>
             </div>
-            <form action="" id="form-agent" enctype="multipart/form-data">
+            <form action="{{ route('admin.master-logistik.komponen.simpan-komponen') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
-                    <input type="hidden" id="id" name="id" value="">
-                    <label>ID Komponen : </label>
+                    <input type="hidden" id="kode_komponen" name="kode_komponen" value="">
+
+                    <label>Nama Komponen : </label>
                     <div class="form-group">
-                        <input type="text" id="agent_code" name="akun_code"
-                               class="form-control bg-transparent" placeholder="Id Komponen">
+                        <input type="text" id="nama_komponen" name="nama_komponen"
+                               class="form-control bg-transparent" placeholder="nama komponen">
                     </div>
                     <label>Nama Sub-Bagian : </label>
                     <div class="form-group">
-                        <input type="text" id="nama_akun" name="nama_akun"
-                               class="form-control bg-transparent" placeholder="nama sub-bagian">
-                    </div>
-                    <label>Nama Komponen : </label>
-                    <div class="form-group">
-                        <input type="text" id="nama_akun" name="nama_akun"
-                               class="form-control bg-transparent" placeholder="nama komponen">
+                        <select name="sub_bagian_id" id="sub_bagian_id" class="form-control">
+                            <option selected disabled>Pilih Bagian</option>
+                            @foreach($SubBagian as $item)
+                                <option value="{{$item->id}}">{{ $item->nama_sub_bagian}}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <label>Deskripsi : </label>
                     <div class="form-group">
-                        <textarea class="form-control" name="agent_description"
-                                  id="agent_description" cols="30"
+                        <textarea class="form-control" name="deskripsi_komponen"
+                                  id="deskripsi" cols="30"
                                   rows="3"
                                   placeholder="Silahkan masukan deskripsi agent">
 
@@ -38,7 +38,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" id="edit-agent" class="btn btn-success mr-1"><i
+                    <button type="submit" class="btn btn-success mr-1"><i
                             class="bx bx-save mt"></i> Submit
                     </button>
                 </div>
