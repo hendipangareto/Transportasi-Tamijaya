@@ -139,6 +139,41 @@
             $("#table-employee").DataTable();
         });
 
+
+        @if(session('pesan-berhasil'))
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: '{{ session("pesan-berhasil") }}'
+        });
+        @elseif(session('pesan-gagal'))
+        Swal.fire({
+            icon: 'error',
+            title: 'Gagal',
+            text: '{{ session("pesan-gagal") }}'
+        });
+        @endif
+
+        //konfimarsi delete
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('delete-button')) {
+                e.preventDefault();
+
+                Swal.fire({
+                    title: 'Apakah Anda yakin?',
+                    text: 'Data ini akan dihapus!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Ya, Hapus!',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Jika pengguna mengonfirmasi penghapusan, lanjutkan ke tautan penghapusan
+                        window.location.href = e.target.href;
+                    }
+                });
+            }
+        });
     </script>
 
 @endpush

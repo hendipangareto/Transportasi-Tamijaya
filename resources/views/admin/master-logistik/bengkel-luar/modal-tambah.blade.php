@@ -8,73 +8,77 @@
                     <i class="bx bx-x"></i>
                 </button>
             </div>
-            <form action="" id="form-agent" enctype="multipart/form-data">
+            <form action="{{ route('admin.master-logistik.bengkel-luar.simpan-bengkel-luar') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
-                    <input type="hidden" id="id" name="id" value="">
-                    <label>ID Alat : </label>
-                    <div class="form-group">
-                        <input type="text" id="agent_code" name="akun_code"
-                               class="form-control bg-transparent" placeholder="Id Komponen">
-                    </div>
+                    <input type="hidden" id="kode_bengkel_luar" name="kode_bengkel_luar" value="">
+
                     <label>PIC: </label>
                     <div class="form-group">
-                        <input type="text" id="nama_akun" name="nama_akun"
+                        <input type="text" id="nama_bengkel_luar" name="nama_bengkel_luar"
                                class="form-control bg-transparent" placeholder="PIC">
                     </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group row">
-                                <div class="col-sm-12">
-                                    <label>No Telepon: </label>
-                                    <input type="text" id="departemen_id" name="departemen_id" class="form-control"
-                                           style="font-style: italic"
-                                           placeholder="Departemen otomatis" >
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group row">
-
-                                <div class="col-sm-12">
-                                    <label>No HP : </label>
-                                    <input type="text" id="departemen_id" name="departemen_id" class="form-control"
-                                           style="font-style: italic"
-                                           placeholder="Departemen otomatis" >
-                                </div>
-                            </div>
-                        </div>
+                    <label>Nama Bengkel: </label>
+                    <div class="form-group">
+                        <input type="text" id="pic_bengkel_luar" name="pic_bengkel_luar"
+                               class="form-control bg-transparent" placeholder="Nama Bengkel">
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group row">
                                 <div class="col-sm-12">
-                                    <label  >Provinsi</label>
-                                    <select name="employee_id" id="employee_select" class="form-control">
+                                    <label>HandPhone :</label>
+                                    <input type="number" id="hp_bengkel_luar" name="hp_bengkel_luar"
+                                           class="form-control bg-transparent" placeholder="HandPhone">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <label>Telepon :</label>
+                                    <input type="number" id="tlp_bengkel_luar" name="tlp_bengkel_luar"
+                                           class="form-control bg-transparent" placeholder="Telepon">
+                                </div>
+                            </div>
+                        </div>
 
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <label>Provinsi</label>
+                                    <select name="id_province" id="id_province" class="form-control">
                                         <option selected disabled>Pilih Provinsi</option>
-                                        <option value=" ">afasf </option>
+                                        @foreach($province as $item)
+                                            <option value="{{$item->id}}">{{ $item->state_name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group row">
-
                                 <div class="col-sm-12">
-                                    <label  >Kabupaten/Kota</label>
-                                    <select name="employee_id" id="employee_select" class="form-control">
+                                    <label>Kabupaten/Kota</label>
+                                    <select name="id_city" id="id_city" class="form-control">
                                         <option selected disabled>Pilih Kabupaten/Kota</option>
-                                        <option value=" ">afasf </option>
+                                        @foreach($city as $item)
+                                            <option value="{{$item->id}}">{{ $item->city_name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
                         </div>
+
                     </div>
+
+
                     <label>Alamat : </label>
                     <div class="form-group">
-                        <textarea class="form-control" name="agent_description"
-                                  id="agent_description" cols="30"
+                        <textarea class="form-control" name="alamat_bengkel_luar"
+                                  id="alamat_bengkel_luar" cols="30"
                                   rows="3"
                                   placeholder="Silahkan masukan deskripsi agent">
 
@@ -82,8 +86,8 @@
                     </div>
                     <label>Deskripsi : </label>
                     <div class="form-group">
-                        <textarea class="form-control" name="agent_description"
-                                  id="agent_description" cols="30"
+                        <textarea class="form-control" name="deskripsi_bengkel_luar"
+                                  id="deskripsi_bengkel_luar" cols="30"
                                   rows="3"
                                   placeholder="Silahkan masukan deskripsi agent">
 
@@ -91,7 +95,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" id="edit-agent" class="btn btn-success mr-1"><i
+                    <button type="submit" class="btn btn-success mr-1"><i
                             class="bx bx-save mt"></i> Submit
                     </button>
                 </div>
@@ -99,3 +103,4 @@
         </div>
     </div>
 </div>
+
