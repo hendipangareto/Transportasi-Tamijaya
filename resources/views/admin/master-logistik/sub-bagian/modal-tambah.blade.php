@@ -3,7 +3,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="modal-title">Form Tambah Komponen</h4>
+                <h4 class="modal-title" id="modal-title">Form Tambah Sub Bagian</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i class="bx bx-x"></i>
                 </button>
@@ -55,7 +55,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="modal-title">Form Tambah Komponen</h4>
+                    <h4 class="modal-title" id="modal-title">Form Ubah Data Sub Bagian</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <i class="bx bx-x"></i>
                     </button>
@@ -96,6 +96,58 @@
                         </button>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+@endforeach
+
+@foreach($SubBagian as $item)
+    <div class="modal fade text-left" id="DetailSubBagian-{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="modal-title"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <h5 class="pb-2  text-center">Detail Data Sub Bagian</h5>
+                    <div class="card">
+                        <div class="table-responsive ">
+                            <table  class=" table table-responsive-lg">
+                                <thead>
+                                <tr>
+                                    <th>Kode Sub Bagian</th>
+                                    <th>:</th>
+                                    <th>  {{ $item->kode_sub_bagian }}</th>
+                                </tr>
+
+                                <tr>
+                                    <th>Nama Sub Bagian</th>
+                                    <th> : </th>
+                                    <th>{{ $item->nama_sub_bagian }}</th>
+                                </tr>
+
+                                <tr>
+                                    <th>Bagian</th>
+                                    <th> : </th>
+                                    <th> {{ $item->bagian }}</th>
+                                </tr>
+
+                                <tr>
+                                    <th>Deskripsi</th>
+                                    <th> : </th>
+                                    <th>{{ $item->deskripsi_sub_bagian}}</th>
+                                </tr>
+                                </thead>
+
+                            </table>
+
+                        </div>
+                        <div class="row ml-1 justify-content-lg-end">
+                            <button type="button"   class="btn btn-secondary mr-1"  data-dismiss="modal" > Kembali ➡
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>

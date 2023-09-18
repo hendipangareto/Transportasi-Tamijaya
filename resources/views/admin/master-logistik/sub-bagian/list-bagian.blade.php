@@ -85,7 +85,7 @@
                             <thead>
                             <tr class="text-center">
                                 <th class="w-2p">No</th>
-                                <th class="w-4p">Id Akun</th>
+                                <th class="w-4p">Kode Sub Bagian</th>
                                 <th class="w-4p">Sub Bagian</th>
                                 <th class="w-4p">Bagian</th>
                                 <th class="w-4p">Deskripsi</th>
@@ -102,7 +102,7 @@
                                     <td>{{ $item->deskripsi_sub_bagian}}</td>
                                     <td>
                                         <a href=""
-                                           class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#DetailAkun"><i
+                                           class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#DetailSubBagian-{{ $item->id }}"><i
                                                 class="bx bx-info-circle font-size-base"></i>
                                         </a>
                                         <a href=""
@@ -116,7 +116,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="5" class="text-center">Tidak ada data bagian.</td>
+                                    <td colspan="5" class="text-center">Tidak ada data sub bagian.</td>
                                 </tr>
                             @endforelse
                             </tbody>
