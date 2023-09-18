@@ -76,7 +76,9 @@
                                             <td class="text-center">
                                                 <a href="#" class="btn btn-outline-primary" data-toggle="modal" data-target="#DetailBagian"><i class="bx bx-info-circle"></i></a>
                                                 <a href="#" class="btn btn-outline-warning" data-toggle="modal" data-target="#EditBagian-{{ $item->id }}"><i class="bx bx-edit"></i></a>
-                                                <a href="{{ route('admin.master-logistik.bagian.delete-bagian', $item->id) }}" class="btn btn-outline-danger"><i class="bx bx-trash"></i></a>
+{{--                                                <a href="{{ route('admin.master-logistik.bagian.delete-bagian', $item->id) }}" class="btn btn-outline-danger"><i class="bx bx-trash"></i></a>--}}
+                                                <a href="{{ route('admin.master-logistik.bagian.delete-bagian', ['id' => $item->id]) }}" class="btn btn-outline-danger btn-sm delete-button"><i class="bx bx-trash"></i></a>
+
                                             </td>
                                         </tr>
                                     @empty
@@ -121,6 +123,28 @@
             text: '{{ session("pesan-gagal") }}'
         });
         @endif
+
+
+        //konfimarsi delete
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('delete-button')) {
+                e.preventDefault();
+
+                Swal.fire({
+                    title: 'Apakah Anda yakin?',
+                    text: 'Data ini akan dihapus!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Ya, Hapus!',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Jika pengguna mengonfirmasi penghapusan, lanjutkan ke tautan penghapusan
+                        window.location.href = e.target.href;
+                    }
+                });
+            }
+        });
     </script>
 
 @endpush

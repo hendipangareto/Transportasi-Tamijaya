@@ -39,7 +39,8 @@
                             <div class="col-md-12">
                                 <div class="card-header  pb-0  d-flex justify-content-between">
                                     <h4 class="card-title"></h4>
-                                    <a href="" class="btn btn-primary mr-1" data-toggle="modal" data-target="#kategoriBarang"><i class="bx bx-plus-circle"></i>Tambah Data</a>
+                                    <a href="" class="btn btn-primary mr-1" data-toggle="modal"
+                                       data-target="#kategoriBarang"><i class="bx bx-plus-circle"></i>Tambah Data</a>
                                 </div>
                             </div>
                         </div>
@@ -62,9 +63,13 @@
                                         <td>{{ $item->nama_kategori }}</td>
                                         <td>{{ $item->deskripsi_kategori }}</td>
                                         <td class="text-center">
-                                            <a href="#" class="btn btn-outline-primary" data-toggle="modal" data-target="#"><i class="bx bx-info-circle"></i></a>
-                                            <a href="#" class="btn btn-outline-warning" data-toggle="modal" data-target="#EditkategoriBarang-{{ $item->id }}"><i class="bx bx-edit"></i></a>
-                                            <a href="{{ route('master-logistik.delete-kategori-barang', $item->id) }}" class="btn btn-outline-danger"><i class="bx bx-trash"></i></a>
+                                            <a href="#" class="btn btn-outline-primary" data-toggle="modal"
+                                               data-target="#"><i class="bx bx-info-circle"></i></a>
+                                            <a href="#" class="btn btn-outline-warning" data-toggle="modal"
+                                               data-target="#EditkategoriBarang-{{ $item->id }}"><i
+                                                    class="bx bx-edit"></i></a>
+                                            <a href="{{ route('master-logistik.delete-kategori-barang', ['id' => $item->id]) }}"
+                                               class="btn btn-outline-danger delete-button"><i class="bx bx-trash"></i></a>
                                         </td>
                                     </tr>
                                 @empty
@@ -91,20 +96,40 @@
             $("#table-kategori-logistik").DataTable();
         });
 
-
-            @if(session('pesan-berhasil'))
-            Swal.fire({
+        //menampilkan sweetalert2
+        @if(session('pesan-berhasil'))
+        Swal.fire({
             icon: 'success',
             title: 'Berhasil',
             text: '{{ session("pesan-berhasil") }}'
         });
-            @elseif(session('pesan-gagal'))
-            Swal.fire({
+        @elseif(session('pesan-gagal'))
+        Swal.fire({
             icon: 'error',
             title: 'Gagal',
             text: '{{ session("pesan-gagal") }}'
         });
         @endif
+
+        //konfimarsi delete
+        document.addEventListener('click', function (e) {
+            if (e.target.classList.contains('delete-button')) {
+                e.preventDefault();
+
+                Swal.fire({
+                    title: 'Apakah Anda yakin?',
+                    text: 'Data (" {{ $item->nama_kategori }} ") akan dihapus!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Ya, Hapus!',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = e.target.href;
+                    }
+                });
+            }
+        });
 
     </script>
 
