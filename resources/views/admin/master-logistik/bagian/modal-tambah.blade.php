@@ -8,26 +8,26 @@
                     <i class="bx bx-x"></i>
                 </button>
             </div>
-            <form action="" id="form-agent" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('admin.master-logistik.bagian.tambah-bagian') }}">
                 @csrf
                 <div class="modal-body">
-                    <input type="hidden" id="id" name="id" value="">
+                    <input type="hidden" id="kode_bagian" name="kode_bagian" value="">
                     <label>Nama Bagian: </label>
                     <div class="form-group">
-                        <input type="text"  id="" name=""
-                               class="form-control bg-transparent" placeholder="kategori barang">
+                        <input type="text"  id="nama_bagian" name="nama_bagian"
+                               class="form-control bg-transparent" placeholder="nama bagian">
                     </div>
                     <label>Deskripsi : </label>
                     <div class="form-group">
-                        <textarea class="form-control" name="" id="" cols="30"
-                                  rows="3" placeholder="Silahkan masukan deskripsi agent"></textarea>
+                        <textarea class="form-control" name="deskripsi_bagian" id="deskripsi_bagian" cols="30"
+                                  rows="3" placeholder="Silahkan masukan deskripsi bagian"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" id="add-agent" class="btn btn-warning mr-1"  data-dismiss="modal" ><i
+                    <button type="button"   class="btn btn-warning mr-1"  data-dismiss="modal" ><i
                             class="bx bx-arrow-back"></i> Kembali
                     </button>
-                    <button type="submit" id="edit-agent" class="btn btn-success mr-1" onclick="manageData('update')"><i
+                    <button type="submit"  class="btn btn-success mr-1"><i
                             class="bx bx-save mt"></i> Submit
                     </button>
                 </div>

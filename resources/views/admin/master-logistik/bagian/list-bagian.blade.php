@@ -56,7 +56,7 @@
                         </div>
                         <form action="" method="">
                             <div class="table-responsive mt-2" id="show-data-filter-accounting">
-                                <table class="table table-bordered table-hover" id="table-armada">
+                                <table class="table table-bordered table-hover" id="table-bagian">
                                     <thead>
                                     <tr class="text-center">
                                         <th class="w-3p">No</th>
@@ -67,18 +67,23 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr class="text-center">
-                                        <td>1</td>
-                                        <td>#</td>
-                                        <td>#</td>
-
-                                        <td>#</td>
-                                        <td class="text-center">
-                                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#DetailBagian"><i class="bx bx-info-circle font-size-base"></i></a>
-                                            <a href="#" class="btn btn-warning" data-toggle="modal" data-target="#EditBagian"><i class="bx bx-edit font-size-base"></i></a>
-                                            <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#"><i class="bx bx-trash font-size-base"></i></a>
-                                        </td>
-                                    </tr>
+                                    @forelse ($bagian as $index => $item)
+                                        <tr class="text-center">
+                                            <td>{{ $index + 1 }}</td>
+                                            <td>{{ $item->kode_bagian }}</td>
+                                            <td>{{ $item->nama_bagian }}</td>
+                                            <td>{{ $item->deskripsi }}</td>
+                                            <td class="text-center">
+                                                <a href="#" class="btn btn-outline-primary" data-toggle="modal" data-target="#DetailBagian"><i class="bx bx-info-circle"></i></a>
+                                                <a href="#" class="btn btn-outline-warning" data-toggle="modal" data-target="#EditBagian-{{ $item->id }}"><i class="bx bx-edit"></i></a>
+                                                <a href="{{ route('admin.master-logistik.bagian.delete-bagian', $item->id) }}" class="btn btn-outline-danger"><i class="bx bx-trash"></i></a>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="5" class="text-center">Tidak ada data bagian.</td>
+                                        </tr>
+                                    @endforelse
                                     </tbody>
                                 </table>
                             </div>
@@ -93,4 +98,29 @@
     @include('admin.master-logistik.bagian.modal-tambah')
     @include('admin.master-logistik.bagian.modal-edit')
     @include('admin.master-logistik.bagian.modal-detail')
+    @include('admin.master-logistik.bagian.modal-delete')
 @endsection
+
+@push('page-scripts')
+    <script>
+        $(document).ready(function () {
+            $("#table-bagian").DataTable();
+        });
+
+
+        @if(session('pesan-berhasil'))
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: '{{ session("pesan-berhasil") }}'
+        });
+        @elseif(session('pesan-gagal'))
+        Swal.fire({
+            icon: 'error',
+            title: 'Gagal',
+            text: '{{ session("pesan-gagal") }}'
+        });
+        @endif
+    </script>
+
+@endpush

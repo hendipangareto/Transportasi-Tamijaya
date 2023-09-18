@@ -15,6 +15,9 @@ class CreateBagiansTable extends Migration
     {
         Schema::create('bagians', function (Blueprint $table) {
             $table->id();
+            $table->string('kode_bagian')->unique();
+            $table->string('nama_bagian');
+            $table->text('deskripsi_bagian')->nullable();
             $table->timestamps();
         });
     }
