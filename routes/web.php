@@ -246,6 +246,11 @@ Route::group(
 
                 Route::prefix('sub-bagian')->group(function () {
                     Route::get('/list-bagian', 'MasterLogistik\SubBagianController@getSubBagian')->name('admin.master-logistik.bagian.sub-bagian');
+
+                    Route::post('/tambah-sub-bagian', 'MasterLogistik\SubBagianController@TambahSubBagian')->name('admin.master-logistik.bagian.tambah-sub-bagian');
+                    Route::post('/edit-sub-bagian/{id}', 'MasterLogistik\SubBagianController@EditSubBagian')->name('admin.master-logistik.bagian.edit-sub-bagian');
+                    Route::post('/update-sub-bagian/{id}', 'MasterLogistik\SubBagianController@UpdateSubBagian')->name('admin.master-logistik.bagian.update-sub-bagian');
+                    Route::get('/sub-akun/cetak-pdf', 'MasterLogistik\SubBagianController@cetakPDF')->name('admin.master-logistik.bagian.cetak-pdf');
                 });
 
                 Route::prefix('komponen')->group(function () {

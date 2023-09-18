@@ -41,12 +41,10 @@
                                     <a href=" "
                                        class="btn btn-primary mr-1" data-toggle="modal" data-target="#TambahSubBagian">
                                         <i class="bx bx-plus-circle"></i> Tambah Data</a>
-                                    <a target="_blank"
-                                       href=" "
-                                       type="button"
-                                       class="btn btn-danger text-white mr-1">
+                                    <a target="_blank" href="{{ route('admin.master-logistik.bagian.cetak-pdf') }}?bagian={{ request()->input('bagian_id') }}" type="button" class="btn btn-danger text-white mr-1">
                                         <i class="bx bxs-file-pdf"></i> Report PDF
                                     </a>
+
                                 </div>
                             </div>
                         </div>
@@ -59,7 +57,17 @@
                             <div class="col-md-2 col-sm-12">
                                 <div class="form-group">
                                     <label for="">Bagian :</label>
-                                    <input type="text" class="form-control">
+                                    <div class="form-group">
+                                        <select name="bagian_id" id="bagian_id" class="form-control">
+                                            <option selected disabled>Pilih Bagian</option>
+                                            @foreach($bagian as $bg)
+                                                @php
+                                                    $selected = ($params['bagian_id'] == $bg->id) ? "selected" : "";
+                                                @endphp
+                                                <option value="{{$bg->id}}" {{$selected}}>{{$bg->nama_bagian}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-2 col-sm-12">
@@ -74,7 +82,7 @@
                     <br>
                     <div class="table-responsive">
                         <input type="hidden" id="Tablesemployee" value="">
-                        <table class="table table-bordered table-hover" id="table-list-employees">
+                        <table class="table table-bordered table-hover" id="table_sub_bagian">
                             <thead>
                             <tr class="text-uppercase text-center">
                                 <th class="w-2p">No</th>
@@ -87,25 +95,32 @@
                             </thead>
                             <tbody id="show-data-employee">
                             <tr class="text-center">
-                                <td>1</td>
-                                <td> </td>
-                                <td> </td>
-                                <td> </td>
-                                <td> </td>
-                                <td>
-                                    <a href=""
-                                       class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#DetailAkun"><i
-                                            class="bx bx-info-circle font-size-base"></i>
-                                    </a>
-                                    <a href=""
-                                       class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#EditSubAkun"><i
-                                            class="bx bx-pencil font-size-base"></i>
-                                    </a>
-                                    <button class="btn btn-sm btn-outline-danger btn-delete-employee "
-                                            data-iddelete=""><i class="bx bx-trash font-size-base"></i>
-                                    </button>
-                                </td>
-                            </tr>
+                            @forelse ($SubBagian as $item)
+                                <tr class="text-center">
+                                    <td>{{ $loop->iteration }} </td>
+                                    <td>{{ $item->kode_sub_bagian }}</td>
+                                    <td>{{ $item->nama_sub_bagian }}</td>
+                                    <td>{{ $item->bagian}}</td>
+                                    <td>{{ $item->deskripsi}}</td>
+                                    <td>
+                                        <a href=""
+                                           class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#DetailAkun"><i
+                                                class="bx bx-info-circle font-size-base"></i>
+                                        </a>
+                                        <a href=""
+                                           class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#UpdateSubBagian-{{ $item->id }}"><i
+                                                class="bx bx-pencil font-size-base"></i>
+                                        </a>
+                                        <button class="btn btn-sm btn-outline-danger btn-delete-employee "
+                                                data-iddelete=""><i class="bx bx-trash font-size-base"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="5" class="text-center">Tidak ada data bagian.</td>
+                                </tr>
+                            @endforelse
                             </tbody>
                         </table>
                     </div>
@@ -114,17 +129,15 @@
         </div>
     </div>
     @include('admin.master-logistik.sub-bagian.modal-tambah')
-    @include('admin.master-keuangan.sub-akun.modal-tambah')
+    @include('admin.master-logistik.sub-bagian.modal-edit')
+    @include('admin.master-logistik.sub-bagian.cetak-pdf')
 @endsection
 
 @push('page-scripts')
     <script>
-
-
         $(document).ready(function () {
-            $("#table-employee").DataTable();
+            $("#table_sub_bagian").DataTable();
         });
-
     </script>
 
 @endpush
