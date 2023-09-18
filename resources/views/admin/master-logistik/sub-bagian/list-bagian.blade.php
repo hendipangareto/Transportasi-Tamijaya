@@ -82,7 +82,7 @@
                     <br>
                     <div class="table-responsive">
                         <input type="hidden" id="Tablesemployee" value="">
-                        <table class="table table-bordered table-hover" id="table_sub_bagian">
+                        <table class="table table-bordered table-hover" id="table-sub-bagian">
                             <thead>
                             <tr class="text-uppercase text-center">
                                 <th class="w-2p">No</th>
@@ -101,7 +101,7 @@
                                     <td>{{ $item->kode_sub_bagian }}</td>
                                     <td>{{ $item->nama_sub_bagian }}</td>
                                     <td>{{ $item->bagian}}</td>
-                                    <td>{{ $item->deskripsi}}</td>
+                                    <td>{{ $item->deskripsi_sub_bagian}}</td>
                                     <td>
                                         <a href=""
                                            class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#DetailAkun"><i
@@ -111,9 +111,7 @@
                                            class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#UpdateSubBagian-{{ $item->id }}"><i
                                                 class="bx bx-pencil font-size-base"></i>
                                         </a>
-                                        <button class="btn btn-sm btn-outline-danger btn-delete-employee "
-                                                data-iddelete=""><i class="bx bx-trash font-size-base"></i>
-                                        </button>
+                                        <a href="{{ route('admin.master-logistik.bagian.delete-sub-bagian', ['id' => $item->id]) }}" class="btn btn-outline-danger btn-sm delete-button"><i class="bx bx-trash"></i></a>
                                     </td>
                                 </tr>
                             @empty
@@ -129,15 +127,53 @@
         </div>
     </div>
     @include('admin.master-logistik.sub-bagian.modal-tambah')
-    @include('admin.master-logistik.sub-bagian.modal-edit')
-    @include('admin.master-logistik.sub-bagian.cetak-pdf')
+{{--    @include('admin.master-logistik.sub-bagian.modal-edit')--}}
+{{--    @include('admin.master-logistik.sub-bagian.cetak-pdf')--}}
 @endsection
+
 
 @push('page-scripts')
     <script>
         $(document).ready(function () {
-            $("#table_sub_bagian").DataTable();
+            $("#table-sub-bagian").DataTable();
+        });
+
+
+        @if(session('pesan-berhasil'))
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: '{{ session("pesan-berhasil") }}'
+        });
+        @elseif(session('pesan-gagal'))
+        Swal.fire({
+            icon: 'error',
+            title: 'Gagal',
+            text: '{{ session("pesan-gagal") }}'
+        });
+        @endif
+
+
+        //konfimarsi delete
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('delete-button')) {
+                e.preventDefault();
+
+                Swal.fire({
+                    title: 'Apakah Anda yakin?',
+                    text: 'Data ini akan dihapus!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Ya, Hapus!',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Jika pengguna mengonfirmasi penghapusan, lanjutkan ke tautan penghapusan
+                        window.location.href = e.target.href;
+                    }
+                });
+            }
         });
     </script>
 
-@endpush
+@endpush@endpush

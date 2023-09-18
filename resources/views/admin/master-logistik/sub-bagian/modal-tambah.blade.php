@@ -27,7 +27,7 @@
                     </div>
                     <label>Deskripsi : </label>
                     <div class="form-group">
-                        <textarea class="form-control" name="deskripsi" id="deskripsi" cols="30" rows="3" placeholder="Silakan masukkan deskripsi Sub-Bagian"></textarea>
+                        <textarea class="form-control" name="deskripsi_sub_bagian" id="deskripsi_sub_bagian" cols="30" rows="3" placeholder="Silakan masukkan deskripsi Sub-Bagian"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -70,7 +70,7 @@
                         </div>
                         <label>Deskripsi : </label>
                         <div class="form-group">
-                            <textarea class="form-control" name="deskripsi" id="deskripsi" cols="30" rows="3"  value="{{ $item->deskripsi }}">{{ $item->deskripsi }}</textarea>
+                            <textarea class="form-control" name="deskripsi_sub_bagian" id="deskripsi_sub_bagian" cols="30" rows="3"  value="{{ $item->deskripsi }}">{{ $item->deskripsi }}</textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
