@@ -43,4 +43,36 @@ class KomponenController extends Controller
             return redirect(route('admin.master-logistik.komponen.list-komponen'))->with('pesan-gagal','Anda gagal menambah data komponen');
         }
     }
+
+    public function EditKomponen(Request $request, $id)
+    {
+        $komponen = Komponen::findOrFail($id);
+
+        $komponen->nama_komponen = $request->nama_komponen;
+        $komponen->sub_bagian_id = $request->sub_bagian_id;
+        $komponen->deskripsi_komponen = $request->deskripsi_komponen;
+
+//        dd($komponen);
+
+        try{
+            $komponen->save();
+            return redirect(route('admin.master-logistik.komponen.list-komponen'))->with('pesan-berhasil','Anda berhasil mengubah data komponen');
+
+        }catch (\Exception $e){
+            return redirect(route('admin.master-logistik.komponen.list-komponen'))->with('pesan-gagal','Anda gagal mengubah data komponen');
+        }
+    }
+
+    public function DeleteKomponen($id)
+    {
+        $komponen = Komponen::findOrFail($id);
+
+        try{
+            $komponen->delete();
+            return redirect(route('admin.master-logistik.komponen.list-komponen'))->with('pesan-berhasil','Anda berhasil mengubah data komponen');
+
+        }catch (\Exception $e){
+            return redirect(route('admin.master-logistik.komponen.list-komponen'))->with('pesan-gagal','Anda gagal mengubah data komponen');
+        }
+    }
 }

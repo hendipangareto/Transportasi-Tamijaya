@@ -48,11 +48,11 @@
                             <table class="table table-bordered table-hover" id="table-kategori-logistik">
                                 <thead>
                                 <tr class="text-center">
-                                    <th class="w-3p">No</th>
-                                    <th class="w-3p">ID Kategori</th>
-                                    <th class="w-10p">Nama Kategori</th>
-                                    <th class="w-10p">Deskripsi</th>
-                                    <th class="w-10p">Action</th>
+                                    <th class="w-2p">No</th>
+                                    <th class="w-4p">ID Kategori</th>
+                                    <th class="w-4p">Nama Kategori</th>
+                                    <th class="w-4p">Deskripsi</th>
+                                    <th class="w-4p">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>

@@ -79,29 +79,27 @@
                             </div>
                         </div>
                     </form>
-                    <br>
-                    <div class="table-responsive">
 
+                    <div class="table-responsive"  >
                         <table class="table table-bordered table-hover" id="table-bagian">
                             <thead>
-                            <tr class="text-uppercase text-center">
+                            <tr class="text-center">
                                 <th class="w-2p">No</th>
-                                <th class="w-2p">Id Akun</th>
-                                <th class="w-10p">Sub Bagian</th>
-                                <th class="w-10p">Bagian</th>
-                                <th class="w-10p">Deskripsi</th>
-                                <th class="w-3p">Action</th>
+                                <th class="w-4p">Id Akun</th>
+                                <th class="w-4p">Sub Bagian</th>
+                                <th class="w-4p">Bagian</th>
+                                <th class="w-4p">Deskripsi</th>
+                                <th class="w-4p">Action</th>
                             </tr>
                             </thead>
-                            <tbody id="show-data-employee">
-                            <tr class="text-center">
+                            <tbody>
                             @forelse ($SubBagian as $item)
                                 <tr class="text-center">
                                     <td>{{ $loop->iteration }} </td>
                                     <td>{{ $item->kode_sub_bagian }}</td>
                                     <td>{{ $item->nama_sub_bagian }}</td>
                                     <td>{{ $item->bagian}}</td>
-                                    <td>{{ $item->deskripsi_sub_bagian}}</td>
+                                    <td>{{ $item->deskripsi}}</td>
                                     <td>
                                         <a href=""
                                            class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#DetailAkun"><i
@@ -109,9 +107,11 @@
                                         </a>
                                         <a href=""
                                            class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#UpdateSubBagian-{{ $item->id }}"><i
-                                                class="bx bx-edit"></i>
+                                                class="bx bx-pencil font-size-base"></i>
                                         </a>
-                                        <a href="{{ route('admin.master-logistik.bagian.delete-sub-bagian', $item->id) }}" class="btn btn-outline-danger btn-sm delete-button"><i class="bx bx-trash"></i></a>
+                                        <button class="btn btn-sm btn-outline-danger btn-delete-employee "
+                                                data-iddelete=""><i class="bx bx-trash font-size-base"></i>
+                                        </button>
                                     </td>
                                 </tr>
                             @empty
@@ -122,6 +122,7 @@
                             </tbody>
                         </table>
                     </div>
+
                 </div>
             </div>
         </div>

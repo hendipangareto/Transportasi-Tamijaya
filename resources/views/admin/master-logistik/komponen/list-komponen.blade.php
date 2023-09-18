@@ -8,7 +8,7 @@
                     <ol class="breadcrumb p-0 mb-0">
                         <li class="breadcrumb-item"><a href=" "><i class="bx bx-home-alt"></i></a>
                         </li>
-                        <li class="breadcrumb-item active">Master Bagian
+                        <li class="breadcrumb-item active">Master Komponen
                         </li>
                     </ol>
                 </div>
@@ -21,7 +21,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between" style="background-color: #00b3ff">
-                    <h4 class="card-title" style="color: black"><b>Data Master </b>| Bagian</h4>
+                    <h4 class="card-title" style="color: black"><b>Data Master </b>| Komponen</h4>
                 </div>
                 <div class="card-content mt-2">
                     <div class="card-body card-dashboard">
@@ -61,12 +61,10 @@
                                                     class="bx bx-info-circle font-size-base"></i>
                                             </a>
                                             <a href=""
-                                               class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#EditKomponen"><i
-                                                    class="bx bx-pencil font-size-base"></i>
+                                               class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#EditKomponen-{{ $item->id }}"><i
+                                                    class="bx bx-edit font-size-base"></i>
                                             </a>
-                                            <button class="btn btn-sm btn-outline-danger btn-delete-employee "
-                                                    data-iddelete=""><i class="bx bx-trash font-size-base"></i>
-                                            </button>
+                                            <a href="{{ route('admin.master-logistik.komponen.delete-komponen',$item->id) }}" class="btn btn-outline-danger btn-sm delete-button"><i class="bx bx-trash"></i></a>
                                         </td>
                                     </tr>
                                 @empty
@@ -85,6 +83,7 @@
     </div>
 
     @include('admin.master-logistik.komponen.modal-tambah')
+    @include('admin.master-logistik.komponen.modal-edit')
 
 @endsection
 
