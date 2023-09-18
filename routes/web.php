@@ -237,6 +237,11 @@ Route::group(
 
                 Route::prefix('bagian')->group(function () {
                     Route::get('/list-bagian', 'MasterLogistik\BagianController@getListBagian')->name('admin.master-logistik.bagian.list-bagian');
+                    Route::post('/tambah-bagian', 'MasterLogistik\BagianController@TambahBagian')->name('admin.master-logistik.bagian.tambah-bagian');
+                    Route::get('/edit-bagian/{id}', 'MasterLogistik\BagianController@EditBagian')->name('admin.master-logistik.bagian.edit-bagian');
+                    Route::post('/update-bagian/{id}', 'MasterLogistik\BagianController@UpdateBagian')->name('admin.master-logistik.bagian.update-bagian');
+                    Route::get('/delete-bagian/{id}', 'MasterLogistik\BagianController@DeleteBagian')->name('admin.master-logistik.bagian.delete-bagian');
+
                 });
 
                 Route::prefix('sub-bagian')->group(function () {
@@ -264,6 +269,12 @@ Route::group(
 
                 Route::prefix('kategori-barang')->group(function () {
                     Route::get('/list-kategori-barang', 'MasterLogistik\KategoriBarangController@getKategoriBarang')->name('master-logistik-list-kategori-barang');
+                    Route::post('/simpang-kategori-barang', 'MasterLogistik\KategoriBarangController@postKategoriBarang')->name('master-logistik-simpang-kategori-barang');
+
+                    Route::get('/edit-kategori-barang/{id}', 'MasterLogistik\KategoriBarangController@EditKategoriBarang')->name('master-logistik.edit-kategori-barang');
+                    Route::post('/update-kategori-barang/{id}', 'MasterLogistik\KategoriBarangController@UpdateKategoriBarang')->name('master-logistik.update-kategori-barang');
+                    Route::get('/delete-kategori-barang/{id}', 'MasterLogistik\KategoriBarangController@DeleteKategoriBarang')->name('master-logistik.delete-kategori-barang');
+
                 });
 
                 Route::prefix('supplier-barang')->group(function () {

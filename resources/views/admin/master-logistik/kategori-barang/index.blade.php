@@ -17,6 +17,7 @@
     </div>
 @endsection
 @section('content')
+
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -42,35 +43,39 @@
                                 </div>
                             </div>
                         </div>
-                        <form action="" method="">
-                            <div class="table-responsive mt-2" id="show-data-filter-accounting">
-                                <table class="table table-bordered table-hover" id="table-armada">
-                                    <thead>
+                        <div class="table-responsive mt-2" id="show-data-filter-accounting">
+                            <table class="table table-bordered table-hover" id="table-kategori-logistik">
+                                <thead>
+                                <tr class="text-center">
+                                    <th class="w-3p">No</th>
+                                    <th class="w-3p">ID Kategori</th>
+                                    <th class="w-10p">Nama Kategori</th>
+                                    <th class="w-10p">Deskripsi</th>
+                                    <th class="w-10p">Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @forelse ($kategori as $index => $item)
                                     <tr class="text-center">
-                                        <th class="w-3p">No</th>
-                                        <th class="w-3p">ID Kategori</th>
-                                        <th class="w-10p">Nama Kategori</th>
-                                        <th class="w-10p">Deskripsi</th>
-                                        <th class="w-10p">Action</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr class="text-center">
-                                        <td>1</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
+                                        <td>{{ $index + 1 }}</td>
+                                        <td>{{ $item->kode_kategori }}</td>
+                                        <td>{{ $item->nama_kategori }}</td>
+                                        <td>{{ $item->deskripsi_kategori }}</td>
                                         <td class="text-center">
                                             <a href="#" class="btn btn-outline-primary" data-toggle="modal" data-target="#"><i class="bx bx-info-circle"></i></a>
-                                            <a href="#" class="btn btn-outline-warning" data-toggle="modal" data-target="#EditkategoriBarang"><i class="bx bx-edit"></i></a>
-                                            <a href="#" class="btn btn-outline-danger" data-toggle="modal" data-target="#"><i class="bx bx-trash"></i></a>
+                                            <a href="#" class="btn btn-outline-warning" data-toggle="modal" data-target="#EditkategoriBarang-{{ $item->id }}"><i class="bx bx-edit"></i></a>
+                                            <a href="{{ route('master-logistik.delete-kategori-barang', $item->id) }}" class="btn btn-outline-danger"><i class="bx bx-trash"></i></a>
                                         </td>
                                     </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                                @empty
+                                    <tr>
+                                        <td colspan="5" class="text-center">Tidak ada data kategori.</td>
+                                    </tr>
+                                @endforelse
+                                </tbody>
 
-                        </form>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -80,3 +85,27 @@
     @include('admin.master-logistik.kategori-barang.modal')
     @include('admin.master-logistik.kategori-barang.modal-edit')
 @endsection
+@push('page-scripts')
+    <script>
+        $(document).ready(function () {
+            $("#table-kategori-logistik").DataTable();
+        });
+
+
+            @if(session('pesan-berhasil'))
+            Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: '{{ session("pesan-berhasil") }}'
+        });
+            @elseif(session('pesan-gagal'))
+            Swal.fire({
+            icon: 'error',
+            title: 'Gagal',
+            text: '{{ session("pesan-gagal") }}'
+        });
+        @endif
+
+    </script>
+
+@endpush

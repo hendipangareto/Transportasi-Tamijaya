@@ -168,6 +168,10 @@
         });
     </script>
     @stack('page-scripts')
+
+{{--    sweetalert2 by hendi--}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
 </body>
 
 </html>
