@@ -31,7 +31,7 @@
                                 <div class="card-header  pb-0  d-flex justify-content-between">
                                     <h4 class="card-title"></h4>
                                     <a href="" class="btn btn-success mr-1" data-toggle="modal"
-                                       data-target="#TambahBagian"><i class="bx bx-plus-circle"></i> Tambah Data</a>
+                                       data-target="#TambahToko"><i class="bx bx-plus-circle"></i> Tambah Data</a>
                                 </div>
                             </div>
                         </div>
@@ -41,29 +41,39 @@
                                 <thead>
                                 <tr class="text-center">
                                     <th class="w-2p">No</th>
-                                    <th class="w-4p">Kode Bagian</th>
-                                    <th class="w-4p">Nama Bagian</th>
-                                    <th class="w-4p">Deskripsi</th>
-                                    <th class="w-4p">Action</th>
+                                    <th class="w-4p">Kode Toko</th>
+                                    <th class="w-10p">Nama Toko</th>
+                                    <th class="w-10p">Nomor Telepon</th>
+                                    <th class="w-10p">Nomor HP</th>
+                                    <th class="w-10p">PIC</th>
+                                    <th class="w-10p">Alamat</th>
+                                    <th class="w-10p">Provinsi/Kota</th>
+                                    <th class="w-3p">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @forelse ($toko as $index => $item)
+                                @forelse ($Toko as $index => $item)
                                     <tr class="text-center">
-                                        <td>{{ $index + 1 }}</td>
-                                        <td>{{ $item->kode_bagian }}</td>
-                                        <td>{{ $item->nama_bagian }}</td>
-                                        <td>{{ $item->deskripsi_bagian }}</td>
-                                        <td class="text-center">
-                                            <a href="#" class="btn btn-outline-primary" data-toggle="modal"
-                                               data-target="#DetailBagian-{{ $item->id }}"><i class="bx bx-info-circle"></i></a>
-                                            <a href="#" class="btn btn-outline-warning" data-toggle="modal"
-                                               data-target="#EditBagian-{{ $item->id }}"><i class="bx bx-edit"></i></a>
-                                            {{--                                                <a href="{{ route('admin.master-logistik.bagian.delete-bagian', $item->id) }}" class="btn btn-outline-danger"><i class="bx bx-trash"></i></a>--}}
-                                            <a href="{{ route('admin.master-logistik.bagian.delete-bagian', ['id' => $item->id]) }}"
-                                               class="btn btn-outline-danger btn-sm delete-button"><i
-                                                    class="bx bx-trash"></i></a>
-
+                                        <td>{{ $loop->iteration }} </td>
+                                        <td>{{ $item->kode_toko }}</td>
+                                        <td>{{ $item->nama_toko }}</td>
+                                        <td>{{ $item->tlp_toko }}</td>
+                                        <td>{{ $item->hp_toko }}</td>
+                                        <td>{{ $item->pic_toko }}</td>
+                                        <td>{{ $item->alamat_toko }}</td>
+                                        <td>{{ $item->province }} - {{ $item->city }}</td>
+                                        <td>
+                                            <a href=""
+                                               class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#DetailToko"><i
+                                                    class="bx bx-info-circle font-size-base"></i>
+                                            </a>
+                                            <a href=""
+                                               class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#EditToko"><i
+                                                    class="bx bx-pencil font-size-base"></i>
+                                            </a>
+                                            <button class="btn btn-sm btn-outline-danger btn-delete-employee "
+                                                    data-iddelete=""><i class="bx bx-trash font-size-base"></i>
+                                            </button>
                                         </td>
                                     </tr>
                                 @empty
@@ -81,10 +91,9 @@
         </div>
     </div>
 
-{{--    @include('admin.master-logistik.bagian.modal-tambah')--}}
-{{--    @include('admin.master-logistik.bagian.modal-edit')--}}
-{{--    @include('admin.master-logistik.bagian.modal-detail')--}}
-{{--    @include('admin.master-logistik.bagian.modal-delete')--}}
+    @include('admin.master-logistik.toko.modal-tambah')
+    @include('admin.master-logistik.toko.modal-detail')
+    @include('admin.master-logistik.toko.modal-edit')
 @endsection
 
 @push('page-scripts')

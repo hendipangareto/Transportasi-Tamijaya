@@ -8,18 +8,18 @@
                     <i class="bx bx-x"></i>
                 </button>
             </div>
-            <form action="" id="form-agent" enctype="multipart/form-data">
+            <form action="{{ route('admin.master-logistik.toko.simpan-toko') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
-                    <input type="hidden" id="id" name="id" value="">
-                    <label>ID Toko : </label>
+                    <input type="hidden" id="kode_toko" name="kode_toko" value="">
+                    <label>Nama Toko: </label>
                     <div class="form-group">
-                        <input type="text" id="agent_code" name="akun_code"
-                               class="form-control bg-transparent" placeholder="Id Komponen">
+                        <input type="text" id="nama_toko" name="nama_toko"
+                               class="form-control bg-transparent" placeholder="PIC">
                     </div>
-                    <label>PIC: </label>
+                    <label>PIC Toko: </label>
                     <div class="form-group">
-                        <input type="text" id="nama_akun" name="nama_akun"
+                        <input type="text" id="pic_toko" name="pic_toko"
                                class="form-control bg-transparent" placeholder="PIC">
                     </div>
                     <div class="row">
@@ -27,7 +27,7 @@
                             <div class="form-group row">
                                 <div class="col-sm-12">
                                     <label>No Telepon: </label>
-                                    <input type="text" id="departemen_id" name="departemen_id" class="form-control"
+                                    <input type="number" id="tlp_toko" name="tlp_toko" class="form-control"
                                            style="font-style: italic"
                                            placeholder="Departemen otomatis" >
                                 </div>
@@ -38,7 +38,7 @@
 
                                 <div class="col-sm-12">
                                     <label>No HP : </label>
-                                    <input type="text" id="departemen_id" name="departemen_id" class="form-control"
+                                    <input type="text" id="hp_toko" name="hp_toko" class="form-control"
                                            style="font-style: italic"
                                            placeholder="Departemen otomatis" >
                                 </div>
@@ -49,23 +49,25 @@
                         <div class="col-md-6">
                             <div class="form-group row">
                                 <div class="col-sm-12">
-                                    <label  >Provinsi</label>
-                                    <select name="employee_id" id="employee_select" class="form-control">
-
+                                    <label>Provinsi</label>
+                                    <select name="id_province" id="id_province" class="form-control">
                                         <option selected disabled>Pilih Provinsi</option>
-                                        <option value=" ">afasf </option>
+                                        @foreach($province as $item)
+                                            <option value="{{$item->id}}">{{ $item->state_name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group row">
-
                                 <div class="col-sm-12">
-                                    <label  >Kabupaten/Kota</label>
-                                    <select name="employee_id" id="employee_select" class="form-control">
+                                    <label>Kabupaten/Kota</label>
+                                    <select name="id_city" id="id_city" class="form-control">
                                         <option selected disabled>Pilih Kabupaten/Kota</option>
-                                        <option value=" ">afasf </option>
+                                        @foreach($city as $item)
+                                            <option value="{{$item->id}}">{{ $item->city_name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -73,8 +75,8 @@
                     </div>
                     <label>Alamat : </label>
                     <div class="form-group">
-                        <textarea class="form-control" name="agent_description"
-                                  id="agent_description" cols="30"
+                        <textarea class="form-control" name="alamat_toko"
+                                  id="alamat_toko" cols="30"
                                   rows="3"
                                   placeholder="Silahkan masukan deskripsi agent">
 
@@ -82,8 +84,8 @@
                     </div>
                     <label>Deskripsi : </label>
                     <div class="form-group">
-                        <textarea class="form-control" name="agent_description"
-                                  id="agent_description" cols="30"
+                        <textarea class="form-control" name="deskripsi_toko"
+                                  id="deskripsi_toko" cols="30"
                                   rows="3"
                                   placeholder="Silahkan masukan deskripsi agent">
 
