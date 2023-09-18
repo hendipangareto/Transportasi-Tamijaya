@@ -112,7 +112,7 @@
                     <div class="card">
                         <div class="table-responsive ">
                             <table  class=" table table-responsive-lg">
-                                <thead>
+                                <tbody>
                                 <tr>
                                     <th>Kode Sub Bagian</th>
                                     <th>:</th>
@@ -136,7 +136,7 @@
                                     <th> : </th>
                                     <th>{{ $item->deskripsi_sub_bagian}}</th>
                                 </tr>
-                                </thead>
+                                </tbody>
 
                             </table>
 
