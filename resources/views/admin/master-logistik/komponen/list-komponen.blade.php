@@ -74,36 +74,44 @@
                     <br>
                     <div class="table-responsive">
                         <input type="hidden" id="Tablesemployee" value="">
-                        <table class="table table-bordered table-hover" id="table-list-employees">
+                        <table class="table table-bordered table-hover" id="table_komponen">
                             <thead>
                             <tr class="text-uppercase text-center">
                                 <th class="w-2p">No</th>
-                                <th class="w-2p">Id Komponen</th>
+                                <th class="w-2p">Kode Komponen</th>
+                                <th class="w-10p">Nama Komponen</th>
                                 <th class="w-10p">Sub Bagian</th>
                                 <th class="w-10p">Deskripsi</th>
                                 <th class="w-3p">Action</th>
                             </tr>
                             </thead>
                             <tbody id="show-data-employee">
-                            <tr class="text-center">
-                                <td>1</td>
-                                <td>asdfasdfas </td>
-                                <td>asdas </td>
-                                <td>adsfasfasfasffas </td>
-                                <td>
-                                    <a href=""
-                                       class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#DetailKomponen"><i
-                                            class="bx bx-info-circle font-size-base"></i>
-                                    </a>
-                                    <a href=""
-                                       class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#EditKomponen"><i
-                                            class="bx bx-pencil font-size-base"></i>
-                                    </a>
-                                    <button class="btn btn-sm btn-outline-danger btn-delete-employee "
-                                            data-iddelete=""><i class="bx bx-trash font-size-base"></i>
-                                    </button>
-                                </td>
-                            </tr>
+                            @forelse($komponen as $item)
+                                <tr class="text-center">
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $item->kode_komponen}} </td>
+                                    <td>{{ $item->nama_komponen}}</td>
+                                    <td>{{ $item->sub_bagian}}</td>
+                                    <td>{{ $item->deskripsi}}</td>
+                                    <td>
+                                        <a href=""
+                                           class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#DetailKomponen"><i
+                                                class="bx bx-info-circle font-size-base"></i>
+                                        </a>
+                                        <a href=""
+                                           class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#EditKomponen"><i
+                                                class="bx bx-pencil font-size-base"></i>
+                                        </a>
+                                        <button class="btn btn-sm btn-outline-danger btn-delete-employee "
+                                                data-iddelete=""><i class="bx bx-trash font-size-base"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="5" class="text-center">Tidak ada data Komponen.</td>
+                                </tr>
+                            @endforelse
                             </tbody>
                         </table>
                     </div>
@@ -121,7 +129,43 @@
 
 
         $(document).ready(function () {
-            $("#table-employee").DataTable();
+            $("#table_komponen").DataTable();
+        });
+
+        @if(session('pesan-berhasil'))
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: '{{ session("pesan-berhasil") }}'
+        });
+        @elseif(session('pesan-gagal'))
+        Swal.fire({
+            icon: 'error',
+            title: 'Gagal',
+            text: '{{ session("pesan-gagal") }}'
+        });
+        @endif
+
+
+        //konfimarsi delete
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('delete-button')) {
+                e.preventDefault();
+
+                Swal.fire({
+                    title: 'Apakah Anda yakin?',
+                    text: 'Data ini akan dihapus!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Ya, Hapus!',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Jika pengguna mengonfirmasi penghapusan, lanjutkan ke tautan penghapusan
+                        window.location.href = e.target.href;
+                    }
+                });
+            }
         });
 
     </script>

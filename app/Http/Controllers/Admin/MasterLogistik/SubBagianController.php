@@ -58,10 +58,29 @@ class SubBagianController extends Controller
         try {
             $subbagian->save();
 
-            return redirect(route('admin.master-logistik.bagian.sub-bagian'))->with('pesan-berhasil','Anda berhasil menambah data sub bagian');
+            return redirect(route('admin.master-logistik.bagian.sub-bagian'))->with('pesan-berhasil', 'Anda berhasil menambah data sub bagian');
+        } catch (\Exception $e) {
+            return redirect(route('admin.master-logistik.bagian.sub-bagian'))->with('pesan-gagal', 'Anda gagal menambah data sub bagian');
+        }
+    }
+
+
+
+    public function UpdateSubBagian(Request $request, $id)
+    {
+        $subbagian = SubBagian::findOrFail($id);
+        $subbagian->nama_sub_bagian = $request->nama_sub_bagian;
+        $subbagian->bagian_id = $request->bagian_id;
+        $subbagian->deskripsi_sub_bagian = $request->deskripsi_sub_bagian;
+
+//        dd($subbagian);
+        try {
+            $subbagian->save();
+
+            return redirect(route('admin.master-logistik.bagian.sub-bagian'))->with('pesan-berhasil','Anda berhasil mengubah data sub-bagian');
         } catch (\Exception $e) {
 
-            return redirect(route('admin.master-logistik.bagian.sub-bagian'))->with('pesan-gagal','Anda gagal menambah data sub bagian');
+            return redirect(route('admin.master-logistik.bagian.sub-bagian'))->with('pesan-gagal','Anda gagal mengubah data sub-bagian');
         }
     }
 
@@ -74,10 +93,10 @@ class SubBagianController extends Controller
         try {
             $subbagian->delete();
             // Tampilkan pesan SweetAlert2 berhasil
-            return redirect(route('admin.master-logistik.bagian.sub-bagian'))->with('pesan-berhasil','Anda berhasil mengubah data sub-bagian');
+            return redirect(route('admin.master-logistik.bagian.sub-bagian'))->with('pesan-berhasil', 'Anda berhasil mengubah data sub-bagian');
         } catch (\Exception $e) {
             // Tampilkan pesan SweetAlert2 gagal
-            return redirect(route('admin.master-logistik.bagian.sub-bagian'))->with('pesan-gagal','Anda gagal mengubah data sub-bagian');
+            return redirect(route('admin.master-logistik.bagian.sub-bagian'))->with('pesan-gagal', 'Anda gagal mengubah data sub-bagian');
         }
     }
 }

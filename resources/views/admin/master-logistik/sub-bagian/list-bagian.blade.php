@@ -109,9 +109,9 @@
                                         </a>
                                         <a href=""
                                            class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#UpdateSubBagian-{{ $item->id }}"><i
-                                                class="bx bx-pencil font-size-base"></i>
+                                                class="bx bx-edit"></i>
                                         </a>
-                                        <a href="{{ route('admin.master-logistik.bagian.delete-sub-bagian', ['id' => $item->id]) }}" class="btn btn-outline-danger btn-sm delete-button"><i class="bx bx-trash"></i></a>
+                                        <a href="{{ route('admin.master-logistik.bagian.delete-sub-bagian', $item->id) }}" class="btn btn-outline-danger btn-sm delete-button"><i class="bx bx-trash"></i></a>
                                     </td>
                                 </tr>
                             @empty
@@ -152,7 +152,6 @@
             text: '{{ session("pesan-gagal") }}'
         });
         @endif
-
 
         //konfimarsi delete
         document.addEventListener('click', function(e) {
