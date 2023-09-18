@@ -12,7 +12,7 @@ class Komponen extends Model
         'kode_komponen',
         'nama_komponen',
         'sub_bagian_id',
-        'deskripsi',
+        'deskripsi_komponen',
 
     ];
 
