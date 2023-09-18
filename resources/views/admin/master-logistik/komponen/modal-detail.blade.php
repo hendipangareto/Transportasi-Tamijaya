@@ -5,34 +5,35 @@
         <div class="modal-content">
 
                 <div class="modal-body">
-                    <h5 class="pb-2 mb-2 text-center">Form Detail Data Komponen</h5>
+                    <h5 class="pb-2  text-center">Detail Data Komponen</h5>
                     <div class="card">
                         <div class="table-responsive mb-3">
-                            <table class="table datatable-invoice border-top">
-                                <thead>
+                            <table  class=" table table-responsive-lg">
+                                <tbody>
                                 <tr>
                                     <th>Kode Komponen</th>
-                                    <th>: {{ $item->kode_komponen }}</th>
+                                    <th>:</th>
+                                    <th>  {{ $item->kode_komponen }}</th>
                                 </tr>
-                                </thead>
-                                <thead>
+
                                 <tr>
                                     <th>Nama Komponen</th>
-                                    <th>: {{ $item->nama_komponen }}</th>
+                                    <th> : </th>
+                                    <th>{{ $item->nama_komponen }}</th>
                                 </tr>
-                                </thead>
-                                <thead>
+
                                 <tr>
                                     <th>Sub Bagian</th>
-                                    <th>: {{ $item->sub_bagian }}</th>
+                                    <th> : </th>
+                                    <th> {{ $item->sub_bagian }}</th>
                                 </tr>
-                                </thead>
-                                <thead>
+
                                 <tr>
                                     <th>Deskripsi</th>
-                                    <th>: {{ $item->deskripsi_komponen }}</th>
+                                    <th> : </th>
+                                    <th>{{ $item->deskripsi_komponen }}</th>
                                 </tr>
-                                </thead>
+                                </tbody>
 
                             </table>
 

@@ -56,7 +56,7 @@
                                         <td>{{ $item->deskripsi_bagian }}</td>
                                         <td class="text-center">
                                             <a href="#" class="btn btn-outline-primary" data-toggle="modal"
-                                               data-target="#DetailBagian"><i class="bx bx-info-circle"></i></a>
+                                               data-target="#DetailBagian-{{ $item->id }}"><i class="bx bx-info-circle"></i></a>
                                             <a href="#" class="btn btn-outline-warning" data-toggle="modal"
                                                data-target="#EditBagian-{{ $item->id }}"><i class="bx bx-edit"></i></a>
                                             {{--                                                <a href="{{ route('admin.master-logistik.bagian.delete-bagian', $item->id) }}" class="btn btn-outline-danger"><i class="bx bx-trash"></i></a>--}}
