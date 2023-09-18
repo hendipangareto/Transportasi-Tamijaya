@@ -74,11 +74,11 @@
                     <br>
                     <div class="table-responsive">
                         <input type="hidden" id="Tablesemployee" value="">
-                        <table class="table table-bordered table-hover" id="table-list-employees">
+                        <table class="table table-bordered table-hover" id="table_sub_bagian">
                             <thead>
                             <tr class="text-uppercase text-center">
-                                <th class="w-2p">No</th>
-                                <th class="w-2p">Id Bengkel</th>
+                                <td class="w-2p">No</td>
+                                <th class="w-2p">Kode Bengkel</th>
                                 <th class="w-10p">Nama Bengkel</th>
                                 <th class="w-10p">Nomor Telepon</th>
                                 <th class="w-10p">Nomor HP</th>
@@ -90,28 +90,35 @@
                             </thead>
                             <tbody id="show-data-employee">
                             <tr class="text-center">
-                                <td>1</td>
-                                <td>asdfasdfas </td>
-                                <td>asdas </td>
-                                <td>asdas </td>
-                                <td>asdas </td>
-                                <td>asdas </td>
-                                <td>asdas </td>
-                                <td>adsfasfasfasffas </td>
-                                <td>
-                                    <a href=""
-                                       class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#DetailBengkel"><i
-                                            class="bx bx-info-circle font-size-base"></i>
-                                    </a>
-                                    <a href=""
-                                       class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#EditBengkel"><i
-                                            class="bx bx-pencil font-size-base"></i>
-                                    </a>
-                                    <button class="btn btn-sm btn-outline-danger btn-delete-employee "
-                                            data-iddelete=""><i class="bx bx-trash font-size-base"></i>
-                                    </button>
-                                </td>
-                            </tr>
+                            @forelse ($BengkelLuar as $item)
+                                <tr class="text-center">
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $item->kode_bengkel_luar }} </td>
+                                    <td>{{ $item->nama_bengkel_luar }} </td>
+                                    <td>{{ $item->hp_bengkel_luar }} </td>
+                                    <td>{{ $item->tlp_bengkel_luar }} </td>
+                                    <td>{{ $item->pic_bengkel_luar }} </td>
+                                    <td>{{ $item->alamat_bengkel_luar }} </td>
+                                    <td>{{ $item->province }} - {{ $item->city }} </td>
+                                    <td>
+                                        <a href=""
+                                           class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#DetailBengkel"><i
+                                                class="bx bx-info-circle font-size-base"></i>
+                                        </a>
+                                        <a href=""
+                                           class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#EditBengkel"><i
+                                                class="bx bx-pencil font-size-base"></i>
+                                        </a>
+                                        <button class="btn btn-sm btn-outline-danger btn-delete-employee "
+                                                data-iddelete=""><i class="bx bx-trash font-size-base"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="5" class="text-center">Tidak ada data bengkel luar.</td>
+                                </tr>
+                            @endforelse
                             </tbody>
                         </table>
                     </div>

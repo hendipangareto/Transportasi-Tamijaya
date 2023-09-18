@@ -273,6 +273,7 @@ Route::group(
 
                 Route::prefix('bengkel-luar')->group(function () {
                     Route::get('/list-bengkel-luar', 'MasterLogistik\BengkelLuarController@getBengkelLuar')->name('admin.master-logistik.bengkel-luar.list-bengkel-luar');
+                    Route::post('/simpan-bengkel-luar', 'MasterLogistik\BengkelLuarController@SimpanBengkelLuar')->name('admin.master-logistik.bengkel-luar.simpan-bengkel-luar');
                 });
 
                 Route::prefix('toko')->group(function () {
