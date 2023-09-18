@@ -33,4 +33,39 @@ class BagianController extends Controller
             return redirect(route('admin.master-logistik.bagian.list-bagian'))->with('pesan-gagal','Anda gagal menambah data bagian');
         }
     }
+
+    public function EditBagian(Request $request, $id)
+    {
+        $bagian = Bagian::find($id);
+        return view('admin.master-logistik.bagian.tambah-bagian', compact('bagian'));
+    }
+
+    public function UpdateBagian(Request $request, $id)
+    {
+        $bagian = Bagian::find($id);
+        $bagian->nama_bagian = $request->nama_bagian;
+        $bagian->deskripsi_bagian = $request->deskripsi_bagian;
+
+
+        try {
+            $bagian->save();
+            // Tampilkan pesan SweetAlert2 berhasil
+            return redirect(route('admin.master-logistik.bagian.tambah-bagian'))->with('pesan-berhasil','Anda berhasil mengubah data bagian');
+        } catch (\Exception $e) {
+            // Tampilkan pesan SweetAlert2 gagal
+            return redirect(route('admin.master-logistik.bagian.tambah-bagian'))->with('pesan-gagal','Anda gagal mengubah data bagian');
+        }
+    }
+
+    public function DeleteBagian($id)
+    {
+        $bagian = Bagian::find($id);
+
+        try {
+            $bagian->delete();
+            return redirect(route('admin.master-logistik.bagian.tambah-bagian'))->with('pesan-berhasil','Anda berhasil menghapus data bagian');
+        } catch (\Exception $e) {
+            return redirect(route('admin.master-logistik.bagian.tambah-bagian'))->with('pesan-gagal','Anda gagal menghapus data bagian');
+        }
+    }
 }

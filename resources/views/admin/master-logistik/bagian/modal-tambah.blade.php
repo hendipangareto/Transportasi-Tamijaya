@@ -8,7 +8,7 @@
                     <i class="bx bx-x"></i>
                 </button>
             </div>
-            <form method="POST" action="{{ route('admin.master-logistik.bagian.tambah-bagian') }}">
+            <form action="{{ route('admin.master-logistik.bagian.tambah-bagian') }}" method="post"  enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
                     <input type="hidden" id="kode_bagian" name="kode_bagian" value="">

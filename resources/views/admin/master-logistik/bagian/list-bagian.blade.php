@@ -60,7 +60,7 @@
                                     <thead>
                                     <tr class="text-center">
                                         <th class="w-3p">No</th>
-                                        <th class="w-3p">ID Bagian</th>
+                                        <th class="w-3p">Kode Bagian</th>
                                         <th class="w-3p">Nama Bagian</th>
                                         <th class="w-10p">Deskripsi </th>
                                         <th class="w-10p">Action</th>
@@ -72,7 +72,7 @@
                                             <td>{{ $index + 1 }}</td>
                                             <td>{{ $item->kode_bagian }}</td>
                                             <td>{{ $item->nama_bagian }}</td>
-                                            <td>{{ $item->deskripsi }}</td>
+                                            <td>{{ $item->deskripsi_bagian }}</td>
                                             <td class="text-center">
                                                 <a href="#" class="btn btn-outline-primary" data-toggle="modal" data-target="#DetailBagian"><i class="bx bx-info-circle"></i></a>
                                                 <a href="#" class="btn btn-outline-warning" data-toggle="modal" data-target="#EditBagian-{{ $item->id }}"><i class="bx bx-edit"></i></a>

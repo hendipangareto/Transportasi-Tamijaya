@@ -8,7 +8,7 @@
                     <i class="bx bx-x"></i>
                 </button>
             </div>
-            <form action="{{ route('master-logistik-simpang-kategori-barang') }}" method="post" id="form-kategori" enctype="multipart/form-data">
+            <form action="{{ route('master-logistik-simpang-kategori-barang') }}" method="post"   enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
                     <input type="hidden" name="kode_kategori" value="">
