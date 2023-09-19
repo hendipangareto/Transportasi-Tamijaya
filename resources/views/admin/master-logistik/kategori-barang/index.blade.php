@@ -43,7 +43,7 @@
                                         <div class="dropdown float-right">
                                             <a href="" class="btn btn-primary mr-1" data-toggle="modal"
                                                data-target="#kategoriBarang"><i class="bx bx-plus-circle"></i>Tambah Data</a>
-                                            <a target="_blank" href="{{ route('master-logistik.cetak-pdf-kategori-barang') }}" class="btn btn-danger mr-1"><i class="bx bx-printer"></i>Tambah Data</a>
+                                            <a target="_blank" href="{{ route('master-logistik.cetak-pdf-kategori-barang') }}" class="btn btn-danger mr-1"><i class="bx bx-printer"></i>Report PDF </a>
 
                                         </div>
                                     </div>
