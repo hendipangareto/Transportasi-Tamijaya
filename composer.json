@@ -45,7 +45,7 @@
         ],
         "files": [
 
-            "app/Helpers/ifIsset.php"
+            "app/Helpers/IfIsset.php"
         ]
     },
     "autoload-dev": {
