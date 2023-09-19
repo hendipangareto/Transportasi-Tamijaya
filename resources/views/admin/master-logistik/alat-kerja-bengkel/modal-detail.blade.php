@@ -1,70 +1,50 @@
-<div class="modal fade text-left" id="DetailAlatBengkel" tabindex="-1" role="dialog" aria-labelledby="modal-title"
-     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="modal-title">Form Detail Alat</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <i class="bx bx-x"></i>
-                </button>
-            </div>
-            <form action="" id="form-agent" enctype="multipart/form-data">
-                @csrf
+@foreach($AlatKerjaBengkel as $item)
+    <div class="modal fade text-left" id="DetailAlat-{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="modal-title"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
                 <div class="modal-body">
-                    <input type="hidden" id="id" name="id" value="">
-                    <label>ID Alat : </label>
-                    <div class="form-group">
-                        <input type="text" id="agent_code" name="akun_code"
-                               class="form-control bg-transparent" placeholder="Id Komponen">
-                    </div>
-                    <label>Nama Alat : </label>
-                    <div class="form-group">
-                        <input type="text" id="nama_akun" name="nama_akun"
-                               class="form-control bg-transparent" placeholder="nama sub-bagian">
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group row">
+                    <h5 class="pb-2  text-center">Detail Data Alat Kerja Bengkel</h5>
+                    <div class="card">
+                        <div class="table-responsive">
+                            <table class="table datatable-invoice border-top">
+                                <thead>
+                                <tr>
+                                    <th>Kode Alat</th>
+                                    <th>: {{ $item->kode_alat_kerja_bengkel }}</th>
+                                </tr>
+                                </thead>
+                                <thead>
+                                <tr>
+                                    <th>Nama Alat</th>
+                                    <th>: {{ $item->nama_alat_kerja_bengkel }}</th>
+                                </tr>
+                                </thead>
+                                <thead>
+                                <tr>
+                                    <th>Kuantitas</th>
+                                    <th>: {{ $item->kuantitas_alat_kerja_bengkel}}</th>
+                                </tr>
+                                </thead>
+                                <thead>
+                                <tr>
+                                    <th>Satuan</th>
+                                    <th>: {{ $item->satuan}}</th>
+                                </tr>
+                                </thead>
 
+                            </table>
 
-                                <div class="col-sm-12">
-                                    <label>Kuantitas : </label>
-                                    <input type="text" id="departemen_id" name="departemen_id" class="form-control"
-                                           style="font-style: italic"
-                                           placeholder="Departemen otomatis" >
-                                </div>
-                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group row">
-
-                                <div class="col-sm-12">
-                                    <label  >Satuan</label>
-                                    <select name="employee_id" id="employee_select" class="form-control">
-
-                                        <option selected disabled>Pilih Satuan</option>
-                                        <option value=" ">afasf </option>
-                                    </select>
-                                </div>
-                            </div>
+                        <div class="row ml-1 justify-content-lg-end">
+                            <button type="button"   class="btn btn-secondary mr-1"  data-dismiss="modal" > Kembali ➡
+                            </button>
                         </div>
-                    </div>
-                    <label>Deskripsi : </label>
-                    <div class="form-group">
-                        <textarea class="form-control" name="agent_description"
-                                  id="agent_description" cols="30"
-                                  rows="3"
-                                  placeholder="Silahkan masukan deskripsi agent">
 
-                        </textarea>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="submit" id="edit-agent" class="btn btn-success mr-1"><i
-                            class="bx bx-save mt"></i> Submit
-                    </button>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
-</div>
+@endforeach

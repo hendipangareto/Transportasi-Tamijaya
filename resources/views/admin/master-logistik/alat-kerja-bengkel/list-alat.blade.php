@@ -59,7 +59,7 @@
 
                                         <td>
                                             <a href=""
-                                               class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#DetailBengkelLuar-{{ $item->id }}"><i
+                                               class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#DetailAlat-{{ $item->id }}"><i
                                                     class="bx bx-info-circle font-size-base"></i>
                                             </a>
                                             <a href=""
@@ -87,6 +87,7 @@
     </div>
 
     @include('admin.master-logistik.alat-kerja-bengkel.modal-tambah')
+    @include('admin.master-logistik.alat-kerja-bengkel.modal-detail')
     @include('admin.master-logistik.alat-kerja-bengkel.modal-edit')
 {{--    @include('admin.master-logistik.bengkel-luar.modal-detail')--}}
 {{--    @include('admin.master-logistik.bengkel-luar.modal-edit')--}}
