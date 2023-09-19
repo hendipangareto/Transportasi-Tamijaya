@@ -210,8 +210,6 @@ Route::group(
                 });
 
                 Route::prefix('aset')->group(function () {
-
-
                     Route::prefix('data-aset')->group(function () {
                         Route::get('/list-aset', 'MasterKeuangan\Aset\DataAsetController@getListAset')->name('master-keuangan.aset.list-data-aset');
                         Route::get('/tambah-data-aset', 'MasterKeuangan\Aset\DataAsetController@getTambahDataAset')->name('master-keuangan.aset.data-aset.tambah-data-aset');
@@ -219,7 +217,8 @@ Route::group(
 
                     Route::prefix('tipe-aset')->group(function () {
                         Route::get('/list-tipe-aset', 'MasterKeuangan\Aset\TipeAsetController@getTipeAset')->name('master-keuangan.aset.tipe-aset');
-//                        Route::get('/tambah-data-aset', 'MasterKeuangan\AsetController@getTambahDataAset')->name('master-keuangan.aset.data-aset.tambah-data-aset');
+                        Route::get('/tambah-tipe-aset', 'MasterKeuangan\Aset\TipeAsetController@TambahTipeAset')->name('master-keuangan.aset.tambah-tipe-aset');
+
                     });
 
                     Route::prefix('kategori-aset')->group(function () {
