@@ -8,24 +8,19 @@
                     <i class="bx bx-x"></i>
                 </button>
             </div>
-            <form action="" id="form-agent" enctype="multipart/form-data">
+            <form action="{{ route('master-keuangan.aset.tambah-tipe-aset') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
-                    <input type="hidden" id="id" name="id" value="">
-                    <label>ID Tipe Aset: </label>
-                    <div class="form-group">
-                        <input type="text" id="agent_code" name="akun_code"
-                               class="form-control bg-transparent" placeholder="kode akun">
-                    </div>
+                    <input type="hidden" id="kode_tipe_aset" name="kode_tipe_aset"  >
                     <label>Nama Tipe Aset: </label>
                     <div class="form-group">
-                        <input type="text" id="nama_akun" name="nama_akun"
-                               class="form-control bg-transparent" placeholder="nama akun">
+                        <input type="text" id="nama_tipe_aset" name="nama_tipe_aset"
+                               class="form-control bg-transparent" placeholder="nama tipe aset">
                     </div>
                     <label>Deskripsi : </label>
                     <div class="form-group">
-                        <textarea class="form-control" name="agent_description"
-                                  id="agent_description" cols="30"
+                        <textarea class="form-control" name="deskripsi_tipe_aset"
+                                  id="deskripsi_tipe_aset" cols="30"
                                   rows="3"
                                   placeholder="Silahkan masukan deskripsi agent">
 

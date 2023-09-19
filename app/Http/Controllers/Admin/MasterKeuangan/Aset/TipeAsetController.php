@@ -21,11 +21,11 @@ class TipeAsetController extends Controller
         $newNumber = $lastNumber + 1;
         $noTipeAset = 'TA-01' . str_pad($newNumber, 2, '0', STR_PAD_LEFT);
 
-        $TipeAset->kode_tipe_aset = $TipeAset;
+        $TipeAset->kode_tipe_aset = $noTipeAset;
         $TipeAset->nama_tipe_aset = $request->nama_tipe_aset;
         $TipeAset->deskripsi_tipe_aset = $request->deskripsi_tipe_aset;
 
-        dd($TipeAset);
+//        dd($TipeAset);
         try {
             $TipeAset->save();
             return redirect(route('master-keuangan.aset.tipe-aset'))->with('pesan-berhasil', 'Anda berhasil menambah data tipe aset');

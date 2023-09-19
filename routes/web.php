@@ -217,7 +217,7 @@ Route::group(
 
                     Route::prefix('tipe-aset')->group(function () {
                         Route::get('/list-tipe-aset', 'MasterKeuangan\Aset\TipeAsetController@getTipeAset')->name('master-keuangan.aset.tipe-aset');
-                        Route::get('/tambah-tipe-aset', 'MasterKeuangan\Aset\TipeAsetController@TambahTipeAset')->name('master-keuangan.aset.tambah-tipe-aset');
+                        Route::post('/tambah-tipe-aset', 'MasterKeuangan\Aset\TipeAsetController@TambahTipeAset')->name('master-keuangan.aset.tambah-tipe-aset');
 
                     });
 
