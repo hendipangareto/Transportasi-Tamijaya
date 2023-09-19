@@ -274,6 +274,7 @@ Route::group(
                     Route::get('/list-alat-kerja-bengkel', 'MasterLogistik\AlatBengkelController@getAlatBengkel')->name('admin.master-logistik.alat-kerja-bengkel.list-alat-kerja-bengkel');
                     Route::post('/simpan-alat-kerja-bengkel', 'MasterLogistik\AlatBengkelController@SimpanAlatBengkel')->name('admin.master-logistik.alat-kerja-bengkel.simpan-alat-kerja-bengkel');
                     Route::post('/update-alat-kerja-bengkel/{id}', 'MasterLogistik\AlatBengkelController@UpdateAlatBengkel')->name('admin.master-logistik.alat-kerja-bengkel.update-alat-kerja-bengkel');
+                    Route::get('/delete-alat-kerja-bengkel/{id}', 'MasterLogistik\AlatBengkelController@DeleteAlatBengkel')->name('admin.master-logistik.alat-kerja-bengkel.delete-alat-kerja-bengkel');
                 });
 
 

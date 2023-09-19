@@ -66,7 +66,7 @@
                                                class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#UpdateAlat-{{ $item->id }}"><i
                                                     class="bx bx-edit font-size-base"></i>
                                             </a>
-                                            <a href="{{ route('admin.master-logistik.bengkel-luar.delete-bengkel-luar', ['id' => $item->id]) }}"
+                                            <a href="{{ route('admin.master-logistik.alat-kerja-bengkel.delete-alat-kerja-bengkel', ['id' => $item->id]) }}"
                                                class="btn btn-outline-danger btn-sm delete-button"><i
                                                     class="bx bx-trash"></i></a>
                                         </td>

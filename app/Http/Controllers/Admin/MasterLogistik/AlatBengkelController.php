@@ -62,4 +62,17 @@ class AlatBengkelController extends Controller
             return redirect(route('admin.master-logistik.alat-kerja-bengkel.list-alat-kerja-bengkel'))->with('pesan-gagal', 'Anda gagal mengubah data alat kerja bengkel');
         }
     }
+
+    public function DeleteAlatBengkel($id)
+    {
+        $AlatKerjaBengkel = AlatKerjaBengkel::findOrFail($id);
+
+        try {
+            $AlatKerjaBengkel->delete();
+
+            return redirect(route('admin.master-logistik.alat-kerja-bengkel.list-alat-kerja-bengkel'))->with('pesan-berhasil', 'Anda berhasil menghapus data alat kerja bengkel');
+        } catch (\Exception $e) {
+            return redirect(route('admin.master-logistik.alat-kerja-bengkel.list-alat-kerja-bengkel'))->with('pesan-gagal', 'Anda gagal menghapus data alat kerja bengkel');
+        }
+    }
 }
