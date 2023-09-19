@@ -38,6 +38,9 @@
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <button type="button"   class="btn btn-warning mr-1"  data-dismiss="modal" ><i
+                            class="bx bx-arrow-back"></i> Kembali
+                    </button>
                     <button type="submit" class="btn btn-success mr-1"><i
                             class="bx bx-save mt"></i> Submit
                     </button>

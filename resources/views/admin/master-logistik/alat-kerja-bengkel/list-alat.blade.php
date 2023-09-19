@@ -63,7 +63,7 @@
                                                     class="bx bx-info-circle font-size-base"></i>
                                             </a>
                                             <a href=""
-                                               class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#EditBengkel-{{ $item->id }}"><i
+                                               class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#UpdateAlat-{{ $item->id }}"><i
                                                     class="bx bx-edit font-size-base"></i>
                                             </a>
                                             <a href="{{ route('admin.master-logistik.bengkel-luar.delete-bengkel-luar', ['id' => $item->id]) }}"
@@ -87,6 +87,7 @@
     </div>
 
     @include('admin.master-logistik.alat-kerja-bengkel.modal-tambah')
+    @include('admin.master-logistik.alat-kerja-bengkel.modal-edit')
 {{--    @include('admin.master-logistik.bengkel-luar.modal-detail')--}}
 {{--    @include('admin.master-logistik.bengkel-luar.modal-edit')--}}
 @endsection
