@@ -199,6 +199,7 @@ Route::group(
             Route::prefix('master-keuangan')->group(function () {
                 Route::prefix('akun')->group(function () {
                     Route::get('/list-akun', 'MasterKeuangan\AkunController@getListAkun')->name('master-keuangan.akun.list-akun');
+                    Route::post('/tambah-akun', 'MasterKeuangan\AkunController@TambahAkun')->name('master-keuangan.akun.tambah-akun');
                 });
                 Route::prefix('sub-akun')->group(function () {
                     Route::get('/list-sub-akun', 'MasterKeuangan\SubAkunController@getListSubAkun')->name('master-keuangan.sub-akun.list-sub-akun');
