@@ -201,6 +201,7 @@ Route::group(
                     Route::get('/list-akun', 'MasterKeuangan\AkunController@getListAkun')->name('master-keuangan.akun.list-akun');
                     Route::post('/tambah-akun', 'MasterKeuangan\AkunController@TambahAkun')->name('master-keuangan.akun.tambah-akun');
                     Route::post('/update-akun/{id}', 'MasterKeuangan\AkunController@UpdateAkun')->name('master-keuangan.akun.update-akun');
+                    Route::get('/delete-akun/{id}', 'MasterKeuangan\AkunController@DeleteAkun')->name('master-keuangan.akun.delete-akun');
                 });
                 Route::prefix('sub-akun')->group(function () {
                     Route::get('/list-sub-akun', 'MasterKeuangan\SubAkunController@getListSubAkun')->name('master-keuangan.sub-akun.list-sub-akun');

@@ -44,6 +44,17 @@ class AkunController extends Controller
         } catch (\Exception $e) {
             return redirect(route('master-keuangan.akun.list-akun'))->with('pesan-gagal', 'Anda gagal menambah data akun');
         }
+    }
 
+    public function DeleteAkun($id)
+    {
+        $akun = Akun::findOrFail($id);
+
+        try {
+            $akun->delete();
+            return redirect(route('master-keuangan.akun.list-akun'))->with('pesan-berhasil', 'Anda berhasil menghapus data akun');
+        } catch (\Exception $e) {
+            return redirect(route('master-keuangan.akun.list-akun'))->with('pesan-gagal', 'Anda gagal menghapus data akun');
+        }
     }
 }
