@@ -27,9 +27,9 @@ class BengkelLuarController extends Controller
     {
         $BengkelLuar = new BengkelLuar();
         $lastNomor = BengkelLuar::orderBy('id', 'desc')->first();
-        $lastNumber = $lastNomor ? intval(substr($lastNomor->kode_sub_bagian, -2)) : 0;
+        $lastNumber = $lastNomor ? intval(substr($lastNomor->kode_bengkel_luar, -2)) : 0;
         $newNumber = $lastNumber + 1;
-        $noBengkelLuar = 'BKL-001' . str_pad($newNumber, 2, '0', STR_PAD_LEFT);
+        $noBengkelLuar = 'BKL-0' . str_pad($newNumber, 2, '0', STR_PAD_LEFT);
 
         $BengkelLuar->kode_bengkel_luar = $noBengkelLuar;
         $BengkelLuar->nama_bengkel_luar = $request->nama_bengkel_luar;
