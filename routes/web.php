@@ -272,6 +272,7 @@ Route::group(
 
                 Route::prefix('alat-kerja-bengkel')->group(function () {
                     Route::get('/list-alat-kerja-bengkel', 'MasterLogistik\AlatBengkelController@getAlatBengkel')->name('admin.master-logistik.alat-kerja-bengkel.list-alat-kerja-bengkel');
+                    Route::post('/simpan-alat-kerja-bengkel', 'MasterLogistik\AlatBengkelController@SimpanAlatBengkel')->name('admin.master-logistik.alat-kerja-bengkel.simpan-alat-kerja-bengkel');
                 });
 
 
