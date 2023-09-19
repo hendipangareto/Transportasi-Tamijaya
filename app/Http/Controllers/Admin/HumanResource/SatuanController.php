@@ -32,10 +32,28 @@ class SatuanController extends Controller
         try {
             $satuan->save();
             // Tampilkan pesan SweetAlert2 berhasil
-            return redirect(route('human-resource.status.list-satuan'))->with('pesan-berhasil','Anda berhasil menambah data satuan');
+            return redirect(route('human-resource.status.list-satuan'))->with('pesan-berhasil', 'Anda berhasil menambah data satuan');
         } catch (\Exception $e) {
             // Tampilkan pesan SweetAlert2 gagal
-            return redirect(route('human-resource.status.list-satuan'))->with('pesan-gagal','Anda gagal menambah data satuan');
+            return redirect(route('human-resource.status.list-satuan'))->with('pesan-gagal', 'Anda gagal menambah data satuan');
+        }
+    }
+
+    public function UpdateSatuan(Request $request, $id)
+    {
+        $satuan = Satuan::findOrFail($id);
+        $satuan->nama_satuan = $request->nama_satuan;
+        $satuan->deskripsi_satuan = $request->deskripsi_satuan;
+
+
+//           dd($satuan);
+        try {
+            $satuan->save();
+            // Tampilkan pesan SweetAlert2 berhasil
+            return redirect(route('human-resource.status.list-satuan'))->with('pesan-berhasil', 'Anda berhasil mengubah data satuan');
+        } catch (\Exception $e) {
+            // Tampilkan pesan SweetAlert2 gagal
+            return redirect(route('human-resource.status.list-satuan'))->with('pesan-gagal', 'Anda gagal mengubah data satuan');
         }
     }
 

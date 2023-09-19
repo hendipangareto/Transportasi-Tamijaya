@@ -41,10 +41,10 @@
                                 <thead>
                                 <tr class="text-center">
                                     <th class="w-2p">No</th>
-                                    <th class="w-3p">Kode Satuan</th>
-                                    <th class="w-3p">Nama Satuan</th>
-                                    <th class="w-10p">Deskripsi</th>
-                                    <th class="w-3p">Action</th>
+                                    <th class="w-4p">Kode Satuan</th>
+                                    <th class="w-4p">Nama Satuan</th>
+                                    <th class="w-4p">Deskripsi</th>
+                                    <th class="w-10p">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -62,7 +62,7 @@
                                             </a>
                                             <a href=""
                                                class="btn btn-sm btn-outline-warning" data-toggle="modal"
-                                               data-target="#EditModalSatuan"><i
+                                               data-target="#EditSatuan-{{ $item->id }}"><i
                                                     class="bx bx-edit font-size-base"></i>
                                             </a>
                                             <button class="btn btn-sm btn-outline-danger btn-delete-employee "
