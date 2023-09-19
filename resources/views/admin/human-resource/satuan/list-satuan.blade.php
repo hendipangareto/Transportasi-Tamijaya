@@ -41,10 +41,10 @@
                                 <thead>
                                 <tr class="text-center">
                                     <th class="w-2p">No</th>
-                                    <th class="w-4p">Kode Bagian</th>
-                                    <th class="w-4p">Nama Bagian</th>
-                                    <th class="w-4p">Deskripsi</th>
-                                    <th class="w-4p">Action</th>
+                                    <th class="w-3p">Kode Satuan</th>
+                                    <th class="w-3p">Nama Satuan</th>
+                                    <th class="w-10p">Deskripsi</th>
+                                    <th class="w-3p">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -57,13 +57,13 @@
                                         <td>
                                             <a href=""
                                                class="btn btn-sm btn-outline-primary" data-toggle="modal"
-                                               data-target="#DetailModalSatuan"><i
+                                               data-target="#DetailSatuan-{{ $item->id }}"><i
                                                     class="bx bx-info-circle font-size-base"></i>
                                             </a>
                                             <a href=""
                                                class="btn btn-sm btn-outline-warning" data-toggle="modal"
                                                data-target="#EditModalSatuan"><i
-                                                    class="bx bx-edit-alt font-size-base"></i>
+                                                    class="bx bx-edit font-size-base"></i>
                                             </a>
                                             <button class="btn btn-sm btn-outline-danger btn-delete-employee "
                                                     data-iddelete=""><i class="bx bx-trash font-size-base"></i>
