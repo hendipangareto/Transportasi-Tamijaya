@@ -205,6 +205,7 @@ Route::group(
                 });
                 Route::prefix('sub-akun')->group(function () {
                     Route::get('/list-sub-akun', 'MasterKeuangan\SubAkunController@getListSubAkun')->name('master-keuangan.sub-akun.list-sub-akun');
+                    Route::post('/tambah-sub-akun', 'MasterKeuangan\SubAkunController@TambahSubAkun')->name('master-keuangan.sub-akun.tambah-sub-akun');
                 });
 
                 Route::prefix('aset')->group(function () {

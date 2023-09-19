@@ -38,7 +38,7 @@
 
 
 
-//UPDATE AKUN
+{{--//UPDATE AKUN--}}
 
 
 @foreach($akun as $item)
@@ -88,7 +88,7 @@
 @endforeach
 
 
-//DETAIL AKUN
+{{--//DETAIL AKUN--}}
 @foreach($akun as $item)
     <div class="modal fade text-left" id="DetailAkun-{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="modal-title"
          aria-hidden="true">

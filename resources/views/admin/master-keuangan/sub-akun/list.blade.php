@@ -19,82 +19,118 @@
 @section('content')
     <div class="row">
         <div class="col-12">
-            <div class="card">
-                <div class="card-header d-flex justify-content-between" style="background-color: #00b3ff">
-                    <h4 class="card-title" style="color: black"><b>Data Master </b>| Sub-Akun</h4>
-                </div>
-                <div class="card-content mt-2">
-                    <div class="card-body card-dashboard">
+            <div class="card shadow">
+                <div class="card-header" style="background-color: #00b3ff">
+                    <div class="toolbar row ">
+                        <div class="col-md-12 d-flex">
+                            <h2 class="h4 ">Data Master Sub-Akun</h2>
+                            <div class="col ml-auto">
+                                <div class="dropdown float-right">
 
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="card-header  pb-0  d-flex justify-content-between">
-                                    <h4 class="card-title"></h4>
-                                    <a href="" class="btn btn-success mr-1" data-toggle="modal"
-                                       data-target="#TambahAkun"><i class="bx bx-plus-circle"></i> Tambah Data</a>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="table-responsive mt-2">
-                            <table class="table table-bordered table-hover" id="table-satuan">
-                                <thead>
-                                <tr class="text-center">
-                                    <th class="w-2p">No</th>
-                                    <th class="w-10p">Kode Akun</th>
-                                    <th class="w-4p">Nama Akun</th>
-                                    <th class="w-4p">Deskripsi</th>
-                                    <th class="w-10p">Action</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @forelse($SubAkun as $item)
-                                    <tr class="text-center">
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{$item -> kode_akun}}</td>
-                                        <td>{{$item->nama_akun}}</td>
-                                        <td>{{$item->deskripsi_akun}}</td>
-                                        <td>
-                                            <a href=""
-                                               class="btn btn-sm btn-outline-primary" data-toggle="modal"
-                                               data-target="#DetailAkun-{{ $item->id }}"><i
-                                                    class="bx bx-info-circle font-size-base"></i>
-                                            </a>
-                                            <a href=""
-                                               class="btn btn-sm btn-outline-warning" data-toggle="modal"
-                                               data-target="#UpdateAkun-{{ $item->id }}"><i
-                                                    class="bx bx-edit font-size-base"></i>
-                                            </a>
-
-                                            <a href="{{ route('master-keuangan.akun.delete-akun', ['id' => $item->id]) }}"
-                                               class="btn btn-outline-danger btn-sm delete-button"><i
-                                                    class="bx bx-trash"></i></a>
-                                        </td>
-                                    </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="5" class="text-center">Tidak ada data satuan.</td>
-                                    </tr>
-                                @endforelse
-                                </tbody>
-                            </table>
-                        </div>
-
                     </div>
+                </div>
+                <div class="card-header" >
+                    <div class="toolbar row ">
+                        <div class="col-md-12 d-flex">
+                            <h2 class="h4"> </h2>
+                            <div class="col ml-auto">
+                                <div class="dropdown float-right">
+                                    <a href=" "
+                                       class="btn btn-primary mr-1" data-toggle="modal" data-target="#TambahSubAkun">
+                                        <i class="bx bx-plus-circle"></i> Tambah Data</a>
+                                    <a target="_blank" href="{{ route('admin.master-logistik.bagian.cetak-pdf') }}?bagian={{ request()->input('bagian_id') }}" type="button" class="btn btn-danger text-white mr-1">
+                                        <i class="bx bxs-file-pdf"></i> Report PDF
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form action="">
+                        @csrf
+                        <div class="row">
+                            <div class="col-md-2 col-sm-12">
+                                <div class="form-group">
+                                    <label for="">Bagian :</label>
+                                    <div class="form-group">
+                                        <select name="bagian_id" id="bagian_id" class="form-control">
+                                            <option selected disabled>Pilih Bagian</option>
+                                            @foreach($akun as $akn)
+                                                <option value="{{$akn->id}}" >{{$akn->nama_akun}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-sm-12">
+                                <div class="form-group">
+                                    <label for="" style="color: white">Filter</label><br>
+                                    <button class="btn btn-outline-primary">Filter <i
+                                            class="bx bx-filter"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="table-responsive"  >
+                        <table class="table table-bordered table-hover" id="table-bagian">
+                            <thead>
+                            <tr class="text-center">
+                                <th class="w-2p">No</th>
+                                <th class="w-4p">Kode Sub Akun</th>
+                                <th class="w-4p">Nama Sub-Akun</th>
+                                <th class="w-4p">Akun</th>
+                                <th class="w-4p">Deskripsi</th>
+                                <th class="w-4p">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @forelse ($SubAkun as $item)
+                                <tr class="text-center">
+                                    <td>{{ $loop->iteration }} </td>
+                                    <td>{{ $item->kode_sub_akun }}</td>
+                                    <td>{{ $item->nama_sub_akun }}</td>
+                                    <td>{{ $item->akun}}</td>
+                                    <td>{{ $item->deskripsi_sub_akun}}</td>
+                                    <td>
+                                        <a href=""
+                                           class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#DetailSubAkun-{{ $item->id }}"><i
+                                                class="bx bx-info-circle font-size-base"></i>
+                                        </a>
+                                        <a href=""
+                                           class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#UpdateSubBagian-{{ $item->id }}"><i
+                                                class="bx bx-edit font-size-base"></i>
+                                        </a>
+                                        <a href="{{ route('admin.master-logistik.bagian.delete-sub-bagian', ['id' => $item->id]) }}" class="btn btn-outline-danger btn-sm delete-button"><i class="bx bx-trash"></i></a>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="5" class="text-center">Tidak ada data sub bagian.</td>
+                                </tr>
+                            @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
+@include('admin.master-keuangan.sub-akun.modal-tambah')
 
-    @include('admin.master-keuangan.akun.modal-tambah')
-    @include('admin.master-keuangan.akun.modal-detail')
-    @include('admin.master-keuangan.akun.modal-edit')
 @endsection
+
 
 @push('page-scripts')
     <script>
         $(document).ready(function () {
-            $("#table-satuan").DataTable();
+            $("#table-bagian").DataTable();
         });
 
 
@@ -112,9 +148,8 @@
         });
         @endif
 
-
         //konfimarsi delete
-        document.addEventListener('click', function (e) {
+        document.addEventListener('click', function(e) {
             if (e.target.classList.contains('delete-button')) {
                 e.preventDefault();
 
@@ -135,4 +170,4 @@
         });
     </script>
 
-@endpush
+@endpush@endpush
