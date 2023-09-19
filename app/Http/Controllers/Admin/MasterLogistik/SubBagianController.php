@@ -13,10 +13,6 @@ class SubBagianController extends Controller
 {
     public function getSubBagian(Request $request)
     {
-//        $SubBagian = SubBagian::select("sub_bagians.*", 'bagians.nama_bagian as bagian')
-//            ->join('bagians', 'bagians.id', '=', 'sub_bagians.bagian_id')
-//            ->orderBy('bagians.id')
-//            ->get();
         $bagian = Bagian::get();
 
         $bagian_id = "";
@@ -110,7 +106,8 @@ class SubBagianController extends Controller
             ->when(!empty($bagian_id), function ($query) use ($bagian_id) {
                 $query->where('sub_bagians.bagian_id', $bagian_id);
             })
-            ->get();    $filename = 'subbagian' . "_" . now()->format('Y_m_d_H_i_s') . '.pdf';
+            ->get();
+        $filename = 'SubBagian' . "_" . now()->format('Y_m_d_H_i_s') . '.pdf';
 
         $pdf = PDF::loadView('admin.master-logistik.sub-bagian.cetak-pdf', compact('SubBagian') );
 

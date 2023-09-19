@@ -304,6 +304,7 @@ Route::group(
                     Route::get('/edit-kategori-barang/{id}', 'MasterLogistik\KategoriBarangController@EditKategoriBarang')->name('master-logistik.edit-kategori-barang');
                     Route::post('/update-kategori-barang/{id}', 'MasterLogistik\KategoriBarangController@UpdateKategoriBarang')->name('master-logistik.update-kategori-barang');
                     Route::get('/delete-kategori-barang/{id}', 'MasterLogistik\KategoriBarangController@DeleteKategoriBarang')->name('master-logistik.delete-kategori-barang');
+                    Route::get('/cetak-pdf-kategori-barang', 'MasterLogistik\KategoriBarangController@CetakPDF')->name('master-logistik.cetak-pdf-kategori-barang');
 
                 });
 
