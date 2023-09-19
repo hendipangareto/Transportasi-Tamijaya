@@ -25,15 +25,25 @@ class AkunController extends Controller
         $akun->kode_akun = $noakun;
         $akun->nama_akun = $request->nama_akun;
         $akun->deskripsi_akun = $request->deskripsi_akun;
-
-        //   dd($akun);
         try {
             $akun->save();
-            // Tampilkan pesan SweetAlert2 berhasil
-            return redirect(route('master-keuangan.akun.list-akun'))->with('pesan-berhasil','Anda berhasil menambah data akun');
+            return redirect(route('master-keuangan.akun.list-akun'))->with('pesan-berhasil', 'Anda berhasil menambah data akun');
         } catch (\Exception $e) {
-            // Tampilkan pesan SweetAlert2 gagal
-            return redirect(route('master-keuangan.akun.list-akun'))->with('pesan-gagal','Anda gagal menambah data akun');
+            return redirect(route('master-keuangan.akun.list-akun'))->with('pesan-gagal', 'Anda gagal menambah data akun');
         }
+    }
+
+    public function UpdateAkun(Request $request, $id)
+    {
+        $akun = Akun::findOrFail($id);
+        $akun->nama_akun = $request->nama_akun;
+        $akun->deskripsi_akun = $request->deskripsi_akun;
+        try {
+            $akun->save();
+            return redirect(route('master-keuangan.akun.list-akun'))->with('pesan-berhasil', 'Anda berhasil menambah data akun');
+        } catch (\Exception $e) {
+            return redirect(route('master-keuangan.akun.list-akun'))->with('pesan-gagal', 'Anda gagal menambah data akun');
+        }
+
     }
 }

@@ -62,7 +62,7 @@
                                             </a>
                                             <a href=""
                                                class="btn btn-sm btn-outline-warning" data-toggle="modal"
-                                               data-target="#EditSatuan-{{ $item->id }}"><i
+                                               data-target="#UpdateAkun-{{ $item->id }}"><i
                                                     class="bx bx-edit font-size-base"></i>
                                             </a>
 
@@ -88,6 +88,7 @@
 
 @include('admin.master-keuangan.akun.modal-tambah')
 @include('admin.master-keuangan.akun.modal-detail')
+@include('admin.master-keuangan.akun.modal-edit')
 @endsection
 
 @push('page-scripts')
