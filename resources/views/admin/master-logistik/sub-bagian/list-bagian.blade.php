@@ -75,7 +75,7 @@
                                     <label for="" style="color: white">Filter</label><br>
                                     <button class="btn btn-outline-primary">Filter <i
                                             class="bx bx-filter"></i></button>
-                                    <a href="{{ route('admin.master-logistik.bagian.sub-bagian') }}" class="btn btn-outline-primary">Clear <i
+                                    <a href="{{ route('admin.master-logistik.bagian.sub-bagian') }}" class="btn btn-outline-warning">Clear <i
                                             class="bx bx-filter"></i></a>
                                 </div>
                             </div>

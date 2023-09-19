@@ -12,6 +12,11 @@ class SopirController extends Controller
         return view('admin.perawatan-pemeliharaan.sopir.check-fisik-layanan');
     }
 
+    public function ReportPerjalanan()
+    {
+        return view('admin.perawatan-pemeliharaan.sopir.report-perjalanan');
+    }
+
 
 
 }

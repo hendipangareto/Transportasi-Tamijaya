@@ -129,6 +129,5 @@
     </div>
 
     @include('admin.perawatan-pemeliharaan.sopir.modal-tambah')
-    @include('admin.master-logistik.bagian.modal-edit')
-    @include('admin.master-logistik.bagian.modal-detail')
+
 @endsection

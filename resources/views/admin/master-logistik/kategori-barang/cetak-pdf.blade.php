@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Data Karyawan - PT Anugerah Karya Utami Gemilang</title>
+    <title>Data Kategori - PT Anugerah Karya Utami Gemilang</title>
     <style>
         /* Styles untuk kop surat */
         .header {
@@ -46,7 +46,8 @@
 </head>
 <body>
 <div class="header">
-    <h3>Data Sub-Bagian</h3>
+    <img src="" alt="Logo PT Anugerah Karya Utami Gemilang" width="100px"> <!-- Ganti "nama_file_logo.png" dengan path gambar logo Anda -->
+    <h3>Data Kategori</h3>
     <p>PT Anugerah Karya Utami Gemilang</p>
     <hr>
 </div>
@@ -54,20 +55,20 @@
 <table class="font">
     <thead>
     <tr >
-        <th class="w-2p">No</th>
-        <th class="w-4p">Kode Kategori</th>
-        <th class="w-4p">Nama Kategori</th>
-        <th class="w-4p">Deskripsi</th>
+        <th class="w-2p posisi">No</th>
+        <th class="w-2p posisi">Kode Kategori</th>
+        <th class="w-4p posisi">Nama Kategori</th>
+        <th class="w-4p posisi">Deskripsi</th>
     </tr>
     </thead>
     <tbody >
 
     @forelse ($Kategori as $index => $item)
         <tr>
-            <td>{{ $index + 1 }}</td>
-            <td>{{ $item->kode_kategori }}</td>
-            <td>{{ $item->nama_kategori }}</td>
-            <td>{{ $item->deskripsi_kategori }}</td>
+            <td class="posisi">{{ $index + 1 }}</td>
+            <td class="posisi">{{ $item->kode_kategori }}</td>
+            <td class="posisi">{{ $item->nama_kategori }}</td>
+            <td class="posisi">{{ $item->deskripsi_kategori }}</td>
         </tr>
     @empty
         <tr>
@@ -78,4 +79,3 @@
 </table>
 </body>
 </html>
-
