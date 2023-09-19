@@ -65,9 +65,10 @@
                                                data-target="#EditSatuan-{{ $item->id }}"><i
                                                     class="bx bx-edit font-size-base"></i>
                                             </a>
-                                            <button class="btn btn-sm btn-outline-danger btn-delete-employee "
-                                                    data-iddelete=""><i class="bx bx-trash font-size-base"></i>
-                                            </button>
+
+                                            <a href="{{ route('human-resource.status.delete-satuan', ['id' => $item->id]) }}"
+                                               class="btn btn-outline-danger btn-sm delete-button"><i
+                                                    class="bx bx-trash"></i></a>
                                         </td>
                                     </tr>
                                 @empty

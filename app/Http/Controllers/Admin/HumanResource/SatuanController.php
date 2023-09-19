@@ -31,10 +31,10 @@ class SatuanController extends Controller
         //   dd($satuan);
         try {
             $satuan->save();
-            // Tampilkan pesan SweetAlert2 berhasil
+
             return redirect(route('human-resource.status.list-satuan'))->with('pesan-berhasil', 'Anda berhasil menambah data satuan');
         } catch (\Exception $e) {
-            // Tampilkan pesan SweetAlert2 gagal
+
             return redirect(route('human-resource.status.list-satuan'))->with('pesan-gagal', 'Anda gagal menambah data satuan');
         }
     }
@@ -49,11 +49,25 @@ class SatuanController extends Controller
 //           dd($satuan);
         try {
             $satuan->save();
-            // Tampilkan pesan SweetAlert2 berhasil
+
             return redirect(route('human-resource.status.list-satuan'))->with('pesan-berhasil', 'Anda berhasil mengubah data satuan');
         } catch (\Exception $e) {
-            // Tampilkan pesan SweetAlert2 gagal
+
             return redirect(route('human-resource.status.list-satuan'))->with('pesan-gagal', 'Anda gagal mengubah data satuan');
+        }
+    }
+
+    public function DeleteSatuan($id)
+    {
+        $satuan = Satuan::findOrFail($id);
+
+        try {
+            $satuan->delete();
+
+            return redirect(route('human-resource.status.list-satuan'))->with('pesan-berhasil', 'Anda berhasil menghapus data satuan');
+        } catch (\Exception $e) {
+
+            return redirect(route('human-resource.status.list-satuan'))->with('pesan-gagal', 'Anda gagal menghapus data satuan');
         }
     }
 
