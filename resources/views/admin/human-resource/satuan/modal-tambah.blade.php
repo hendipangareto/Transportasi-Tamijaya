@@ -8,29 +8,25 @@
                     <i class="bx bx-x"></i>
                 </button>
             </div>
-            <form action=" " id="form-agent" enctype="multipart/form-data">
+            <form action="{{ route('human-resource.status.simpan-satuan') }}" method="post"  enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
-                    <input type="hidden" id="id" name="id" value="">
-                    <label>Kode Satuan: </label>
-                    <div class="form-group">
-                        <input type="text" readonly id="agent_code" name="agent_code"
-                               class="form-control bg-transparent">
-                    </div>
+                    <input type="hidden" id="kode_satuan" name="kode_satuan" value="">
+
                     <label>Nama Satuan: </label>
                     <div class="form-group">
-                        <input type="text" placeholder="Silahkan masukan nama Agent" id="agent_name" name="agent_name"
+                        <input type="text" placeholder="Silahkan masukan nama satuan" id="nama_satuan" name="nama_satuan"
                                class="form-control">
                     </div>
                     <label>Deskripsi Satuan: </label>
                     <div class="form-group">
-                                    <textarea class="form-control" name="agent_description" id="agent_description" cols="30"
+                                    <textarea class="form-control" name="deskripsi_satuan" id="deskripsi_satuan" cols="30"
                                               rows="3" placeholder="Silahkan masukan deskripsi agent"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" id="edit-agent" class="btn btn-success mr-1" onclick="manageData('update')"><i
-                            class="bx bx-save mt"></i> Update</button>
+                    <button type="submit" class="btn btn-success mr-1"  ><i
+                            class="bx bx-save mt"></i> Simpan</button>
                 </div>
             </form>
 

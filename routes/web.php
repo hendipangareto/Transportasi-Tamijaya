@@ -188,6 +188,8 @@ Route::group(
             });
             Route::prefix('satuan')->group(function () {
                 Route::get('/list-satuan', 'HumanResource\SatuanController@getListSatuan')->name('human-resource.status.list-satuan');
+                Route::post('/simpan-satuan', 'HumanResource\SatuanController@SimpanSatuan')->name('human-resource.status.simpan-satuan');
+
                 Route::get('/tambah-data-aset', 'HumanResource\Aset\DataAsetController@getTambahDataAset')->name('master-keuangan.aset.data-aset.tambah-data-aset');
             });
 

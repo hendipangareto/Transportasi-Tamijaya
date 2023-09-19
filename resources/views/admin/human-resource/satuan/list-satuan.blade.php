@@ -53,24 +53,24 @@
                     </div>
                 </div>
                 <div class="card-body">
-{{--                    <form action="">--}}
-{{--                        @csrf--}}
-{{--                        <div class="row">--}}
-{{--                            <div class="col-md-2 col-sm-12">--}}
-{{--                                <div class="form-group">--}}
-{{--                                    <label for="">Metode Penyusutan</label>--}}
-{{--                                    <input type="text" class="form-control">--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="col-md-2 col-sm-12">--}}
-{{--                                <div class="form-group">--}}
-{{--                                    <label for="" style="color: white">Filter</label><br>--}}
-{{--                                    <button class="btn btn-outline-primary">Filter <i--}}
-{{--                                            class="bx bx-filter"></i></button>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </form>--}}
+                    {{--                    <form action="">--}}
+                    {{--                        @csrf--}}
+                    {{--                        <div class="row">--}}
+                    {{--                            <div class="col-md-2 col-sm-12">--}}
+                    {{--                                <div class="form-group">--}}
+                    {{--                                    <label for="">Metode Penyusutan</label>--}}
+                    {{--                                    <input type="text" class="form-control">--}}
+                    {{--                                </div>--}}
+                    {{--                            </div>--}}
+                    {{--                            <div class="col-md-2 col-sm-12">--}}
+                    {{--                                <div class="form-group">--}}
+                    {{--                                    <label for="" style="color: white">Filter</label><br>--}}
+                    {{--                                    <button class="btn btn-outline-primary">Filter <i--}}
+                    {{--                                            class="bx bx-filter"></i></button>--}}
+                    {{--                                </div>--}}
+                    {{--                            </div>--}}
+                    {{--                        </div>--}}
+                    {{--                    </form>--}}
                     <br>
                     <div class="table-responsive">
                         <input type="hidden" id="Tablesemployee" value="">
@@ -78,35 +78,40 @@
                             <thead>
                             <tr class="text-uppercase text-center">
                                 <th class="w-2p">No</th>
-                                <th class="w-3p">Kode Status</th>
+                                <th class="w-3p">Kode Satuan</th>
                                 <th class="w-3p">Nama Satuan</th>
                                 <th class="w-10p">Deskripsi</th>
                                 <th class="w-3p">Action</th>
                             </tr>
                             </thead>
                             <tbody id="show-data-employee">
-                            <tr class="text-center">
-                                <td>1</td>
-                                <td>1101</td>
-                                <td>Mobil Pickup</td>
-                                <td>Kendaraan</td>
-
-                                <td>
-                                    <a href=""
-                                       class="btn btn-sm btn-outline-primary" data-toggle="modal"
-                                       data-target="#DetailModalSatuan"><i
-                                            class="bx bx-info-circle font-size-base"></i>
-                                    </a>
-                                    <a href=""
-                                       class="btn btn-sm btn-outline-warning" data-toggle="modal"
-                                       data-target="#EditModalSatuan"><i
-                                            class="bx bx-edit-alt font-size-base"></i>
-                                    </a>
-                                    <button class="btn btn-sm btn-outline-danger btn-delete-employee "
-                                            data-iddelete=""><i class="bx bx-trash font-size-base"></i>
-                                    </button>
-                                </td>
-                            </tr>
+                            @forelse($satuan as $item)
+                                <tr class="text-center">
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{$item -> kode_satuan}}</td>
+                                    <td>{{$item->nama_satuan}}</td>
+                                    <td>{{$item->deskripsi_satuan}}</td>
+                                    <td>
+                                        <a href=""
+                                           class="btn btn-sm btn-outline-primary" data-toggle="modal"
+                                           data-target="#DetailModalSatuan"><i
+                                                class="bx bx-info-circle font-size-base"></i>
+                                        </a>
+                                        <a href=""
+                                           class="btn btn-sm btn-outline-warning" data-toggle="modal"
+                                           data-target="#EditModalSatuan"><i
+                                                class="bx bx-edit-alt font-size-base"></i>
+                                        </a>
+                                        <button class="btn btn-sm btn-outline-danger btn-delete-employee "
+                                                data-iddelete=""><i class="bx bx-trash font-size-base"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="5" class="text-center">Tidak ada data satuan.</td>
+                                </tr>
+                            @endforelse
                             </tbody>
                         </table>
                     </div>
