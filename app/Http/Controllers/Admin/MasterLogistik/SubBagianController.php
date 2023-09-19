@@ -13,11 +13,11 @@ class SubBagianController extends Controller
 {
     public function getSubBagian(Request $request)
     {
-        $SubBagian = SubBagian::select("sub_bagians.*", 'bagians.nama_bagian as bagian')
-            ->join('bagians', 'bagians.id', '=', 'sub_bagians.bagian_id')
-            ->orderBy('bagians.id')
-            ->get();
-        $bagian = Bagian::all();
+//        $SubBagian = SubBagian::select("sub_bagians.*", 'bagians.nama_bagian as bagian')
+//            ->join('bagians', 'bagians.id', '=', 'sub_bagians.bagian_id')
+//            ->orderBy('bagians.id')
+//            ->get();
+        $bagian = Bagian::get();
 
         $bagian_id = "";
         if (isset($request->bagian_id)) {
@@ -98,5 +98,32 @@ class SubBagianController extends Controller
             // Tampilkan pesan SweetAlert2 gagal
             return redirect(route('admin.master-logistik.bagian.sub-bagian'))->with('pesan-gagal', 'Anda gagal mengubah data sub-bagian');
         }
+    }
+
+    public function cetakPDF()
+    {
+        $bagian_id = request()->bagian;
+
+        $SubBagian = SubBagian::select("sub_bagians.*", 'bagians.nama_bagian as bagian')
+            ->join('bagians', 'bagians.id', '=', 'sub_bagians.bagian_id')
+            ->orderBy('bagians.id')
+            ->when(!empty($bagian_id), function ($query) use ($bagian_id) {
+                $query->where('sub_bagians.bagian_id', $bagian_id);
+            })
+            ->get();    $filename = 'subbagian' . "_" . now()->format('Y_m_d_H_i_s') . '.pdf';
+
+        $pdf = PDF::loadView('admin.master-logistik.sub-bagian.cetak-pdf', compact('SubBagian') );
+
+        $pdf->setPaper('A4', 'portrait');
+
+        // Set Page Number
+        $canvas = $pdf->getDomPDF()->getCanvas();
+        $pdf->getDomPDF()->set_option('isPhpEnabled', true);
+        $canvas->page_text(550, 820, "Page {PAGE_NUM}", null, 8);
+
+
+        $canvas->page_text(550 / 2, 820, now()->format('d-m-Y'), null, 8);
+        $canvas->page_text(550 / 16, 820,  'PT Anugerah Karya Utami Gemilang', null, 8);
+        return $pdf->stream($filename);
     }
 }

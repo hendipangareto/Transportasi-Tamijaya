@@ -49,7 +49,7 @@
                                 <thead>
                                 <tr class="text-center">
                                     <th class="w-2p">No</th>
-                                    <th class="w-4p">ID Kategori</th>
+                                    <th class="w-4p">Kode Kategori</th>
                                     <th class="w-4p">Nama Kategori</th>
                                     <th class="w-4p">Deskripsi</th>
                                     <th class="w-4p">Action</th>
@@ -64,7 +64,7 @@
                                         <td>{{ $item->deskripsi_kategori }}</td>
                                         <td class="text-center">
                                             <a href="#" class="btn btn-outline-primary" data-toggle="modal"
-                                               data-target="#"><i class="bx bx-info-circle"></i></a>
+                                               data-target="#DetailKategori-{{ $item->id }}"><i class="bx bx-info-circle"></i></a>
                                             <a href="#" class="btn btn-outline-warning" data-toggle="modal"
                                                data-target="#EditkategoriBarang-{{ $item->id }}"><i
                                                     class="bx bx-edit"></i></a>

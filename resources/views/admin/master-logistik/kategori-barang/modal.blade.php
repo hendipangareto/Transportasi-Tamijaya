@@ -36,3 +36,50 @@
         </div>
     </div>
 </div>
+
+
+{{--//DETAIL AKUN--}}
+@foreach($kategori as $item)
+    <div class="modal fade text-left" id="DetailKategori-{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="modal-title"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <h5 class="pb-2  text-center">Detail Data Kategori</h5>
+                    <div class="card">
+                        <div class="table-responsive ">
+                            <table class="table datatable-invoice border-top">
+                                <thead>
+                                <tr>
+                                    <th>Kode Kategori</th>
+                                    <td>: {{ $item->kode_kategori }}</td>
+                                </tr>
+                                </thead>
+                                <thead>
+                                <tr>
+                                    <th>Nama Kategori</th>
+                                    <td>: {{ $item->nama_kategori }}</td>
+                                </tr>
+                                </thead>
+                                <thead>
+                                <tr>
+                                    <th>Deskripsi</th>
+                                    <td>: {{ $item->deskripsi_kategori}}</td>
+                                </tr>
+                                </thead>
+
+                            </table>
+
+                        </div>
+                        <div class="row ml-1 justify-content-lg-end">
+                            <button type="button"   class="btn btn-secondary mr-1"  data-dismiss="modal" > Kembali ➡
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endforeach

@@ -41,7 +41,7 @@
                                     <a href=" "
                                        class="btn btn-primary mr-1" data-toggle="modal" data-target="#TambahSubBagian">
                                         <i class="bx bx-plus-circle"></i> Tambah Data</a>
-                                    <a target="_blank" href="{{ route('admin.master-logistik.bagian.cetak-pdf') }}?bagian={{ request()->input('bagian_id') }}" type="button" class="btn btn-danger text-white mr-1">
+                                    <a target="_blank" href="{{ route('admin.master-logistik.bagian.cetak-pdf')  }}?bagian={{ifIsset(request()->bagian_id)}}" type="button" class="btn btn-danger text-white mr-1">
                                         <i class="bx bxs-file-pdf"></i> Report PDF
                                     </a>
 
@@ -75,6 +75,8 @@
                                     <label for="" style="color: white">Filter</label><br>
                                     <button class="btn btn-outline-primary">Filter <i
                                             class="bx bx-filter"></i></button>
+                                    <a href="{{ route('admin.master-logistik.bagian.sub-bagian') }}" class="btn btn-outline-primary">Clear <i
+                                            class="bx bx-filter"></i></a>
                                 </div>
                             </div>
                         </div>

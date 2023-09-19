@@ -100,3 +100,63 @@
         </div>
     </div>
 @endforeach
+
+
+{{--EDIT SUB-BAGIAN--}}
+
+
+@foreach($SubAkun as $item)
+
+    <div class="modal fade text-left" id="UpdateSubBagian-{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="modal-title"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modal-title">Form Tambah Sub Akun</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i class="bx bx-x"></i>
+                    </button>
+                </div>
+                <form action="{{ route('master-keuangan.sub-akun.update-sub-akun', $item->id) }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-body">
+                        <label>Kode Sub Akun: </label>
+                        <div class="form-group">
+                            <input type="text" id="kode_sub_akun" name="kode_sub_akun"
+                                   class="form-control bg-transparent" value="{{ $item->kode_sub_akun }}" readonly>
+                        </div>
+                        <label>Nama Sub Akun: </label>
+                        <div class="form-group">
+                            <input type="text" id="nama_sub_akun" name="nama_sub_akun"
+                                   class="form-control bg-transparent" value="{{ $item->nama_sub_akun }}">
+                        </div>
+                        <label>Nama Akun: </label>
+                        <div class="form-group">
+                            <select name="id_akun" id="id_akun" class="form-control">
+
+                                @foreach($akun as $akn)
+                                    <option value="{{$akn->id}}">{{ $akn->nama_akun}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <label>Deskripsi : </label>
+                        <div class="form-group">
+                        <textarea class="form-control" name="deskripsi_sub_akun"
+                                  id="deskripsi_sub_akun" cols="30"
+                                  rows="3"
+                                  data-value="{{ $item->deskripsi_sub_akun }}">{{ $item->deskripsi_sub_akun }}
+
+                        </textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" id="edit-agent" class="btn btn-success mr-1"><i
+                                class="bx bx-save mt"></i> Submit
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+@endforeach

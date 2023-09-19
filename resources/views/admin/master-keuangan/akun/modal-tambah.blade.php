@@ -103,19 +103,19 @@
                                 <thead>
                                 <tr>
                                     <th>Kode Akun</th>
-                                    <th>: {{ $item->kode_akun }}</th>
+                                    <td>: {{ $item->kode_akun }}</td>
                                 </tr>
                                 </thead>
                                 <thead>
                                 <tr>
                                     <th>Nama Akun</th>
-                                    <th>: {{ $item->nama_akun }}</th>
+                                    <td>: {{ $item->nama_akun }}</td>
                                 </tr>
                                 </thead>
                                 <thead>
                                 <tr>
                                     <th>Deskripsi</th>
-                                    <th>: {{ $item->deskripsi_akun}}</th>
+                                    <td>: {{ $item->deskripsi_akun}}</td>
                                 </tr>
                                 </thead>
 
