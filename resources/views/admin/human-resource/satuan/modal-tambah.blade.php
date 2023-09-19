@@ -1,4 +1,4 @@
-<div class="modal fade text-left" id="TambahModalSatuan" tabindex="-1" role="dialog" aria-labelledby="modal-title"
+<div class="modal fade text-left" id="TambahSatuan" tabindex="-1" role="dialog" aria-labelledby="modal-title"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

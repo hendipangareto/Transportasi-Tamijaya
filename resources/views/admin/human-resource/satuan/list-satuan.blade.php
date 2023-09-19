@@ -1,9 +1,9 @@
 @extends('admin.layouts.app')
 @section('content-header')
-    <div class="content-header-left col-12 ">
+    <div class="content-header-left col-12 mb-2 mt-1">
         <div class="row breadcrumbs-top">
             <div class="col-12">
-                <h5 class="content-header-title float-left pr-1 mb-0">Master Umum</h5>
+                <h5 class="content-header-title float-left pr-1 mb-0">Master Logistik</h5>
                 <div class="breadcrumb-wrapper col-12">
                     <ol class="breadcrumb p-0 mb-0">
                         <li class="breadcrumb-item"><a href=" "><i class="bx bx-home-alt"></i></a>
@@ -17,122 +17,121 @@
     </div>
 @endsection
 @section('content')
-    <div class="row mt-2">
+    <div class="row">
         <div class="col-12">
-            <div class="card shadow">
-                <div class="card-header" style="background-color: #00b3ff">
-                    <div class="toolbar row ">
-                        <div class="col-md-12 d-flex">
-                            <h2 class="h4 ">Data Master Satuan</h2>
-                            <div class="col ml-auto">
-                                <div class="dropdown float-right">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between" style="background-color: #00b3ff">
+                    <h4 class="card-title" style="color: black"><b>Data Master </b>| Satuan</h4>
+                </div>
+                <div class="card-content mt-2">
+                    <div class="card-body card-dashboard">
 
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card-header  pb-0  d-flex justify-content-between">
+                                    <h4 class="card-title"></h4>
+                                    <a href="" class="btn btn-success mr-1" data-toggle="modal"
+                                       data-target="#TambahSatuan"><i class="bx bx-plus-circle"></i> Tambah Data</a>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="card-header">
-                    <div class="toolbar row ">
-                        <div class="col-md-12 d-flex">
-                            <h2 class="h4"></h2>
-                            <div class="col ml-auto">
-                                <div class="dropdown float-right">
-                                    <a href="#"
-                                       class="btn btn-primary mr-1" data-toggle="modal" data-target="#TambahModalSatuan">
-                                        <i class="bx bx-plus-circle"></i> Tambah Data</a>
-                                    <a target="_blank"
-                                       href=" "
-                                       type="button"
-                                       class="btn btn-danger text-white mr-1">
-                                        <i class="bx bx-printer"></i> Report PDF
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    {{--                    <form action="">--}}
-                    {{--                        @csrf--}}
-                    {{--                        <div class="row">--}}
-                    {{--                            <div class="col-md-2 col-sm-12">--}}
-                    {{--                                <div class="form-group">--}}
-                    {{--                                    <label for="">Metode Penyusutan</label>--}}
-                    {{--                                    <input type="text" class="form-control">--}}
-                    {{--                                </div>--}}
-                    {{--                            </div>--}}
-                    {{--                            <div class="col-md-2 col-sm-12">--}}
-                    {{--                                <div class="form-group">--}}
-                    {{--                                    <label for="" style="color: white">Filter</label><br>--}}
-                    {{--                                    <button class="btn btn-outline-primary">Filter <i--}}
-                    {{--                                            class="bx bx-filter"></i></button>--}}
-                    {{--                                </div>--}}
-                    {{--                            </div>--}}
-                    {{--                        </div>--}}
-                    {{--                    </form>--}}
-                    <br>
-                    <div class="table-responsive">
-                        <input type="hidden" id="Tablesemployee" value="">
-                        <table class="table table-bordered table-hover" id="table-list-employees">
-                            <thead>
-                            <tr class="text-uppercase text-center">
-                                <th class="w-2p">No</th>
-                                <th class="w-3p">Kode Satuan</th>
-                                <th class="w-3p">Nama Satuan</th>
-                                <th class="w-10p">Deskripsi</th>
-                                <th class="w-3p">Action</th>
-                            </tr>
-                            </thead>
-                            <tbody id="show-data-employee">
-                            @forelse($satuan as $item)
+
+                        <div class="table-responsive mt-2">
+                            <table class="table table-bordered table-hover" id="table-satuan">
+                                <thead>
                                 <tr class="text-center">
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{$item -> kode_satuan}}</td>
-                                    <td>{{$item->nama_satuan}}</td>
-                                    <td>{{$item->deskripsi_satuan}}</td>
-                                    <td>
-                                        <a href=""
-                                           class="btn btn-sm btn-outline-primary" data-toggle="modal"
-                                           data-target="#DetailModalSatuan"><i
-                                                class="bx bx-info-circle font-size-base"></i>
-                                        </a>
-                                        <a href=""
-                                           class="btn btn-sm btn-outline-warning" data-toggle="modal"
-                                           data-target="#EditModalSatuan"><i
-                                                class="bx bx-edit-alt font-size-base"></i>
-                                        </a>
-                                        <button class="btn btn-sm btn-outline-danger btn-delete-employee "
-                                                data-iddelete=""><i class="bx bx-trash font-size-base"></i>
-                                        </button>
-                                    </td>
+                                    <th class="w-2p">No</th>
+                                    <th class="w-4p">Kode Bagian</th>
+                                    <th class="w-4p">Nama Bagian</th>
+                                    <th class="w-4p">Deskripsi</th>
+                                    <th class="w-4p">Action</th>
                                 </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="5" class="text-center">Tidak ada data satuan.</td>
-                                </tr>
-                            @endforelse
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                @forelse($satuan as $item)
+                                    <tr class="text-center">
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{$item -> kode_satuan}}</td>
+                                        <td>{{$item->nama_satuan}}</td>
+                                        <td>{{$item->deskripsi_satuan}}</td>
+                                        <td>
+                                            <a href=""
+                                               class="btn btn-sm btn-outline-primary" data-toggle="modal"
+                                               data-target="#DetailModalSatuan"><i
+                                                    class="bx bx-info-circle font-size-base"></i>
+                                            </a>
+                                            <a href=""
+                                               class="btn btn-sm btn-outline-warning" data-toggle="modal"
+                                               data-target="#EditModalSatuan"><i
+                                                    class="bx bx-edit-alt font-size-base"></i>
+                                            </a>
+                                            <button class="btn btn-sm btn-outline-danger btn-delete-employee "
+                                                    data-iddelete=""><i class="bx bx-trash font-size-base"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="5" class="text-center">Tidak ada data satuan.</td>
+                                    </tr>
+                                @endforelse
+                                </tbody>
+                            </table>
+                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
     @include('admin.human-resource.satuan.modal-tambah')
     @include('admin.human-resource.satuan.modal-detail')
     @include('admin.human-resource.satuan.modal-edit')
-    {{--    @include('admin.master-keuangan.aset.data-aset.modal-tambah')--}}
 @endsection
 
 @push('page-scripts')
     <script>
-
-
         $(document).ready(function () {
-            $("#table-employee").DataTable();
+            $("#table-satuan").DataTable();
         });
 
+
+        @if(session('pesan-berhasil'))
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: '{{ session("pesan-berhasil") }}'
+        });
+        @elseif(session('pesan-gagal'))
+        Swal.fire({
+            icon: 'error',
+            title: 'Gagal',
+            text: '{{ session("pesan-gagal") }}'
+        });
+        @endif
+
+
+        //konfimarsi delete
+        document.addEventListener('click', function (e) {
+            if (e.target.classList.contains('delete-button')) {
+                e.preventDefault();
+
+                Swal.fire({
+                    title: 'Apakah Anda yakin?',
+                    text: 'Data ini akan dihapus!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Ya, Hapus!',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Jika pengguna mengonfirmasi penghapusan, lanjutkan ke tautan penghapusan
+                        window.location.href = e.target.href;
+                    }
+                });
+            }
+        });
     </script>
 
 @endpush

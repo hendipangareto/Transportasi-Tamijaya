@@ -19,7 +19,7 @@ class SatuanController extends Controller
     {
         $satuan = new Satuan();
         $lastNomor = Satuan::orderBy('id', 'desc')->first();
-        $lastNumber = $lastNomor ? intval(substr($lastNomor->kode_sub_bagian, -2)) : 0;
+        $lastNumber = $lastNomor ? intval(substr($lastNomor->kode_satuan, -2)) : 0;
         $newNumber = $lastNumber + 1;
         $nosatuan = 'STN-001' . str_pad($newNumber, 2, '0', STR_PAD_LEFT);
 
