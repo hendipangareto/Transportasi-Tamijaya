@@ -12,6 +12,7 @@ class AlatKerjaBengkel extends Model
         'kode_alat_kerja_bengkel',
         'nama_alat_kerja_bengkel',
         'satuan_id',
+        'kuantitas_alat_kerja_bengkel',
 
 
     ];

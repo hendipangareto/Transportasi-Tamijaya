@@ -19,6 +19,7 @@ class CreateAlatKerjaBengkelsTable extends Migration
             $table->string('nama_alat_kerja_bengkel');
             $table->unsignedBigInteger('satuan_id');
             $table->foreign('satuan_id')->references('id')->on('satuans');
+            $table->string('kuantitas_alat_kerja_bengkel');
             $table->timestamps();
         });
     }

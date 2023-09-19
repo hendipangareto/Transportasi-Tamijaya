@@ -1,4 +1,4 @@
-<div class="modal fade text-left" id="TambahAlatBengkel" tabindex="-1" role="dialog" aria-labelledby="modal-title"
+<div class="modal fade text-left" id="TambahAlat" tabindex="-1" role="dialog" aria-labelledby="modal-title"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -8,30 +8,24 @@
                     <i class="bx bx-x"></i>
                 </button>
             </div>
-            <form action="" id="form-agent" enctype="multipart/form-data">
+            <form action="{{ route('admin.master-logistik.alat-kerja-bengkel.simpan-alat-kerja-bengkel') }}"  method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
                     <input type="hidden" id="id" name="id" value="">
-                    <label>ID Alat : </label>
-                    <div class="form-group">
-                        <input type="text" id="agent_code" name="akun_code"
-                               class="form-control bg-transparent" placeholder="Id Komponen">
-                    </div>
+
                     <label>Nama Alat : </label>
                     <div class="form-group">
-                        <input type="text" id="nama_akun" name="nama_akun"
-                               class="form-control bg-transparent" placeholder="nama sub-bagian">
+                        <input type="text" id="nama_alat_kerja_bengkel" name="nama_alat_kerja_bengkel"
+                               class="form-control bg-transparent" placeholder="nama alat kerja bengkeln">
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group row">
-
-
                                 <div class="col-sm-12">
                                     <label>Kuantitas : </label>
-                                    <input type="text" id="departemen_id" name="departemen_id" class="form-control"
-                                           style="font-style: italic"
-                                           placeholder="Departemen otomatis" >
+                                    <input type="text" id="kuantitas_alat_kerja_bengkel"
+                                           name="kuantitas_alat_kerja_bengkel" class="form-control"
+                                           placeholder="kuantitas alat kerja bengkel">
                                 </div>
                             </div>
                         </div>
@@ -39,24 +33,16 @@
                             <div class="form-group row">
 
                                 <div class="col-sm-12">
-                                    <label  >Satuan</label>
-                                    <select name="employee_id" id="employee_select" class="form-control">
-
+                                    <label>Satuan</label>
+                                    <select name="satuan_id" id="satuan_id" class="form-control">
                                         <option selected disabled>Pilih Satuan</option>
-                                        <option value=" ">afasf </option>
+                                        @foreach($satuan as $bg)
+                                            <option value="{{$bg->id}}">{{ $bg->nama_satuan}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <label>Deskripsi : </label>
-                    <div class="form-group">
-                        <textarea class="form-control" name="agent_description"
-                                  id="agent_description" cols="30"
-                                  rows="3"
-                                  placeholder="Silahkan masukan deskripsi agent">
-
-                        </textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
