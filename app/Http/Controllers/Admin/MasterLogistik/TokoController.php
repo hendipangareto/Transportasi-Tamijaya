@@ -17,8 +17,8 @@ class TokoController extends Controller
 
         // dd($Toko);
         $city = City::all();
-        $province = Province::all();
-        return view('admin.master-logistik.toko.list-toko', compact('Toko', 'city', 'province'));
+        $provinces = Province::all();
+        return view('admin.master-logistik.toko.list-toko', compact('Toko', 'city', 'provinces'));
     }
 
     public function SimpanToko(Request $request)

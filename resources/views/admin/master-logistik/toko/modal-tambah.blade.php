@@ -50,10 +50,10 @@
                             <div class="form-group row">
                                 <div class="col-sm-12">
                                     <label>Provinsi</label>
-                                    <select name="id_province" id="id_province" class="form-control">
-                                        <option selected disabled>Pilih Provinsi</option>
-                                        @foreach($province as $item)
-                                            <option value="{{$item->id}}">{{ $item->state_name}}</option>
+                                    <select onchange="changeProvince()" id="id_province" name="id_province" class="form-control">
+                                        <option value="">Pilih Provinsi</option>
+                                        @foreach ($provinces as $province)
+                                            <option value="{{ $province->id }}">{{ $province->state_name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -62,13 +62,12 @@
                         <div class="col-md-6">
                             <div class="form-group row">
                                 <div class="col-sm-12">
-                                    <label>Kabupaten/Kota</label>
-                                    <select name="id_city" id="id_city" class="form-control">
-                                        <option selected disabled>Pilih Kabupaten/Kota</option>
-                                        @foreach($city as $item)
-                                            <option value="{{$item->id}}">{{ $item->city_name}}</option>
-                                        @endforeach
-                                    </select>
+                                    <label>Kabupaten/Kota: </label>
+                                    <div class="form-group">
+                                        <select name="id_city" id="id_city" class="form-control">
+                                            <option value="">Pilih Kabupaten/Kota</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                         </div>

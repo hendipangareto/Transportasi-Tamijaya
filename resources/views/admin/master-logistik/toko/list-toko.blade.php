@@ -8,7 +8,7 @@
                     <ol class="breadcrumb p-0 mb-0">
                         <li class="breadcrumb-item"><a href=" "><i class="bx bx-home-alt"></i></a>
                         </li>
-                        <li class="breadcrumb-item active">Master Toko
+                        <li class="breadcrumb-item active">Master Kategori
                         </li>
                     </ol>
                 </div>
@@ -17,31 +17,50 @@
     </div>
 @endsection
 @section('content')
+
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-header d-flex justify-content-between" style="background-color: #00b3ff">
-                    <h4 class="card-title" style="color: black"><b>Data Master </b>| Toko</h4>
-                </div>
-                <div class="card-content mt-2">
-                    <div class="card-body card-dashboard">
+                <div class="card-header" style="background-color: #00b3ff">
+                    <div class="toolbar row ">
+                        <div class="col-md-12 d-flex">
+                            <h4 class="card-title" style="color: black"><b>LOGISTIK </b>| Kategori Barang</h4>
+                            <div class="col ml-auto">
+                                <div class="dropdown float-right">
 
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="card-header  pb-0  d-flex justify-content-between">
-                                    <h4 class="card-title"></h4>
-                                    <a href="" class="btn btn-success mr-1" data-toggle="modal"
-                                       data-target="#TambahToko"><i class="bx bx-plus-circle"></i> Tambah Data</a>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="table-responsive mt-2">
-                            <table class="table table-bordered table-hover" id="table-bagian">
+                    </div>
+                </div>
+                <div class="card-content mt-2">
+                    <div class="card-body card-dashboard">
+                        <div class="card-header" >
+                            <div class="toolbar row ">
+                                <div class="col-md-12 d-flex">
+                                    <h2 class="h4"> </h2>
+                                    <div class="col ml-auto">
+                                        <div class="dropdown float-right">
+                                            <a href=" "
+                                               class="btn btn-primary mr-1" data-toggle="modal" data-target="#TambahToko">
+                                                <i class="bx bx-plus-circle"></i> Tambah Data</a>
+                                            <a target="_blank"
+                                               href=" "
+                                               type="button"
+                                               class="btn btn-danger text-white mr-1">
+                                                <i class="bx bxs-file-pdf"></i> Report PDF
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-responsive" id="show-data-filter-accounting">
+                            <table class="table table-bordered table-hover" id="table-kategori-logistik">
                                 <thead>
                                 <tr class="text-center">
                                     <th class="w-2p">No</th>
-                                    <th class="w-4p">Kode Toko</th>
+                                    <th class="w-2p">Id Toko</th>
                                     <th class="w-10p">Nama Toko</th>
                                     <th class="w-10p">Nomor Telepon</th>
                                     <th class="w-10p">Nomor HP</th>
@@ -53,6 +72,7 @@
                                 </thead>
                                 <tbody>
                                 @forelse ($Toko as $index => $item)
+
                                     <tr class="text-center">
                                         <td>{{ $loop->iteration }} </td>
                                         <td>{{ $item->kode_toko }}</td>
@@ -82,9 +102,9 @@
                                     </tr>
                                 @endforelse
                                 </tbody>
+
                             </table>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -94,15 +114,15 @@
     @include('admin.master-logistik.toko.modal-tambah')
     @include('admin.master-logistik.toko.modal-detail')
     @include('admin.master-logistik.toko.modal-edit')
-@endsection
 
+@endsection
 @push('page-scripts')
     <script>
         $(document).ready(function () {
-            $("#table-bagian").DataTable();
+            $("#table-kategori-logistik").DataTable();
         });
 
-
+        //menampilkan sweetalert2
         @if(session('pesan-berhasil'))
         Swal.fire({
             icon: 'success',
@@ -117,7 +137,6 @@
         });
         @endif
 
-
         //konfimarsi delete
         document.addEventListener('click', function (e) {
             if (e.target.classList.contains('delete-button')) {
@@ -125,6 +144,7 @@
 
                 Swal.fire({
                     title: 'Apakah Anda yakin?',
+                    {{--text: 'Data (" {{ $item->nama_kategori }} ") akan dihapus!',--}}
                     text: 'Data ini akan dihapus!',
                     icon: 'warning',
                     showCancelButton: true,
@@ -132,12 +152,32 @@
                     cancelButtonText: 'Batal'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        // Jika pengguna mengonfirmasi penghapusan, lanjutkan ke tautan penghapusan
                         window.location.href = e.target.href;
                     }
                 });
             }
         });
+
+        const changeProvince = () => {
+            var id_province = $("#id_province").val();
+            $.ajax({
+                url: `/admin/master-data/province/get-city-by-province/${id_province}`,
+                method: "get",
+                dataType: "json",
+                success: function(response) {
+                    var cities = response.data;
+                    var html = `<option value="">Pilih Kabupaten/Kota</option>`;
+                    cities.forEach(city => {
+                        html += `<option value="${city.id}">${city.city_name}</option>`;
+                    });
+                    $("#id_city").html(html)
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            });
+        }
+
     </script>
 
 @endpush
