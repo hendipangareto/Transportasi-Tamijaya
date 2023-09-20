@@ -31,7 +31,7 @@
                                 <div class="card-header  pb-0  d-flex justify-content-between">
                                     <h4 class="card-title"></h4>
                                     <a href="" class="btn btn-success mr-1" data-toggle="modal"
-                                       data-target="#TambahBengkelLuar"><i class="bx bx-plus-circle"></i> Tambah Data</a>
+                                       data-target="#TambahBengkel"><i class="bx bx-plus-circle"></i> Tambah Data</a>
                                 </div>
                             </div>
                         </div>
@@ -93,7 +93,7 @@
 
     @include('admin.master-logistik.bengkel-luar.modal-tambah')
     @include('admin.master-logistik.bengkel-luar.modal-detail')
-{{--    @include('admin.master-logistik.bengkel-luar.modal-edit')--}}
+    @include('admin.master-logistik.bengkel-luar.modal-edit')
 @endsection
 
 @push('page-scripts')

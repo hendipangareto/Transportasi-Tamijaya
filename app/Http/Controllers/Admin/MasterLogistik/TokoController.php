@@ -65,7 +65,6 @@ class TokoController extends Controller
 //        dd($Toko);
         try {
             $Toko->update();
-
             return redirect(route('admin.master-logistik.toko.list-toko'))->with('pesan-berhasil','Anda berhasil mengubah data toko');
         } catch (\Exception $e) {
             return redirect(route('admin.master-logistik.toko.list-toko'))->with('pesan-gagal','Anda gagal mengubah data toko');

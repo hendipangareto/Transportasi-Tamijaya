@@ -68,7 +68,7 @@ class BengkelLuarController extends Controller
 
 //        dd($BengkelLuar);
         try {
-            $BengkelLuar->save();
+            $BengkelLuar->update();
 
             return redirect(route('admin.master-logistik.bengkel-luar.list-bengkel-luar'))->with('pesan-berhasil','Anda berhasil mengubah data bengkel luar');
         } catch (\Exception $e) {

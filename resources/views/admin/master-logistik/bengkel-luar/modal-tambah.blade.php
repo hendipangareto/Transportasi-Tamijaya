@@ -1,4 +1,5 @@
-<div class="modal fade text-left" id="TambahBengkelLuar" tabindex="-1" role="dialog" aria-labelledby="modal-title"
+
+<div class="modal fade text-left" id="TambahBengkel" tabindex="-1" role="dialog" aria-labelledby="modal-title"
      aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -11,8 +12,12 @@
             <form action="{{ route('admin.master-logistik.bengkel-luar.simpan-bengkel-luar') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
-                    <input type="hidden" id="kode_bengkel_luar" name="kode_bengkel_luar" value="">
 
+                    <label>Kode Bengkel: </label>
+                    <div class="form-group">
+                        <input type="text" id="kode_bengkel_luar" name="kode_bengkel_luar"
+                               class="form-control bg-transparent" placeholder="PIC">
+                    </div>
                     <label>PIC: </label>
                     <div class="form-group">
                         <input type="text" id="nama_bengkel_luar" name="nama_bengkel_luar"
@@ -76,7 +81,7 @@
                         <textarea class="form-control" name="alamat_bengkel_luar"
                                   id="alamat_bengkel_luar" cols="30"
                                   rows="3"
-                                  placeholder="Silahkan masukan deskripsi agent">
+                                  placeholder="Silahkan masukan alamat bengkel">
 
                         </textarea>
                     </div>
@@ -85,7 +90,7 @@
                         <textarea class="form-control" name="deskripsi_bengkel_luar"
                                   id="deskripsi_bengkel_luar" cols="30"
                                   rows="3"
-                                  placeholder="Silahkan masukan deskripsi agent">
+                                  placeholder="Silahkan masukan deskripsi bengkel">
 
                         </textarea>
                     </div>
