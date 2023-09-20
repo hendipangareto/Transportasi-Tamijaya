@@ -1,47 +1,51 @@
-<div class="modal fade text-left" id="DetailKategoriAset" tabindex="-1" role="dialog" aria-labelledby="modal-title"
-     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="modal-title">Form Detail Kategori Aset</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <i class="bx bx-x"></i>
-                </button>
-            </div>
-            <form action="" id="form-agent" enctype="multipart/form-data">
-                @csrf
+@foreach($KategoriAset as $item)
+    <div class="modal fade text-left" id="DetailKategori-{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="modal-title"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+
                 <div class="modal-body">
-                    <input type="hidden" id="id" name="id" value="">
-                    <label>ID Kategori Aset : </label>
-                    <div class="form-group">
-                        <input type="text" id="agent_code" name="akun_code"
-                               class="form-control bg-transparent" placeholder="Kategori Aset">
-                    </div>
-                    <label>Nama Tipe Aset : </label>
-                    <div class="form-group">
-                        <input type="text" id="nama_akun" name="nama_akun"
-                               class="form-control bg-transparent" placeholder="Tipe Aset">
-                    </div>
-                    <label>Nama Kategori Aset: </label>
-                    <div class="form-group">
-                        <input type="text" id="nama_akun" name="nama_akun"
-                               class="form-control bg-transparent" placeholder="Nama Kategori Aset">
-                    </div>
-                    <label>Deskripsi : </label>
-                    <div class="form-group">
-                        <textarea class="form-control" name="agent_description"
-                                  id="agent_description" cols="30"
-                                  rows="3"
-                                  placeholder="Silahkan masukan deskripsi agent">
-                        </textarea>
+                    <h5 class="pb-2  text-center">Detail Data Kategori Aset</h5>
+                    <div class="card">
+                        <div class="table-responsive ">
+                            <table  class=" table table-responsive-lg">
+                                <tbody>
+                                <tr>
+                                    <th>Kode Kategori </th>
+
+                                    <th>:  {{ $item->kode_kategori_aset }}</th>
+                                </tr>
+
+                                <tr>
+                                    <th>Nama Kategori</th>
+
+                                    <th>: {{ $item->nama_kategori_aset }}</th>
+                                </tr>
+
+                                <tr>
+                                    <th>Tipe Aset</th>
+
+                                    <th>: {{ $item->tipe_aset }}</th>
+                                </tr>
+
+                                <tr>
+                                    <th>Deskripsi</th>
+
+                                    <th>: {{ $item->deskripsi_kategori_aset}}</th>
+                                </tr>
+                                </tbody>
+
+                            </table>
+
+                        </div>
+                        <div class="row ml-1 justify-content-lg-end">
+                            <button type="button"   class="btn btn-secondary mr-1"  data-dismiss="modal" > Kembali ➡
+                            </button>
+                        </div>
+
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="submit" id="edit-agent" class="btn btn-success mr-1"><i
-                            class="bx bx-save mt"></i> Submit
-                    </button>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
-</div>
+@endforeach

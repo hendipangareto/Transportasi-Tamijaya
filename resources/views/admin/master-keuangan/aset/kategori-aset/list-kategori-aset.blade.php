@@ -101,7 +101,7 @@
                                     <td>{{ $item->deskripsi_kategori_aset}}</td>
                                     <td>
                                         <a href=""
-                                           class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#DetailSubBagian-{{ $item->id }}"><i
+                                           class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#DetailKategori-{{ $item->id }}"><i
                                                 class="bx bx-info-circle font-size-base"></i>
                                         </a>
                                         <a href=""
@@ -125,8 +125,9 @@
         </div>
     </div>
     @include('admin.master-keuangan.aset.kategori-aset.modal-tambah')
-    {{--    @include('admin.master-logistik.sub-bagian.modal-edit')--}}
-    {{--    @include('admin.master-logistik.sub-bagian.cetak-pdf')--}}
+    @include('admin.master-keuangan.aset.kategori-aset.modal-detail')
+    @include('admin.master-keuangan.aset.kategori-aset.modal-edit')
+
 @endsection
 
 

@@ -59,4 +59,22 @@ class KategoriAsetController extends Controller
             return redirect(route('master-keuangan.aset.list-kategori-aset'))->with('pesan-gagal', 'Anda gagal menambah data kategori aset');
         }
     }
+
+    public function UpdateKategoriAset(Request $request,$id)
+    {
+        $KategoriAset = KategoriAset::findOrFail($id);
+
+        $KategoriAset->nama_kategori_aset = $request->nama_kategori_aset;
+        $KategoriAset->id_tipe_aset = $request->id_tipe_aset;
+        $KategoriAset->deskripsi_kategori_aset = $request->deskripsi_kategori_aset;
+
+//           dd($KategoriAset);
+        try {
+            $KategoriAset->save();
+
+            return redirect(route('master-keuangan.aset.list-kategori-aset'))->with('pesan-berhasil', 'Anda berhasil menambah data kategori aset');
+        } catch (\Exception $e) {
+            return redirect(route('master-keuangan.aset.list-kategori-aset'))->with('pesan-gagal', 'Anda gagal menambah data kategori aset');
+        }
+    }
 }
