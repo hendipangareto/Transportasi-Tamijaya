@@ -111,9 +111,7 @@
             </div>
         </div>
     </div>
-    @include('admin.perawatan-pemeliharaan.supervisor-check-armada.bengkel-dalam.modal')
-    @include('admin.master-logistik.toko.modal-detail')
-    @include('admin.master-logistik.toko.modal-edit')
+
 @endsection
 
 @push('page-scripts')

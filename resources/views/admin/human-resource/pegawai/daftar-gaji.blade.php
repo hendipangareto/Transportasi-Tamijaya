@@ -39,8 +39,21 @@
                     </div>
                 </div>
             </div>
+            <div class="col ml-auto mt-2">
+                <div class="dropdown float-right">
+                    <button type="button" data-toggle="modal"
+                            data-target="#modal-tambah-daftar-gaji-pegawai"
+                            class="btn btn-primary mr-1">
+                        <i class="fe fe-plus"></i> Tambah Data
+                    </button>
+                    <a target="_blank" id="btn-report"
+                       href=" "
+                       type="button" class="btn btn-danger text-white mr-1">
+                        <i class="bi bi-filetype-pdf"></i> Report PDF</a>
+                </div>
+            </div>
             <div class="card-body">
-                <h6>Filter data</h6>
+
                 <form action="">
                     @csrf
                     <div class="row">
@@ -103,7 +116,7 @@
                             <div class="form-group">
                                 <button id="btn-filter-gaji" class="btn btn-outline-primary">Filter <i
                                         class="fe fe-filter"></i></button>
-                                <a href="{{ route('human-resource-pegawai-list-data') }}"
+                                <a href="{{ route('data-gaji-pegawai.human-resource-pegawai-list-data') }}"
                                    class="btn btn-outline-secondary">Reset
                                     <i class="fe fe-refresh-ccw"></i></a>
                             </div>
@@ -112,19 +125,17 @@
                 </form>
                 <br>
                 <div class="table-responsive">
-                    <input type="hidden" id="table-daftar-gaji" value="">
-                    <table class="table datatables table-bordered table-hover"
-                           id="table-daftar-gaji-pegawai">
+                    <table class="table table-bordered table-hover" id="table-bagian">
                         <thead>
                         <tr class="text-truncate text-center">
-                            <th class="w-3p">No</th>
+                            <th class="w-2p">No</th>
                             <th class="w-10p">Departemen</th>
                             <th class="w-10p">Jabatan</th>
                             <th class="w-10p">Nama</th>
                             <th class="w-10p">Status Pegawai</th>
-                            <th class="w-5p">Nominal Gaji <br> (Rp.)</th>
+                            <th class="w-4p">Nominal Gaji <br> (Rp.)</th>
                             <th class="w-10p">Keterangan</th>
-                            <th class="w-5p">Aksi</th>
+                            <th class="w-4p">Aksi</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -146,7 +157,7 @@
                                             class="bx bx-detail font-size-base"></i></button>|
                                     <button type="button" class="btn btn-sm btn-outline-warning" data-toggle="modal"
                                             data-target="#modal-Edit-daftar-gaji-pegawai-{{$item->id}}"><i
-                                            class="bx bx-pencil font-size-base"></i>
+                                            class="bx bx-edit font-size-base"></i>
                                     </button> |
                                     <button type="button" data-id="{{ $item->id }}"
                                             class="delete-button btn btn-sm btn-outline-danger">
@@ -171,7 +182,13 @@
 @endsection
 
 @push('page-scripts')
+
     <script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#table-bagian").DataTable();
+        });
+
         $(document).ready(function () {
             $('#employee_select').change(function () {
                 var employeeId = $(this).val();
@@ -180,7 +197,7 @@
                 if (employeeId) {
                     $.ajax({
                         type: "GET",
-                        url: "{{route('human-resource-pegawai-getEmployee')}}",
+                        url: "{{route('data-gaji-pegawai.human-resource-pegawai-getEmployee')}}",
                         data: {'employee_id': employeeId},
                         success: function (data) {
                             console.log(JSON.stringify(data))
@@ -230,42 +247,7 @@
             });
         });
 
-        {{--$(document).ready(function () {--}}
-        {{--    $('.delete-button').click(function () {--}}
-        {{--        var employeeId = $(this).data('id');--}}
 
-        {{--        Swal.fire({--}}
-        {{--            title: "Yakin akan menghapus data?",--}}
-        {{--            text: "Data yang dihapus tidak dapat dikembalikan",--}}
-        {{--            icon: "warning",--}}
-        {{--            showCancelButton: true,--}}
-        {{--            confirmButtonColor: "#3085d6",--}}
-        {{--            cancelButtonColor: "#d33",--}}
-        {{--            confirmButtonText: "Ya, hapus!"--}}
-        {{--        }).then((result) => {--}}
-        {{--            if (result.isConfirmed) {--}}
-        {{--                $.ajax({--}}
-        {{--                    url: ' ',--}}
-        {{--                    type: 'DELETE',--}}
-        {{--                    data: {--}}
-        {{--                        '_token': '{{ csrf_token() }}',--}}
-        {{--                        'employee_id': employeeId--}}
-        {{--                    },--}}
-        {{--                    success: function (response) {--}}
-        {{--                        location.reload();--}}
-        {{--                        Toast.fire({--}}
-        {{--                            icon: "success",--}}
-        {{--                            title: "Berhasil menghapus data gaji karyawan"--}}
-        {{--                        });--}}
-        {{--                    },--}}
-        {{--                    error: function (error) {--}}
-        {{--                        console.log(err);--}}
-        {{--                    }--}}
-        {{--                });--}}
-        {{--            }--}}
-        {{--        });--}}
-        {{--    });--}}
-        {{--});--}}
     </script>
 @endpush
 

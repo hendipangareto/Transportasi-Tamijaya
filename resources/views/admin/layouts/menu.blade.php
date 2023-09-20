@@ -250,14 +250,24 @@
                                     class="bx bx-right-arrow-alt"></i><span class="menu-item ">Data
                                     Karyawan</span></a>
                         </li>
-                        <li @if (Request::segment(3) == 'daftar-gaji') class="active" @endif>
-                            <a href="{{route('human-resource-pegawai-list-data')}}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item ">Daftar Gaji
+
+                        <li @if (Request::segment(3) == 'daftar-') class="active" @endif>
+                            <a href= ""><i class="bx bx-file"></i><span
+                                    class="menu-item">Data Gaji Pegawai</span></a>
+                            <ul class="menu-content">
+                                <li @if (Request::segment(3) == 'daftar-gaji') class="active" @endif>
+                                    <a href="{{route('data-gaji-pegawai.human-resource-pegawai-list-data')}}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item ">Daftar Gaji
                                     Karyawan</span></a>
+                                </li>
+                                <li @if (Request::segment(3) == 'reguest-gaji') class="active" @endif>
+                                    <a href=" "><i class="bx bx-right-arrow-alt"></i><span class="menu-item ">Daftar Request Gaji
+                                     </span></a>
+                                </li>
+                            </ul>
                         </li>
-                        <li @if (Request::segment(3) == 'driver-conductor') class="active" @endif>
-                            <a href="{{ route('driver-conductor.index') }}"><i
-                                    class="bx bx-right-arrow-alt"></i><span class="menu-item">Data
-                                    Supir & Kernet</span></a>
+                        <li @if (Request::segment(3) == 'kinerja-karyawan') class="active" @endif>
+                            <a href=" "><i
+                                    class="bx bx-right-arrow-alt"></i><span class="menu-item">Kinerja Karyawan</span></a>
                         </li>
 
                     </ul>

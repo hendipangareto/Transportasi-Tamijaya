@@ -57,12 +57,12 @@
                                         <td>
                                             <a href=""
                                                class="btn btn-sm btn-outline-primary" data-toggle="modal"
-                                               data-target="#DetailAkun-{{ $item->id }}"><i
+                                               data-target="#DetailTipeAset "><i
                                                     class="bx bx-info-circle font-size-base"></i>
                                             </a>
                                             <a href=""
                                                class="btn btn-sm btn-outline-warning" data-toggle="modal"
-                                               data-target="#UpdateAkun-{{ $item->id }}"><i
+                                               data-target="#EditTipeAset-{{ $item->id }}"><i
                                                     class="bx bx-edit font-size-base"></i>
                                             </a>
 
@@ -87,6 +87,8 @@
     </div>
 
     @include('admin.master-keuangan.aset.tipe-aset.modal-tambah')
+    @include('admin.master-keuangan.aset.tipe-aset.modal-edit')
+    @include('admin.master-keuangan.aset.tipe-aset.modal-detail')
 @endsection
 
 @push('page-scripts')

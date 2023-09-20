@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 
 class BengkelDalamController extends Controller
 {
-    public function PengajuanLogistikDalam()
+    public function listBengkelDalam()
     {
         return view('admin.perawatan-pemeliharaan.supervisor-check-armada.bengkel-dalam.list');
     }

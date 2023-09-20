@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 
 class PengajuanLogistikController extends Controller
 {
-    public function PengajuanLogistikDalam ()
+    public function PengajuanLogistikDalam()
     {
         return view('admin.perawatan-pemeliharaan.supervisor-check-armada.bengkel-dalam.pengajuan-logistik');
     }

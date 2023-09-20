@@ -173,10 +173,16 @@ Route::group(
                 Route::post(' /master-employee/keluarga-update/{id}', 'HumanResource\EmployeeController@formUpdatekeluarga')->name('human-resource-master-employee-form-update-keluarga');
                 Route::get(' /master-employee/cetak-pdf', 'HumanResource\EmployeeController@cetakPDF')->name('human-resource-master-employee-cetak-pdf');
 
-                Route::prefix('daftar-gaji')->group(function () {
-                    Route::get('/list-data', 'HumanResource\DaftarGajiController@listData')->name('human-resource-pegawai-list-data');
-                    Route::get('/get-gaji', 'HumanResource\DaftarGajiController@getEmployee')->name('human-resource-pegawai-getEmployee');
-                    Route::post(' /form-simpan', 'HumanResource\DaftarGajiController@formSimpan')->name('human-resource-pegawai-form-simpan');
+                Route::prefix('data-gaji-pegawai')->group(function () {
+
+                    Route::prefix('daftar-gaji')->group(function () {
+                        Route::get('/list-data', 'HumanResource\DaftarGajiController@listData')->name('data-gaji-pegawai.human-resource-pegawai-list-data');
+                        Route::get('/get-gaji', 'HumanResource\DaftarGajiController@getEmployee')->name('data-gaji-pegawai.human-resource-pegawai-getEmployee');
+                        Route::post(' /form-simpan', 'HumanResource\DaftarGajiController@formSimpan')->name('data-gaji-pegawai.human-resource-pegawai-form-simpan');
+                        Route::post(' /form-update/{id}', 'HumanResource\DaftarGajiController@formUpdate')->name('data-gaji-pegawai.human-resource-pegawai-form-update');
+
+
+                    });
                 });
             });
 
@@ -218,6 +224,7 @@ Route::group(
                     Route::prefix('tipe-aset')->group(function () {
                         Route::get('/list-tipe-aset', 'MasterKeuangan\Aset\TipeAsetController@getTipeAset')->name('master-keuangan.aset.tipe-aset');
                         Route::post('/tambah-tipe-aset', 'MasterKeuangan\Aset\TipeAsetController@TambahTipeAset')->name('master-keuangan.aset.tambah-tipe-aset');
+                        Route::post('/update-tipe-aset/{id}', 'MasterKeuangan\Aset\TipeAsetController@UpdateTipeAset')->name('master-keuangan.aset.update-tipe-aset');
 
                     });
 

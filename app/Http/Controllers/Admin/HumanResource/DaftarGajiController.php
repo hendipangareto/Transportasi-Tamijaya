@@ -121,7 +121,44 @@ class DaftarGajiController extends Controller
             Session::flash('message', ['Gagal menyimpan daftar gaji karyawan', 'error']);
         }
 
-        return redirect()->route('human-resource-pegawai-list-data');
+        return redirect()->route('data-gaji-pegawai.human-resource-pegawai-list-data');
+    }
 
+
+    public function formUpdate(Request $request, $id)
+    {
+        DB::beginTransaction();
+        try {
+
+            $data = GajiEmployee::find($id);
+
+            $employee = Employee::find($request->edit_employee_id);
+
+            $data->employee_id = $request->edit_employee_id;
+            $data->employee_status = $request->edit_employee_status;
+            $data->departemen_id = $employee->departemen_id;
+            $data->jabatan_id = $employee->employee_jabatan;
+            $data->g_pokok = $request->edit_g_pokok;
+            $data->t_masa_kerja = $request->edit_t_masa_kerja;
+            $data->t_transport = $request->edit_t_transport;
+            $data->t_kapasitas = $request->edit_t_kapasitas;
+            $data->t_akademik = $request->edit_t_akademik;
+            $data->t_struktur = $request->edit_t_struktur;
+            $data->bpjs_kesehatan = $request->edit_bpjs_kesehatan;
+            $data->bpjs_ketenagakerjaan = $request->edit_bpjs_ketenagakerjaan;
+            $data->tanggal = $request->edit_tanggal;
+            $data->keterangan = $request->edit_keterangan;
+
+            $data->save();
+
+            dd($data);
+            DB::commit();
+            Session::flash('message', ['Berhasil mengupdate daftar gaji karyawan', 'success']);
+        } catch (\Exception $e) {
+            DB::rollback();
+            Session::flash('message', ['Gagal mengupdate daftar gaji karyawan', 'error']);
+        }
+
+        return redirect()->route('data-gaji-pegawai.human-resource-pegawai-list-data');
     }
 }

@@ -3,7 +3,7 @@
         max-width: 60% !important;
     }
 </style>
-<form action="{{route('human-resource-pegawai-form-simpan')}}" id="form-tambah-daftar-gaji"
+<form action="{{route('data-gaji-pegawai.human-resource-pegawai-form-simpan')}}" id="form-tambah-daftar-gaji"
       enctype="multipart/form-data" method="post">
     @csrf
     <div class="modal fade text-left" id="modal-tambah-daftar-gaji-pegawai" tabindex="-1" role="dialog"
