@@ -1,44 +1,46 @@
-<div class="modal fade text-left" id="EditKategoriAset" tabindex="-1" role="dialog" aria-labelledby="modal-title"
+@foreach($KategoriAset as $item)
+<div class="modal fade text-left" id="UpdateKategori-{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="modal-title"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="modal-title">Form Tambah Tipe Aset</h4>
+                <h4 class="modal-title" id="modal-title">Form Edit Kategori Aset</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i class="bx bx-x"></i>
                 </button>
             </div>
-            <form action="" id="form-agent" enctype="multipart/form-data">
+            <form action="{{ route('master-keuangan.aset.update-kategori-aset', $item->id) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
-                    <input type="hidden" id="id" name="id" value="">
-                    <label>ID Kategori Aset : </label>
+                    <label>Kode Kategori Aset: </label>
                     <div class="form-group">
-                        <input type="text" id="agent_code" name="akun_code"
-                               class="form-control bg-transparent" placeholder="Kategori Aset">
+                        <input type="text" id="kode_kategori_aset" name="kode_kategori_aset"
+                               class="form-control bg-transparent" value="{{ $item->kode_kategori_aset }}">
                     </div>
                     <label>Nama Tipe Aset : </label>
                     <div class="form-group">
-                        <input type="text" id="nama_akun" name="nama_akun"
-                               class="form-control bg-transparent" placeholder="Tipe Aset">
+                        <select name="id_tipe_aset" id="id_tipe_aset" class="form-control">
+                            @foreach($TipeAset as $ast)
+                                <option value="{{$ast->id}}">{{ $ast->nama_tipe_aset}}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <label>Nama Kategori Aset: </label>
                     <div class="form-group">
-                        <input type="text" id="nama_akun" name="nama_akun"
-                               class="form-control bg-transparent" placeholder="Nama Kategori Aset">
+                        <input type="text" id="nama_kategori_aset" name="nama_kategori_aset"
+                               class="form-control bg-transparent" value="{{ $item->nama_kategori_aset }}">
                     </div>
                     <label>Deskripsi : </label>
                     <div class="form-group">
-                        <textarea class="form-control" name="agent_description"
-                                  id="agent_description" cols="30"
+                        <textarea class="form-control" name="deskripsi_kategori_aset"
+                                  id="deskripsi_kategori_aset" cols="30"
                                   rows="3"
-                                  placeholder="Silahkan masukan deskripsi agent">
-
+                                  data-value="{{ $item->deskripsi_kategori_aset }}">{{ $item->deskripsi_kategori_aset }}
                         </textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" id="edit-agent" class="btn btn-success mr-1"><i
+                    <button type="submit"   class="btn btn-success mr-1"><i
                             class="bx bx-save mt"></i> Submit
                     </button>
                 </div>
@@ -46,3 +48,4 @@
         </div>
     </div>
 </div>
+@endforeach

@@ -70,11 +70,11 @@ class KategoriAsetController extends Controller
 
 //           dd($KategoriAset);
         try {
-            $KategoriAset->save();
+            $KategoriAset->update();
 
-            return redirect(route('master-keuangan.aset.list-kategori-aset'))->with('pesan-berhasil', 'Anda berhasil menambah data kategori aset');
+            return redirect(route('master-keuangan.aset.list-kategori-aset'))->with('pesan-berhasil', 'Anda berhasil mengubah data kategori aset');
         } catch (\Exception $e) {
-            return redirect(route('master-keuangan.aset.list-kategori-aset'))->with('pesan-gagal', 'Anda gagal menambah data kategori aset');
+            return redirect(route('master-keuangan.aset.list-kategori-aset'))->with('pesan-gagal', 'Anda gagal mengubah data kategori aset');
         }
     }
 }

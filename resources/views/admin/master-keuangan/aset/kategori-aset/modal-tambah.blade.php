@@ -33,7 +33,7 @@
                         <textarea class="form-control" name="deskripsi_kategori_aset"
                                   id="deskripsi_kategori_aset" cols="30"
                                   rows="3"
-                                  placeholder="Silahkan masukan deskripsi agent">
+                                  placeholder="Silahkan masukan deskripsi kategori aset">
 
                         </textarea>
                     </div>
