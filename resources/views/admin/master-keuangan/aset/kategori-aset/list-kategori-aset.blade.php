@@ -60,7 +60,7 @@
                                     <div class="form-group">
                                         <select name="bagian_id" id="bagian_id" class="form-control">
                                             <option selected disabled>Pilih Tipe Aset</option>
-                                            @foreach($TipAset as $bg)
+                                            @foreach($TipeAset as $bg)
                                                 <option value="{{$bg->id}}" >{{$bg->nama_tipe_aset}}</option>
                                             @endforeach
                                         </select>

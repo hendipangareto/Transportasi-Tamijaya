@@ -231,6 +231,7 @@ Route::group(
 
                     Route::prefix('kategori-aset')->group(function () {
                         Route::get('/list-kategori-aset', 'MasterKeuangan\Aset\KategoriAsetController@getKategoriAset')->name('master-keuangan.aset.list-kategori-aset');
+                        Route::post('/tambah-kategori-aset', 'MasterKeuangan\Aset\KategoriAsetController@TambahKategoriAset')->name('master-keuangan.aset.tambah-kategori-aset');
 //                        Route::get('/tambah-data-aset', 'MasterKeuangan\Aset\DataAsetController@getTambahDataAset')->name('master-keuangan.aset.data-aset.tambah-data-aset');
                     });
 
