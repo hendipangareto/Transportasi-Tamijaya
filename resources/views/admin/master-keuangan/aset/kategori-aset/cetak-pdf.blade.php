@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Data Karyawan - PT Anugerah Karya Utami Gemilang</title>
+    <title>Data Kategori Aset - PT Anugerah Karya Utami Gemilang</title>
     <style>
         /* Styles untuk kop surat */
         .header {
@@ -46,7 +46,7 @@
 </head>
 <body>
 <div class="header">
-    <h3>Data Sub-Bagian</h3>
+    <h3>Data Kategori Aset</h3>
     <p>PT Anugerah Karya Utami Gemilang</p>
     <hr>
 </div>
@@ -54,27 +54,27 @@
 <table class="font">
     <thead>
     <tr >
-        <th class="w-2p posisi">No</th>
-        <th class="w-4p posisi">Kode Sub Bagian</th>
-        <th class="w-4p posisi">Sub Bagian</th>
-        <th class="w-4p posisi">Bagian</th>
-        <th class="w-4p posisi">Deskripsi</th>
+        <th class="w-2p">No</th>
+        <th class="w-4p">Kode Kategori</th>
+        <th class="w-4p">Nama Kategori</th>
+        <th class="w-4p">Tipe Aset</th>
+        <th class="w-4p">Deskripsi</th>
     </tr>
     </thead>
     <tbody >
 
-    @forelse ($SubBagian as $item)
-        <tr>
-            <td class="posisi">{{ $loop->iteration }} </td>
-            <td class="posisi">{{ $item->kode_sub_bagian }}</td>
-            <td class="posisi">{{ $item->nama_sub_bagian }}</td>
-            <td class="posisi">{{ $item->bagian}}</td>
-            <td class="posisi">{{ $item->deskripsi_sub_bagian}}</td>
-        </tr>
+    @forelse ($KategoriAset as $item)
+    <tr>
+        <td>{{ $loop->iteration }} </td>
+        <td>{{ $item->kode_kategori_aset }}</td>
+        <td>{{ $item->nama_kategori_aset}}</td>
+        <td>{{ $item->tipe_aset}}</td>
+        <td>{{ $item->deskripsi_kategori_aset}}</td>
+    </tr>
     @empty
-        <tr>
-            <td colspan="8" class="no-data">Data tidak ditemukan</td>
-        </tr>
+    <tr>
+        <td colspan="5" class="text-center">Tidak ada data sub bagian.</td>
+    </tr>
     @endforelse
     </tbody>
 </table>

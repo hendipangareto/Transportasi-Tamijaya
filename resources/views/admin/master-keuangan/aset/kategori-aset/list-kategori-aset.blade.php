@@ -41,7 +41,7 @@
                                     <a href=" "
                                        class="btn btn-primary mr-1" data-toggle="modal" data-target="#TambahKategori">
                                         <i class="bx bx-plus-circle"></i> Tambah Data</a>
-                                    <a target="_blank" href=" " type="button" class="btn btn-danger text-white mr-1">
+                                    <a target="_blank" href="{{ route('master-keuangan.aset.cetak-pdf-kategori-aset') }}?tipe_aset={{ifIsset(request()->id_tipe_aset)}}" type="button" class="btn btn-danger text-white mr-1">
                                         <i class="bx bxs-file-pdf"></i> Report PDF
                                     </a>
 

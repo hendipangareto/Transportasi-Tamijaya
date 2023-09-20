@@ -234,6 +234,7 @@ Route::group(
                         Route::post('/tambah-kategori-aset', 'MasterKeuangan\Aset\KategoriAsetController@TambahKategoriAset')->name('master-keuangan.aset.tambah-kategori-aset');
                         Route::post('/update-kategori-aset/{id}', 'MasterKeuangan\Aset\KategoriAsetController@UpdateKategoriAset')->name('master-keuangan.aset.update-kategori-aset');
                         Route::get('/delete-kategori-aset/{id}', 'MasterKeuangan\Aset\KategoriAsetController@DeleteKategoriAset')->name('master-keuangan.aset.delete-kategori-aset');
+                        Route::get('/cetak-pdf-kategori-aset', 'MasterKeuangan\Aset\KategoriAsetController@CetakPDFKategoriAset')->name('master-keuangan.aset.cetak-pdf-kategori-aset');
 
                     });
 
