@@ -59,11 +59,13 @@
 
                                         <td>
                                             <a href=""
-                                               class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#DetailAlat-{{ $item->id }}"><i
+                                               class="btn btn-sm btn-outline-primary" data-toggle="modal"
+                                               data-target="#DetailAlat-{{ $item->id }}"><i
                                                     class="bx bx-info-circle font-size-base"></i>
                                             </a>
                                             <a href=""
-                                               class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#UpdateAlat-{{ $item->id }}"><i
+                                               class="btn btn-sm btn-outline-warning" data-toggle="modal"
+                                               data-target="#UpdateAlat-{{ $item->id }}"><i
                                                     class="bx bx-edit font-size-base"></i>
                                             </a>
                                             <a href="{{ route('admin.master-logistik.alat-kerja-bengkel.delete-alat-kerja-bengkel', ['id' => $item->id]) }}"
@@ -89,8 +91,8 @@
     @include('admin.master-logistik.alat-kerja-bengkel.modal-tambah')
     @include('admin.master-logistik.alat-kerja-bengkel.modal-detail')
     @include('admin.master-logistik.alat-kerja-bengkel.modal-edit')
-{{--    @include('admin.master-logistik.bengkel-luar.modal-detail')--}}
-{{--    @include('admin.master-logistik.bengkel-luar.modal-edit')--}}
+    {{--    @include('admin.master-logistik.bengkel-luar.modal-detail')--}}
+    {{--    @include('admin.master-logistik.bengkel-luar.modal-edit')--}}
 @endsection
 
 @push('page-scripts')

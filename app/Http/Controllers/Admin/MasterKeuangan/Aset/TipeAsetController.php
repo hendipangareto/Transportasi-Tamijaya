@@ -48,4 +48,16 @@ class TipeAsetController extends Controller
             return redirect(route('master-keuangan.aset.tipe-aset'))->with('pesan-gagal', 'Anda gagal mengubah data tipe aset');
         }
     }
+
+    public function DeleteTipeAset($id)
+    {
+        $TipeAset = TipeAset::findOrFail($id);
+
+        try {
+            $TipeAset->delete();
+            return redirect(route('master-keuangan.aset.tipe-aset'))->with('pesan-berhasil', 'Anda berhasil menghapus data tipe aset');
+        } catch (\Exception $e) {
+            return redirect(route('master-keuangan.aset.tipe-aset'))->with('pesan-gagal', 'Anda gagal menghapus data tipe aset');
+        }
+    }
 }

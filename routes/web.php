@@ -225,6 +225,7 @@ Route::group(
                         Route::get('/list-tipe-aset', 'MasterKeuangan\Aset\TipeAsetController@getTipeAset')->name('master-keuangan.aset.tipe-aset');
                         Route::post('/tambah-tipe-aset', 'MasterKeuangan\Aset\TipeAsetController@TambahTipeAset')->name('master-keuangan.aset.tambah-tipe-aset');
                         Route::post('/update-tipe-aset/{id}', 'MasterKeuangan\Aset\TipeAsetController@UpdateTipeAset')->name('master-keuangan.aset.update-tipe-aset');
+                        Route::get('/delete-tipe-aset/{id}', 'MasterKeuangan\Aset\TipeAsetController@DeleteTipeAset')->name('master-keuangan.aset.delete-tipe-aset');
 
                     });
 
