@@ -19,8 +19,8 @@ class BengkelLuarController extends Controller
 
         // dd($BengkelLuar);
         $city = City::all();
-        $province = Province::all();
-        return view('admin.master-logistik.bengkel-luar.list-bengkel-luar', compact('BengkelLuar','city','province'));
+        $provinces = Province::all();
+        return view('admin.master-logistik.bengkel-luar.list-bengkel-luar', compact('BengkelLuar','city','provinces'));
     }
 
     public function SimpanBengkelLuar(Request $request)

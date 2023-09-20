@@ -93,7 +93,7 @@
 
     @include('admin.master-logistik.bengkel-luar.modal-tambah')
     @include('admin.master-logistik.bengkel-luar.modal-detail')
-    @include('admin.master-logistik.bengkel-luar.modal-edit')
+{{--    @include('admin.master-logistik.bengkel-luar.modal-edit')--}}
 @endsection
 
 @push('page-scripts')
@@ -138,6 +138,27 @@
                 });
             }
         });
+
+        //getProvince
+        const changeProvince = () => {
+            var id_province = $("#id_province").val();
+            $.ajax({
+                url: `/admin/master-data/province/get-city-by-province/${id_province}`,
+                method: "get",
+                dataType: "json",
+                success: function(response) {
+                    var cities = response.data;
+                    var html = `<option value="">Pilih Kabupaten/Kota</option>`;
+                    cities.forEach(city => {
+                        html += `<option value="${city.id}">${city.city_name}</option>`;
+                    });
+                    $("#id_city").html(html)
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            });
+        }
     </script>
 
 @endpush
