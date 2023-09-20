@@ -373,7 +373,7 @@
                                     class="menu-item">Sub-Akun</span></a>
                         </li>
 
-                        <li @if (Request::segment(3) == 'aset') class="active" @endif>
+                        <li @if (Request::segment(3) == 'ase') class="active" @endif>
                             <a href= ""><i class="bx bx-folder-plus"></i><span
                                     class="menu-item">Aset</span></a>
                             <ul class="menu-content">

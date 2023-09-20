@@ -73,7 +73,7 @@
                     </form>
                     <br>
                     <div class="table-responsive">
-                        <input type="hidden" id="Tablesemployee" value="">
+
                         <table class="table table-bordered table-hover" id="table-list-employees">
                             <thead>
                             <tr class="text-uppercase text-center">

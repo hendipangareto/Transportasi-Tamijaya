@@ -13,7 +13,6 @@ class KategoriAset extends Model
         'id_tipe_aset',
         'nama_kategori_aset',
         'deskripsi_kategori_aset',
-
     ];
 }
 
