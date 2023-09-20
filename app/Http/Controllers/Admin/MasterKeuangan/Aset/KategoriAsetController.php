@@ -77,4 +77,17 @@ class KategoriAsetController extends Controller
             return redirect(route('master-keuangan.aset.list-kategori-aset'))->with('pesan-gagal', 'Anda gagal mengubah data kategori aset');
         }
     }
+
+    public function DeleteKategoriAset($id)
+    {
+        $KategoriAset = KategoriAset::findOrFail($id);
+
+        try {
+            $KategoriAset->delete();
+
+            return redirect(route('master-keuangan.aset.list-kategori-aset'))->with('pesan-berhasil', 'Anda berhasil menghapus data kategori aset');
+        } catch (\Exception $e) {
+            return redirect(route('master-keuangan.aset.list-kategori-aset'))->with('pesan-gagal', 'Anda gagal menghapus data kategori aset');
+        }
+    }
 }
