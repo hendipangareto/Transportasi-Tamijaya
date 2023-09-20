@@ -57,7 +57,7 @@
                                         <td>
                                             <a href=""
                                                class="btn btn-sm btn-outline-primary" data-toggle="modal"
-                                               data-target="#DetailTipeAset "><i
+                                               data-target="#DetailTipeAset-{{ $item->id }}"><i
                                                     class="bx bx-info-circle font-size-base"></i>
                                             </a>
                                             <a href=""
