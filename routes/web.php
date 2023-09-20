@@ -292,6 +292,8 @@ Route::group(
                 Route::prefix('toko')->group(function () {
                     Route::get('/list-toko', 'MasterLogistik\TokoController@getToko')->name('admin.master-logistik.toko.list-toko');
                     Route::post('/simpan-toko', 'MasterLogistik\TokoController@SimpanToko')->name('admin.master-logistik.toko.simpan-toko');
+                    Route::post('/update-toko/{id}', 'MasterLogistik\TokoController@UpdateToko')->name('admin.master-logistik.toko.update-toko');
+                    Route::get('/delete-toko/{id}', 'MasterLogistik\TokoController@DeleteToko')->name('admin.master-logistik.toko.delete-toko');
 
                 });
 

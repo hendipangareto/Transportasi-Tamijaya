@@ -88,12 +88,12 @@
                                                     class="bx bx-info-circle font-size-base"></i>
                                             </a>
                                             <a href=""
-                                               class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#EditToko"><i
-                                                    class="bx bx-pencil font-size-base"></i>
+                                               class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#EditToko-{{ $item->id }}"><i
+                                                    class="bx bx-edit font-size-base"></i>
                                             </a>
-                                            <button class="btn btn-sm btn-outline-danger btn-delete-employee "
-                                                    data-iddelete=""><i class="bx bx-trash font-size-base"></i>
-                                            </button>
+
+                                            <a href="{{ route('admin.master-logistik.toko.delete-toko', ['id' => $item->id]) }}"
+                                               class="btn btn-outline-danger delete-button"><i class="bx bx-trash"></i></a>
                                         </td>
                                     </tr>
                                 @empty

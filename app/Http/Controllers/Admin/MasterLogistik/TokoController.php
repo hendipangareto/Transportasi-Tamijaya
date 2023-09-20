@@ -49,4 +49,40 @@ class TokoController extends Controller
             return redirect(route('admin.master-logistik.toko.list-toko'))->with('pesan-gagal','Anda gagal menambah data toko');
         }
     }
+
+    public function UpdateToko(Request $request, $id)
+    {
+        $Toko = Toko::findOrFail($id);
+        $Toko->nama_toko = $request->nama_toko;
+        $Toko->hp_toko = $request->hp_toko;
+        $Toko->tlp_toko = $request->tlp_toko;
+        $Toko->pic_toko = $request->pic_toko;
+        $Toko->alamat_toko = $request->alamat_toko;
+        $Toko->id_city = $request->id_city;
+        $Toko->id_province = $request->id_province;
+        $Toko->deskripsi_toko = $request->deskripsi_toko;
+
+//        dd($Toko);
+        try {
+            $Toko->update();
+
+            return redirect(route('admin.master-logistik.toko.list-toko'))->with('pesan-berhasil','Anda berhasil mengubah data toko');
+        } catch (\Exception $e) {
+            return redirect(route('admin.master-logistik.toko.list-toko'))->with('pesan-gagal','Anda gagal mengubah data toko');
+        }
+
+    }
+
+    public function DeleteToko($id)
+    {
+        $Toko = Toko::findOrFail($id);
+
+        try {
+            $Toko->delete();
+
+            return redirect(route('admin.master-logistik.toko.list-toko'))->with('pesan-berhasil','Anda berhasil menghapus data toko');
+        } catch (\Exception $e) {
+            return redirect(route('admin.master-logistik.toko.list-toko'))->with('pesan-gagal','Anda gagal menghapus data toko');
+        }
+    }
 }
