@@ -14,8 +14,8 @@ class SchedulePariwisataController extends Controller
     public function index()
     {
         $armadas =  Armada::where('armada_category', 'PARIWISATA')->orderBy('id', 'ASC')->get();
-        $drivers =   Employee::where('id_department', 5)->orderBy('id', 'ASC')->get();
-        $conductors =  Employee::where('id_department', 6)->orderBy('id', 'ASC')->get();
+        $drivers =   Employee::where('departemen_id', 5)->orderBy('id', 'ASC')->get();
+        $conductors =  Employee::where('departemen_id', 6)->orderBy('id', 'ASC')->get();
         return view('admin.transaction.pariwisata.schedule.index', ["drivers" => $drivers, "conductors" => $conductors, "armadas" => $armadas]);
     }
 
