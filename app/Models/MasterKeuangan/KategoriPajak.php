@@ -11,8 +11,8 @@ class KategoriPajak extends Model
     protected $fillable = [
         'kode_kategori_pajak',
         'nama_kategori_pajak',
-        'id_metode_penyusutan',
         'tahun_pajak',
+        'id_metode_penyusutan',
         'tarif_pajak',
         'deskripsi_pajak',
     ];

@@ -240,6 +240,7 @@ Route::group(
 
                     Route::prefix('kategori-pajak')->group(function () {
                         Route::get('/list-kategori-pajak', 'MasterKeuangan\KategoriPajakController@getKategoriPajak')->name('master-keuangan.aset.list-kategori-pajak');
+                        Route::post('/tambah-kategori-pajak', 'MasterKeuangan\KategoriPajakController@TambahKategoriPajak')->name('master-keuangan.aset.tambah-kategori-pajak');
                     });
 
                     Route::prefix('metode-penyusutan')->group(function () {
