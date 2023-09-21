@@ -24,17 +24,17 @@
                     <div class="col-md-12 d-flex">
                         <h2 class="h4 mb-1">Daftar Gaji Pegawai</h2>
                         <div class="col ml-auto">
-                            <div class="dropdown float-right">
-                                <button type="button" data-toggle="modal"
-                                        data-target="#modal-tambah-daftar-gaji-pegawai"
-                                        class="btn btn-primary mr-1">
-                                    <i class="fe fe-plus"></i> Tambah Data
-                                </button>
-                                <a target="_blank" id="btn-report"
-                                   href=" "
-                                   type="button" class="btn btn-danger text-white mr-1">
-                                    <i class="bi bi-filetype-pdf"></i> Report PDF</a>
-                            </div>
+{{--                            <div class="dropdown float-right">--}}
+{{--                                <button type="button" data-toggle="modal"--}}
+{{--                                        data-target="#modal-tambah-daftar-gaji-pegawai"--}}
+{{--                                        class="btn btn-primary mr-1">--}}
+{{--                                    <i class="fe fe-plus"></i> Tambah Data--}}
+{{--                                </button>--}}
+{{--                                <a target="_blank" id="btn-report"--}}
+{{--                                   href=" "--}}
+{{--                                   type="button" class="btn btn-danger text-white mr-1">--}}
+{{--                                    <i class="bi bi-filetype-pdf"></i> Report PDF</a>--}}
+{{--                            </div>--}}
                         </div>
                     </div>
                 </div>

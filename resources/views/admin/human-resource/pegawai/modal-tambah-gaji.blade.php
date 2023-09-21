@@ -147,7 +147,6 @@
                         </div>
                     </div>
                     <div class="row">
-
                         <div class="col-md-6">
                             <div class="form-group row">
                                 <label class="col-sm-4 col-form-label">Tanggal</label>
@@ -172,8 +171,11 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="float-right">
+                                <button class="btn btn-warning"  >
+                                    <i class="bx bx-arrow-back"></i> Kembali
+                                </button>
                                 <button class="btn btn-success" id="btn-simpan-add-gaji-employee">
-                                    <i class="fe fe-check-circle"></i> Simpan
+                                    <i class="bx bx-save"></i> Simpan
                                 </button>
                             </div>
                         </div>
