@@ -31,47 +31,52 @@
             background-color: #f2f2f2;
         }
 
-        /* Styles untuk pesan "Data tidak ditemukan" */
         .no-data {
             background-color: #c2b677;
+            text-align: center;
+        }
+        .text-size{
+            font-size: 8pt;
+        }
+        .posisi{
             text-align: center;
         }
     </style>
 </head>
 <body>
 <div class="header">
-    <h1>Data Pegawai</h1>
+    <h3>Data Pegawai</h3>
     <p>PT Anugerah Karya Utami Gemilang</p>
     <hr>
 </div>
 
 <table>
-    <thead>
-    <tr>
-        <th>No</th>
-        <th>Id Pegawai</th>
-        <th>Nama</th>
-        <th>Departemen</th>
-        <th>Jabatan</th>
-        <th>Status Pegawai</th>
-        <th>Awal Kontrak</th>
-        <th>Selesai Kontrak</th>
+    <thead class="text-size">
+    <tr class="posisi">
+        <th class="posisi">No</th>
+        <th class="posisi">Id Pegawai</th>
+        <th class="posisi">Nama</th>
+        <th class="posisi">Departemen</th>
+        <th class="posisi">Jabatan</th>
+        <th class="posisi">Status Pegawai</th>
+        <th class="posisi">Awal Kontrak</th>
+        <th class="posisi">Selesai Kontrak</th>
     </tr>
     </thead>
-    <tbody>
+    <tbody class="text-size">
     @php
         $no = 1;
     @endphp
     @forelse ($employee as $item)
         <tr>
-            <td>{{$no++}}</td>
+            <td class="posisi">{{$no++}}</td>
             <td>{{$item->employee_id}}</td>
             <td>{{$item->employee_name}}</td>
             <td>{{$item->department_name}}</td>
             <td>{{$item->position_name}}</td>
             <td>{{$item->employee_status}}</td>
-            <td>{{ \Carbon\Carbon::parse($item->awal_kontrak)->formatLocalized('%d %B %Y') }}</td>
-            <td>{{ \Carbon\Carbon::parse($item->selesai_kontrak)->formatLocalized('%d %B %Y') }}</td>
+            <td>{{ \Carbon\Carbon::parse($item->awal_kontrak)->formatLocalized('%d - %B - %Y') }}</td>
+            <td>{{ \Carbon\Carbon::parse($item->selesai_kontrak)->formatLocalized('%d - %B - %Y') }}</td>
         </tr>
     @empty
         <tr>

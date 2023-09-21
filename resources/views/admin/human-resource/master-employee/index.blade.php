@@ -162,11 +162,11 @@
                                     <td>
                                         <a href="{{route('human-resource-master-employee-form-detail', [$item->id])}}"
                                            class="btn btn-sm btn-outline-primary"><i
-                                                class="bx bx-detail font-size-base"></i>
+                                                class="bx bx-info-circle font-size-base"></i>
                                         </a>
                                         <a href="{{route('human-resource-master-employee-form-edit', [$item->id])}}"
                                            class="btn btn-sm btn-outline-warning"><i
-                                                class="bx bx-pencil font-size-base"></i>
+                                                class="bx bx-edit font-size-base"></i>
                                         </a>
                                         <button class="btn btn-sm btn-outline-danger btn-delete-employee "
                                                 data-iddelete="{{$item->id}}"><i class="bx bx-trash font-size-base"></i>

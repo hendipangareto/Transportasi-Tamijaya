@@ -40,10 +40,10 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="">ID Pegawai</label>
+                            <label for="">Kode Pegawai</label>
                             <input type="text" class="form-control"
                                    value="{{$employee->employee_id}}"
-                                   readonly>
+                                   readonly >
                         </div>
                     </div>
                     <div class="col-md-6">

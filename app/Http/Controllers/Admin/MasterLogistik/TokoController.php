@@ -15,7 +15,7 @@ class TokoController extends Controller
             ->join('provinces', 'provinces.id', '=', 'tokos.id_province')
             ->join('cities', 'cities.id', '=', 'tokos.id_city')->get();
 
-        // dd($Toko);
+//         dd($Toko);
         $city = City::all();
         $provinces = Province::all();
         return view('admin.master-logistik.toko.list-toko', compact('Toko', 'city', 'provinces'));
