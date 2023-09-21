@@ -260,7 +260,7 @@
                                     Karyawan</span></a>
                                 </li>
                                 <li @if (Request::segment(3) == 'reguest-gaji') class="active" @endif>
-                                    <a href=" "><i class="bx bx-right-arrow-alt"></i><span class="menu-item ">Daftar Request Gaji
+                                    <a href="{{ route('human-resource.pegawai.request-gaji.list-gaji') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item ">Daftar Request Gaji
                                      </span></a>
                                 </li>
                             </ul>

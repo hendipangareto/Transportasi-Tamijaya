@@ -156,7 +156,7 @@
                                             data-target="#DetailGaji-{{ $item->id }}"><i
                                             class="bx bx-info-circle font-size-base"></i></button>|
                                     <button type="button" class="btn btn-sm btn-outline-warning" data-toggle="modal"
-                                            data-target="#modal-Edit-daftar-gaji-pegawai-{{$item->id}}"><i
+                                            data-target="#EditGaji-{{$item->id}}"><i
                                             class="bx bx-edit font-size-base"></i>
                                     </button> |
                                     <button type="button" data-id="{{ $item->id }}"
@@ -179,6 +179,7 @@
         </div>
     </div>
     @include('admin.human-resource.pegawai.modal-tambah-gaji')
+    @include('admin.human-resource.pegawai.modal-edit')
     @include('admin.human-resource.pegawai.detail')
 @endsection
 

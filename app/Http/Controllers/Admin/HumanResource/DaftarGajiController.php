@@ -109,7 +109,6 @@ class DaftarGajiController extends Controller
             $data->tanggal = $request->tanggal_gaji;
             $data->keterangan = $request->keterangan;
 
-//                dd($data);
 
             $data->save();
 
@@ -125,19 +124,18 @@ class DaftarGajiController extends Controller
     }
 
 
-    public function formUpdate(Request $request, $id)
+    public function formUpdate(Request $request,$id)
     {
         DB::beginTransaction();
         try {
 
             $data = GajiEmployee::find($id);
 
-            $employee = Employee::find($request->edit_employee_id);
-
+            $employee = Employee::find($request->employee_id);
             $data->employee_id = $request->edit_employee_id;
             $data->employee_status = $request->edit_employee_status;
-            $data->departemen_id = $employee->departemen_id;
-            $data->jabatan_id = $employee->employee_jabatan;
+            $data->departemen_id = $employee->edit_departemen_id;
+            $data->position_id = $employee->edit_position_id;
             $data->g_pokok = $request->edit_g_pokok;
             $data->t_masa_kerja = $request->edit_t_masa_kerja;
             $data->t_transport = $request->edit_t_transport;
@@ -149,16 +147,19 @@ class DaftarGajiController extends Controller
             $data->tanggal = $request->edit_tanggal;
             $data->keterangan = $request->edit_keterangan;
 
+//            dd($data);
+
             $data->save();
 
-            dd($data);
+
             DB::commit();
-            Session::flash('message', ['Berhasil mengupdate daftar gaji karyawan', 'success']);
+            Session::flash('message', ['Berhasil menyimpan daftar gaji karyawan', 'success']);
         } catch (\Exception $e) {
             DB::rollback();
-            Session::flash('message', ['Gagal mengupdate daftar gaji karyawan', 'error']);
+            Session::flash('message', ['Gagal menyimpan daftar gaji karyawan', 'error']);
         }
 
         return redirect()->route('data-gaji-pegawai.human-resource-pegawai-list-data');
     }
+
 }
