@@ -24,19 +24,7 @@
                     <div class="toolbar row ">
                         <div class="col-md-12 d-flex">
                             <h2 class="h4 mb-1">Data Master Request Gaji Karyawan</h2>
-{{--                            <div class="col ml-auto">--}}
-{{--                                <div class="dropdown float-right">--}}
-{{--                                    <a href=" "--}}
-{{--                                       class="btn btn-primary mr-1">--}}
-{{--                                        <i class="fe fe-plus"></i> Tambah Data</a>--}}
-{{--                                    <a target="_blank"--}}
-{{--                                       href=""--}}
-{{--                                       type="button"--}}
-{{--                                       class="btn btn-danger text-white mr-1">--}}
-{{--                                        <i class="bi bi-filetype-pdf"></i> Report PDF--}}
-{{--                                    </a>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
+
                         </div>
                     </div>
                 </div>
@@ -46,7 +34,7 @@
                             <h2 class="h4 mb-1"> </h2>
                             <div class="col ml-auto">
                                 <div class="dropdown float-right">
-                                    <a href=" "
+                                    <a href="{{ route('human-resource.pegawai.request-gaji.form-tambah') }}"
                                        class="btn btn-primary mr-1">
                                         <i class="bx bx-plus-circle"></i> Tambah Data</a>
                                     <a target="_blank"
@@ -190,9 +178,26 @@
                                         </button>
                                     </td>
                                 </tr>
-
                             </tbody>
                         </table>
+                    </div>
+                    <div class="toolbar row mt-2">
+                        <div class="col-md-12 d-flex">
+                            <h2 class="h4 mb-1"> </h2>
+                            <div class="col ml-auto">
+                                <div class="dropdown float-right">
+                                    <a href=" "
+                                       class="btn btn-warning mr-1">
+                                        <i class="bx bx-fingerprint"></i> Cetak Slip</a>
+                                    <a target="_blank"
+                                       href=""
+                                       type="button"
+                                       class="btn btn-success text-white mr-1">
+                                        <i class="bx bx-save"></i> Submit
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -10,4 +10,9 @@ class RequestGajiController extends Controller
     {
         return view('admin.human-resource.pegawai.request-gaji.list-gaji');
     }
+
+    public function getFormTambah()
+    {
+        return view('admin.human-resource.pegawai.request-gaji.form-tambah');
+    }
 }
