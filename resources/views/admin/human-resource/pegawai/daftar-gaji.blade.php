@@ -153,8 +153,8 @@
                                 <td>{{$item->keterangan}}</td>
                                 <td class="text-center">
                                     <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal"
-                                            data-target="#modal-detail-daftar-gaji-pegawai{{$item->id}}"><i
-                                            class="bx bx-detail font-size-base"></i></button>|
+                                            data-target="#DetailGaji-{{ $item->id }}"><i
+                                            class="bx bx-info-circle font-size-base"></i></button>|
                                     <button type="button" class="btn btn-sm btn-outline-warning" data-toggle="modal"
                                             data-target="#modal-Edit-daftar-gaji-pegawai-{{$item->id}}"><i
                                             class="bx bx-edit font-size-base"></i>
@@ -179,6 +179,7 @@
         </div>
     </div>
     @include('admin.human-resource.pegawai.modal-tambah-gaji')
+    @include('admin.human-resource.pegawai.detail')
 @endsection
 
 @push('page-scripts')
