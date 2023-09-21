@@ -107,7 +107,7 @@
                                     <td>{{ $item->deskripsi_pajak}}</td>
                                     <td>
                                         <a href=""
-                                           class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#DetailKategori-{{ $item->id }}"><i
+                                           class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#DetailKategoriPajak-{{ $item->id }}"><i
                                                 class="bx bx-info-circle font-size-base"></i>
                                         </a>
                                         <a href=""
@@ -119,13 +119,12 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="7" class="text-center">Tidak ada data  kategori aset.</td>
+                                    <td colspan="8" class="text-center">Tidak ada data  kategori aset.</td>
                                 </tr>
                             @endforelse
                             </tbody>
                         </table>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -133,6 +132,7 @@
 
     @include('admin.master-keuangan.kategori-pajak.modal-tambah')
     @include('admin.master-keuangan.kategori-pajak.modal-edit')
+    @include('admin.master-keuangan.kategori-pajak.modal-detail')
 
 @endsection
 

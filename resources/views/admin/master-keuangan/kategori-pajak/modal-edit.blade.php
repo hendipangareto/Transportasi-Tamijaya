@@ -9,7 +9,7 @@
                         <i class="bx bx-x"></i>
                     </button>
                 </div>
-                <form action="{{ route('master-keuangan.aset.tambah-kategori-pajak') }}" method="post"
+                <form action="{{ route('master-keuangan.aset.update-kategori-pajak', $item->id) }}" method="post"
                       enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">

@@ -58,5 +58,23 @@ class KategoriPajakController extends Controller
         }
     }
 
+    public function UpdateKategoriPajak(Request $request, $id)
+    {
+        $kategoripajak = KategoriPajak::findOrFail($id);
+
+        $kategoripajak->nama_kategori_pajak = $request->nama_kategori_pajak;
+        $kategoripajak->id_metode_penyusutan = $request->id_metode_penyusutan;
+        $kategoripajak->tahun_pajak = $request->tahun_pajak;
+        $kategoripajak->tarif_pajak = $request->tarif_pajak;
+        $kategoripajak->deskripsi_pajak = $request->deskripsi_pajak;
+
+//        dd($kategoripajak);
+        try {
+            $kategoripajak->update();
+            return redirect(route('master-keuangan.aset.list-kategori-pajak'))->with('pesan-berhasil', 'Anda berhasil mengubah data kategori pajak');
+        } catch (\Exception $e) {
+            return redirect(route('master-keuangan.aset.list-kategori-pajak'))->with('pesan-gagal', 'Anda gagal mengubah data kategori pajak');
+        }
+    }
 
 }
