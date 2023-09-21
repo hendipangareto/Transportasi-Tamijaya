@@ -18,16 +18,15 @@ class KategoriBarangController
     public function postKategoriBarang(Request $request)
     {
 
-        // Membuat objek kategori
+
         $kategori = new Kategori();
 
-        // Mendapatkan nomor kategori terakhir
         $lastNomor = Kategori::orderBy('id', 'desc')->first();
         $lastNumber = $lastNomor ? intval(substr($lastNomor->kode_kategori, -2)) : 0;
         $newNumber = $lastNumber + 1;
         $nokategori = 'BRG-001' . str_pad($newNumber, 2, '0', STR_PAD_LEFT);
 
-        // Mengisi atribut-atribut kategori
+
         $kategori->kode_kategori = $nokategori;
         $kategori->nama_kategori = $request->nama_kategori;
         $kategori->deskripsi_kategori = $request->deskripsi_kategori;

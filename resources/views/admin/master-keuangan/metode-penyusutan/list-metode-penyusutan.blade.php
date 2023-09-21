@@ -72,39 +72,42 @@
                         </div>
                     </form>
                     <br>
-                    <div class="table-responsive">
-                        <input type="hidden" id="Tablesemployee" value="">
-                        <table class="table table-bordered table-hover" id="table-list-employees">
+                    <div class="table-responsive"  >
+                        <table class="table table-bordered table-hover" id="table-bagian">
                             <thead>
-                            <tr class="text-uppercase text-center">
+                            <tr class="text-center">
                                 <th class="w-2p">No</th>
-                                <th class="w-3p">Metode Penyusutan</th>
-                                <th class="w-10p">Keterangan</th>
-                                <th class="w-2p">Action</th>
+                                <th class="w-10p">Kode Penyusutan</th>
+                                <th class="w-4p">Metode Penyusutan</th>
+                                <th class="w-4p">Keterangan</th>
+                                <th class="w-10p">Action</th>
                             </tr>
                             </thead>
-                            <tbody id="show-data-employee">
-                            <tr class="text-center">
-                                <td>1</td>
-                                <td>1101</td>
-                                <td>Kendaraan</td>
+                            <tbody>
+                            @forelse ($MetodePenyusutan as $item)
+                                <tr class="text-center">
+                                    <td>{{ $loop->iteration }} </td>
+                                    <td>{{ $item->kode_metode_penyusutan }}</td>
+                                    <td>{{ $item->nama_metode_penyusutan }}</td>
+                                    <td>{{ $item->keterangan_metode_penyusutan}}</td>
 
-                                <td>
-                                    <a href=""
-                                       class="btn btn-sm btn-outline-primary" data-toggle="modal"
-                                       data-target="#DetailMetodePenyusutan"><i
-                                            class="bx bx-info-circle font-size-base"></i>
-                                    </a>
-                                    <a href=""
-                                       class="btn btn-sm btn-outline-warning" data-toggle="modal"
-                                       data-target="#EditMetodePenyusutan"><i
-                                            class="bx bx-edit-alt font-size-base"></i>
-                                    </a>
-                                    <button class="btn btn-sm btn-outline-danger btn-delete-employee "
-                                            data-iddelete=""><i class="bx bx-trash font-size-base"></i>
-                                    </button>
-                                </td>
-                            </tr>
+                                    <td>
+                                        <a href=""
+                                           class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#DetailSubBagian-{{ $item->id }}"><i
+                                                class="bx bx-info-circle font-size-base"></i>
+                                        </a>
+                                        <a href=""
+                                           class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#UpdateSubBagian-{{ $item->id }}"><i
+                                                class="bx bx-edit font-size-base"></i>
+                                        </a>
+                                        <a href="{{ route('admin.master-logistik.bagian.delete-sub-bagian', ['id' => $item->id]) }}" class="btn btn-outline-danger btn-sm delete-button"><i class="bx bx-trash"></i></a>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="4" class="text-center">Tidak ada data metode penyusutan!</td>
+                                </tr>
+                            @endforelse
                             </tbody>
                         </table>
                     </div>
@@ -123,7 +126,42 @@
 
 
         $(document).ready(function () {
-            $("#table-employee").DataTable();
+            $("#table-bagian").DataTable();
+        });
+
+        @if(session('pesan-berhasil'))
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: '{{ session("pesan-berhasil") }}'
+        });
+        @elseif(session('pesan-gagal'))
+        Swal.fire({
+            icon: 'error',
+            title: 'Gagal',
+            text: '{{ session("pesan-gagal") }}'
+        });
+        @endif
+
+        //konfimarsi delete
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('delete-button')) {
+                e.preventDefault();
+
+                Swal.fire({
+                    title: 'Apakah Anda yakin?',
+                    text: 'Data ini akan dihapus!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Ya, Hapus!',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Jika pengguna mengonfirmasi penghapusan, lanjutkan ke tautan penghapusan
+                        window.location.href = e.target.href;
+                    }
+                });
+            }
         });
 
     </script>
