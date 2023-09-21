@@ -93,7 +93,7 @@
 
                                     <td>
                                         <a href=""
-                                           class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#DetailSubBagian-{{ $item->id }}"><i
+                                           class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#DetailMetodePenyusutan-{{ $item->id }}"><i
                                                 class="bx bx-info-circle font-size-base"></i>
                                         </a>
                                         <a href=""
