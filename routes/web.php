@@ -246,6 +246,7 @@ Route::group(
                         Route::get('/list-metode-penyusutan', 'MasterKeuangan\MetodePenyusutanController@getMetodePenyusutan')->name('master-keuangan.metode-penyusutan.list-metode-penyusutan');
                         Route::post('/tambah-metode-penyusutan', 'MasterKeuangan\MetodePenyusutanController@TambahMetodePenyusutan')->name('master-keuangan.metode-penyusutan.tambah-metode-penyusutan');
                         Route::post('/update-metode-penyusutan/{id}', 'MasterKeuangan\MetodePenyusutanController@UpdateMetodePenyusutan')->name('master-keuangan.metode-penyusutan.update-metode-penyusutan');
+                        Route::get('/delete-metode-penyusutan/{id}', 'MasterKeuangan\MetodePenyusutanController@DeleteMetodePenyusutan')->name('master-keuangan.metode-penyusutan.delete-metode-penyusutan');
                     });
 
                 });

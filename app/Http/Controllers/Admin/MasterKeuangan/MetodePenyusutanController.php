@@ -53,6 +53,18 @@ class MetodePenyusutanController extends Controller
         }
     }
 
+    public function DeleteMetodePenyusutan($id)
+    {
+        $MetodePenyusutan = MetodePenyusutan::findOrFail($id);
+
+        try {
+            $MetodePenyusutan->delete();
+            return redirect(route('master-keuangan.metode-penyusutan.list-metode-penyusutan'))->with('pesan-berhasil', 'Anda berhasil menghapus data metode penyusutan');
+        } catch (\Exception $e) {
+            return redirect(route('master-keuangan.metode-penyusutan.list-metode-penyusutan'))->with('pesan-gagal', 'Anda gagal menghapus data metode penyusutan');
+        }
+    }
+
 }
 
 

@@ -100,7 +100,7 @@
                                            class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#UpdateMetodePenyusutan-{{ $item->id }}"><i
                                                 class="bx bx-edit font-size-base"></i>
                                         </a>
-                                        <a href="{{ route('admin.master-logistik.bagian.delete-sub-bagian', ['id' => $item->id]) }}" class="btn btn-outline-danger btn-sm delete-button"><i class="bx bx-trash"></i></a>
+                                        <a href="{{ route('master-keuangan.metode-penyusutan.delete-metode-penyusutan', ['id' => $item->id]) }}" class="btn btn-outline-danger btn-sm delete-button"><i class="bx bx-trash"></i></a>
                                     </td>
                                 </tr>
                             @empty
