@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
 class KategoriAsetController extends Controller
 {
-    public function getKategoriAset()
+    public function getKategoriAset(Request $request)
     {
         $TipeAset = TipeAset::get();
 
@@ -23,9 +23,6 @@ class KategoriAsetController extends Controller
             'id_tipe_aset' => $id_tipe_aset,
         ];
 
-
-
-
         $KategoriAset = KategoriAset::select("kategori_asets.*", 'tipe_asets.nama_tipe_aset as tipe_aset')
             ->join('tipe_asets', 'tipe_asets.id', '=', 'kategori_asets.id_tipe_aset')
             ->orderBy('tipe_asets.id')
@@ -34,8 +31,9 @@ class KategoriAsetController extends Controller
             })
             ->get();
 
-        return view('admin.master-keuangan.aset.kategori-aset.list-kategori-aset', compact('KategoriAset', 'TipeAset'));
+        return view('admin.master-keuangan.aset.kategori-aset.list-kategori-aset', compact('KategoriAset', 'TipeAset', 'params'));
     }
+
 
     public function TambahKategoriAset(Request $request)
     {

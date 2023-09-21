@@ -51,17 +51,20 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form action="">
+                    <form >
                         @csrf
                         <div class="row">
                             <div class="col-md-2 col-sm-12">
                                 <div class="form-group">
                                     <label for="">Tipe Aset :</label>
                                     <div class="form-group">
-                                        <select name="bagian_id" id="bagian_id" class="form-control">
+                                        <select name="id_tipe_aset" id="id_tipe_aset" class="form-control">
                                             <option selected disabled>Pilih Tipe Aset</option>
                                             @foreach($TipeAset as $bg)
-                                                <option value="{{$bg->id}}" >{{$bg->nama_tipe_aset}}</option>
+                                                @php
+                                                    $selected = ($params['id_tipe_aset'] == $bg->id) ? "selected" : "";
+                                                @endphp
+                                                <option value="{{$bg->id}}" {{$selected}}>{{$bg->nama_tipe_aset}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -70,14 +73,13 @@
                             <div class="col-md-2 col-sm-12">
                                 <div class="form-group">
                                     <label for="" style="color: white">Filter</label><br>
-                                    <button class="btn btn-outline-primary">Filter <i
-                                            class="bx bx-filter"></i></button>
-                                    <a href="{{ route('master-keuangan.aset.list-kategori-aset') }}" class="btn btn-outline-warning">Clear <i
-                                            class="bx bx-filter"></i></a>
+                                    <button type="submit" class="btn btn-outline-primary">Filter <i class="bx bx-filter"></i></button>
+                                    <a href="{{ route('master-keuangan.aset.list-kategori-aset') }}" class="btn btn-outline-warning">Clear <i class="bx bx-filter"></i></a>
                                 </div>
                             </div>
                         </div>
                     </form>
+
 
                     <div class="table-responsive"  >
                         <table class="table table-bordered table-hover" id="table-kategori-aset">

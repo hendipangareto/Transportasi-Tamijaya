@@ -54,18 +54,18 @@
 <table class="font">
     <thead>
     <tr >
-        <th class="w-2p">No</th>
-        <th class="w-4p">Kode Kategori</th>
-        <th class="w-4p">Nama Kategori</th>
-        <th class="w-4p">Tipe Aset</th>
-        <th class="w-4p">Deskripsi</th>
+        <th class="w-2p posisi">No</th>
+        <th class="w-4p posisi">Kode Kategori</th>
+        <th class="w-4p posisi">Nama Kategori</th>
+        <th class="w-4p posisi">Tipe Aset</th>
+        <th class="w-4p posisi">Deskripsi</th>
     </tr>
     </thead>
     <tbody >
 
     @forelse ($KategoriAset as $item)
     <tr>
-        <td>{{ $loop->iteration }} </td>
+        <td class="posisi">{{ $loop->iteration }} </td>
         <td>{{ $item->kode_kategori_aset }}</td>
         <td>{{ $item->nama_kategori_aset}}</td>
         <td>{{ $item->tipe_aset}}</td>
@@ -73,7 +73,7 @@
     </tr>
     @empty
     <tr>
-        <td colspan="5" class="text-center">Tidak ada data sub bagian.</td>
+        <td colspan="5" class="posisi">Tidak ada data kategori aset!</td>
     </tr>
     @endforelse
     </tbody>
