@@ -31,13 +31,29 @@ class MetodePenyusutanController extends Controller
 //        dd($MetodePenyusutan);
         try {
             $MetodePenyusutan->save();
-            return redirect(route('master-keuangan.metode-penyusutan.list-metode-penyusutan'))->with('pesan-berhasil', 'Anda berhasil menambah data kategori');
-
+            return redirect(route('master-keuangan.metode-penyusutan.list-metode-penyusutan'))->with('pesan-berhasil', 'Anda berhasil menambah data metode penyusutan');
         } catch (\Exception $e) {
-            return redirect(route('master-keuangan.metode-penyusutan.list-metode-penyusutan'))->with('pesan-gagal', 'Anda gagal menambah data kategori');
+            return redirect(route('master-keuangan.metode-penyusutan.list-metode-penyusutan'))->with('pesan-gagal', 'Anda gagal menambah data metode penyusutan');
         }
     }
+
+    public function UpdateMetodePenyusutan(Request $request, $id)
+    {
+        $MetodePenyusutan = MetodePenyusutan::findOrFail($id);
+
+        $MetodePenyusutan->nama_metode_penyusutan = $request->nama_metode_penyusutan;
+        $MetodePenyusutan->keterangan_metode_penyusutan = $request->keterangan_metode_penyusutan;
+
+//        dd($MetodePenyusutan);
+        try {
+            $MetodePenyusutan->save();
+            return redirect(route('master-keuangan.metode-penyusutan.list-metode-penyusutan'))->with('pesan-berhasil', 'Anda berhasil mengubah data metode penyusutan');
+        } catch (\Exception $e) {
+            return redirect(route('master-keuangan.metode-penyusutan.list-metode-penyusutan'))->with('pesan-gagal', 'Anda gagal mengubah data metode penyusutan');
+        }
     }
+
+}
 
 
 
