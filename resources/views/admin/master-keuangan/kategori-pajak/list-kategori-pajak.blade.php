@@ -114,7 +114,7 @@
                                            class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#UpdateKategoriPajak-{{ $item->id }}"><i
                                                 class="bx bx-edit font-size-base"></i>
                                         </a>
-                                        <a href="{{ route('master-keuangan.aset.delete-kategori-aset', ['id' => $item->id]) }}" class="btn btn-outline-danger btn-sm delete-button"><i class="bx bx-trash"></i></a>
+                                        <a href="{{ route('master-keuangan.aset.delete-kategori-pajak', ['id' => $item->id]) }}" class="btn btn-outline-danger btn-sm delete-button"><i class="bx bx-trash"></i></a>
                                     </td>
                                 </tr>
                             @empty

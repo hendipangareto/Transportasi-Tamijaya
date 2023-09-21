@@ -77,4 +77,15 @@ class KategoriPajakController extends Controller
         }
     }
 
+    public function DeleteKategoriPajak($id)
+    {
+        $kategoripajak = KategoriPajak::findOrFail($id);
+
+        try {
+            $kategoripajak->delete();
+            return redirect(route('master-keuangan.aset.list-kategori-pajak'))->with('pesan-berhasil', 'Anda berhasil menghapus data kategori pajak');
+        } catch (\Exception $e) {
+            return redirect(route('master-keuangan.aset.list-kategori-pajak'))->with('pesan-gagal', 'Anda gagal menghapus data kategori pajak');
+        }
+    }
 }

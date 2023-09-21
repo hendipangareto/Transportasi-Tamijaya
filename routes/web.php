@@ -242,6 +242,7 @@ Route::group(
                         Route::get('/list-kategori-pajak', 'MasterKeuangan\KategoriPajakController@getKategoriPajak')->name('master-keuangan.aset.list-kategori-pajak');
                         Route::post('/tambah-kategori-pajak', 'MasterKeuangan\KategoriPajakController@TambahKategoriPajak')->name('master-keuangan.aset.tambah-kategori-pajak');
                         Route::post('/update-kategori-pajak/{id}', 'MasterKeuangan\KategoriPajakController@UpdateKategoriPajak')->name('master-keuangan.aset.update-kategori-pajak');
+                        Route::get('/delete-kategori-pajak/{id}', 'MasterKeuangan\KategoriPajakController@DeleteKategoriPajak')->name('master-keuangan.aset.delete-kategori-pajak');
                     });
 
                     Route::prefix('metode-penyusutan')->group(function () {
