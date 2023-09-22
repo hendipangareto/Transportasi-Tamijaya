@@ -41,9 +41,9 @@
                                 <thead>
                                 <tr class="text-center">
                                     <th class="w-2p">No</th>
-                                    <th class="w-10p">Kode Akun</th>
-                                    <th class="w-4p">Nama Akun</th>
-                                    <th class="w-4p">Deskripsi</th>
+                                    <th class="w-10p">Kode Tipe Aset</th>
+                                    <th class="w-4p">Nama Tipe Aset</th>
+                                    <th class="w-4p">Deskripsi Tipe Aset</th>
                                     <th class="w-10p">Action</th>
                                 </tr>
                                 </thead>
