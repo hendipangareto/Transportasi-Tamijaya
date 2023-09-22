@@ -159,10 +159,9 @@
                                             data-target="#EditGaji-{{$item->id}}"><i
                                             class="bx bx-edit font-size-base"></i>
                                     </button> |
-                                    <button type="button" data-id="{{ $item->id }}"
-                                            class="delete-button btn btn-sm btn-outline-danger">
-                                        <i class="bx bx-trash font-size-base"></i>
-                                    </button>
+                                    <a href="{{ route('data-gaji-pegawai.human-resource-pegawai-form-delete', ['id' => $item->id]) }}"
+                                       class="btn btn-outline-danger btn-sm delete-button"><i
+                                            class="bx bx-trash"></i></a>
 
                                 </td>
                             </tr>

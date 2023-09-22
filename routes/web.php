@@ -180,6 +180,9 @@ Route::group(
                         Route::get('/get-gaji', 'HumanResource\DaftarGajiController@getEmployee')->name('data-gaji-pegawai.human-resource-pegawai-getEmployee');
                         Route::post(' /form-simpan', 'HumanResource\DaftarGajiController@formSimpan')->name('data-gaji-pegawai.human-resource-pegawai-form-simpan');
                         Route::post(' /form-update/{id}', 'HumanResource\DaftarGajiController@formUpdate')->name('data-gaji-pegawai.human-resource-pegawai-form-update');
+                        Route::get(' /form-delete/{id}', 'HumanResource\DaftarGajiController@formDelete')->name('data-gaji-pegawai.human-resource-pegawai-form-delete');
+
+                        Route::get(' /daftar-gaji/cetak-pdf', 'HumanResource\DaftarGajiController@cetakPDF')->name('data-gaji-pegawai.human-resource-pegawai-cetak-pdf');
                     });
 
                     Route::prefix('request-gaji')->group(function () {

@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
+use Barryvdh\DomPDF\Facade as PDF;
 class DaftarGajiController extends Controller
 {
 
@@ -28,7 +29,7 @@ class DaftarGajiController extends Controller
             $departemen_id = $request->filter_departemen_id;
         }
 
-        $position_id = ""; // Ubah variabel $jabatan_id menjadi $position_id
+        $position_id = "";
         if (isset($request->filter_jabatan_id)) {
             $position_id = $request->filter_jabatan_id;
         }
@@ -110,6 +111,7 @@ class DaftarGajiController extends Controller
             $data->keterangan = $request->keterangan;
 
 
+//            dd($data);
             $data->save();
 
 
@@ -162,4 +164,50 @@ class DaftarGajiController extends Controller
         return redirect()->route('data-gaji-pegawai.human-resource-pegawai-list-data');
     }
 
+    public function formDelete($id)
+    {
+        DB::beginTransaction();
+        try {
+
+            $data = GajiEmployee::find($id);
+
+            $data->delete();
+
+
+            DB::commit();
+            Session::flash('message', ['Berhasil menyimpan daftar gaji karyawan', 'success']);
+        } catch (\Exception $e) {
+            DB::rollback();
+            Session::flash('message', ['Gagal menyimpan daftar gaji karyawan', 'error']);
+        }
+
+        return redirect()->route('data-gaji-pegawai.human-resource-pegawai-list-data');
+    }
+
+    public function cetakPDF()
+    {
+
+
+//        $data = DB::table('gaji_employees')
+//            ->select('gaji_employees.*', 'departments.department_name', 'positions.position_name', 'employees.employee_name')
+//            ->join('departments', 'gaji_employees.departemen_id', 'departments.id')
+//            ->join('positions', 'gaji_employees.position_id', 'positions.id')
+//            ->join('employees', 'gaji_employees.employee_id', 'employees.id')->get();
+
+        $filename = 'SubBagian' . "_" . now()->format('Y_m_d_H_i_s') . '.pdf';
+
+        $pdf = PDF::loadView('admin.master-logistik.sub-bagian.cetak-pdf' );
+
+        $pdf->setPaper('A4', 'portrait');
+
+        // Set Page Number
+        $canvas = $pdf->getDomPDF()->getCanvas();
+        $pdf->getDomPDF()->set_option('isPhpEnabled', true);
+        $canvas->page_text(550, 820, "Page {PAGE_NUM}", null, 8);
+
+
+        $canvas->page_text(550 / 2, 820, now()->format('d-m-Y'), null, 8);
+        $canvas->page_text(550 / 16, 820,  'PT Anugerah Karya Utami Gemilang', null, 8);
+        return $pdf->stream($filename);
+    }
 }
