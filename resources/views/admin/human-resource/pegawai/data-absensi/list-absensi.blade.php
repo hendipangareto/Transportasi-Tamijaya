@@ -52,7 +52,15 @@
                         @csrf
                         <div class="row">
                             <div class="row col-md-8">
-                                <div class="col-md-4 col-sm-12">
+                                <div class="col-md-3 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="">Upload Data (.xlsx)</label>
+                                        <input type="file" name="" id="" class="form-control btn btn-outline-primary">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row col-md-8">
+                                <div class="col-md-3 col-sm-12">
                                     <div class="form-group">
                                         <label for="">Bulan / Tahun</label>
                                         <select class="form-control"
@@ -62,21 +70,19 @@
                                         </select>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row col-md-8">
-                                <div class="col-md-4 col-sm-12">
+                                <div class="col-md-3 col-sm-12">
                                     <div class="form-group">
                                         <label for="">Nama Karyawan</label>
                                         <input type="text" class="form-control">
                                     </div>
                                 </div>
-                                <div class="col-md-4 col-sm-12">
+                                <div class="col-md-3 col-sm-12">
                                     <div class="form-group">
-                                        <label for="">Departemen/Jabatan</label>
+                                        <label for="">Departemen</label>
                                         <input type="text" class="form-control">
                                     </div>
                                 </div>
-                                <div class="col-md-4 col-sm-12">
+                                <div class="col-md-3 col-sm-12">
                                     <div class="form-group">
                                         <label for="" style="color: white">Filter</label><br>
                                         <button class="btn btn-primary">Filter <i
@@ -123,7 +129,7 @@
                                 <td >L</td>
                                 <td>
                                     <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal"
-                                            data-target="# "><i
+                                            data-target="#DetailAbsensi"><i
                                             class="bx bx-info-circle font-size-base"></i></button>
                                     <button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal"
                                             data-target="# "><i
@@ -139,7 +145,7 @@
         </div>
     </div>
 
-    @include('admin.human-resource.pegawai.request-gaji.form-detail')
+    @include('admin.human-resource.pegawai.data-absensi.modal-detail')
 @endsection
 
 @push('page-scripts')
