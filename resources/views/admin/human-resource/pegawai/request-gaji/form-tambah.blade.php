@@ -37,12 +37,6 @@
                                     <a href="{{ route('human-resource.pegawai.request-gaji.list-gaji') }}"
                                        class="btn btn-warning mr-1">
                                         <i class="bx bx-arrow-back"></i> Kembali</a>
-                                    {{--                                    <a target="_blank"--}}
-                                    {{--                                       href=""--}}
-                                    {{--                                       type="button"--}}
-                                    {{--                                       class="btn btn-danger text-white mr-1">--}}
-                                    {{--                                        <i class="bx bx-printer"></i> Report PDF--}}
-                                    {{--                                    </a>--}}
                                 </div>
                             </div>
                         </div>

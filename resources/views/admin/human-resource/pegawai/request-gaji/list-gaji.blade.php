@@ -31,7 +31,7 @@
                 <div class="card-body mt-2">
                     <div class="toolbar row ">
                         <div class="col-md-12 d-flex">
-                            <h2 class="h4 mb-1"> </h2>
+                            <h2 class="h4 mb-1"></h2>
                             <div class="col ml-auto">
                                 <div class="dropdown float-right">
                                     <a href="{{ route('human-resource.pegawai.request-gaji.form-tambah') }}"
@@ -56,7 +56,7 @@
                                     <select class="form-control"
                                             name="departemen_id">
                                         <option disabled selected>Filter By Bulan/Tahun</option>
-                                        <option >Pilih Departemen</option>
+                                        <option>Pilih Departemen</option>
 
                                     </select>
                                 </div>
@@ -68,9 +68,9 @@
                                             name="employee_status" id="employee_status">
 
                                         <option value="0" disabled selected>Filter By Status Approval</option>
-                                        <option value="Tetap" >Tetap</option>
-                                        <option value="Kontrak"  >Kontrak</option>
-                                        <option value="Part Time" >Part Time</option>
+                                        <option value="Tetap">Tetap</option>
+                                        <option value="Kontrak">Kontrak</option>
+                                        <option value="Part Time">Part Time</option>
                                     </select>
                                 </div>
                             </div>
@@ -81,9 +81,9 @@
                                             name="employee_status" id="employee_status">
 
                                         <option value="0" disabled selected>Filter By Cara Pembayaran</option>
-                                        <option value="Tetap" >Tetap</option>
-                                        <option value="Kontrak"  >Kontrak</option>
-                                        <option value="Part Time" >Part Time</option>
+                                        <option value="Tetap">Tetap</option>
+                                        <option value="Kontrak">Kontrak</option>
+                                        <option value="Part Time">Part Time</option>
                                     </select>
                                 </div>
                             </div>
@@ -97,7 +97,7 @@
                                             name="postionfilter">
                                         <option disabled selected>Filter By Departemen</option>
 
-                                            <option value=" "  >#</option>
+                                        <option value=" ">#</option>
 
                                     </select>
                                 </div>
@@ -109,7 +109,7 @@
                                             name="postionfilter">
                                         <option disabled selected>Filter By Jabatan</option>
 
-                                        <option value=" "  >#</option>
+                                        <option value=" ">#</option>
 
                                     </select>
                                 </div>
@@ -121,7 +121,7 @@
                                             name="postionfilter">
                                         <option disabled selected>Filter By Status</option>
 
-                                        <option value=" "  >#</option>
+                                        <option value=" ">#</option>
 
                                     </select>
                                 </div>
@@ -155,35 +155,35 @@
                             </tr>
                             </thead>
                             <tbody id="show-data-employee">
-                                <tr class="text-center">
-                                    <td>1</td>
-                                    <td>#</td>
-                                    <td>#</td>
-                                    <td>#</td>
-                                    <td>#</td>
-                                    <td><input type="checkbox"></td>
-                                    <td>#</td>
-                                    <td>#</td>
-                                    <td>
-                                        <a href=" "
-                                           class="btn btn-sm btn-outline-primary"><i
-                                                class="bx bx-info-circle font-size-base"></i>
-                                        </a>
-                                        <a href="{{ route('human-resource.pegawai.request-gaji.form-edit') }}"
-                                           class="btn btn-sm btn-outline-warning"><i
-                                                class="bx bx-edit font-size-base"></i>
-                                        </a>
-                                        <button class="btn btn-sm btn-outline-danger btn-delete-employee "
-                                                data-iddelete=" "><i class="bx bx-trash font-size-base"></i>
-                                        </button>
-                                    </td>
-                                </tr>
+                            <tr class="text-center">
+                                <td>1</td>
+                                <td>#</td>
+                                <td>#</td>
+                                <td>#</td>
+                                <td>#</td>
+                                <td><input type="checkbox"></td>
+                                <td>#</td>
+                                <td>#</td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal"
+                                            data-target="#DetailRequest"><i
+                                            class="bx bx-info-circle font-size-base"></i></button>|
+
+                                    <a href="{{ route('human-resource.pegawai.request-gaji.form-edit') }}"
+                                       class="btn btn-sm btn-outline-warning"><i
+                                            class="bx bx-edit font-size-base"></i>
+                                    </a>
+                                    <button class="btn btn-sm btn-outline-danger btn-delete-employee "
+                                            data-iddelete=" "><i class="bx bx-trash font-size-base"></i>
+                                    </button>
+                                </td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
                     <div class="toolbar row mt-2">
                         <div class="col-md-12 d-flex">
-                            <h2 class="h4 mb-1"> </h2>
+                            <h2 class="h4 mb-1"></h2>
                             <div class="col ml-auto">
                                 <div class="dropdown float-right">
                                     <a href=" "
@@ -203,6 +203,8 @@
             </div>
         </div>
     </div>
+
+    @include('admin.human-resource.pegawai.request-gaji.form-detail')
 @endsection
 
 @push('page-scripts')
@@ -239,6 +241,15 @@
             $("#table-employee").DataTable();
         });
 
+
+        $(document).ready(function () {
+            $('#home-list-item').tab('show');
+        });
+
+        $('.list-group-item').on('click', function (e) {
+            e.preventDefault();
+            $(this).tab('show');
+        });
     </script>
 
 @endpush
