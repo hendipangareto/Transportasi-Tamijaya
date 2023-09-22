@@ -169,7 +169,7 @@
                                            class="btn btn-sm btn-outline-primary"><i
                                                 class="bx bx-info-circle font-size-base"></i>
                                         </a>
-                                        <a href=" "
+                                        <a href="{{ route('human-resource.pegawai.request-gaji.form-edit') }}"
                                            class="btn btn-sm btn-outline-warning"><i
                                                 class="bx bx-edit font-size-base"></i>
                                         </a>

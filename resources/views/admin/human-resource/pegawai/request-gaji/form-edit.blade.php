@@ -23,7 +23,7 @@
                 <div class="card-header" style="background-color: #00b3ff">
                     <div class="toolbar row ">
                         <div class="col-md-12 d-flex">
-                            <h2 class="h4 mb-1">Form Tambah Request Gaji Karyawan</h2>
+                            <h2 class="h4 mb-1">Form Edit Request Gaji Karyawan</h2>
 
                         </div>
                     </div>
@@ -408,7 +408,7 @@
                                         </div>
                                     </div>
 
-{{--                                    LAYOUT KASBON--}}
+                                    {{--                                    LAYOUT KASBON--}}
                                     <div class="tab-pane fade" id="horizontal-profile">
 
                                         <h5 class="mt-3"><b>KASBON</b></h5>
@@ -548,15 +548,16 @@
 @push('page-scripts')
 
     <script>
-        // Aktifkan tab pertama saat halaman dimuat
+
         $(document).ready(function () {
             $('#home-list-item').tab('show');
         });
 
-        // Tangani perubahan tab ketika pengguna mengklik tab lain
+
         $('.list-group-item').on('click', function (e) {
-            e.preventDefault(); // Mencegah tindakan default dari link
-            $(this).tab('show'); // Aktifkan tab yang diklik
+            e.preventDefault();
+            $(this).tab('show');
         });
     </script>
 @endpush
+

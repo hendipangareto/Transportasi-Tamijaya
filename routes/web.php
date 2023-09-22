@@ -185,6 +185,7 @@ Route::group(
                     Route::prefix('request-gaji')->group(function () {
                         Route::get('/list-request-gaji', 'HumanResource\RequestGajiController@getRequestGaji')->name('human-resource.pegawai.request-gaji.list-gaji');
                         Route::get('/form-tambah-request-gaji', 'HumanResource\RequestGajiController@getFormTambah')->name('human-resource.pegawai.request-gaji.form-tambah');
+                        Route::get('/form-edit-request-gaji', 'HumanResource\RequestGajiController@getFormEdit')->name('human-resource.pegawai.request-gaji.form-edit');
 
                     });
 
