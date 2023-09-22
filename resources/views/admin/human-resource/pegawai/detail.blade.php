@@ -8,7 +8,7 @@
                     <h5 class="pb-2 text-center">Detail Data Gaji Pegawai</h5>
                     <div class="card">
                         <div class="table">
-                            ==================================================
+                            <hr style="border-top: 1px dashed #808080;">
                             <div class="row mt-2">
                                 <div class="col-md-12">
                                     <div class="form-group row">
@@ -54,7 +54,7 @@
                                     <div class="form-group row">
                                         <h6 class="col-sm-5">Gaji Pegawai</h6>
                                         <div class="col-sm-7">
-                                            : Rp.{{ $item->g_pokok }}
+                                            : @currency($item->g_pokok)
                                         </div>
                                     </div>
                                 </div>
@@ -129,7 +129,7 @@
                                     </div>
                                 </div>
                             </div>
-                            ==================================================
+                            <hr style="border-top: 1px dashed #808080;">
                         </div>
                         <div class="row ml-1 justify-content-lg-end">
                             <button type="button"   class="btn btn-secondary mr-1"  data-dismiss="modal" > Kembali ➡

@@ -70,7 +70,7 @@
                                     <div class="col-sm-8">
                                         <input type="text" id="edit_g_pokok" name="edit_g_pokok"
                                                class="form-control"
-                                               value="{{ $item->g_pokok }}">
+                                               value=" @currency($item->g_pokok)">
                                     </div>
                                 </div>
                             </div>
@@ -79,7 +79,7 @@
                                     <label class="col-sm-4 col-form-label">Tunjangan Masa Kerja</label>
                                     <div class="col-sm-8">
                                         <input type="text" name="edit_t_masa_kerja" id="edit_t_masa_kerja"
-                                               class="form-control" value="{{ $item->t_masa_kerja }}">
+                                               class="form-control" value="@currency($item->t_masa_kerja)">
                                     </div>
                                 </div>
                             </div>
@@ -90,7 +90,7 @@
                                     <label class="col-sm-4 col-form-label">Tunjangan Transport</label>
                                     <div class="col-sm-8">
                                         <input type="text" id="edit_t_transport" name="edit_t_transport"
-                                               class="form-control" value="{{ $item->t_transport}}">
+                                               class="form-control" value="@currency($item->t_transport)">
                                     </div>
                                 </div>
                             </div>
@@ -99,7 +99,7 @@
                                     <label class="col-sm-4 col-form-label">Tunjangan Kapasitas</label>
                                     <div class="col-sm-8">
                                         <input type="text" id="edit_t_kapasitas" name="edit_t_kapasitas"
-                                               class="form-control" value="{{ $item->t_kapasitas }}">
+                                               class="form-control" value=" @currency($item->t_kapasitas)">
                                     </div>
                                 </div>
                             </div>
@@ -110,7 +110,7 @@
                                     <label class="col-sm-4 col-form-label">Tunjangan Akademik</label>
                                     <div class="col-sm-8">
                                         <input type="text" id="edit_t_akademik" name="edit_t_akademik"
-                                               class="form-control" value="{{ $item->t_akademik }}">
+                                               class="form-control" value="@currency($item->t_akademik)">
                                     </div>
                                 </div>
                             </div>
@@ -119,7 +119,7 @@
                                     <label class="col-sm-4 col-form-label">Tunjangan Struktur</label>
                                     <div class="col-sm-8">
                                         <input type="text" id="edit_t_struktur" name="edit_t_struktur"
-                                               class="form-control" value="{{ $item->t_struktur }}">
+                                               class="form-control" value="@currency($item->t_struktur)">
                                     </div>
                                 </div>
                             </div>
@@ -130,7 +130,7 @@
                                     <label class="col-sm-4 col-form-label">BPJS Kesehatan</label>
                                     <div class="col-sm-8">
                                         <input type="text" id="edit_bpjs_kesehatan" name="edit_bpjs_kesehatan"
-                                               class="form-control" value="{{ $item->bpjs_kesehatan }}">
+                                               class="form-control" value="@currency($item->bpjs_kesehatan)">
                                     </div>
                                 </div>
                             </div>
@@ -140,7 +140,7 @@
                                     <div class="col-sm-8">
                                         <input type="text" id="edit_bpjs_ketenagakerjaan"
                                                name="edit_bpjs_ketenagakerjaan" class="form-control"
-                                               value="{{ $item->bpjs_ketenagakerjaan }}">
+                                               value="@currency($item->bpjs_ketenagakerjaan)">
                                     </div>
                                 </div>
                             </div>

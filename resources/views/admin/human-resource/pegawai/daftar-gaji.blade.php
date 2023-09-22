@@ -149,7 +149,7 @@
                                 <td>{{$item->position_name}}</td>
                                 <td>{{$item->employee_name}}</td>
                                 <td>{{$item->employee_status}}</td>
-                                <td>{{$item->g_pokok}}</td>
+                                <td> @currency($item->g_pokok)</td>
                                 <td>{{$item->keterangan}}</td>
                                 <td class="text-center">
                                     <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal"
