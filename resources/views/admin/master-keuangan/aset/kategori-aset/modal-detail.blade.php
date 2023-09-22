@@ -5,44 +5,56 @@
             <div class="modal-content">
 
                 <div class="modal-body">
-                    <h5 class="pb-2  text-center">Detail Data Kategori Aset</h5>
+                    <h5 class="pb-2 text-center">Detail Data Kategori Aset</h5>
                     <div class="card">
-                        <div class="table-responsive ">
-                            <table  class=" table table-responsive-lg">
-                                <tbody>
-                                <tr>
-                                    <th>Kode Kategori </th>
-
-                                    <th>:  {{ $item->kode_kategori_aset }}</th>
-                                </tr>
-
-                                <tr>
-                                    <th>Nama Kategori</th>
-
-                                    <th>: {{ $item->nama_kategori_aset }}</th>
-                                </tr>
-
-                                <tr>
-                                    <th>Tipe Aset</th>
-
-                                    <th>: {{ $item->tipe_aset }}</th>
-                                </tr>
-
-                                <tr>
-                                    <th>Deskripsi</th>
-
-                                    <th>: {{ $item->deskripsi_kategori_aset}}</th>
-                                </tr>
-                                </tbody>
-
-                            </table>
-
+                        <div class="table">
+                            <hr style="border-top: 1px dashed #808080;">
+                            <div class="row mt-2">
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+                                        <h6 class="col-sm-5">Kode Kategori Aset</h6>
+                                        <div class="col-sm-7">
+                                            : {{ $item->kode_kategori_aset}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+                                        <h6 class="col-sm-5">Nama Kategori Aset</h6>
+                                        <div class="col-sm-7">
+                                            : {{ $item->nama_kategori_aset }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+                                        <h6 class="col-sm-5">Tipe Aset</h6>
+                                        <div class="col-sm-7">
+                                            : {{ $item->tipe_aset }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+                                        <h6 class="col-sm-5">Deskripsi Kategori Aset</h6>
+                                        <div class="col-sm-7">
+                                            : {{ $item->deskripsi_kategori_aset }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr style="border-top: 1px dashed #808080;">
                         </div>
                         <div class="row ml-1 justify-content-lg-end">
                             <button type="button"   class="btn btn-secondary mr-1"  data-dismiss="modal" > Kembali ➡
                             </button>
                         </div>
-
                     </div>
                 </div>
             </div>
