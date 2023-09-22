@@ -31,87 +31,55 @@
                 <div class="card-body mt-2">
                     <div class="toolbar row ">
                         <div class="col-md-12 d-flex">
-                            <h2 class="h4 mb-1"> </h2>
+                            <h2 class="h4 mb-1"></h2>
                             <div class="col ml-auto">
                                 <div class="dropdown float-right">
-                                    <a href="{{ route('human-resource.pegawai.request-gaji.form-tambah') }}"
-                                       class="btn btn-primary mr-1">
-                                        <i class="bx bx-plus-circle"></i> Tambah Data</a>
-                                    <a target="_blank"
-                                       href=""
-                                       type="button"
-                                       class="btn btn-danger text-white mr-1">
-                                        <i class="bx bx-printer"></i> Report PDF
-                                    </a>
+                                    <a href=""
+                                       class="btn btn-warning mr-1">
+                                        <i class="bx bx-arrow-back"></i> Tambah Data</a>
+                                    {{--                                    <a target="_blank"--}}
+                                    {{--                                       href=""--}}
+                                    {{--                                       type="button"--}}
+                                    {{--                                       class="btn btn-danger text-white mr-1">--}}
+                                    {{--                                        <i class="bx bx-printer"></i> Report PDF--}}
+                                    {{--                                    </a>--}}
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="card-header">
-
-
-                        <hr>
-                        <div class="row">
-                            <div class="col-md-2 ">
-                                <div class="card shadow-none bg-transparent border border-secondary mb-3">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Total Aset</h5>
-                                        <hr>
-                                        <h5 class="card-text">Rp.</h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-2 ">
-                                <div class="card shadow-none bg-transparent border border-secondary mb-3">
-                                    <div class="card-body">
-                                        <h5 class="card-title"> Nilai Buku</h5>
-                                        <hr>
-                                        <h5 class="card-text">Rp.</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col ml-auto">
-                            <div class="dropdown float-right mb-3">
-                                <a href="{{ route('master-keuangan.aset.list-data-aset') }}"
-                                   class="btn btn-warning mr-1"><i
-                                        class="fe fe-arrow-left"></i> Kembali
-                                </a>
-                                <button type="submit" class="btn btn-success">Simpan <i
-                                        class="fe fe-check-circle"></i>
-                                </button>
-                            </div>
-                        </div>
-
                         <div class="col-lg">
-                            <small class="text-light fw-semibold">Horizontal</small>
                             <div class="demo-inline-spacing mt-3">
                                 <div class="list-group list-group-horizontal-md text-md-center">
-                                    <a class="list-group-item list-group-item-action active" id="home-list-item" data-bs-toggle="list" href="#horizontal-home">Gaji /Premi</a>
-                                    <a class="list-group-item list-group-item-action" id="profile-list-item" data-bs-toggle="list" href="#horizontal-profile">KASBON</a>
+                                    <a class="list-group-item list-group-item-action active" id="home-list-item"
+                                       data-bs-toggle="list" href="#horizontal-home">GAJI / PREMI</a>
+                                    <a class="list-group-item list-group-item-action" id="profile-list-item"
+                                       data-bs-toggle="list" href="#horizontal-profile">KASBON</a>
                                 </div>
-
                                 <div class="tab-content px-0 mt-0">
                                     <div class="tab-pane fade show active" id="horizontal-home">
-                                        <hr>
-                                        <h5><B>KALKULASI GAJI :</B></h5>
+
+                                        <h5 class="mt-3"><B>KALKULASI GAJI :</B></h5>
                                         <hr>
                                         <div class="row mt-5">
                                             <div class="col-md-6">
                                                 <div class="card mb-4">
                                                     <div class="card-body">
                                                         <div class="mb-3 row">
-                                                            <label for="html5-text-input" class="col-md-3 col-form-label">Bulan / Tahun</label>
+                                                            <label for="html5-text-input"
+                                                                   class="col-md-3 col-form-label">Bulan / Tahun</label>
                                                             <div class="col-md-9">
-                                                                <input class="form-control" type="date" placeholder="nama aset"/>
+                                                                <input class="form-control" type="date"
+                                                                       placeholder="nama aset"/>
                                                             </div>
                                                         </div>
                                                         <div class="mb-3 row">
-                                                            <label for="html5-search-input" class="col-md-3 col-form-label">Nama Pegawai</label>
+                                                            <label for="html5-search-input"
+                                                                   class="col-md-3 col-form-label">Nama Pegawai</label>
                                                             <div class="col-md-9">
-                                                                <select id="largeSelect" class="form-select form-select-lg form-control">
+                                                                <select id="largeSelect"
+                                                                        class="form-select form-select-lg form-control">
                                                                     <option>Pilih Nama Pegawai</option>
                                                                     <option value="1">One</option>
 
@@ -119,37 +87,46 @@
                                                             </div>
                                                         </div>
                                                         <div class="mb-3 row">
-                                                            <label for="html5-email-input" class="col-md-3 col-form-label">Departemen</label>
+                                                            <label for="html5-email-input"
+                                                                   class="col-md-3 col-form-label">Departemen</label>
                                                             <div class="col-md-9">
-                                                                <input class="form-control" type="text"  readonly/>
+                                                                <input class="form-control" type="text" readonly/>
                                                             </div>
                                                         </div>
                                                         <div class="mb-3 row">
-                                                            <label for="html5-url-input" class="col-md-3 col-form-label">Jabatan</label>
+                                                            <label for="html5-url-input"
+                                                                   class="col-md-3 col-form-label">Jabatan</label>
                                                             <div class="col-md-9">
                                                                 <input class="form-control" type="text" readonly/>
                                                             </div>
                                                         </div>
                                                         <div class=" row mb-3">
-                                                            <label for="html5-tel-input" class="col-md-3 col-form-label">Gaji Pokok</label>
+                                                            <label for="html5-tel-input"
+                                                                   class="col-md-3 col-form-label">Gaji Pokok</label>
                                                             <div class="col-md-9">
                                                                 <input class="form-control" type="text" readonly/>
                                                             </div>
                                                         </div>
                                                         <div class=" row mb-3">
-                                                            <label for="html5-tel-input" class="col-md-3 col-form-label">Tunjangan Transport</label>
+                                                            <label for="html5-tel-input"
+                                                                   class="col-md-3 col-form-label">Tunjangan
+                                                                Transport</label>
                                                             <div class="col-md-9">
                                                                 <input class="form-control" type="text" readonly/>
                                                             </div>
                                                         </div>
                                                         <div class=" row mb-3">
-                                                            <label for="html5-tel-input" class="col-md-3 col-form-label">Tunjungan Akademik</label>
+                                                            <label for="html5-tel-input"
+                                                                   class="col-md-3 col-form-label">Tunjungan
+                                                                Akademik</label>
                                                             <div class="col-md-9">
                                                                 <input class="form-control" type="text" readonly/>
                                                             </div>
                                                         </div>
                                                         <div class=" row">
-                                                            <label for="html5-tel-input" class="col-md-3 col-form-label">Tunjangan BPJS KESEHATAN</label>
+                                                            <label for="html5-tel-input"
+                                                                   class="col-md-3 col-form-label">Tunjangan BPJS
+                                                                KESEHATAN</label>
                                                             <div class="col-md-9">
                                                                 <input class="form-control" type="text" readonly/>
                                                             </div>
@@ -161,49 +138,62 @@
                                                 <div class="card mb-4">
                                                     <div class="card-body">
                                                         <div class="mb-3 row">
-                                                            <label for="html5-text-input" class="col-md-3 col-form-label">. </label>
+                                                            <label for="html5-text-input"
+                                                                   class="col-md-3 col-form-label">. </label>
                                                             <div class="col-md-9">
-{{--                                                                <input class="form-control" type="text" disabled/>--}}
+                                                                {{--                                                                <input class="form-control" type="text" disabled/>--}}
                                                             </div>
                                                         </div>
                                                         <div class="mb-3 mt5 row">
-                                                            <label for="html5-search-input" class="col-md-3 col-form-label">Kode Pegawai</label>
+                                                            <label for="html5-search-input"
+                                                                   class="col-md-3 col-form-label">Kode Pegawai</label>
                                                             <div class="col-md-9">
                                                                 <input class="form-control" type="text" readonly/>
                                                             </div>
                                                         </div>
                                                         <div class="mb-3 row">
-                                                            <label for="html5-email-input" class="col-md-3 col-form-label">Status Pegawai</label>
+                                                            <label for="html5-email-input"
+                                                                   class="col-md-3 col-form-label">Status
+                                                                Pegawai</label>
                                                             <div class="col-md-9">
                                                                 <input class="form-control" type="text" readonly/>
                                                             </div>
                                                         </div>
                                                         <div class="mb-3 row">
-                                                            <label for="html5-url-input" class="col-md-3 col-form-label">.</label>
+                                                            <label for="html5-url-input"
+                                                                   class="col-md-3 col-form-label">.</label>
                                                             <div class="col-md-9">
-{{--                                                                <input type="checkbox" placeholder="Pajak"/> Ya--}}
+                                                                {{--                                                                <input type="checkbox" placeholder="Pajak"/> Ya--}}
                                                             </div>
                                                         </div>
                                                         <div class="row mb-3">
-                                                            <label for="html5-tel-input" class="col-md-3 col-form-label">Tunjangan Masa Kerja</label>
-                                                            <div class="col-md-9">
-                                                                <input class="form-control" type="text" readonly/>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mb-3">
-                                                            <label for="html5-tel-input" class="col-md-3 col-form-label">Tunjangan Kapasitas</label>
+                                                            <label for="html5-tel-input"
+                                                                   class="col-md-3 col-form-label">Tunjangan Masa
+                                                                Kerja</label>
                                                             <div class="col-md-9">
                                                                 <input class="form-control" type="text" readonly/>
                                                             </div>
                                                         </div>
                                                         <div class="row mb-3">
-                                                            <label for="html5-tel-input" class="col-md-3 col-form-label">Tunjangan Struktur</label>
+                                                            <label for="html5-tel-input"
+                                                                   class="col-md-3 col-form-label">Tunjangan
+                                                                Kapasitas</label>
+                                                            <div class="col-md-9">
+                                                                <input class="form-control" type="text" readonly/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-3">
+                                                            <label for="html5-tel-input"
+                                                                   class="col-md-3 col-form-label">Tunjangan
+                                                                Struktur</label>
                                                             <div class="col-md-9">
                                                                 <input class="form-control" type="text" readonly/>
                                                             </div>
                                                         </div>
                                                         <div class="row ">
-                                                            <label for="html5-tel-input" class="col-md-3 col-form-label">BPJS Ketenagakerjaan</label>
+                                                            <label for="html5-tel-input"
+                                                                   class="col-md-3 col-form-label">BPJS
+                                                                Ketenagakerjaan</label>
                                                             <div class="col-md-9">
                                                                 <input class="form-control" type="text" readonly/>
                                                             </div>
@@ -213,32 +203,37 @@
                                             </div>
                                         </div>
                                         <hr>
-                                        <h5>ABSENSI</h5>
+                                        <h5><b>ABSENSI</b></h5>
                                         <hr>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="card mb-4">
                                                     <div class="card-body">
                                                         <div class="mb-3 row">
-                                                            <label for="html5-email-input" class="col-md-2 col-form-label"> - masuk</label>
+                                                            <label class="col-md-2 col-form-label"> - masuk</label>
                                                             <div class="col-md-8">
                                                                 <input class="form-control" type="text" readonly/>
                                                             </div>
-                                                            <label for="html5-email-input" class="col-md-2 col-form-label"> Hari</label>
+                                                            <label for="html5-email-input"
+                                                                   class="col-md-2 col-form-label"> Hari</label>
                                                         </div>
                                                         <div class="mb-3 row">
-                                                            <label for="html5-url-input" class="col-md-2 col-form-label"> - Izin</label>
+                                                            <label for="html5-url-input"
+                                                                   class="col-md-2 col-form-label"> - Izin</label>
                                                             <div class="col-md-8">
                                                                 <input class="form-control" type="text" readonly/>
                                                             </div>
-                                                            <label for="html5-url-input" class="col-md-2 col-form-label"> Hari</label>
+                                                            <label for="html5-url-input"
+                                                                   class="col-md-2 col-form-label"> Hari</label>
                                                         </div>
                                                         <div class=" row">
-                                                            <label for="html5-url-input" class="col-md-2 col-form-label"> - Sakit</label>
+                                                            <label for="html5-url-input"
+                                                                   class="col-md-2 col-form-label"> - Sakit</label>
                                                             <div class="col-md-8">
                                                                 <input class="form-control" type="text" readonly/>
                                                             </div>
-                                                            <label for="html5-url-input" class="col-md-2 col-form-label"> Hari</label>
+                                                            <label for="html5-url-input"
+                                                                   class="col-md-2 col-form-label"> Hari</label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -247,96 +242,291 @@
                                                 <div class="card mb-4">
                                                     <div class="card-body">
                                                         <div class="mb-3 row">
-                                                            <label for="html5-url-input" class="col-md-2 col-form-label"> - Alpha</label>
+                                                            <label for="html5-url-input"
+                                                                   class="col-md-2 col-form-label"> - Alpha</label>
                                                             <div class="col-md-8">
                                                                 <input class="form-control" type="text" readonly/>
                                                             </div>
-                                                            <label for="html5-url-input" class="col-md-2 col-form-label"> Hari</label>
+                                                            <label for="html5-url-input"
+                                                                   class="col-md-2 col-form-label"> Hari</label>
                                                         </div>
                                                         <div class="row">
-                                                            <label for="html5-url-input" class="col-md-2 col-form-label"> - Libur</label>
+                                                            <label for="html5-url-input"
+                                                                   class="col-md-2 col-form-label"> - Libur</label>
                                                             <div class="col-md-8">
                                                                 <input class="form-control" type="text" readonly/>
                                                             </div>
-                                                            <label for="html5-url-input" class="col-md-2 col-form-label"> Hari</label>
+                                                            <label for="html5-url-input"
+                                                                   class="col-md-2 col-form-label"> Hari</label>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <hr>
-                                        <h5>POTONGAN</h5>
+                                        <h5><b>POTONGAN</b></h5>
                                         <hr>
                                         <div class="row">
-                                            <div class="col-md-6">
+                                            <div class="col-md-12">
                                                 <div class="card mb-4">
                                                     <div class="card-body">
                                                         <div class="mb-3 row">
-                                                            <label for="html5-email-input" class="col-md-2 col-form-label"> - Absensi</label>
+                                                            <label for="html5-email-input"
+                                                                   class="col-md-2 col-form-label"> - Absensi</label>
+                                                            <div class="col-md-1">
+                                                                <input class="form-control" type="text" readonly/>
+                                                            </div>
+                                                            <label for="html5-email-input"
+                                                                   class="col-md-2 col-form-label"> Jam</label>
+
+                                                            <label for="html5-url-input"
+                                                                   class="col-md-2 col-form-label"> X </label>
+                                                            <div class="col-md-2">
+                                                                <input class="form-control" type="text"/>
+                                                            </div>
+                                                            <label for="html5-url-input"
+                                                                   class="col-md-1 col-form-label"> = </label>
                                                             <div class="col-md-2">
                                                                 <input class="form-control" type="text" readonly/>
                                                             </div>
-                                                            <label for="html5-email-input" class="col-md-2 col-form-label"> Hari</label>
-
-                                                            <label for="html5-url-input" class="col-md-1 col-form-label"> X </label>
-                                                            <div class="col-md-4">
-                                                                <input class="form-control" type="text"  />
-                                                            </div>
-                                                            <label for="html5-url-input" class="col-md-1 col-form-label"> = </label>
                                                         </div>
                                                         <div class="mb-3 row">
-                                                            <label for="html5-url-input" class="col-md-2 col-form-label"> - Terlambat</label>
+                                                            <label for="html5-email-input"
+                                                                   class="col-md-2 col-form-label"> - Terlambat</label>
+                                                            <div class="col-md-1">
+                                                                <input class="form-control" type="text" readonly/>
+                                                            </div>
+                                                            <label for="html5-email-input"
+                                                                   class="col-md-2 col-form-label"> Jam</label>
+
+                                                            <label for="html5-url-input"
+                                                                   class="col-md-2 col-form-label"> X </label>
+                                                            <div class="col-md-2">
+                                                                <input class="form-control" type="text"/>
+                                                            </div>
+                                                            <label for="html5-url-input"
+                                                                   class="col-md-1 col-form-label"> = </label>
                                                             <div class="col-md-2">
                                                                 <input class="form-control" type="text" readonly/>
                                                             </div>
-                                                            <label for="html5-url-input" class="col-md-2 col-form-label"> Hari</label>
                                                         </div>
-                                                        <div class=" row">
-                                                            <label for="html5-url-input" class="col-md-2 col-form-label"> - Sakit</label>
-                                                            <div class="col-md-8">
+                                                        <div class="mb-3 row">
+                                                            <label for="html5-email-input"
+                                                                   class="col-md-2 col-form-label"> - Pulang
+                                                                Awal</label>
+                                                            <div class="col-md-1">
                                                                 <input class="form-control" type="text" readonly/>
                                                             </div>
-                                                            <label for="html5-url-input" class="col-md-2 col-form-label"> Hari</label>
+                                                            <label for="html5-email-input"
+                                                                   class="col-md-2 col-form-label"> Jam</label>
+
+                                                            <label for="html5-url-input"
+                                                                   class="col-md-2 col-form-label"> X </label>
+                                                            <div class="col-md-2">
+                                                                <input class="form-control" type="text"/>
+                                                            </div>
+                                                            <label for="html5-url-input"
+                                                                   class="col-md-1 col-form-label"> = </label>
+                                                            <div class="col-md-2">
+                                                                <input class="form-control" type="text" readonly/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-3 row">
+                                                            <label for="html5-email-input"
+                                                                   class="col-md-9 col-form-label"> - Kasbon</label>
+                                                            <label for="html5-url-input"
+                                                                   class="col-md-1 col-form-label"> = </label>
+                                                            <div class="col-md-2">
+                                                                <input class="form-control" type="text" readonly/>
+                                                            </div>
                                                         </div>
                                                     </div>
+                                                    <hr>
+                                                    <h5><b>TAMBAHAN</b></h5>
+                                                    <hr>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
+                                            <div class="col-md-12">
                                                 <div class="card mb-4">
                                                     <div class="card-body">
                                                         <div class="mb-3 row">
-                                                            <label for="html5-url-input" class="col-md-2 col-form-label"> - Alpha</label>
-                                                            <div class="col-md-8">
+                                                            <label for="html5-email-input"
+                                                                   class="col-md-2 col-form-label"> - Lembur</label>
+                                                            <div class="col-md-1">
                                                                 <input class="form-control" type="text" readonly/>
                                                             </div>
-                                                            <label for="html5-url-input" class="col-md-2 col-form-label"> Hari</label>
+                                                            <label for="html5-email-input"
+                                                                   class="col-md-2 col-form-label"> Jam</label>
+
+                                                            <label for="html5-url-input"
+                                                                   class="col-md-2 col-form-label"> X </label>
+                                                            <div class="col-md-2">
+                                                                <input class="form-control" type="text"/>
+                                                            </div>
+                                                            <label for="html5-url-input"
+                                                                   class="col-md-1 col-form-label"> = </label>
+                                                            <div class="col-md-2">
+                                                                <input class="form-control" type="text" readonly/>
+                                                            </div>
                                                         </div>
-                                                        <div class="row">
-                                                            <label for="html5-url-input" class="col-md-2 col-form-label"> - Libur</label>
-                                                            <div class="col-md-8">
+                                                        <div class="  row">
+                                                            <label for="html5-email-input"
+                                                                   class="col-md-9 col-form-label"> -
+                                                                Bonus/Insentive</label>
+                                                            <label for="html5-url-input"
+                                                                   class="col-md-1 col-form-label"> = </label>
+                                                            <div class="col-md-2">
                                                                 <input class="form-control" type="text" readonly/>
                                                             </div>
-                                                            <label for="html5-url-input" class="col-md-2 col-form-label"> Hari</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <div class="mb-3 row">
+                                                            <h4 class="col-md-9">TOTAL DITERIMA</h4>
+                                                            {{--                                                            <label for="html5-email-input" class="col-md-9 col-form-label"> - Bonus/Insentive</label>--}}
+                                                            <label for="html5-url-input"
+                                                                   class="col-md-1 col-form-label"> = </label>
+                                                            <div class="col-md-2">
+                                                                <input class="form-control" type="text" readonly/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col ml-auto">
+                                                        <div class="dropdown float-right mb-3">
+                                                            <a href=" "
+                                                               class="btn btn-warning mr-1"><i
+                                                                    class="fe fe-arrow-left"></i> Kembali
+                                                            </a>
+                                                            <button type="submit" class="btn btn-success">Simpan <i
+                                                                    class="bx bx-save"></i>
+                                                            </button>
                                                         </div>
                                                     </div>
                                                 </div>
+
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="tab-pane fade" id="horizontal-profile">
-                                        Muffin lemon drops chocolate chupa chups jelly beans dessert jelly-o. Soufflé gummies gummies. Ice cream
-                                        powder marshmallow cotton candy oat cake wafer. Marshmallow gingerbread tootsie roll. Chocolate cake bonbon
-                                        jelly beans lollipop jelly beans halvah marzipan danish pie. Oat cake chocolate cake pudding bear claw
-                                        liquorice gingerbread icing sugar plum brownie. Toffee cookie apple pie cheesecake bear claw sugar plum
-                                        wafer gummi bears fruitcake.
+
+                                        <h5 class="mt-3"><b>KASBON</b></h5>
+                                        <hr>
+                                        <div class="row  ">
+                                            <div class="col-md-6">
+                                                <div class="card mb-4">
+                                                    <div class="card-body">
+                                                        <div class="mb-3 row">
+                                                            <label for="html5-text-input"
+                                                                   class="col-md-3 col-form-label">Bulan / Tahun</label>
+                                                            <div class="col-md-9">
+                                                                <input class="form-control" type="date"
+                                                                       placeholder="nama aset"/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-3 row">
+                                                            <label for="html5-search-input"
+                                                                   class="col-md-3 col-form-label">Nama Pegawai</label>
+                                                            <div class="col-md-9">
+                                                                <select id="largeSelect"
+                                                                        class="form-select form-select-lg form-control">
+                                                                    <option>Pilih Nama Pegawai</option>
+                                                                    <option value="1">One</option>
+
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-3 row">
+                                                            <label for="html5-email-input"
+                                                                   class="col-md-3 col-form-label">Departemen</label>
+                                                            <div class="col-md-9">
+                                                                <input class="form-control" type="text" readonly/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <label for="html5-url-input"
+                                                                   class="col-md-3 col-form-label">Jabatan</label>
+                                                            <div class="col-md-9">
+                                                                <input class="form-control" type="text" readonly/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="card mb-4">
+                                                    <div class="card-body">
+                                                        <div class="mb-3 row">
+                                                            <label for="html5-text-input"
+                                                                   class="col-md-3 col-form-label">. </label>
+                                                            <div class="col-md-9">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-3 mt5 row">
+                                                            <label for="html5-search-input"
+                                                                   class="col-md-3 col-form-label">Kode Pegawai</label>
+                                                            <div class="col-md-9">
+                                                                <input class="form-control" type="text" readonly/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-3 row">
+                                                            <label for="html5-email-input"
+                                                                   class="col-md-3 col-form-label">Status
+                                                                Pegawai</label>
+                                                            <div class="col-md-9">
+                                                                <input class="form-control" type="text" readonly/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <label for="html5-url-input"
+                                                                   class="col-md-3 col-form-label">.</label>
+                                                            <div class="col-md-9">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <h5><b>PENGAJUAN KASBON</b></h5>
+                                        <hr>
+                                        <div class="row  ">
+                                            <div class="col-md-6">
+                                                <div class="card mb-4">
+                                                    <div class="card-body">
+                                                        <div class="mb-3 row">
+                                                            <label for="html5-text-input"
+                                                                   class="col-md-3 col-form-label">Nominal</label>
+                                                            <div class="col-md-9">
+                                                                <input class="form-control" type="text"/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-3 row">
+                                                            <label for="html5-search-input"
+                                                                   class="col-md-3 col-form-label">Keterangan</label>
+                                                            <div class="col-md-9">
+                                                                <textarea class="form-control" name="deskripsi_kategori_aset"
+                                                                          id="deskripsi_kategori_aset" cols="50"
+                                                                          rows="3">
+                                                                </textarea>
+                                                            </div>
+                                                            <div class="form-group">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
                                     </div>
 
                                 </div>
                             </div>
                         </div>
                     </div>
-
 
 
                 </div>
@@ -346,16 +536,16 @@
 @endsection
 @push('page-scripts')
 
-<script>
-    // Aktifkan tab pertama saat halaman dimuat
-    $(document).ready(function () {
-        $('#home-list-item').tab('show');
-    });
+    <script>
+        // Aktifkan tab pertama saat halaman dimuat
+        $(document).ready(function () {
+            $('#home-list-item').tab('show');
+        });
 
-    // Tangani perubahan tab ketika pengguna mengklik tab lain
-    $('.list-group-item').on('click', function (e) {
-        e.preventDefault(); // Mencegah tindakan default dari link
-        $(this).tab('show'); // Aktifkan tab yang diklik
-    });
-</script>
+        // Tangani perubahan tab ketika pengguna mengklik tab lain
+        $('.list-group-item').on('click', function (e) {
+            e.preventDefault(); // Mencegah tindakan default dari link
+            $(this).tab('show'); // Aktifkan tab yang diklik
+        });
+    </script>
 @endpush
