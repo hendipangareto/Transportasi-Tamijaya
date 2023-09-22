@@ -269,7 +269,10 @@
                             <a href="{{ route('human-resource.pegawai.kinerja-karyawan.list-kinerja') }}"><i
                                     class="bx bx-right-arrow-alt"></i><span class="menu-item">Kinerja Karyawan</span></a>
                         </li>
-
+                        <li @if (Request::segment(3) == 'data-absensi') class="active" @endif>
+                            <a href="{{ route('human-resource.pegawai.kinerja-karyawan.list-data-absensi') }}"><i
+                                    class="bx bx-right-arrow-alt"></i><span class="menu-item">Data Absensi</span></a>
+                        </li>
                     </ul>
                 </li>
             @endif

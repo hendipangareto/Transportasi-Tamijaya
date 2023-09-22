@@ -190,9 +190,10 @@ Route::group(
 
                     Route::prefix('kinerja-karyawan')->group(function () {
                         Route::get('/list-request-gaji', 'HumanResource\KinerjaKaryawanController@getKinerjaKaryawan')->name('human-resource.pegawai.kinerja-karyawan.list-kinerja');
-
                     });
-
+                    Route::prefix('data-absensi')->group(function () {
+                        Route::get('/list-data-absensi', 'HumanResource\DataAbsensiController@getDataAbsensi')->name('human-resource.pegawai.kinerja-karyawan.list-data-absensi');
+                    });
                 });
             });
 
