@@ -186,6 +186,10 @@ Route::group(
                         Route::get('/list-request-gaji', 'HumanResource\RequestGajiController@getRequestGaji')->name('human-resource.pegawai.request-gaji.list-gaji');
                         Route::get('/form-tambah-request-gaji', 'HumanResource\RequestGajiController@getFormTambah')->name('human-resource.pegawai.request-gaji.form-tambah');
                         Route::get('/form-edit-request-gaji', 'HumanResource\RequestGajiController@getFormEdit')->name('human-resource.pegawai.request-gaji.form-edit');
+                    });
+
+                    Route::prefix('kinerja-karyawan')->group(function () {
+                        Route::get('/list-request-gaji', 'HumanResource\KinerjaKaryawanController@getKinerjaKaryawan')->name('human-resource.pegawai.kinerja-karyawan.list-kinerja');
 
                     });
 

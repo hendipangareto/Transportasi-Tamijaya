@@ -266,7 +266,7 @@
                             </ul>
                         </li>
                         <li @if (Request::segment(3) == 'kinerja-karyawan') class="active" @endif>
-                            <a href=" "><i
+                            <a href="{{ route('human-resource.pegawai.kinerja-karyawan.list-kinerja') }}"><i
                                     class="bx bx-right-arrow-alt"></i><span class="menu-item">Kinerja Karyawan</span></a>
                         </li>
 
