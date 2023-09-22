@@ -57,43 +57,56 @@
             <div class="modal-content">
 
                 <div class="modal-body">
-                    <h5 class="pb-2  text-center">Detail Data Sub-Akun</h5>
+                    <h5 class="pb-2 text-center">Detail Data Sub Akun</h5>
                     <div class="card">
-                        <div class="table-responsive ">
-                            <table class="table datatable-invoice border-top">
-                                <thead>
-                                <tr>
-                                    <th>Kode Sub Akun</th>
-                                    <td>: {{ $item->kode_sub_akun }}</td>
-                                </tr>
-                                </thead>
-                                <thead>
-                                <tr>
-                                    <th>Nama Sub-Akun</th>
-                                    <td>: {{ $item->nama_sub_akun }}</td>
-                                </tr>
-                                </thead>
-                                <thead>
-                                <tr>
-                                    <th>Akun</th>
-                                    <td>: {{ $item->akun }}</td>
-                                </tr>
-                                </thead>
-                                <thead>
-                                <tr>
-                                    <th>Deskripsi</th>
-                                    <td>: {{ $item->deskripsi_sub_akun}}</td>
-                                </tr>
-                                </thead>
-
-                            </table>
-
+                        <div class="table">
+                            <hr style="border-top: 1px dashed #808080;">
+                            <div class="row mt-2">
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+                                        <h6 class="col-sm-5">Kode Akun</h6>
+                                        <div class="col-sm-7">
+                                            : {{ $item->kode_sub_akun}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+                                        <h6 class="col-sm-5">Nama Sub Akun</h6>
+                                        <div class="col-sm-7">
+                                            : {{ $item->nama_sub_akun }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+                                        <h6 class="col-sm-5">Nama Akun</h6>
+                                        <div class="col-sm-7">
+                                            : {{ $item->akun }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+                                        <h6 class="col-sm-5">Deskripsi</h6>
+                                        <div class="col-sm-7">
+                                            : {{ $item->deskripsi_sub_akun }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr style="border-top: 1px dashed #808080;">
                         </div>
                         <div class="row ml-1 justify-content-lg-end">
                             <button type="button"   class="btn btn-secondary mr-1"  data-dismiss="modal" > Kembali ➡
                             </button>
                         </div>
-
                     </div>
                 </div>
             </div>
