@@ -41,7 +41,7 @@
                                     <a href=" "
                                        class="btn btn-primary mr-1" data-toggle="modal" data-target="#TambahKategoriPajak">
                                         <i class="bx bx-plus-circle"></i> Tambah Data</a>
-                                    <a target="_blank" href="{{ route('master-keuangan.aset.cetak-pdf-kategori-aset') }}metode_penyusutan={{ifIsset(request()->id_metode_penyusutan)}}" type="button" class="btn btn-danger text-white mr-1">
+                                    <a target="_blank" href="{{ route('master-keuangan.aset.cetak-pdf') }}?metode_penyusutan={{ request()->input('id_metode_penyusutan') }}" type="button" class="btn btn-danger text-white mr-1">
                                         <i class="bx bxs-file-pdf"></i> Report PDF
                                     </a>
 
@@ -61,10 +61,10 @@
                                         <select name="id_metode_penyusutan" id="id_metode_penyusutan" class="form-control">
                                             <option selected disabled>Pilih Metode Penyusutan</option>
                                             @foreach($MetodePenyusutan as $bg)
-{{--                                                @php--}}
-{{--                                                    $selected = ($params['id_metode_penyusutan'] == $bg->id) ? "selected" : "";--}}
-{{--                                                @endphp--}}
-                                                <option value="{{$bg->id}}" >{{$bg->nama_metode_penyusutan}}</option>
+                                                @php
+                                                    $selected = ($params['id_metode_penyusutan'] == $bg->id) ? "selected" : "";
+                                                @endphp
+                                                <option value="{{$bg->id}}" {{ $selected }}>{{$bg->nama_metode_penyusutan}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -119,7 +119,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="8" class="text-center">Tidak ada data  kategori aset.</td>
+                                    <td colspan="8" class="text-center">Tidak ada data  kategori pajak.</td>
                                 </tr>
                             @endforelse
                             </tbody>

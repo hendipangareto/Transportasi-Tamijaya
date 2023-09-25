@@ -25,7 +25,7 @@ class DataAset extends Model
         'akun_aset',
         'akun_akumulasi_penyusutan_aset',
         'akun_beban_penyusutan_aset',
-        'lampiran_aset',
+//        'lampiran_aset',
         'kuantitas',
         'id_satuan',
         'umur_aset',

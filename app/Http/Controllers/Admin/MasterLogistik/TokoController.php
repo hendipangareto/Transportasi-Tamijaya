@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\MasterDataLogistik\Toko;
 use App\Models\MasterData\City;
 use App\Models\MasterData\Province;
-
+use Barryvdh\DomPDF\Facade as PDF;
 class TokoController extends Controller
 {
     public function getToko (){
@@ -83,5 +83,28 @@ class TokoController extends Controller
         } catch (\Exception $e) {
             return redirect(route('admin.master-logistik.toko.list-toko'))->with('pesan-gagal','Anda gagal menghapus data toko');
         }
+    }
+
+    public function TokoPDF()
+    {
+        $toko = Toko::select('tokos.*', 'cities.city_name as city', 'provinces.state_name as province')
+            ->join('provinces', 'provinces.id', '=', 'tokos.id_province')
+            ->join('cities', 'cities.id', '=', 'tokos.id_city')->get();
+
+        $filename = 'Toko' . "_" . now()->format('Y_m_d_H_i_s') . '.pdf';
+
+        $pdf = PDF::loadView('admin.master-logistik.toko.cetak-pdf', ['toko' => $toko]);
+
+        $pdf->setPaper('A4', 'portrait');
+
+        // Set Page Number
+        $canvas = $pdf->getDomPDF()->getCanvas();
+        $pdf->getDomPDF()->set_option('isPhpEnabled', true);
+        $canvas->page_text(550, 820, "Page {PAGE_NUM}", null, 8);
+
+
+        $canvas->page_text(550 / 2, 820, now()->format('d-m-Y'), null, 8);
+        $canvas->page_text(550 / 16, 820, 'PT Anugerah Karya Utami Gemilang', null, 8);
+        return $pdf->stream($filename);
     }
 }

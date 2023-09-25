@@ -53,26 +53,26 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form action="">
-                        @csrf
-                        <div class="row">
-                            <div class="col-md-2 col-sm-12">
-                                <div class="form-group">
-                                    <label for="">Metode Penyusutan</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-md-2 col-sm-12">
-                                <div class="form-group">
-                                    <label for="" style="color: white">Filter</label><br>
-                                    <button class="btn btn-outline-primary">Filter <i
-                                            class="bx bx-filter"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
+{{--                    <form action="">--}}
+{{--                        @csrf--}}
+{{--                        <div class="row">--}}
+{{--                            <div class="col-md-2 col-sm-12">--}}
+{{--                                <div class="form-group">--}}
+{{--                                    <label for="">Metode Penyusutan</label>--}}
+{{--                                    <input type="text" class="form-control">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <div class="col-md-2 col-sm-12">--}}
+{{--                                <div class="form-group">--}}
+{{--                                    <label for="" style="color: white">Filter</label><br>--}}
+{{--                                    <button class="btn btn-outline-primary">Filter <i--}}
+{{--                                            class="bx bx-filter"></i></button>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </form>--}}
                     <br>
-                    <div class="table-responsive"  >
+                    <div class="table-responsive">
                         <table class="table table-bordered table-hover" id="table-bagian">
                             <thead>
                             <tr class="text-center">

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\MasterKeuangan\KategoriPajak;
 use App\Models\MasterKeuangan\MetodePenyusutan;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade as PDF;
 class KategoriPajakController extends Controller
 {
     public function getKategoriPajak(Request $request)
@@ -21,6 +22,7 @@ class KategoriPajakController extends Controller
             'id_metode_penyusutan' => $id_metode_penyusutan,
         ];
 
+
         $KategoriPajak= KategoriPajak::select("kategori_pajaks.*", 'metode_penyusutans.nama_metode_penyusutan as metode_penyusutan')
             ->join('metode_penyusutans', 'metode_penyusutans.id', '=', 'kategori_pajaks.id_metode_penyusutan')
             ->orderBy('metode_penyusutans.id')
@@ -30,7 +32,7 @@ class KategoriPajakController extends Controller
             ->get();
 //        dd($KategoriPajak);
 
-        return view('admin.master-keuangan.kategori-pajak.list-kategori-pajak', compact('KategoriPajak', 'MetodePenyusutan'));
+        return view('admin.master-keuangan.kategori-pajak.list-kategori-pajak', compact('KategoriPajak', 'MetodePenyusutan', 'params'));
     }
 
     public function TambahKategoriPajak(Request $request)
@@ -87,5 +89,34 @@ class KategoriPajakController extends Controller
         } catch (\Exception $e) {
             return redirect(route('master-keuangan.aset.list-kategori-pajak'))->with('pesan-gagal', 'Anda gagal menghapus data kategori pajak');
         }
+    }
+
+
+    public function PdfPajak()
+    {
+        $id_metode_penyusutan = request()->metode_penyusutan;
+
+        $KategoriPajak= KategoriPajak::select("kategori_pajaks.*", 'metode_penyusutans.nama_metode_penyusutan as metode_penyusutan')
+            ->join('metode_penyusutans', 'metode_penyusutans.id', '=', 'kategori_pajaks.id_metode_penyusutan')
+            ->orderBy('metode_penyusutans.id')
+            ->when(!empty($id_metode_penyusutan), function ($query) use ($id_metode_penyusutan) {
+                $query->where('kategori_pajaks.id_metode_penyusutan', $id_metode_penyusutan);
+            })
+            ->get();
+        $filename = 'KategoriPajak' . "_" . now()->format('Y_m_d_H_i_s') . '.pdf';
+
+        $pdf = PDF::loadView('admin.master-keuangan.kategori-pajak.cetak-pdf', compact('KategoriPajak') );
+
+        $pdf->setPaper('A4', 'portrait');
+
+        // Set Page Number
+        $canvas = $pdf->getDomPDF()->getCanvas();
+        $pdf->getDomPDF()->set_option('isPhpEnabled', true);
+        $canvas->page_text(550, 820, "Page {PAGE_NUM}", null, 8);
+
+
+        $canvas->page_text(550 / 2, 820, now()->format('d-m-Y'), null, 8);
+        $canvas->page_text(550 / 16, 820,  'PT Anugerah Karya Utami Gemilang', null, 8);
+        return $pdf->stream($filename);
     }
 }

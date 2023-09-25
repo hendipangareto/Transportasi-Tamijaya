@@ -258,6 +258,7 @@ Route::group(
                         Route::post('/tambah-kategori-pajak', 'MasterKeuangan\KategoriPajakController@TambahKategoriPajak')->name('master-keuangan.aset.tambah-kategori-pajak');
                         Route::post('/update-kategori-pajak/{id}', 'MasterKeuangan\KategoriPajakController@UpdateKategoriPajak')->name('master-keuangan.aset.update-kategori-pajak');
                         Route::get('/delete-kategori-pajak/{id}', 'MasterKeuangan\KategoriPajakController@DeleteKategoriPajak')->name('master-keuangan.aset.delete-kategori-pajak');
+                        Route::get('/cetak-pdf', 'MasterKeuangan\KategoriPajakController@PdfPajak')->name('master-keuangan.aset.cetak-pdf');
                     });
 
                     Route::prefix('metode-penyusutan')->group(function () {
@@ -265,6 +266,7 @@ Route::group(
                         Route::post('/tambah-metode-penyusutan', 'MasterKeuangan\MetodePenyusutanController@TambahMetodePenyusutan')->name('master-keuangan.metode-penyusutan.tambah-metode-penyusutan');
                         Route::post('/update-metode-penyusutan/{id}', 'MasterKeuangan\MetodePenyusutanController@UpdateMetodePenyusutan')->name('master-keuangan.metode-penyusutan.update-metode-penyusutan');
                         Route::get('/delete-metode-penyusutan/{id}', 'MasterKeuangan\MetodePenyusutanController@DeleteMetodePenyusutan')->name('master-keuangan.metode-penyusutan.delete-metode-penyusutan');
+                        Route::get('/cetak-pdf', 'MasterKeuangan\MetodePenyusutanController@PenyusutanPDF')->name('master-keuangan.metode-penyusutan.cetak-pdf');
                     });
 
                 });
@@ -327,6 +329,8 @@ Route::group(
                     Route::post('/simpan-toko', 'MasterLogistik\TokoController@SimpanToko')->name('admin.master-logistik.toko.simpan-toko');
                     Route::post('/update-toko/{id}', 'MasterLogistik\TokoController@UpdateToko')->name('admin.master-logistik.toko.update-toko');
                     Route::get('/delete-toko/{id}', 'MasterLogistik\TokoController@DeleteToko')->name('admin.master-logistik.toko.delete-toko');
+
+                    Route::get('/cetak-pdf-toko', 'MasterLogistik\TokoController@TokoPDF')->name('admin.master-logistik.toko.cetak-pdf-toko');
 
                 });
 
@@ -571,24 +575,4 @@ Route::resource('agent/agent-schedule', 'Agent\ScheduleAgentController');
 #endregion
 
 
-Route::get('download/{filename}', function ($filename) {
-    $file_path = storage_path('app/public/' . $filename);
-    if (file_exists($file_path)) {
-        return Response::download($file_path, $filename, ['Content-Length: ' . filesize($file_path)]);
-    } else {
-        exit('File yang ada request tidak ditemukan di server kami!');
-    }
-})->where('filename', '[A-Za-z0-9\-\_\.]+')->name('download_file');
 
-
-Route::get('files/{filename}', function ($filename) {
-    $path = storage_path('app/public/' . $filename);
-    if (!File::exists($path)) {
-        abort(404);
-    }
-    $file = File::get($path);
-    $type = File::mimeType($path);
-    $response = Response::make($file, 200);
-    $response->header("Content-Type", $type);
-    return $response;
-})->name('storage_file');

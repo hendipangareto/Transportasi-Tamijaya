@@ -34,12 +34,12 @@ class CreateDataAsetsTable extends Migration
             $table->string('akun_aset');
             $table->string('akun_akumulasi_penyusutan_aset');
             $table->string('akun_beban_penyusutan_aset');
-            $table->string('lampiran_aset');
+            $table->string('lampiran_aset')->nullable();
             $table->string('kuantitas');
             $table->unsignedBigInteger('id_satuan')->nullable();
             $table->foreign('id_satuan')->references('id')->on('satuans');
             $table->date('umur_aset');
-            $table->decimal('rasio', 5, 4);
+            $table->double('rasio');
             $table->string('nilai_sisa');
             $table->timestamps();
         });

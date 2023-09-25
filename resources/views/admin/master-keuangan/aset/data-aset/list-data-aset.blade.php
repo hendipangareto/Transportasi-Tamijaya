@@ -88,33 +88,49 @@
                                 <th class="w-3p">Action</th>
                             </tr>
                             </thead>
-                            <tbody id="show-data-employee">
-                            <tr class="text-center">
-                                <td>1</td>
-                                <td>1101</td>
-                                <td>Mobil Pickup</td>
-                                <td>Kendaraan</td>
-                                <td>Izuzu</td>
-                                <td></td>
-                                <td>2</td>
-
-                                <td>unit</td>
-                                <td>
-                                    <a href=""
-                                       class="btn btn-sm btn-outline-primary" data-toggle="modal"
-                                       data-target="#DetailAkun"><i
-                                            class="bx bx-info-circle font-size-base"></i>
-                                    </a>
-                                    <a href=""
-                                       class="btn btn-sm btn-outline-warning" data-toggle="modal"
-                                       data-target="#EditSubAkun"><i
-                                            class="bx bx-pencil font-size-base"></i>
-                                    </a>
-                                    <button class="btn btn-sm btn-outline-danger btn-delete-employee "
-                                            data-iddelete=""><i class="bx bx-trash font-size-base"></i>
-                                    </button>
-                                </td>
-                            </tr>
+                            <tbody>
+                            @forelse ($DataAset as $item)
+                                <tr class="text-center">
+                                    <td>{{ $loop->iteration }} </td>
+                                    <td>{{ $item->kode_aset }}</td>
+                                    <td>{{ $item->nama_aset}}</td>
+                                    <td>{{ $item->kategori_aset}}</td>
+                                    <td>{{ $item->merk_aset}}</td>
+                                    <td>{{ $item->spesifikasi_aset}}</td>
+                                    <td>{{ $item->catatan_aset}}</td>
+                                    <td>{{ $item->tanggal_beli_aset}}</td>
+                                    <td>{{ $item->tanggal_pakai_aset}}</td>
+                                    <td>{{ $item->lokasi_awal_aset}}</td>
+                                    <td>{{ $item->pajak_aset}}</td>
+                                    <td>{{ $item->id_kategori_pajak}}</td>
+                                    <td>{{ $item->aset_tidak_berwujud}}</td>
+                                    <td>{{ $item->metode_penyusutan}}</td>
+                                    <td>{{ $item->akun_aset}}</td>
+                                    <td>{{ $item->akun_akumulasi_penyusutan_aset}}</td>
+                                    <td>{{ $item->akun_beban_penyusutan_aset}}</td>
+                                    <td>{{ $item->lampiran_aset}}</td>
+                                    <td>{{ $item->kuantitas}}</td>
+                                    <td>{{ $item->satuan}}</td>
+                                    <td>{{ $item->umur_aset}}</td>
+                                    <td>{{ $item->rasio}}</td>
+                                    <td>{{ $item->nilai_sisa   }}</td>
+                                    <td>
+                                        <a href=""
+                                           class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#DetailKategori-{{ $item->id }}"><i
+                                                class="bx bx-info-circle font-size-base"></i>
+                                        </a>
+                                        <a href=""
+                                           class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#UpdateKategori-{{ $item->id }}"><i
+                                                class="bx bx-edit font-size-base"></i>
+                                        </a>
+                                        <a href="{{ route('master-keuangan.aset.delete-kategori-aset', ['id' => $item->id]) }}" class="btn btn-outline-danger btn-sm delete-button"><i class="bx bx-trash"></i></a>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="9" class="text-center">Tidak ada data aset.</td>
+                                </tr>
+                            @endforelse
                             </tbody>
                         </table>
                     </div>

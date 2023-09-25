@@ -21,6 +21,7 @@
     <form action="{{ route('master-keuangan.aset.data-aset.simpan-data-aset') }}" id="form-tambah-karyawan" method="post"
           enctype="multipart/form-data">
         @csrf
+        <input type="hidden" id="id" name="id">
         <div class="col-md-12 my-4">
             <div class="card shadow">
                 <div class="card-header" style="background-color: #00b3ff">
@@ -48,8 +49,8 @@
                                         <div class="col-md-9">
                                             <select id="id_kategori_aset" name="id_kategori_aset"  class="form-select form-select-lg form-control">
                                                 <option selected disabled>Pilih Kategori</option>
-                                                @foreach($KategoriAset as $item)
-                                                    <option value="{{$item->id}}">{{ $item->nama_kategori_aset}}</option>
+                                                @foreach($KategoriAset as $ka)
+                                                    <option value="{{$ka->id}}">{{ $ka->nama_kategori_aset}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -102,7 +103,7 @@
                                     <div class="mb-3 row">
                                         <label for="html5-url-input" class="col-md-3 col-form-label">Pajak</label>
                                         <div class="col-md-9">
-                                            <input type="checkbox" name="pajak_aset" id="pajak_aset" placeholder="Pajak"/> Ya
+                                            <input type="text" name="pajak_aset" id="pajak_aset" placeholder="Pajak"/> Ya
                                         </div>
                                     </div>
                                     <div class="row">
@@ -111,8 +112,8 @@
                                         <div class="col-md-9">
                                             <select id="id_kategori_pajak" name="id_kategori_pajak"  class="form-select form-select-lg form-control">
                                                 <option selected disabled>Kategori Pajak</option>
-                                                @foreach($KategoriPajak as $item)
-                                                    <option value="{{$item->id}}">{{ $item->nama_kategori_pajak}}</option>
+                                                @foreach($KategoriPajak as $kp)
+                                                    <option value="{{$kp->id}}">{{ $kp->nama_kategori_pajak}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -129,7 +130,7 @@
                                     <div class="mb-3 row">
                                         <label for="html5-text-input" class="col-md-3 col-form-label">Aset Tidak Berwujud</label>
                                         <div class="col-md-9">
-                                            <input  type="checkbox" name="aset_tidak_berwujud" id="aset_tidak_berwujud" placeholder="nama aset"/> Ya
+                                            <input  type="text" name="aset_tidak_berwujud" id="aset_tidak_berwujud" placeholder="nama aset"/> Ya
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
@@ -137,8 +138,8 @@
                                         <div class="col-md-9">
                                             <select id="id_metode_penyusutan" name="id_metode_penyusutan"  class="form-select form-select-lg form-control">
                                                 <option selected disabled>Kategori Metode Penyusutan</option>
-                                                @foreach($MetodePenyusutan as $item)
-                                                    <option value="{{$item->id}}">{{ $item->nama_metode_penyusutan}}</option>
+                                                @foreach($MetodePenyusutan as $mp)
+                                                    <option value="{{$mp->id}}">{{ $mp->nama_metode_penyusutan}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -161,13 +162,13 @@
                                             <input class="form-control" type="text" name="akun_beban_penyusutan_aset" id="akun_beban_penyusutan_aset" placeholder="Akun Beban Penyusutan"/>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <label for="html5-tel-input" class="col-md-3 col-form-label">Lampiran</label>
-                                        <div class="col-md-9">
+{{--                                    <div class="row">--}}
+{{--                                        <label for="html5-tel-input" class="col-md-3 col-form-label">Lampiran</label>--}}
+{{--                                        <div class="col-md-9">--}}
 
-                                            <input class="form-control" type="file" name="lampiran_aset" id="lampiran_aset" placeholder="Akun Beban Penyusutan"/>
-                                        </div>
-                                    </div>
+{{--                                            <input class="form-control" type="file" name="lampiran_aset" id="lampiran_aset" placeholder="Akun Beban Penyusutan"/>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
                                 </div>
                             </div>
                         </div>
@@ -186,8 +187,8 @@
                                         <div class="col-md-9">
                                             <select id="id_satuan" name="id_satuan"  class="form-select form-select-lg form-control">
                                                 <option selected disabled>Kategori Satuan</option>
-                                                @foreach($satuan as $item)
-                                                    <option value="{{$item->id}}">{{ $item->nama_satuan}}</option>
+                                                @foreach($satuan as $Stn)
+                                                    <option value="{{$Stn->id}}">{{ $Stn->nama_satuan}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -199,22 +200,14 @@
                                                 <div class="col-md-4">
                                                     <input class="form-control" type="date" name="umur_aset" id="umur_aset" placeholder="Umur Aset"/>
                                                 </div>
-                                                <div class="col-md-2">
-                                                   Tahun
-                                                </div>
-{{--                                                <div class="col-md-4">--}}
-{{--                                                    <input class="form-control" type="text" placeholder="Tanggal Beli"/>--}}
-{{--                                                </div>--}}
-{{--                                                <div class="col-md-2">--}}
-{{--                                                    Bulan--}}
-{{--                                                </div>--}}
+
                                             </div>
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
                                         <label for="html5-url-input" class="col-md-3 col-form-label">Rasio</label>
                                         <div class="col-md-9">
-                                            <input class="form-control" type="text" name="rasio" id="rasio" placeholder="Rasio"/>
+                                            <input class="form-control" type="number" name="rasio" id="rasio" placeholder="Rasio"/>
                                         </div>
                                     </div>
                                     <div class=" row">

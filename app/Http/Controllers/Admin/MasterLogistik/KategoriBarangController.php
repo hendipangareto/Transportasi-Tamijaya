@@ -82,7 +82,7 @@ class KategoriBarangController
     {
         $Kategori = Kategori::get();
 
-        $filename = 'SubBagian' . "_" . now()->format('Y_m_d_H_i_s') . '.pdf';
+        $filename = 'Kategori' . "_" . now()->format('Y_m_d_H_i_s') . '.pdf';
 
         $pdf = PDF::loadView('admin.master-logistik.kategori-barang.cetak-pdf', ['Kategori' => $Kategori]);
 
