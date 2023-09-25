@@ -16,7 +16,7 @@
                     <label>Nama Tipe Aset : </label>
                     <div class="form-group">
                         <select name="id_tipe_aset" id="id_tipe_aset" class="form-control">
-                            <option selected disabled>Pilih Bagian</option>
+                            <option selected disabled>Pilih Tipe Aset</option>
                             @foreach($TipeAset as $item)
                                 <option value="{{$item->id}}">{{ $item->nama_tipe_aset}}</option>
                             @endforeach

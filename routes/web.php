@@ -233,6 +233,7 @@ Route::group(
                     Route::prefix('data-aset')->group(function () {
                         Route::get('/list-aset', 'MasterKeuangan\Aset\DataAsetController@getListAset')->name('master-keuangan.aset.list-data-aset');
                         Route::get('/tambah-data-aset', 'MasterKeuangan\Aset\DataAsetController@getTambahDataAset')->name('master-keuangan.aset.data-aset.tambah-data-aset');
+                        Route::post('/simpan-data-aset', 'MasterKeuangan\Aset\DataAsetController@SimpanDataAset')->name('master-keuangan.aset.data-aset.simpan-data-aset');
                     });
 
                     Route::prefix('tipe-aset')->group(function () {
@@ -568,3 +569,26 @@ Route::get('agent/report/detail-transaction/{booking_code}', 'Agent\Report\Trans
 Route::resource('agent/profile', 'Agent\ProfileController');
 Route::resource('agent/agent-schedule', 'Agent\ScheduleAgentController');
 #endregion
+
+
+Route::get('download/{filename}', function ($filename) {
+    $file_path = storage_path('app/public/' . $filename);
+    if (file_exists($file_path)) {
+        return Response::download($file_path, $filename, ['Content-Length: ' . filesize($file_path)]);
+    } else {
+        exit('File yang ada request tidak ditemukan di server kami!');
+    }
+})->where('filename', '[A-Za-z0-9\-\_\.]+')->name('download_file');
+
+
+Route::get('files/{filename}', function ($filename) {
+    $path = storage_path('app/public/' . $filename);
+    if (!File::exists($path)) {
+        abort(404);
+    }
+    $file = File::get($path);
+    $type = File::mimeType($path);
+    $response = Response::make($file, 200);
+    $response->header("Content-Type", $type);
+    return $response;
+})->name('storage_file');
