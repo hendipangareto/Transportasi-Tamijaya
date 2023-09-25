@@ -42,7 +42,7 @@
                                        class="btn btn-primary mr-1" data-toggle="modal" data-target="#TambahMetodePenyusutan">
                                         <i class="bx bx-plus-circle"></i> Tambah Data</a>
                                     <a target="_blank"
-                                       href=" "
+                                       href="{{ route('master-keuangan.metode-penyusutan.cetak-pdf') }}"
                                        type="button"
                                        class="btn btn-danger text-white mr-1">
                                         <i class="bx bxs-file-pdf"></i> Report PDF

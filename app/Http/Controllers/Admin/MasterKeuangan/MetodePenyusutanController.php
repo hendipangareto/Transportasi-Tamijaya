@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin\MasterKeuangan;
 use App\Http\Controllers\Controller;
 use App\Models\MasterKeuangan\MetodePenyusutan;
 use Illuminate\Http\Request;;
-
+use Barryvdh\DomPDF\Facade as PDF;
 class MetodePenyusutanController extends Controller
 {
     public function getMetodePenyusutan ()
@@ -63,6 +63,28 @@ class MetodePenyusutanController extends Controller
         } catch (\Exception $e) {
             return redirect(route('master-keuangan.metode-penyusutan.list-metode-penyusutan'))->with('pesan-gagal', 'Anda gagal menghapus data metode penyusutan');
         }
+    }
+
+
+    public function PenyusutanPDF()
+    {
+        $MetodePenyusutan = MetodePenyusutan::get();
+
+        $filename = 'Kategori' . "_" . now()->format('Y_m_d_H_i_s') . '.pdf';
+
+        $pdf = PDF::loadView('admin.master-keuangan.metode-penyusutan.cetak-pdf', ['MetodePenyusutan' => $MetodePenyusutan]);
+
+        $pdf->setPaper('A4', 'portrait');
+
+        // Set Page Number
+        $canvas = $pdf->getDomPDF()->getCanvas();
+        $pdf->getDomPDF()->set_option('isPhpEnabled', true);
+        $canvas->page_text(550, 820, "Page {PAGE_NUM}", null, 8);
+
+
+        $canvas->page_text(550 / 2, 820, now()->format('d-m-Y'), null, 8);
+        $canvas->page_text(550 / 16, 820, 'PT Anugerah Karya Utami Gemilang', null, 8);
+        return $pdf->stream($filename);
     }
 
 }
