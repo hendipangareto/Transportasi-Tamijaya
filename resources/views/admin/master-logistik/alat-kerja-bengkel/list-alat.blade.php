@@ -75,7 +75,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="9" class="text-center">Tidak ada data bengkel luar !</td>
+                                        <td colspan="9" class="text-center">Tidak ada data alat kerja bengkel !</td>
                                     </tr>
                                 @endforelse
                                 </tbody>

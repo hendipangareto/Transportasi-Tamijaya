@@ -98,7 +98,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="5" class="text-center">Tidak ada data bagian.</td>
+                                        <td colspan="9" class="text-center">Tidak ada data Kategori Barang.</td>
                                     </tr>
                                 @endforelse
                                 </tbody>
