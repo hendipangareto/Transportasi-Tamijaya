@@ -108,44 +108,46 @@
             <div class="modal-content">
 
                 <div class="modal-body">
-                    <h5 class="pb-2  text-center">Detail Data Sub Bagian</h5>
+                    <h5 class="pb-2 text-center">Detail Data Sub Bagian</h5>
                     <div class="card">
-                        <div class="table-responsive ">
-                            <table  class=" table table-responsive-lg">
-                                <tbody>
-                                <tr>
-                                    <th>Kode Sub Bagian</th>
-
-                                    <th>:  {{ $item->kode_sub_bagian }}</th>
-                                </tr>
-
-                                <tr>
-                                    <th>Nama Sub Bagian</th>
-
-                                    <th>: {{ $item->nama_sub_bagian }}</th>
-                                </tr>
-
-                                <tr>
-                                    <th>Bagian</th>
-
-                                    <th>: {{ $item->bagian }}</th>
-                                </tr>
-
-                                <tr>
-                                    <th>Deskripsi</th>
-
-                                    <th>: {{ $item->deskripsi_sub_bagian}}</th>
-                                </tr>
-                                </tbody>
-
-                            </table>
-
+                        <div class="table">
+                            <hr style="border-top: 1px dashed #808080;">
+                            <div class="row mt-2">
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+                                        <h6 class="col-sm-5">Kode Sub Bagian</h6>
+                                        <div class="col-sm-7">
+                                            : {{ $item->kode_sub_bagian }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+                                        <h6 class="col-sm-5">Nama Bagian</h6>
+                                        <div class="col-sm-7">
+                                            : {{ $item->bagian }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+                                        <h6 class="col-sm-5">Deskripsi</h6>
+                                        <div class="col-sm-7">
+                                            : {{ $item->deskripsi_sub_bagian}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr style="border-top: 1px dashed #808080;">
                         </div>
                         <div class="row ml-1 justify-content-lg-end">
                             <button type="button"   class="btn btn-secondary mr-1"  data-dismiss="modal" > Kembali ➡
                             </button>
                         </div>
-
                     </div>
                 </div>
             </div>

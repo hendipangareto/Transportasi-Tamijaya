@@ -102,6 +102,7 @@
                                         </a>
                                         <a href="{{ route('master-keuangan.metode-penyusutan.delete-metode-penyusutan', ['id' => $item->id]) }}" class="btn btn-outline-danger btn-sm delete-button"><i class="bx bx-trash"></i></a>
                                     </td>
+                                    
                                 </tr>
                             @empty
                                 <tr>

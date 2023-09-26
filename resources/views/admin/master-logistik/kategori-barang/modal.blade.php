@@ -45,38 +45,48 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
 
+
                 <div class="modal-body">
-                    <h5 class="pb-2  text-center">Detail Data Kategori</h5>
+                    <h5 class="pb-2 text-center">Detail Data Kategori</h5>
                     <div class="card">
-                        <div class="table-responsive ">
-                            <table class="table datatable-invoice border-top">
-                                <thead>
-                                <tr>
-                                    <th>Kode Kategori</th>
-                                    <td>: {{ $item->kode_kategori }}</td>
-                                </tr>
-                                </thead>
-                                <thead>
-                                <tr>
-                                    <th>Nama Kategori</th>
-                                    <td>: {{ $item->nama_kategori }}</td>
-                                </tr>
-                                </thead>
-                                <thead>
-                                <tr>
-                                    <th>Deskripsi</th>
-                                    <td>: {{ $item->deskripsi_kategori}}</td>
-                                </tr>
-                                </thead>
-
-                            </table>
-
+                        <div class="table">
+                            <hr style="border-top: 1px dashed #808080;">
+                            <div class="row mt-2">
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+                                        <h6 class="col-sm-5">Kode Kategori</h6>
+                                        <div class="col-sm-7">
+                                            : {{ $item->kode_kategori }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+                                        <h6 class="col-sm-5">Nama Kategori</h6>
+                                        <div class="col-sm-7">
+                                            : {{ $item->nama_kategori }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+                                        <h6 class="col-sm-5">Deskripsi</h6>
+                                        <div class="col-sm-7">
+                                            : {{ $item->deskripsi_kategori}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr style="border-top: 1px dashed #808080;">
                         </div>
                         <div class="row ml-1 justify-content-lg-end">
                             <button type="button"   class="btn btn-secondary mr-1"  data-dismiss="modal" > Kembali ➡
                             </button>
                         </div>
-
                     </div>
                 </div>
             </div>

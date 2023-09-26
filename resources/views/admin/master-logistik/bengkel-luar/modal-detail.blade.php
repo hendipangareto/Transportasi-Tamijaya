@@ -4,62 +4,92 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
 
-                <div class="modal-body">
-                    <h5 class="pb-2  text-center">Detail Data Bengkel Luar</h5>
-                    <div class="card">
-                        <div class="table-responsive mb-3">
-                            <table  class=" table table-responsive-lg">
-                                <tbody>
-                                <tr>
-                                    <th>Kode Bengkel Luar</th>
-
-                                    <th>:  {{ $item->kode_bengkel_luar }}</th>
-                                </tr>
-
-                                <tr>
-                                    <th>Nama Bengkel Luar</th>
-
-                                    <th>: {{ $item->nama_bengkel_luar }}</th>
-                                </tr>
-
-                                <tr>
-                                    <th>Nomor Telepon</th>
-
-                                    <th>: {{ $item->tlp_bengkel_luar }}</th>
-                                </tr>
-
-                                <tr>
-                                    <th>Nomor HP</th>
-
-                                    <th>: {{ $item->hp_bengkel_luar }}</th>
-                                </tr>
-                                <tr>
-                                    <th>PIC</th>
-
-                                    <th>: {{ $item->pic_bengkel_luar }}</th>
-                                </tr>
-                                <tr>
-                                    <th>Alamat</th>
-
-                                    <th>: {{ $item->alamat_bengkel_luar }}</th>
-                                </tr>
-                                <tr>
-                                    <th>Provinsi/Kota</th>
-
-                                    <th>: {{ $item->province }} / {{ $item->city }}</th>
-                                </tr>
-                                </tbody>
-
-                            </table>
-
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <h5 class="pb-2 text-center">Detail Data Bengkel Luar</h5>
+                        <div class="card">
+                            <div class="table">
+                                <hr style="border-top: 1px dashed #808080;">
+                                <div class="row mt-2">
+                                    <div class="col-md-12">
+                                        <div class="form-group row">
+                                            <h6 class="col-sm-5">Kode Bengkel Luar</h6>
+                                            <div class="col-sm-7">
+                                                : {{ $item->kode_bengkel_luar }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group row">
+                                            <h6 class="col-sm-5">Nama Bengkel Luar</h6>
+                                            <div class="col-sm-7">
+                                                : {{ $item->nama_bengkel_luar }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group row">
+                                            <h6 class="col-sm-5">Nomor Telepon</h6>
+                                            <div class="col-sm-7">
+                                                : {{ $item->tlp_bengkel_luar }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group row">
+                                            <h6 class="col-sm-5">Nomor HP</h6>
+                                            <div class="col-sm-7">
+                                                : {{ $item->hp_bengkel_luar }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group row">
+                                            <h6 class="col-sm-5">PIC</h6>
+                                            <div class="col-sm-7">
+                                                : {{ $item->pic_bengkel_luar }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group row">
+                                            <h6 class="col-sm-5">Alamat</h6>
+                                            <div class="col-sm-7">
+                                                : {{ $item->alamat_bengkel_luar }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group row">
+                                            <h6 class="col-sm-5">Provinsi/Kota</h6>
+                                            <div class="col-sm-7">
+                                                : {{ $item->province }} ➡ {{ $item->city }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr style="border-top: 1px dashed #808080;">
+                            </div>
+                            <div class="row ml-1 justify-content-lg-end">
+                                <button type="button"   class="btn btn-secondary mr-1"  data-dismiss="modal" > Kembali ➡
+                                </button>
+                            </div>
                         </div>
-                        <div class="row ml-1 justify-content-lg-end">
-                            <button type="button"   class="btn btn-secondary mr-1"  data-dismiss="modal" > Kembali ➡
-                            </button>
-                        </div>
-
                     </div>
                 </div>
+
             </div>
         </div>
     </div>

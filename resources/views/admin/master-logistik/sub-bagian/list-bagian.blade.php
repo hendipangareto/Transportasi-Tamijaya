@@ -91,7 +91,7 @@
                                 <th class="w-4p">Sub Bagian</th>
                                 <th class="w-4p">Bagian</th>
                                 <th class="w-4p">Deskripsi</th>
-                                <th class="w-4p">Action</th>
+                                <th class="w-2p">Action</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -102,16 +102,34 @@
                                     <td>{{ $item->nama_sub_bagian }}</td>
                                     <td>{{ $item->bagian}}</td>
                                     <td>{{ $item->deskripsi_sub_bagian}}</td>
-                                    <td>
-                                        <a href=""
-                                           class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#DetailSubBagian-{{ $item->id }}"><i
-                                                class="bx bx-info-circle font-size-base"></i>
-                                        </a>
-                                        <a href=""
-                                           class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#UpdateSubBagian-{{ $item->id }}"><i
-                                                class="bx bx-edit font-size-base"></i>
-                                        </a>
-                                        <a href="{{ route('admin.master-logistik.bagian.delete-sub-bagian', ['id' => $item->id]) }}" class="btn btn-outline-danger btn-sm delete-button"><i class="bx bx-trash"></i></a>
+{{--                                    <td>--}}
+{{--                                        <a href=""--}}
+{{--                                           class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#DetailSubBagian-{{ $item->id }}"><i--}}
+{{--                                                class="bx bx-info-circle font-size-base"></i>--}}
+{{--                                        </a>--}}
+{{--                                        <a href=""--}}
+{{--                                           class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#UpdateSubBagian-{{ $item->id }}"><i--}}
+{{--                                                class="bx bx-edit font-size-base"></i>--}}
+{{--                                        </a>--}}
+{{--                                        <a href="{{ route('admin.master-logistik.bagian.delete-sub-bagian', ['id' => $item->id]) }}" class="btn btn-outline-danger btn-sm delete-button"><i class="bx bx-trash"></i></a>--}}
+{{--                                    </td>--}}
+                                    <td class="text-center">
+                                        <div class="d-flex">
+                                            <div class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"
+                                                 data-toggle="modal"
+                                                 data-target="#DetailSubBagian-{{ $item->id }}">
+                                                <i class="bx bx-info-circle font-size-base"></i>
+                                            </div>
+                                            <div class="badge-circle badge-circle-sm badge-circle-warning mr-1 pointer"
+                                                 data-toggle="modal"
+                                                 data-target="#UpdateSubBagian-{{ $item->id }}">
+                                                <i class="bx bx-edit font-size-base"></i>
+                                            </div>
+                                            <a class="badge-circle badge-circle-sm badge-circle-danger pointer"
+                                               href="{{ route('admin.master-logistik.bagian.delete-sub-bagian', ['id' => $item->id]) }}">
+                                                <i class="bx bx-trash font-size-base"></i>
+                                            </a>
+                                        </div>
                                     </td>
                                 </tr>
                             @empty
