@@ -101,10 +101,11 @@
                             <thead class="text-center">
                             <tr >
                                 <th  class="w-2p" rowspan="2">No</th>
-                                <th  class="w-10p" rowspan="2">Nama Karyawan</th>
-                                <th  class="w-10p" rowspan="2">Departemen, Jabatan</th>
-                                <th colspan="5"  class="w-5p">Absensi (Hari)</th>
-                                <th  class="w-3p" rowspan="2">Action</th>
+                                <th  class="w-4p" rowspan="2">Nama Karyawan</th>
+                                <th  class="w-4p" rowspan="2">Departemen, Jabatan</th>
+{{--                                <th colspan="5"  class="w-5p">Absensi (Hari)</th>--}}
+                                <th colspan="5"  class="w-4p">Absensi (Hari)</th>
+                                <th  class="w-2p" rowspan="2">Action</th>
 
                             </tr>
                             <tr>
@@ -118,25 +119,46 @@
                             </thead>
                             <tbody>
 
-                            <tr class="text-center">
-                                <td >1</td>
-                                <td >Roda Kemudi</td>
-                                <td >Departemen, Jabatan</td>
-                                <td >M</td>
-                                <td >S</td>
-                                <td >I</td>
-                                <td >A</td>
-                                <td >L</td>
-                                <td>
-                                    <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal"
-                                            data-target="#DetailAbsensi"><i
-                                            class="bx bx-info-circle font-size-base"></i></button>
-                                    <button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal"
-                                            data-target="# "><i
-                                            class="bx bx-printer font-size-base"></i></button>
-                                </td>
+                            @foreach($absensi as $item)
+                                <tr class="text-center">
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $item->employee_name }} </td>
+                                    <td> {{ $item->position_name }}</td>
+                                    <td>
+                                        @if ($item->status_absensi == 'M')
+                                            <span style="background-color: #fdf33d; color: #020000;">{{ $item->status_absensi }}</span>
+                                        @elseif ($item->status_absensi == 'S')
+                                            <span style="background-color: #fdc04c; color: #020000;">{{ $item->status_absensi }}</span>
+                                        @elseif($item->status_absensi == 'I')
+                                            {{ $item->status_absensi }}
+                                        @endif
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
 
-                            </tr>
+                                    <td class="text-center">
+                                        <div class="d-flex">
+                                            <div class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"
+                                                 data-toggle="modal"
+                                                 data-target="#DetailAbsensi ">
+                                                <i class="bx bx-info-circle font-size-base"></i>
+                                            </div>
+{{--                                            <div class="badge-circle badge-circle-sm badge-circle-warning mr-1 pointer"--}}
+{{--                                                 data-toggle="modal"--}}
+{{--                                                 data-target="#EditSatuan ">--}}
+{{--                                                <i class="bx bx-edit font-size-base"></i>--}}
+{{--                                            </div>--}}
+{{--                                            <a class="badge-circle badge-circle-sm badge-circle-danger pointer"--}}
+{{--                                               href=" ">--}}
+{{--                                                <i class="bx bx-trash font-size-base"></i>--}}
+{{--                                            </a>--}}
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+
                             </tbody>
                         </table>
                     </div>

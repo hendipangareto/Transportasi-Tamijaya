@@ -16,6 +16,9 @@ class RequestGajiController extends Controller
     {
         return view('admin.human-resource.pegawai.request-gaji.form-tambah');
     }
+
+
+
     public function getFormEdit(Request $request)
     {
         return view('admin.human-resource.pegawai.request-gaji.form-edit');

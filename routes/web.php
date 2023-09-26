@@ -188,6 +188,7 @@ Route::group(
                     Route::prefix('request-gaji')->group(function () {
                         Route::get('/list-request-gaji', 'HumanResource\RequestGajiController@getRequestGaji')->name('human-resource.pegawai.request-gaji.list-gaji');
                         Route::get('/form-tambah-request-gaji', 'HumanResource\RequestGajiController@getFormTambah')->name('human-resource.pegawai.request-gaji.form-tambah');
+                        Route::post('/form-simpan-request-gaji', 'HumanResource\RequestGajiController@SimpanRequest')->name('human-resource.pegawai.request-gaji.form-simpan');
                         Route::get('/form-edit-request-gaji', 'HumanResource\RequestGajiController@getFormEdit')->name('human-resource.pegawai.request-gaji.form-edit');
                     });
 
@@ -196,6 +197,7 @@ Route::group(
                     });
                     Route::prefix('data-absensi')->group(function () {
                         Route::get('/list-data-absensi', 'HumanResource\DataAbsensiController@getDataAbsensi')->name('human-resource.pegawai.kinerja-karyawan.list-data-absensi');
+                        Route::post('/upload-data-absensi', 'HumanResource\DataAbsensiController@UploadAbsensi')->name('human-resource.pegawai.kinerja-karyawan.upload-data-absensi');
                     });
                 });
             });
