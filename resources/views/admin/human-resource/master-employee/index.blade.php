@@ -142,7 +142,7 @@
                                 <th class="w-10p">Status Pegawai</th>
                                 <th class="w-10p">Awal Kontrak</th>
                                 <th class="w-10p">Selesai Kontrak</th>
-                                <th class="w-10p">Aksi</th>
+                                <th class="w-2p">Aksi</th>
                             </tr>
                             </thead>
                             <tbody id="show-data-employee">
@@ -159,18 +159,21 @@
                                     <td>{{$item->employee_status}}</td>
                                     <td>{{$item->awal_kontrak}}</td>
                                     <td>{{$item->selesai_kontrak}}</td>
-                                    <td>
-                                        <a href="{{route('human-resource-master-employee-form-detail', [$item->id])}}"
-                                           class="btn btn-sm btn-outline-primary"><i
-                                                class="bx bx-info-circle font-size-base"></i>
-                                        </a>
-                                        <a href="{{route('human-resource-master-employee-form-edit', [$item->id])}}"
-                                           class="btn btn-sm btn-outline-warning"><i
-                                                class="bx bx-edit font-size-base"></i>
-                                        </a>
-                                        <button class="btn btn-sm btn-outline-danger btn-delete-employee "
-                                                data-iddelete="{{$item->id}}"><i class="bx bx-trash font-size-base"></i>
-                                        </button>
+
+                                    <td class="text-center">
+                                        <div class="d-flex">
+                                            <a href="{{route('human-resource-master-employee-form-detail', [$item->id])}}"
+                                               class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"><i
+                                                    class="bx bx-info-circle font-size-base"></i>
+                                            </a>
+                                            <a href="{{route('human-resource-master-employee-form-edit', [$item->id])}}"
+                                               class="badge-circle badge-circle-sm badge-circle-warning mr-1 pointer"><i
+                                                    class="bx bx-edit font-size-base"></i>
+                                            </a>
+                                            <button class="badge-circle badge-circle-sm badge-circle-danger pointer"
+                                                    data-iddelete="{{$item->id}}"><i class="bx bx-trash font-size-base"></i>
+                                            </button>
+                                        </div>
                                     </td>
                                 </tr>
                             @empty
