@@ -44,7 +44,7 @@
                                     <th class="w-10p">Kode Akun</th>
                                     <th class="w-4p">Nama Akun</th>
                                     <th class="w-4p">Deskripsi</th>
-                                    <th class="w-10p">Action</th>
+                                    <th class="w-2p">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -54,21 +54,39 @@
                                         <td>{{$item -> kode_akun}}</td>
                                         <td>{{$item->nama_akun}}</td>
                                         <td>{{$item->deskripsi_akun}}</td>
-                                        <td>
-                                            <a href=""
-                                               class="btn btn-sm btn-outline-primary" data-toggle="modal"
-                                               data-target="#DetailAkun-{{ $item->id }}"><i
-                                                    class="bx bx-info-circle font-size-base"></i>
-                                            </a>
-                                            <a href=""
-                                               class="btn btn-sm btn-outline-warning" data-toggle="modal"
-                                               data-target="#UpdateAkun-{{ $item->id }}"><i
-                                                    class="bx bx-edit font-size-base"></i>
-                                            </a>
+{{--                                        <td>--}}
+{{--                                            <a href=""--}}
+{{--                                               class="btn btn-sm btn-outline-primary" data-toggle="modal"--}}
+{{--                                               data-target="#DetailAkun-{{ $item->id }}"><i--}}
+{{--                                                    class="bx bx-info-circle font-size-base"></i>--}}
+{{--                                            </a>--}}
+{{--                                            <a href=""--}}
+{{--                                               class="btn btn-sm btn-outline-warning" data-toggle="modal"--}}
+{{--                                               data-target="#UpdateAkun-{{ $item->id }}"><i--}}
+{{--                                                    class="bx bx-edit font-size-base"></i>--}}
+{{--                                            </a>--}}
 
-                                            <a href="{{ route('master-keuangan.akun.delete-akun', ['id' => $item->id]) }}"
-                                               class="btn btn-outline-danger btn-sm delete-button"><i
-                                                    class="bx bx-trash"></i></a>
+{{--                                            <a href="{{ route('master-keuangan.akun.delete-akun', ['id' => $item->id]) }}"--}}
+{{--                                               class="btn btn-outline-danger btn-sm delete-button"><i--}}
+{{--                                                    class="bx bx-trash"></i></a>--}}
+{{--                                        </td>--}}
+                                        <td class="text-center">
+                                            <div class="d-flex">
+                                                <div class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"
+                                                     data-toggle="modal"
+                                                     data-target="#DetailAkun-{{ $item->id }}">
+                                                    <i class="bx bx-info-circle font-size-base"></i>
+                                                </div>
+                                                <div class="badge-circle badge-circle-sm badge-circle-warning mr-1 pointer"
+                                                     data-toggle="modal"
+                                                     data-target="#UpdateAkun-{{ $item->id }}">
+                                                    <i class="bx bx-edit font-size-base"></i>
+                                                </div>
+                                                <a class="badge-circle badge-circle-sm badge-circle-danger pointer"
+                                                   href="{{ route('master-keuangan.akun.delete-akun', ['id' => $item->id]) }}">
+                                                    <i class="bx bx-trash font-size-base"></i>
+                                                </a>
+                                            </div>
                                         </td>
                                     </tr>
                                 @empty

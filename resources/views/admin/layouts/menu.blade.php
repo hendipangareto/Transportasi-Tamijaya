@@ -371,7 +371,7 @@
                             <a href="{{ route('master-keuangan.akun.list-akun') }}"><i class="bx bx-file"></i><span
                                     class="menu-item">Akun</span></a>
                         </li>
-                        <li @if (Request::segment(3) == 'day-off') class="active" @endif>
+                        <li @if (Request::segment(3) == 'sub-akun') class="active" @endif>
                             <a href="{{ route('master-keuangan.sub-akun.list-sub-akun') }}"><i class="bx bx-file"></i><span
                                     class="menu-item">Sub-Akun</span></a>
                         </li>
