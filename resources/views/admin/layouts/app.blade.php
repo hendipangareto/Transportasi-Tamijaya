@@ -20,7 +20,7 @@
         href="{{ asset('admin/app-assets/css/core/menu/menu-types/vertical-menu.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('admin/assets/css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('admin/assets/css/custom.css') }}">
-
+    <link rel="icon" href="{{ asset('images/logo-icon.png') }}" type="image/x-icon">
     {{-- <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/vendors/css/forms/select/select2.min.css')}}"> --}}
     <link rel="stylesheet" type="text/css"
         href="{{ asset('admin/app-assets/vendors/css/forms/select/select2.css') }}">
