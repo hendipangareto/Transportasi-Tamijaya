@@ -108,7 +108,7 @@
                                                     <i class="bx bx-edit font-size-base"></i>
                                                 </div>
                                                 <a class="badge-circle badge-circle-sm badge-circle-danger pointer"
-                                                   href="{{ route('admin.master-logistik.toko.delete-toko', ['id' => $item->id]) }}">
+                                                   href=""  onclick="manageData('delete', {{ $item->id }})">
                                                     <i class="bx bx-trash font-size-base"></i>
                                                 </a>
                                             </div>
@@ -170,9 +170,34 @@
                     cancelButtonText: 'Batal'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location.href = e.target.href;
+                        $.ajax({
+                            url: `/admin/master-logistik/toko/delete-toko/${data}/${id}`,
+                            method: "delete",
+                            // dataType: "json",
+                            success: function (response) {
+                                if (response.status == 300) {
+                                    Toast.fire({
+                                        icon: "error",
+                                        title: response.message,
+                                    });
+                                    return;
+                                }
+
+                                successResponse(
+                                    "delete",
+                                    data,
+                                    response.message,
+                                    response.data
+                                );
+                            },
+                            error: function (err) {
+                                console.log(err);
+                            },
+                        });
                     }
                 });
+
+
             }
         });
 

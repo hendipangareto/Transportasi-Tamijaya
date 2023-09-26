@@ -70,13 +70,13 @@
     @forelse ($employee as $item)
         <tr>
             <td class="posisi">{{$no++}}</td>
-            <td>{{$item->employee_id}}</td>
-            <td>{{$item->employee_name}}</td>
-            <td>{{$item->department_name}}</td>
-            <td>{{$item->position_name}}</td>
-            <td>{{$item->employee_status}}</td>
-            <td>{{ \Carbon\Carbon::parse($item->awal_kontrak)->formatLocalized('%d - %B - %Y') }}</td>
-            <td>{{ \Carbon\Carbon::parse($item->selesai_kontrak)->formatLocalized('%d - %B - %Y') }}</td>
+            <td class="posisi">{{$item->employee_id}}</td>
+            <td class="posisi">{{$item->employee_name}}</td>
+            <td class="posisi">{{$item->department_name}}</td>
+            <td class="posisi">{{$item->position_name}}</td>
+            <td class="posisi">{{$item->employee_status}}</td>
+            <td class="posisi">{{ \Carbon\Carbon::parse($item->awal_kontrak)->formatLocalized('%d - %B - %Y') }}</td>
+            <td class="posisi">{{ \Carbon\Carbon::parse($item->selesai_kontrak)->formatLocalized('%d - %B - %Y') }}</td>
         </tr>
     @empty
         <tr>

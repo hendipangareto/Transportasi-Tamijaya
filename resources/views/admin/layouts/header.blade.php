@@ -1,3 +1,10 @@
+@if(Session::has('message'))
+    <div class="alert
+                                        alert-{{ Session::get('message') [1] }}">
+        {{ Session::get('message')[0] }}
+    </div>
+@endif
+
 <div class="header-navbar-shadow"></div>
 <nav class="header-navbar main-header-navbar navbar-expand-lg navbar navbar-with-menu fixed-top ">
     <div class="navbar-wrapper">
@@ -26,13 +33,13 @@
                                     </div><span class="text-bold-400 cursor-pointer">Mark all as read</span>
                                 </div>
                             </li>
-                            
+
 
                             <div id="notification-body">
 
 
                             </div>
-                            
+
                             <li class="dropdown-menu-footer"><a
                                     class="dropdown-item p-50 text-primary justify-content-center" href="">Read all
                                     notifications</a></li>

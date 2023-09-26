@@ -166,6 +166,10 @@
         $(document).ready(function() {
             getNotification()
         });
+
+
+
+
     </script>
     @stack('page-scripts')
 

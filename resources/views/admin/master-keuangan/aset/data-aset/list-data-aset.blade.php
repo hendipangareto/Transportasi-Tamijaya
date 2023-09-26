@@ -73,8 +73,7 @@
                     </form>
                     <br>
                     <div class="table-responsive">
-                        <input type="hidden" id="Tablesemployee" value="">
-                        <table class="table table-bordered table-hover" id="table-list-employees">
+                        <table class="table table-bordered table-hover" id="table-aset">
                             <thead>
                             <tr class="text-uppercase text-center">
                                 <th class="w-2p">No</th>
@@ -99,31 +98,34 @@
                                     <td>{{ $item->spesifikasi_aset}}</td>
                                     <td>{{ $item->catatan_aset}}</td>
                                     <td>{{ $item->tanggal_beli_aset}}</td>
-                                    <td>{{ $item->tanggal_pakai_aset}}</td>
-                                    <td>{{ $item->lokasi_awal_aset}}</td>
-                                    <td>{{ $item->pajak_aset}}</td>
-                                    <td>{{ $item->id_kategori_pajak}}</td>
-                                    <td>{{ $item->aset_tidak_berwujud}}</td>
-                                    <td>{{ $item->metode_penyusutan}}</td>
-                                    <td>{{ $item->akun_aset}}</td>
-                                    <td>{{ $item->akun_akumulasi_penyusutan_aset}}</td>
-                                    <td>{{ $item->akun_beban_penyusutan_aset}}</td>
-                                    <td>{{ $item->lampiran_aset}}</td>
-                                    <td>{{ $item->kuantitas}}</td>
-                                    <td>{{ $item->satuan}}</td>
-                                    <td>{{ $item->umur_aset}}</td>
-                                    <td>{{ $item->rasio}}</td>
-                                    <td>{{ $item->nilai_sisa   }}</td>
-                                    <td>
-                                        <a href=""
-                                           class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#DetailKategori-{{ $item->id }}"><i
-                                                class="bx bx-info-circle font-size-base"></i>
-                                        </a>
-                                        <a href=""
-                                           class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#UpdateKategori-{{ $item->id }}"><i
-                                                class="bx bx-edit font-size-base"></i>
-                                        </a>
-                                        <a href="{{ route('master-keuangan.aset.delete-kategori-aset', ['id' => $item->id]) }}" class="btn btn-outline-danger btn-sm delete-button"><i class="bx bx-trash"></i></a>
+{{--                                    <td>--}}
+{{--                                        <a href=""--}}
+{{--                                           class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#DetailKategori-{{ $item->id }}"><i--}}
+{{--                                                class="bx bx-info-circle font-size-base"></i>--}}
+{{--                                        </a>--}}
+{{--                                        <a href=""--}}
+{{--                                           class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#UpdateKategori-{{ $item->id }}"><i--}}
+{{--                                                class="bx bx-edit font-size-base"></i>--}}
+{{--                                        </a>--}}
+{{--                                        <a href="{{ route('master-keuangan.aset.delete-kategori-aset', ['id' => $item->id]) }}" class="btn btn-outline-danger btn-sm delete-button"><i class="bx bx-trash"></i></a>--}}
+{{--                                    </td>--}}
+                                    <td class="text-center">
+                                        <div class="d-flex">
+                                            <div class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"
+                                                 data-toggle="modal"
+                                                 data-target="#DetailTipeAset-{{ $item->id }}">
+                                                <i class="bx bx-info-circle font-size-base"></i>
+                                            </div>
+                                            <div class="badge-circle badge-circle-sm badge-circle-warning mr-1 pointer"
+                                                 data-toggle="modal"
+                                                 data-target="#EditTipeAset-{{ $item->id }}">
+                                                <i class="bx bx-edit font-size-base"></i>
+                                            </div>
+                                            <a class="badge-circle badge-circle-sm badge-circle-danger pointer"
+                                               href="{{ route('master-keuangan.aset.delete-tipe-aset', ['id' => $item->id]) }}">
+                                                <i class="bx bx-trash font-size-base"></i>
+                                            </a>
+                                        </div>
                                     </td>
                                 </tr>
                             @empty
@@ -147,7 +149,7 @@
 
 
         $(document).ready(function () {
-            $("#table-employee").DataTable();
+            $("#table-aset").DataTable();
         });
 
         @if(session('pesan-berhasil'))
@@ -163,6 +165,44 @@
             text: '{{ session("pesan-gagal") }}'
         });
         @endif
+
+
+
+        function previewFile() {
+            const fileInput = document.getElementById('lampiran_aset');
+            const filePreview = document.getElementById('file-preview');
+
+            // Check if a file is selected
+            if (fileInput.files.length > 0) {
+                const file = fileInput.files[0];
+
+                // Check if the selected file is an image (you can add more file types if needed)
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        // Create an <img> element to display the image preview
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.classList.add('img-preview');
+
+                        // Append the image preview to the filePreview div
+                        filePreview.innerHTML = '';
+                        filePreview.appendChild(img);
+                    };
+
+                    // Read the file as a data URL (for images)
+                    reader.readAsDataURL(file);
+                } else {
+                    // Display a message for non-image files (you can customize this message)
+                    filePreview.innerHTML = 'File preview is not available for this file type.';
+                }
+            } else {
+                // Clear the file preview if no file is selected
+                filePreview.innerHTML = '';
+            }
+        }
+
     </script>
 
 @endpush

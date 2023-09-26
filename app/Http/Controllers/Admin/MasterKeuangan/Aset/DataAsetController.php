@@ -50,12 +50,13 @@ class DataAsetController extends Controller
     public function SimpanDataAset(Request $request)
     {
 
-//            $request->validate([
-//                'lampiran_aset' => 'required|mimes:pdf,doc,docx,xlsx|max:2048',
-//            ]);
+        $request->validate([
+            // Define validation rules for other fields here
+            'lampiran_aset' => 'file|mimes:jpeg,png,pdf|max:2048', // Example file validation
+        ]);
 
         $DataAset = new DataAset();
-
+        // ... (previous code for other fields)
         $lastNomor = DataAset::orderBy('id', 'desc')->first();
         $lastNumber = $lastNomor ? intval(substr($lastNomor->kode_aset, -2)) : 0;
         $newNumber = $lastNumber + 1;
@@ -72,16 +73,25 @@ class DataAsetController extends Controller
         $DataAset->lokasi_awal_aset = $request->lokasi_awal_aset;
         $DataAset->pajak_aset = $request->pajak_aset;
         $DataAset->id_kategori_pajak = $request->id_kategori_pajak;
+        $DataAset->aset_tidak_berwujud = $request->aset_tidak_berwujud;
         $DataAset->id_metode_penyusutan = $request->id_metode_penyusutan;
         $DataAset->akun_aset = $request->akun_aset;
         $DataAset->akun_akumulasi_penyusutan_aset = $request->akun_akumulasi_penyusutan_aset;
+        $DataAset->akun_beban_penyusutan_aset = $request->akun_beban_penyusutan_aset;
+        if ($request->hasFile('lampiran_aset')) {
+            $file = $request->file('lampiran_aset');
+            $fileName = $file->getClientOriginalName(); // You can customize the file name as needed
+            $file->storeAs('lampiran', $fileName); // Store the file in the 'lampiran' directory
+            $DataAset->lampiran_aset = $fileName; // Save the file name in the database
+        }
         $DataAset->kuantitas = $request->kuantitas;
         $DataAset->id_satuan = $request->id_satuan;
         $DataAset->umur_aset = $request->umur_aset;
         $DataAset->rasio = $request->rasio;
         $DataAset->nilai_sisa = $request->nilai_sisa;
 
-//        dd($DataAset);
+
+//  dd($DataAset);
         try {
             $DataAset->save();
 
@@ -90,7 +100,6 @@ class DataAsetController extends Controller
             return redirect(route('master-keuangan.aset.list-data-aset'))->with('pesan-gagal', 'Anda gagal menambah data aset');
         }
     }
-
 
 
 }

@@ -74,15 +74,23 @@ class TokoController extends Controller
 
     public function DeleteToko($id)
     {
-        $Toko = Toko::findOrFail($id);
+//        $Toko = Toko::findOrFail($id);
+//
+//        try {
+//            $Toko->delete();
+//
+//            return redirect(route('admin.master-logistik.toko.list-toko'))->with('pesan-berhasil','Anda berhasil menghapus data toko');
+//        } catch (\Exception $e) {
+//            return redirect(route('admin.master-logistik.toko.list-toko'))->with('pesan-gagal','Anda gagal menghapus data toko');
+//        }
 
-        try {
-            $Toko->delete();
 
-            return redirect(route('admin.master-logistik.toko.list-toko'))->with('pesan-berhasil','Anda berhasil menghapus data toko');
-        } catch (\Exception $e) {
-            return redirect(route('admin.master-logistik.toko.list-toko'))->with('pesan-gagal','Anda gagal menghapus data toko');
-        }
+        Toko::destroy($id);
+        return response()->json([
+            'data' => $id,
+            'message' => 'Berhasil menghapus data Kode Perkiraan',
+            'status' => 200,
+        ]);
     }
 
     public function TokoPDF()

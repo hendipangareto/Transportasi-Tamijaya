@@ -1,5 +1,7 @@
 @extends('admin.layouts.app')
+
 @section('content-header')
+
     <div class="content-header-left col-12 mb-2 mt-1">
         <div class="row breadcrumbs-top">
             <div class="col-12">
@@ -16,7 +18,9 @@
         </div>
     </div>
 @endsection
+
 @section('content')
+
     <div class="row">
         <div class="col-12">
             <div class="card shadow">
@@ -35,6 +39,7 @@
                                        class="btn btn-danger text-white mr-1">
                                         <i class="bi bi-filetype-pdf"></i> Report PDF
                                     </a>
+
                                 </div>
                             </div>
                         </div>
@@ -122,7 +127,8 @@
                                     <label for="" style="color: white">Filter</label><br>
                                     <button class="btn btn-outline-primary">Filter <i
                                             class="fe fe-filter fe-12"></i></button>
-                                    <a href="{{ route('human-resource-master-employee-list-data') }}" class="btn btn-outline-secondary">Clear <i
+                                    <a href="{{ route('human-resource-master-employee-list-data') }}"
+                                       class="btn btn-outline-secondary">Clear <i
                                             class="fe fe-refresh-cw fe-12"></i></a>
                                 </div>
                             </div>
@@ -171,14 +177,17 @@
                                                     class="bx bx-edit font-size-base"></i>
                                             </a>
                                             <button class="badge-circle badge-circle-sm badge-circle-danger pointer"
-                                                    data-iddelete="{{$item->id}}"><i class="bx bx-trash font-size-base"></i>
+                                                    data-iddelete="{{$item->id}}"><i
+                                                    class="bx bx-trash font-size-base"></i>
                                             </button>
                                         </div>
                                     </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="10" class="text-center" style="background-color: #c2b677">Data tidak ditemukan</td>
+                                    <td colspan="10" class="text-center" style="background-color: #c2b677">Data tidak
+                                        ditemukan
+                                    </td>
                                 </tr>
                             @endforelse
                             </tbody>
@@ -188,6 +197,7 @@
             </div>
         </div>
     </div>
+
 @endsection
 
 @push('page-scripts')
