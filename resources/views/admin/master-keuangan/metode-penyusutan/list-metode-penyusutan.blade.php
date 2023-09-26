@@ -39,7 +39,8 @@
                             <div class="col ml-auto">
                                 <div class="dropdown float-right">
                                     <a href="#"
-                                       class="btn btn-primary mr-1" data-toggle="modal" data-target="#TambahMetodePenyusutan">
+                                       class="btn btn-primary mr-1" data-toggle="modal"
+                                       data-target="#TambahMetodePenyusutan">
                                         <i class="bx bx-plus-circle"></i> Tambah Data</a>
                                     <a target="_blank"
                                        href="{{ route('master-keuangan.metode-penyusutan.cetak-pdf') }}"
@@ -53,24 +54,24 @@
                     </div>
                 </div>
                 <div class="card-body">
-{{--                    <form action="">--}}
-{{--                        @csrf--}}
-{{--                        <div class="row">--}}
-{{--                            <div class="col-md-2 col-sm-12">--}}
-{{--                                <div class="form-group">--}}
-{{--                                    <label for="">Metode Penyusutan</label>--}}
-{{--                                    <input type="text" class="form-control">--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="col-md-2 col-sm-12">--}}
-{{--                                <div class="form-group">--}}
-{{--                                    <label for="" style="color: white">Filter</label><br>--}}
-{{--                                    <button class="btn btn-outline-primary">Filter <i--}}
-{{--                                            class="bx bx-filter"></i></button>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </form>--}}
+                    {{--                    <form action="">--}}
+                    {{--                        @csrf--}}
+                    {{--                        <div class="row">--}}
+                    {{--                            <div class="col-md-2 col-sm-12">--}}
+                    {{--                                <div class="form-group">--}}
+                    {{--                                    <label for="">Metode Penyusutan</label>--}}
+                    {{--                                    <input type="text" class="form-control">--}}
+                    {{--                                </div>--}}
+                    {{--                            </div>--}}
+                    {{--                            <div class="col-md-2 col-sm-12">--}}
+                    {{--                                <div class="form-group">--}}
+                    {{--                                    <label for="" style="color: white">Filter</label><br>--}}
+                    {{--                                    <button class="btn btn-outline-primary">Filter <i--}}
+                    {{--                                            class="bx bx-filter"></i></button>--}}
+                    {{--                                </div>--}}
+                    {{--                            </div>--}}
+                    {{--                        </div>--}}
+                    {{--                    </form>--}}
                     <br>
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover" id="table-bagian">
@@ -91,17 +92,17 @@
                                     <td>{{ $item->nama_metode_penyusutan }}</td>
                                     <td>{{ $item->keterangan_metode_penyusutan}}</td>
 
-{{--                                    <td>--}}
-{{--                                        <a href=""--}}
-{{--                                           class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#DetailMetodePenyusutan-{{ $item->id }}"><i--}}
-{{--                                                class="bx bx-info-circle font-size-base"></i>--}}
-{{--                                        </a>--}}
-{{--                                        <a href=""--}}
-{{--                                           class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#UpdateMetodePenyusutan-{{ $item->id }}"><i--}}
-{{--                                                class="bx bx-edit font-size-base"></i>--}}
-{{--                                        </a>--}}
-{{--                                        <a href="{{ route('master-keuangan.metode-penyusutan.delete-metode-penyusutan', ['id' => $item->id]) }}" class="btn btn-outline-danger btn-sm delete-button"><i class="bx bx-trash"></i></a>--}}
-{{--                                    </td>--}}
+                                    {{--                                    <td>--}}
+                                    {{--                                        <a href=""--}}
+                                    {{--                                           class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#DetailMetodePenyusutan-{{ $item->id }}"><i--}}
+                                    {{--                                                class="bx bx-info-circle font-size-base"></i>--}}
+                                    {{--                                        </a>--}}
+                                    {{--                                        <a href=""--}}
+                                    {{--                                           class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#UpdateMetodePenyusutan-{{ $item->id }}"><i--}}
+                                    {{--                                                class="bx bx-edit font-size-base"></i>--}}
+                                    {{--                                        </a>--}}
+                                    {{--                                        <a href="{{ route('master-keuangan.metode-penyusutan.delete-metode-penyusutan', ['id' => $item->id]) }}" class="btn btn-outline-danger btn-sm delete-button"><i class="bx bx-trash"></i></a>--}}
+                                    {{--                                    </td>--}}
                                     <td class="text-center">
                                         <div class="d-flex">
                                             <div class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"
@@ -162,7 +163,7 @@
         @endif
 
         //konfimarsi delete
-        document.addEventListener('click', function(e) {
+        document.addEventListener('click', function (e) {
             if (e.target.classList.contains('delete-button')) {
                 e.preventDefault();
 

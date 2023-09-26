@@ -106,6 +106,8 @@
                                             data-iddelete=""><i class="bx bx-trash font-size-base"></i>
                                     </button>
                                 </td>
+
+
                             </tr>
                             </tbody>
                         </table>
