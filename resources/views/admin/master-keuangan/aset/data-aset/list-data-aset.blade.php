@@ -113,7 +113,7 @@
                                         <div class="d-flex">
                                             <div class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"
                                                  data-toggle="modal"
-                                                 data-target="#DetailTipeAset-{{ $item->id }}">
+                                                 data-target="#DetailDataAset-{{ $item->id }}">
                                                 <i class="bx bx-info-circle font-size-base"></i>
                                             </div>
                                             <div class="badge-circle badge-circle-sm badge-circle-warning mr-1 pointer"
@@ -141,6 +141,7 @@
         </div>
     </div>
     @include('admin.master-keuangan.aset.data-aset.modal-edit')
+    @include('admin.master-keuangan.aset.data-aset.modal-detail')
 {{--    @include('admin.master-keuangan.aset.data-aset.modal-tambah')--}}
 @endsection
 

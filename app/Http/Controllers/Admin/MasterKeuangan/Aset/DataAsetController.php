@@ -10,6 +10,7 @@ use App\Models\MasterKeuangan\KategoriPajak;
 use App\Models\MasterKeuangan\MetodePenyusutan;
 use Illuminate\Http\Request;
 use App\Models\MasterKeuangan\TipeAset;
+use Illuminate\Support\Facades\Storage;
 
 class DataAsetController extends Controller
 {
@@ -80,8 +81,9 @@ class DataAsetController extends Controller
         $DataAset->akun_beban_penyusutan_aset = $request->akun_beban_penyusutan_aset;
         if ($request->hasFile('lampiran_aset')) {
             $file = $request->file('lampiran_aset');
-            $fileName = $file->getClientOriginalName(); // You can customize the file name as needed
-            $file->storeAs('lampiran', $fileName); // Store the file in the 'lampiran' directory
+            $fileName = $file->getClientOriginalName();
+            $filePath = $file->storeAs('lampiran', $fileName); // Store the file in the 'lampiran' directory
+
             $DataAset->lampiran_aset = $fileName; // Save the file name in the database
         }
         $DataAset->kuantitas = $request->kuantitas;
