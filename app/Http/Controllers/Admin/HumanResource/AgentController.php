@@ -4,108 +4,77 @@ namespace App\Http\Controllers\Admin\HumanResource;
 
 use App\Http\Controllers\Controller;
 use App\Models\HumanResource\Agent;
+use App\Models\MasterData\City;
+use App\Models\MasterData\Province;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class AgentController extends Controller
 {
-    private function _validation(Request $request)
+
+
+    public function getListAgent()
     {
-        $validation = $request->validate(
-            [
-                'agent_code' => 'required|max:10|min:1|unique:agents',
-                'agent_name' => 'required|max:255|min:1',
-            ],
-            [
-                'agent_code.required' => 'Silahkan mengisi data kode',
-                'agent_code.min' => 'Kode minimal 1 karakter alfanumerik',
-                'agent_code.max' => 'Kode maksimal 10 karakter alfanumerik',
-                'agent_code.unique' => 'Kode kategori telah digunakan',
-                'agent_name.required' => 'Silahkan mengisi data nama',
-                'agent_name.min' => 'Nama minimal 1 karakter alfanumerik',
-                'agent_name.max' => 'Nama maksimal 255 karakter alfanumerik'
-            ]
-        );
-    }
-    public function index()
-    {
-        return view('admin.human-resource.agent.index');
+        $provinces = Province::all();
+        $city = City::all();
+        $agent = Agent::select("agents.*", 'provinces.state_name as state', 'cities.city_name as city')
+            ->join('provinces', 'provinces.id', '=', 'agents.id_province')
+            ->join('cities', 'cities.id', '=', 'agents.id_city')
+            ->orderBy('provinces.id')
+            ->orderBy('cities.id')
+            ->get();
+
+        return view('admin.human-resource.agent.index', compact('agent', 'city', 'agent', 'provinces'));
     }
 
-    public function create()
+    public function TambahAgent(Request $request)
     {
-        $data = Agent::orderBy('id', 'ASC')->get();
-        return view('admin.human-resource.agent.display', ['data' => $data]);
+
+        DB::beginTransaction();
+        try {
+
+            $agent = new Agent();
+            $lastNomor = Agent::orderBy('id', 'desc')->first();
+            $lastNumber = $lastNomor ? intval(substr($lastNomor->agent_code, -2)) : 0;
+            $newNumber = $lastNumber + 1;
+            $noAgent = 'AGN-1' . str_pad($newNumber, 2, '0', STR_PAD_LEFT);
+
+            $agent->agent_code = $noAgent;
+            $agent->agent_name = $request->agent_name;
+            $agent->agent_description = $request->agent_description;
+            $agent->id_city = $request->id_city;
+            $agent->id_province = $request->id_province;
+            $agent->agent_hp = $request->agent_hp;
+            $agent->agent_tlp = $request->agent_tlp;
+            $agent->agent_email = $request->agent_email;
+            $agent->agent_alamat = $request->agent_alamat;
+
+//            dd($agent);
+            $agent->save();
+
+            DB::commit();
+            Session::flash('message', ['Berhasil mengubah data agen', 'success']);
+        } catch (\Exception $e) {
+            DB::rollback();
+            Session::flash('message', ['Gagal mengubah data agen', 'error']);
+        }
+
+        return redirect()->route('human-resource.data-agent.list-data-agent');
     }
-    public function store(Request $request)
+
+
+    public function DeleteAgent(Request $request)
     {
-        $this->_validation($request);
-        $data = Agent::create($request->all());
+        $agentId = $request->input('agent_id');
+        $data = Agent::find($agentId);
+        $data->delete();
+
         return response()->json([
             'data' => $data,
-            'message' => 'Berhasil menambahkan data ' . $data->agent_name,
-            'status' => $data ? 200 : 400,
-        ]);
-    }
-
-    public function show($type)
-    {
-        $count = Agent::count();
-        if ($count > 0) {
-            $last_data =  Agent::latest('id')->first();
-            $last_data_code = substr($last_data->data_code, -3);
-            if (str_contains($last_data_code, "00")) {
-                $sequence = substr($last_data_code, -1) + 1;
-            } else if (str_contains($last_data_code, "0")) {
-                $sequence = substr($last_data_code, -2) + 1;
-            } else {
-                $sequence =  $last_data->id + 1;
-            }
-        } else {
-            $sequence =  1;
-        }
-
-        $output = '';
-        if ($sequence == 1) {
-            $sequence = 1;
-        }
-        if (strlen($sequence) == 1) {
-            $output = '00' . $sequence;
-        } else if (strlen($sequence) == 2) {
-            $output = '0' . $sequence;
-        } else {
-            $output = $sequence;
-        }
-        $code_data = "AGN-" . $output;
-        return response()->json([
-            'data' => $code_data,
+            'message' => 'Berhasil menghapus data agent!',
             'status' => 200,
         ]);
     }
-    public function edit($id)
-    {
-        $data = Agent::findOrFail($id);
-        return response()->json([
-            'data' => $data,
-            'status' => $data ? 200 : 400,
-        ]);
-    }
-    public function update(Request $request, $id)
-    {
-        $data = Agent::findOrFail($id);
-        $data->update($request->all());
-        return response()->json([
-            'data' => $data,
-            'message' => 'Berhasil mengubah data ' . $data->agent_name,
-            'status' => $data ? 200 : 400,
-        ]);
-    }
-    public function destroy($id)
-    {
-        Agent::destroy($id);
-        return response()->json([
-            'data' => $id,
-            'message' => 'Berhasil menghapus data Gaji',
-            'status' => 200,
-        ]);
-    }
+
 }

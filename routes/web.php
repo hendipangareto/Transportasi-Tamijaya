@@ -217,6 +217,12 @@ Route::group(
                 Route::get('/tambah-data-aset', 'HumanResource\Aset\DataAsetController@getTambahDataAset')->name('master-keuangan.aset.data-aset.tambah-data-aset');
             });
 
+            Route::prefix('data-agent')->group(function () {
+                Route::get('/list-data-agent', 'HumanResource\AgentController@getListAgent')->name('human-resource.data-agent.list-data-agent');
+                Route::post('/tambah-data-agent', 'HumanResource\AgentController@TambahAgent')->name('human-resource.data-agent.tambah-data-agent');
+                Route::delete('/delete-data-agent', 'HumanResource\AgentController@DeleteAgent')->name('human-resource.data-agent.delete-data-agent');
+            });
+
             //MASTER KEUANGAN
             Route::prefix('master-keuangan')->group(function () {
                 Route::prefix('akun')->group(function () {
@@ -397,9 +403,7 @@ Route::group(
 
 
                     //Rekap Pembelian
-                    Route::prefix('rekap-pembelian')->group(function () {
-                        Route::get('/rekap-pengajuan-pembelian', 'MasterLogistik\RekapPengajuanPembelianController@getRekapPengajuanPembelian')->name('master-logistik-rekap-pengajuan-pembelian');
-                    });
+
 
                     //Laporan Pembelian
                     Route::prefix('laporan-pembelian')->group(function () {
@@ -468,7 +472,7 @@ Route::group(
             #region Human Resource
             Route::resource('human-resource/master-employee', 'HumanResource\EmployeeController');
             Route::resource('human-resource/driver-conductor', 'HumanResource\DriverConductorController');
-            Route::resource('human-resource/agent', 'HumanResource\AgentController');
+//            Route::resource('human-resource/agent', 'HumanResource\AgentController');
             #endregion
 
             #region Transaction

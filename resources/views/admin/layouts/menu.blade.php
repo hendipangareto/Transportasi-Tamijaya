@@ -442,8 +442,8 @@
                                 href="{{ route('customer.index') }}"><i class="bx bx-group"></i><span
                                     class="menu-title">Data Customer</span></a>
                         </li>
-                        <li @if (Request::segment(3) == 'agent') class="active" @endif>
-                            <a href="{{ route('agent.index') }}"><i class="bx bx-file"></i><span
+                        <li @if (Request::segment(2) == 'data-agent') class="active" @endif>
+                            <a href="{{ route('human-resource.data-agent.list-data-agent') }}"><i class="bx bx-file"></i><span
                                     class="menu-item">Data
                                     Agent</span></a>
                         </li>

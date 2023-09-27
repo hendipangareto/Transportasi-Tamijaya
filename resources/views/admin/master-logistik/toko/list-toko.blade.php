@@ -82,19 +82,6 @@
                                         <td>{{ $item->pic_toko }}</td>
                                         <td>{{ $item->alamat_toko }}</td>
                                         <td>{{ $item->province }} - {{ $item->city }}</td>
-{{--                                        <td>--}}
-{{--                                            <a href=""--}}
-{{--                                               class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#DetailToko"><i--}}
-{{--                                                    class="bx bx-info-circle font-size-base"></i>--}}
-{{--                                            </a>--}}
-{{--                                            <a href=""--}}
-{{--                                               class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#EditToko-{{ $item->id }}"><i--}}
-{{--                                                    class="bx bx-edit font-size-base"></i>--}}
-{{--                                            </a>--}}
-
-{{--                                            <a href="{{ route('admin.master-logistik.toko.delete-toko', ['id' => $item->id]) }}"--}}
-{{--                                               class="btn btn-outline-danger delete-button"><i class="bx bx-trash"></i></a>--}}
-{{--                                        </td>--}}
                                         <td class="text-center">
                                             <div class="d-flex">
                                                 <div class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"
