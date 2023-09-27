@@ -91,32 +91,37 @@ class DaftarGajiController extends Controller
     {
         DB::beginTransaction();
         try {
-
             $data = new GajiEmployee();
 
             $employee = Employee::find($request->employee_id);
-            $data->employee_id = $request->employee_id;
-            $data->employee_status = $request->employee_status;
-            $data->departemen_id = $employee->departemen_id;
-            $data->position_id = $employee->position_id;
-            $data->g_pokok = $request->g_pokok;
-            $data->t_masa_kerja = $request->t_masa_kerja;
-            $data->t_transport = $request->t_transport;
-            $data->t_kapasitas = $request->t_kapasitas;
-            $data->t_akademik = $request->t_akademik;
-            $data->t_struktur = $request->t_struktur;
-            $data->bpjs_kesehatan = $request->bpjs_kesehatan;
-            $data->bpjs_ketenagakerjaan = $request->bpjs_ketenagakerjaan;
-            $data->tanggal = $request->tanggal_gaji;
-            $data->keterangan = $request->keterangan;
 
+            if ($employee) {
+                // Employee ditemukan, maka akses properti departemen_id dan position_id
+                $data->employee_id = $request->employee_id;
+                $data->employee_status = $request->employee_status;
+                $data->departemen_id = $employee->departemen_id;
+                $data->position_id = $employee->position_id;
 
-//            dd($data);
-            $data->save();
+                // Ubah format nilai Rupiah yang dimasukkan oleh pengguna
+                $data->g_pokok = str_replace('.', '', $request->g_pokok);
+                $data->t_masa_kerja = str_replace('.', '', $request->t_masa_kerja);
+                $data->t_transport = str_replace('.', '', $request->t_transport);
+                $data->t_kapasitas = str_replace('.', '', $request->t_kapasitas);
+                $data->t_akademik = str_replace('.', '', $request->t_akademik);
+                $data->t_struktur = str_replace('.', '', $request->t_struktur);
+                $data->bpjs_kesehatan = str_replace('.', '', $request->bpjs_kesehatan);
+                $data->bpjs_ketenagakerjaan = str_replace('.', '', $request->bpjs_ketenagakerjaan);
+                $data->tanggal = $request->tanggal_gaji;
+                $data->keterangan = $request->keterangan;
 
+                $data->save();
 
-            DB::commit();
-            Session::flash('message', ['Berhasil menyimpan daftar gaji karyawan', 'success']);
+                DB::commit();
+                Session::flash('message', ['Berhasil menyimpan daftar gaji karyawan', 'success']);
+            } else {
+                // Employee tidak ditemukan, lakukan penanganan kesalahan di sini
+                Session::flash('message', ['Gagal menyimpan daftar gaji karyawan. Employee tidak ditemukan.', 'error']);
+            }
         } catch (\Exception $e) {
             DB::rollback();
             Session::flash('message', ['Gagal menyimpan daftar gaji karyawan', 'error']);
@@ -149,7 +154,7 @@ class DaftarGajiController extends Controller
             $data->tanggal = $request->edit_tanggal;
             $data->keterangan = $request->edit_keterangan;
 
-//            dd($data);
+            dd($data);
 
             $data->save();
 

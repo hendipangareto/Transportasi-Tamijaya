@@ -52,20 +52,12 @@ class DataAbsensiController extends Controller
         return view('admin.human-resource.pegawai.data-absensi.list-absensi', compact('absensi', 'params'));
     }
 
-    public function UploadAbsensi(Request $request)
+
+    public function uploadDataAbsensi(Request $request)
     {
-        // Validate the uploaded file
-        $validator = Validator::make($request->all(), [
-            'form_upload_presensi' => 'required|mimes:xlsx',
-        ]);
+        $file = $request->file('        ');
 
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
-
-        $file = $request->file('form_upload_presensi');
-
-        $array = Excel::toArray(new Absensi, $file);
+        $array = Excel::toArray(new AbsensiImport, $file);
         $output = $array[0];
 
         $absensiToInsert = [];
@@ -94,19 +86,22 @@ class DataAbsensiController extends Controller
                         'scan_dua' => $val[8],
                         'scan_tiga' => $val[9],
                         'scan_empat' => $val[10],
-                        'status_absensi' => $val[11],
+                        'status_absensi' => $val[11]
                     ];
                 }
             }
         }
 
+        // Insert hanya data yang belum ada di database
         if (!empty($absensiToInsert)) {
+
             Absensi::insert($absensiToInsert);
             Session::flash('message', ['Berhasil upload data absensi', 'success']);
         } else {
             Session::flash('message', ['Data sudah ada, silahkan upload data lain', 'error']);
         }
 
-        return redirect()->route('human-resource.pegawai.kinerja-karyawan.list-data-absensi');
+        return redirect(route('human-resource.pegawai.kinerja-karyawan.list-data-absensi'));
     }
+
 }

@@ -171,10 +171,10 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="float-right">
-                                <button class="btn btn-warning"  >
+                                <button class="btn btn-warning" >
                                     <i class="bx bx-arrow-back"></i> Kembali
                                 </button>
-                                <button class="btn btn-success" id="btn-simpan-add-gaji-employee">
+                                <button class="btn btn-success"  type="submit">
                                     <i class="bx bx-save"></i> Simpan
                                 </button>
                             </div>

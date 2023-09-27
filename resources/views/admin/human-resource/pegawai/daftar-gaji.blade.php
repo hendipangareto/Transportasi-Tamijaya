@@ -17,6 +17,7 @@
     </div>
 @endsection
 @section('content')
+
     <div class="col-md-12 my-4">
         <div class="card shadow">
             <div class="card-header" style="background-color: #00b3ff">
@@ -266,6 +267,35 @@
         });
 
 
+
+        // document.addEventListener('DOMContentLoaded', function () {
+        //     // Daftar id input yang ingin diformat
+        //     var inputIds = ['g_pokok', 't_masa_kerja', 't_transport', 't_kapasitas', 't_akademik', 't_struktur', 'bpjs_kesehatan', 'bpjs_ketenagakerjaan'];
+        //
+        //     // Format input nominal Rupiah
+        //     inputIds.forEach(function (inputId) {
+        //         var inputElement = document.getElementById(inputId);
+        //         if (inputElement) {
+        //             inputElement.addEventListener('input', function () {
+        //                 // Hapus karakter selain angka dan koma
+        //                 var cleanedValue = this.value.replace(/[^\d,]/g, '');
+        //
+        //                 // Hapus semua koma kecuali yang pertama, dan kemudian format dengan separator ribuan
+        //                 var parts = cleanedValue.split(',');
+        //                 var beforeDecimal = parts[0].replace(/,/g, '');
+        //                 var formattedValue = new Intl.NumberFormat('id-ID').format(beforeDecimal);
+        //
+        //                 // Jika ada bagian desimal, tambahkan kembali koma dan bagian desimalnya
+        //                 if (parts.length > 1) {
+        //                     formattedValue += ',' + parts[1];
+        //                 }
+        //
+        //                 // Set nilai yang telah diformat kembali ke input
+        //                 this.value = formattedValue;
+        //             });
+        //         }
+        //     });
+        // });
     </script>
 @endpush
 

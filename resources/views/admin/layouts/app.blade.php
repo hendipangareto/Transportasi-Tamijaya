@@ -171,10 +171,25 @@
 
 
     </script>
+    @if(\Session::has('message'))
+        @php
+            $message = Session::get('message');
+        @endphp
+        <script>
+            $(function () {
+                Toast.fire({
+                    icon: "{{$message[1]}}",
+                    title: "{{$message[0]}}"
+                });
+            });
+        </script>
+    @endif
     @stack('page-scripts')
 
 {{--    sweetalert2 by hendi--}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+
 
 </body>
 

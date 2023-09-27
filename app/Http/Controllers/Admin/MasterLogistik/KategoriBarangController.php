@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Admin\MasterLogistik;
 use App\Models\MasterDataLogistik\Kategori;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class KategoriBarangController
 {
@@ -17,30 +18,35 @@ class KategoriBarangController
 
     public function postKategoriBarang(Request $request)
     {
-
-
-        $kategori = new Kategori();
-
-        $lastNomor = Kategori::orderBy('id', 'desc')->first();
-        $lastNumber = $lastNomor ? intval(substr($lastNomor->kode_kategori, -2)) : 0;
-        $newNumber = $lastNumber + 1;
-        $nokategori = 'BRG-001' . str_pad($newNumber, 2, '0', STR_PAD_LEFT);
-
-
-        $kategori->kode_kategori = $nokategori;
-        $kategori->nama_kategori = $request->nama_kategori;
-        $kategori->deskripsi_kategori = $request->deskripsi_kategori;
-
+        DB::beginTransaction();
         try {
-            $kategori->save();
-            return redirect(route('master-logistik-list-kategori-barang'))->with('pesan-berhasil', 'Anda berhasil menambah data kategori');
+            $kategori = new Kategori();
 
+            // Mengambil kode kategori terbaru
+            $lastNomor = Kategori::orderBy('id', 'desc')->first();
+            $lastNumber = $lastNomor ? intval(substr($lastNomor->kode_kategori, -2)) : 0;
+            $newNumber = $lastNumber + 1;
+
+            // Membuat kode kategori baru dengan format 'BRG-001'
+            $nokategori = 'BRG-' . str_pad($newNumber, 3, '0', STR_PAD_LEFT);
+
+            $kategori->kode_kategori = $nokategori;
+            $kategori->nama_kategori = $request->nama_kategori;
+            $kategori->deskripsi_kategori = $request->deskripsi_kategori;
+
+            $kategori->save();
+
+            DB::commit();
+            Session::flash('message', ['Berhasil menyimpan data kategori barang', 'success']);
         } catch (\Exception $e) {
-            return redirect(route('master-logistik-list-kategori-barang'))->with('pesan-gagal', 'Anda gagal menambah data kategori');
+            DB::rollback();
+            Session::flash('message', ['Gagal menyimpan data kategori barang', 'error']);
         }
 
-
+        return redirect()->route('master-logistik-list-kategori-barang');
     }
+
+
 
     public function EditKategoriBarang(Request $request, $id)
     {
@@ -50,32 +56,48 @@ class KategoriBarangController
 
     public function UpdateKategoriBarang(Request $request, $id)
     {
-        $kategori = Kategori::find($id);
-        $kategori->nama_kategori = $request->nama_kategori;
-        $kategori->deskripsi_kategori = $request->deskripsi_kategori;
 
 
+        DB::beginTransaction();
         try {
-            $kategori->save();
-            return redirect(route('master-logistik-list-kategori-barang'))->with('pesan-berhasil', 'Anda berhasil mengubah data kategori');
+            $kategori = Kategori::find($id);
+            $kategori->nama_kategori = $request->nama_kategori;
+            $kategori->deskripsi_kategori = $request->deskripsi_kategori;
 
+            $kategori->save();
+
+            DB::commit();
+            Session::flash('message', ['Berhasil mengubah data kategori barang', 'success']);
         } catch (\Exception $e) {
-            return redirect(route('master-logistik-list-kategori-barang'))->with('pesan-gagal', 'Anda gagal mengubah data kategori');
+            DB::rollback();
+            Session::flash('message', ['Gagal mengubah data kategori barang', 'error']);
         }
+
+        return redirect()->route('master-logistik-list-kategori-barang');
     }
 
-    public function DeleteKategoriBarang($id)
+    public function DeleteKategoriBarang(Request $request)
     {
-        $kategori = Kategori::find($id);
 
+        $kategoriId = $request->input('employee_id');
+        $data = Kategori::find($kategoriId);
+        $data->delete();
 
-        try {
-            $kategori->delete();
-            return redirect(route('master-logistik-list-kategori-barang'))->with('pesan-berhasil', 'Anda berhasil menghapus data kategori');
-
-        } catch (\Exception $e) {
-            return redirect(route('master-logistik-list-kategori-barang'))->with('pesan-gagal', 'Anda gagal menghapus data kategori');
-        }
+        return response()->json([
+            'data' => $data,
+            'message' => 'Berhasil menghapus data gaji karyawan',
+            'status' => 200,
+        ]);
+//        $kategori = Kategori::find($id);
+//
+//
+//        try {
+//            $kategori->delete();
+//            return redirect(route('master-logistik-list-kategori-barang'))->with('pesan-berhasil', 'Anda berhasil menghapus data kategori');
+//
+//        } catch (\Exception $e) {
+//            return redirect(route('master-logistik-list-kategori-barang'))->with('pesan-gagal', 'Anda gagal menghapus data kategori');
+//        }
     }
 
     public function CetakPDF()

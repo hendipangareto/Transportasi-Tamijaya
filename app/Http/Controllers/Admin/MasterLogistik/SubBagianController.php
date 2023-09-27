@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\MasterDataLogistik\Bagian;
 use App\Models\MasterDataLogistik\SubBagian;
 use Barryvdh\DomPDF\Facade as PDF;
-
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class SubBagianController extends Controller
 {
@@ -39,25 +40,31 @@ class SubBagianController extends Controller
 
     public function TambahSubBagian(Request $request)
     {
-        $subbagian = new SubBagian();
-        $lastNomor = SubBagian::orderBy('id', 'desc')->first();
-        $lastNumber = $lastNomor ? intval(substr($lastNomor->kode_sub_bagian, -2)) : 0;
-        $newNumber = $lastNumber + 1;
-        $noSubbagian = 'SBGN-001' . str_pad($newNumber, 2, '0', STR_PAD_LEFT);
 
-        $subbagian->kode_sub_bagian = $noSubbagian;
-        $subbagian->nama_sub_bagian = $request->nama_sub_bagian;
-        $subbagian->bagian_id = $request->bagian_id;
-        $subbagian->deskripsi_sub_bagian = $request->deskripsi_sub_bagian;
-
-//           dd($subbagian);
+        DB::beginTransaction();
         try {
+            $subbagian = new SubBagian();
+            $lastNomor = SubBagian::orderBy('id', 'desc')->first();
+            $lastNumber = $lastNomor ? intval(substr($lastNomor->kode_sub_bagian, -2)) : 0;
+            $newNumber = $lastNumber + 1;
+            $noSubbagian = 'SBGN-001' . str_pad($newNumber, 2, '0', STR_PAD_LEFT);
+
+            $subbagian->kode_sub_bagian = $noSubbagian;
+            $subbagian->nama_sub_bagian = $request->nama_sub_bagian;
+            $subbagian->bagian_id = $request->bagian_id;
+            $subbagian->deskripsi_sub_bagian = $request->deskripsi_sub_bagian;
+
+
             $subbagian->save();
 
-            return redirect(route('admin.master-logistik.bagian.sub-bagian'))->with('pesan-berhasil', 'Anda berhasil menambah data sub bagian');
+            DB::commit();
+            Session::flash('message', ['Berhasil menyimpan data sub bagian barang', 'success']);
         } catch (\Exception $e) {
-            return redirect(route('admin.master-logistik.bagian.sub-bagian'))->with('pesan-gagal', 'Anda gagal menambah data sub bagian');
+            DB::rollback();
+            Session::flash('message', ['Gagal menyimpan data sub bagian barang', 'error']);
         }
+
+        return redirect()->route('admin.master-logistik.bagian.sub-bagian');
     }
 
 

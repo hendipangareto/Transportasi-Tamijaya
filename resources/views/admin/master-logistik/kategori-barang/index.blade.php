@@ -89,8 +89,8 @@
                                                      data-target="#EditkategoriBarang-{{ $item->id }}">
                                                     <i class="bx bx-edit font-size-base"></i>
                                                 </div>
-                                                <div class="badge-circle badge-circle-sm badge-circle-danger pointer"
-                                                     href="{{ route('master-logistik.delete-kategori-barang', ['id' => $item->id]) }}">
+                                                <div class="badge-circle badge-circle-sm badge-circle-danger pointer delete-button "
+                                                     data-id="{{ $item->id }}">
                                                     <i class="bx bx-trash font-size-base"></i>
                                                 </div>
                                             </div>
@@ -135,25 +135,41 @@
         });
         @endif
 
-        //konfimarsi delete
-        document.addEventListener('click', function (e) {
-            if (e.target.classList.contains('delete-button')) {
-                e.preventDefault();
+        $(document).ready(function () {
+            $('.delete-button').click(function () {
+                var employeeId = $(this).data('id');
 
                 Swal.fire({
-                    title: 'Apakah Anda yakin?',
-                    {{--text: 'Data (" {{ $item->nama_kategori }} ") akan dihapus!',--}}
-                    text: 'Data ini akan dihapus!',
-                    icon: 'warning',
+                    title: "Yakin akan menghapus data?",
+                    text: "Data yang dihapus tidak dapat dikembalikan",
+                    icon: "warning",
                     showCancelButton: true,
-                    confirmButtonText: 'Ya, Hapus!',
-                    cancelButtonText: 'Batal'
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Ya, hapus!"
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location.href = e.target.href;
+                        $.ajax({
+                            url: '{{ route('master-logistik.delete-kategori-barang') }}',
+                            type: 'DELETE',
+                            data: {
+                                '_token': '{{ csrf_token() }}',
+                                'employee_id': employeeId
+                            },
+                            success: function (response) {
+                                location.reload();
+                                Toast.fire({
+                                    icon: "success",
+                                    title: "Berhasil menghapus data gaji karyawan"
+                                });
+                            },
+                            error: function (error) {
+                                console.log(err);
+                            }
+                        });
                     }
                 });
-            }
+            });
         });
 
     </script>
