@@ -41,7 +41,7 @@
                                     <button type="button" class="btn btn-primary mr-1" data-toggle="modal" data-target="#TambahAgent"><i
                                             class="bx bx-plus-circle"></i> Tambah Data</button>
                                     <a target="_blank"
-                                       href=" "
+                                       href="{{ route('human-resource.data-agent.cetak-pdf-agent') }}"
                                        type="button"
                                        class="btn btn-danger text-white mr-1">
                                         <i class="bx bx-printer"></i> Report PDF

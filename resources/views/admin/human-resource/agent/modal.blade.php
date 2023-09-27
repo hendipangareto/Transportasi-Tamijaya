@@ -8,7 +8,7 @@
                     <i class="bx bx-x"></i>
                 </button>
             </div>
-            <form action="{{ route('human-resource.data-agent.tambah-data-agent') }}" method="post">
+            <form action="{{ route('human-resource.data-agent.tambah-data-agent') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="col-xxl">
                     <div class="card mb-4">

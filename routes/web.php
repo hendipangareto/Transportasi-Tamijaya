@@ -220,7 +220,9 @@ Route::group(
             Route::prefix('data-agent')->group(function () {
                 Route::get('/list-data-agent', 'HumanResource\AgentController@getListAgent')->name('human-resource.data-agent.list-data-agent');
                 Route::post('/tambah-data-agent', 'HumanResource\AgentController@TambahAgent')->name('human-resource.data-agent.tambah-data-agent');
+                Route::post('/update-data-agent/{id}', 'HumanResource\AgentController@UpdateAgent')->name('human-resource.data-agent.update-data-agent');
                 Route::delete('/delete-data-agent', 'HumanResource\AgentController@DeleteAgent')->name('human-resource.data-agent.delete-data-agent');
+                Route::get('/cetak-pdf-agent', 'HumanResource\AgentController@AgentPDF')->name('human-resource.data-agent.cetak-pdf-agent');
             });
 
             //MASTER KEUANGAN
