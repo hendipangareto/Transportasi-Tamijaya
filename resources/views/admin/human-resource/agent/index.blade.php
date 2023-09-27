@@ -78,11 +78,11 @@
                                     <td class="text-center">
                                         <div class="d-flex">
                                             <div class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"
-                                                 onclick="openModal('agent','detail', {{ $item->id }})">
+                                                 data-toggle="modal" data-target="#DetailAgent-{{ $item->id }}">
                                                 <i class="bx bx-info-circle font-size-base"></i>
                                             </div>
                                             <div class="badge-circle badge-circle-sm badge-circle-warning mr-1 pointer"
-                                                 onclick="openModal('agent','edit', {{ $item->id }})">
+                                                 data-toggle="modal" data-target="#EditAgent-{{ $item->id }}">
                                                 <i class="bx bx-edit font-size-base"></i>
                                             </div>
                                             <div class="badge-circle badge-circle-sm badge-circle-danger pointer delete-button "
@@ -95,7 +95,7 @@
                             @empty
                                 <tr>
                                     <td colspan="6" class="text-center">
-                                        Tidak Terdapat Data Karayawan
+                                        Tidak Terdapat Data Agent
                                     </td>
                                 </tr>
                             @endforelse
@@ -109,6 +109,7 @@
     </div>
 
     @include('admin.human-resource.agent.modal')
+    @include('admin.human-resource.agent.display')
 @endsection
 
 @push('page-scripts')

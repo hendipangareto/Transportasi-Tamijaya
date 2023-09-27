@@ -380,17 +380,19 @@
                             <a href= ""><i class="bx bx-folder-plus"></i><span
                                     class="menu-item">Aset</span></a>
                             <ul class="menu-content">
-                                <li @if (Request::segment(4) == 'data-aset') class="active" @endif>
-                                    <a href="{{ route('master-keuangan.aset.list-data-aset') }}"><i class="bx bx-right-arrow-alt"></i><span
-                                            class="menu-item">Data Aset</span></a>
-                                </li>
+
                                 <li @if (Request::segment(4) == 'tipe-aset') class="active" @endif>
                                     <a href="{{ route('master-keuangan.aset.tipe-aset') }}"><i class="bx bx-right-arrow-alt"></i><span
                                             class="menu-item">Tipe Aset</span></a>
                                 </li>
+
                                 <li @if (Request::segment(4) == 'kategori-aset') class="active" @endif>
                                     <a href="{{ route('master-keuangan.aset.list-kategori-aset') }}"><i class="bx bx-right-arrow-alt"></i><span
                                             class="menu-item">Kategori Aset</span></a>
+                                </li>
+                                <li @if (Request::segment(4) == 'data-aset') class="active" @endif>
+                                    <a href="{{ route('master-keuangan.aset.list-data-aset') }}"><i class="bx bx-right-arrow-alt"></i><span
+                                            class="menu-item">Data Aset</span></a>
                                 </li>
                             </ul>
                         </li>

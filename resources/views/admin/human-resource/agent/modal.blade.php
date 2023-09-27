@@ -50,13 +50,13 @@
                             <div class="row mb-1">
                                     <label class="col-sm-3 col-form-label" for="basic-default-name">No. Telepon</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="agent_tlp" name="agent_tlp"/>
+                                        <input type="number" class="form-control" id="agent_tlp" name="agent_tlp"/>
                                     </div>
                                 </div>
                                 <div class="row mb-1">
                                     <label class="col-sm-3 col-form-label" for="basic-default-name">No. HP</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="agent_hp" name="agent_hp"/>
+                                        <input type="number" class="form-control" id="agent_hp" name="agent_hp"/>
                                     </div>
                                 </div>
                                 <div class="row mb-1">
