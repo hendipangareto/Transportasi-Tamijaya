@@ -138,13 +138,13 @@
                                 <div class="row mb-1">
                                     <label class="col-sm-3 col-form-label" for="basic-default-name">Nama Agent</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="agent_name" name="agent_name" value="{{ $item->agent_name }}"/>
+                                        <input type="text" class="form-control" id="agent_name_update" name="agent_name_update" value="{{ $item->agent_name }}"/>
                                     </div>
                                 </div>
                                 <div class="row mb-1">
                                     <label class="col-sm-3 col-form-label" for="basic-default-name">Provinsi</label>
                                     <div class="col-sm-9">
-                                        <select onchange="changeProvince()" id="id_province" name="id_province"
+                                        <select onchange="changeProvince()" id="id_province_update" name="id_province_update"
                                                 class="form-control">
 {{--                                            <option value="">Pilih Provinsi</option>--}}
                                             @foreach ($provinces as $province)
@@ -156,7 +156,7 @@
                                 <div class="row mb-1">
                                     <label class="col-sm-3 col-form-label" for="basic-default-name">Kota</label>
                                     <div class="col-sm-9">
-                                        <select name="id_city" id="id_city" class="form-control">
+                                        <select name="id_city_update" id="id_city_update" class="form-control">
                                             <option value="{{ $item->id }}">{{ $item->city }}</option>
                                         </select>
                                     </div>
@@ -166,26 +166,26 @@
                                 <div class="row mb-1">
                                     <label class="col-sm-3 col-form-label" for="basic-default-name">No. Telepon</label>
                                     <div class="col-sm-9">
-                                        <input type="number" class="form-control" id="agent_tlp" name="agent_tlp" value="{{ $item->agent_tlp }}"/>
+                                        <input type="number" class="form-control" id="agent_tlp_update" name="agent_tlp_update" value="{{ $item->agent_tlp }}"/>
                                     </div>
                                 </div>
                                 <div class="row mb-1">
                                     <label class="col-sm-3 col-form-label" for="basic-default-name">No. HP</label>
                                     <div class="col-sm-9">
-                                        <input type="number" class="form-control" id="agent_hp" name="agent_hp" value="{{ $item->agent_hp }}"/>
+                                        <input type="number" class="form-control" id="agent_hp_update" name="agent_hp_update" value="{{ $item->agent_hp }}"/>
                                     </div>
                                 </div>
                                 <div class="row mb-1">
                                     <label class="col-sm-3 col-form-label" for="basic-default-name">Email</label>
                                     <div class="col-sm-9">
-                                        <input type="email" class="form-control" id="agent_email" name="agent_email" value="{{ $item->agent_email }}"/>
+                                        <input type="email" class="form-control" id="agent_email_update" name="agent_email_update" value="{{ $item->agent_email }}"/>
                                     </div>
                                 </div>
                                 <div class="row mb-1">
                                     <label class="col-sm-3 col-form-label" for="basic-default-name">Alamat</label>
                                     <div class="col-sm-9">
-                                      <textarea class="form-control" name="agent_alamat"
-                                                id="agent_alamat" cols="30"
+                                      <textarea class="form-control" name="agent_alamat_update"
+                                                id="agent_alamat_update" cols="30"
                                                 rows="3" data-value="{{ $item->agent_alamat }}"> {{ $item->agent_alamat }}
                                         </textarea>
                                     </div>
@@ -193,8 +193,8 @@
                                 <div class="row mb-1">
                                     <label class="col-sm-3 col-form-label" for="basic-default-name">Keterangan</label>
                                     <div class="col-sm-9">
-                                      <textarea class="form-control" name="agent_description"
-                                                id="agent_description" cols="30"
+                                      <textarea class="form-control" name="agent_description_update"
+                                                id="agent_description_update" cols="30"
                                                 rows="3" data-value="{{ $item->agent_description }}"> {{ $item->agent_description }}
                                         </textarea>
                                     </div>

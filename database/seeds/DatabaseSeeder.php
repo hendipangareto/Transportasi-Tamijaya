@@ -36,7 +36,7 @@ class DatabaseSeeder extends Seeder
         // $this->call(JournalSeeder::class);
         $this->call(BusSeeder::class);
         $this->call(TransactionRegulerSeeder::class);
-        $this->call(TransactionPariwisataSeeder::class);
+//        $this->call(TransactionPariwisataSeeder::class);
         $this->call(DestinationWisataSeeder::class);
         $this->call(RouteWisataSeeder::class);
         $this->call(ArmadaScheduleSeeder::class);

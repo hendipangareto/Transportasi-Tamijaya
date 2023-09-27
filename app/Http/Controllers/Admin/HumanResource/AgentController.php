@@ -71,14 +71,14 @@ class AgentController extends Controller
         try {
             $agent = Agent::findOrFail($id);
 
-            $agent->agent_name = $request->agent_name;
-            $agent->agent_description = $request->agent_description;
-            $agent->id_city = $request->id_city;
-            $agent->id_province = $request->id_province;
-            $agent->agent_hp = $request->agent_hp;
-            $agent->agent_tlp = $request->agent_tlp;
-            $agent->agent_email = $request->agent_email;
-            $agent->agent_alamat = $request->agent_alamat;
+            $agent->agent_name = $request->agent_name_update;
+            $agent->agent_description = $request->agent_description_update;
+            $agent->id_city = $request->id_city_update;
+            $agent->id_province = $request->id_province_update;
+            $agent->agent_hp = $request->agent_hp_update;
+            $agent->agent_tlp = $request->agent_tlp_update;
+            $agent->agent_email = $request->agent_email_update;
+            $agent->agent_alamat = $request->agent_alamat_update;
 
             dd($agent);
             $agent->save();

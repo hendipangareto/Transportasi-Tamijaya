@@ -189,6 +189,7 @@ Route::group(
                         Route::get('/list-request-gaji', 'HumanResource\RequestGajiController@getRequestGaji')->name('human-resource.pegawai.request-gaji.list-gaji');
                         Route::get('/form-tambah-request-gaji', 'HumanResource\RequestGajiController@getFormTambah')->name('human-resource.pegawai.request-gaji.form-tambah');
                         Route::post('/form-simpan-request-gaji', 'HumanResource\RequestGajiController@SimpanRequest')->name('human-resource.pegawai.request-gaji.form-simpan');
+                        Route::get('/get-employee-request-gaji', 'HumanResource\RequestGajiController@getEmployee')->name('human-resource.pegawai.request-gaji.get-employee-request-gaji');
                         Route::get('/form-edit-request-gaji', 'HumanResource\RequestGajiController@getFormEdit')->name('human-resource.pegawai.request-gaji.form-edit');
                     });
 
