@@ -447,126 +447,7 @@
 
                                         <h5 class="mt-3"><b>KASBON</b></h5>
                                         <hr>
-                                        <div class="row  ">
-                                            <div class="col-md-6">
-                                                <div class="card mb-4">
-                                                    <div class="card-body">
-                                                        <div class="mb-3 row">
-                                                            <label for="html5-text-input"
-                                                                   class="col-md-3 col-form-label">Bulan / Tahun</label>
-                                                            <div class="col-md-9">
-                                                                <input class="form-control" type="date"
-                                                                       placeholder="nama aset"/>
-                                                            </div>
-                                                        </div>
-                                                        <div class="mb-3 row">
-                                                            <label for="html5-search-input"
-                                                                   class="col-md-3 col-form-label">Nama Pegawai</label>
-                                                            <div class="col-md-9">
-                                                                <select id="largeSelect"
-                                                                        class="form-select form-select-lg form-control">
-                                                                    <option>Pilih Nama Pegawai</option>
-                                                                    <option value="1">One</option>
-
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="mb-3 row">
-                                                            <label for="html5-email-input"
-                                                                   class="col-md-3 col-form-label">Departemen</label>
-                                                            <div class="col-md-9">
-                                                                <input class="form-control" type="text" readonly/>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <label for="html5-url-input"
-                                                                   class="col-md-3 col-form-label">Jabatan</label>
-                                                            <div class="col-md-9">
-                                                                <input class="form-control" type="text" readonly/>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="card mb-4">
-                                                    <div class="card-body">
-                                                        <div class="mb-3 row">
-                                                            <label for="html5-text-input"
-                                                                   class="col-md-3 col-form-label">. </label>
-                                                            <div class="col-md-9">
-
-                                                            </div>
-                                                        </div>
-                                                        <div class="mb-3 mt5 row">
-                                                            <label for="html5-search-input"
-                                                                   class="col-md-3 col-form-label">Kode Pegawai</label>
-                                                            <div class="col-md-9">
-                                                                <input class="form-control" type="text" readonly/>
-                                                            </div>
-                                                        </div>
-                                                        <div class="mb-3 row">
-                                                            <label for="html5-email-input"
-                                                                   class="col-md-3 col-form-label">Status
-                                                                Pegawai</label>
-                                                            <div class="col-md-9">
-                                                                <input class="form-control" type="text" readonly/>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <label for="html5-url-input"
-                                                                   class="col-md-3 col-form-label">.</label>
-                                                            <div class="col-md-9">
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <h5><b>PENGAJUAN KASBON</b></h5>
-                                        <hr>
-                                        <div class="row  ">
-                                            <div class="col-md-6">
-                                                <div class="card mb-4">
-                                                    <div class="card-body">
-                                                        <div class="mb-3 row">
-                                                            <label for="html5-text-input"
-                                                                   class="col-md-3 col-form-label">Nominal</label>
-                                                            <div class="col-md-9">
-                                                                <input class="form-control" type="text"/>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <label for="html5-search-input"
-                                                                   class="col-md-3 col-form-label">Keterangan</label>
-                                                            <div class="col-md-9">
-                                                                <textarea class="form-control"
-                                                                          name="deskripsi_kategori_aset"
-                                                                          id="deskripsi_kategori_aset" cols="50"
-                                                                          rows="3">
-                                                                </textarea>
-                                                            </div>
-                                                            <div class="form-group">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6"></div>
-                                            <div class="col ml-auto">
-                                                <div class="dropdown float-right mb-3">
-                                                    <a href="{{ route('human-resource.pegawai.request-gaji.list-gaji') }}"
-                                                       class="btn btn-warning mr-1"><i
-                                                            class="fe fe-arrow-left"></i> Kembali
-                                                    </a>
-                                                    <button type="submit" class="btn btn-success">Simpan <i
-                                                            class="bx bx-save"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
+                                       @include('admin.human-resource.pegawai.request-gaji.kasbon')
                                     </div>
 
                                 </div>
@@ -647,6 +528,65 @@
             });
 
         });
+
+
+
+        //KASBON===========
+        $(document).ready(function () {
+            $('#employee_select').change(function () {
+                var employeeId = $(this).val();
+                console.log("employeeId: " + employeeId)
+
+                if (employeeId) {
+                    $.ajax({
+                        type: "GET",
+                        url: "{{route('data-gaji-pegawai.human-resource-pegawai-getEmployee')}}",
+                        data: {'employee_id': employeeId},
+                        success: function (data) {
+                            console.log(JSON.stringify(data))
+                            if (data) {
+                                $('#employee_status').val(data.employee_status);
+                                $('#kode_employee').val(data.kode_employee);
+                                $('#departemen_id').val(data.department_name);
+                                $('#position_id').val(data.position_name);
+                            }
+                        }
+                    });
+                } else {
+                    $('#employee_status').val('');
+                    $('#kode_employee').val('');
+                    $('#departemen_id').val('');
+                    $('#position_id').val('');
+                }
+            });
+        });
+
+        $(function () {
+            var countSelected = 0;
+
+            if (parseInt($("#table-daftar-gaji").val()) > 0) {
+                $("#modal-tambah-daftar-gaji-pegawai").DataTable();
+            }
+        });
+
+        //clear form add
+        $(document).ready(function () {
+            function clearFormData() {
+                $("#employee_id").val("");
+                $("#kode_employee").val("");
+                $("#employee_status").val("");
+                $("#departemen_id").val("");
+                $("#position_id").val("");
+                $("#nominal").val("");
+                $("#tanggal").val("");
+                $("#keterangan_kasbon").val("");
+            }
+
+            $("#modal-tambah-daftar-gaji-pegawai").on("hidden.bs.modal", function () {
+                clearFormData();
+            });
+        });
+
 
     </script>
 @endpush

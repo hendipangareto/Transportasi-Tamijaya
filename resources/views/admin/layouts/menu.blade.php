@@ -242,7 +242,7 @@
                 <li class=" navigation-header" style="color: darkred"><span>Human Resource</span>
                 </li>
                 <li class="nav-item @if (Request::segment(2) == 'human-resource') open @endif">
-                    <a href="index.html"><i class="bx bxs-group"></i><span class="menu-title">Manajemen
+                    <a href=""><i class="bx bxs-group"></i><span class="menu-title">Manajemen
                             Karyawan</span></a>
                     <ul class="menu-content">
                         <li @if (Request::segment(3) == 'master-employee-list-data') class="active" @endif>
@@ -281,7 +281,7 @@
                 <li class=" navigation-header" style="color: #af0303"><span>DATA MASTER</span>
                 </li>
                 <li class="nav-item @if (Request::segment(2) == 'master-data' && Request::segment(3) !== 'armada') open @endif">
-                    <a href="index.html"> <span class="menu-title">
+                    <a href=""> <span class="menu-title">
                             MASTER TICKETING</span></a>
                     <ul class="menu-content">
                         <li @if (Request::segment(3) == 'bus') class="active" @endif>

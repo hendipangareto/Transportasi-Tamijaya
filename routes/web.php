@@ -191,7 +191,13 @@ Route::group(
                         Route::post('/form-simpan-request-gaji', 'HumanResource\RequestGajiController@SimpanRequest')->name('human-resource.pegawai.request-gaji.form-simpan');
                         Route::get('/get-employee-request-gaji', 'HumanResource\RequestGajiController@getEmployee')->name('human-resource.pegawai.request-gaji.get-employee-request-gaji');
                         Route::get('/form-edit-request-gaji', 'HumanResource\RequestGajiController@getFormEdit')->name('human-resource.pegawai.request-gaji.form-edit');
+
+                        Route::prefix('request-kasbon')->group(function () {
+                            Route::post('/form-request-kasbon', 'HumanResource\RequestGajiController@RequestKasbon')->name('human-resource.human-resource.pegawai.request-kasbon-karyawan');
+                        });
                     });
+
+
 
                     Route::prefix('kinerja-karyawan')->group(function () {
                         Route::get('/list-request-gaji', 'HumanResource\KinerjaKaryawanController@getKinerjaKaryawan')->name('human-resource.pegawai.kinerja-karyawan.list-kinerja');

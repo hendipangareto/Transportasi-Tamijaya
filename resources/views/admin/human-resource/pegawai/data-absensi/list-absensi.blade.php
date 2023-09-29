@@ -51,36 +51,43 @@
                     <form action="">
                         @csrf
                         <div class="row">
-                            <form action="{{route('human-resource.pegawai.kinerja-karyawan.upload-data-absensi')}}" method="POST"
-                                  enctype="multipart/form-data">
-                                @csrf
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="">Upload Absensi (.xlsx) </label>
-                                            <input required type="file" name="form_upload_presensi"
-                                                   accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-                                                   class="form-control" style="float: right!important;">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label for="" style="color: white">Hai</label><br>
-                                            <button class="btn btn-primary mr-1" type="submit" title="upload data">
-                                                <i class="fe fe-upload"></i> Upload
-                                            </button>
-                                        </div>
+
+                            <div class="row col-md-12">
+                                <div class="col-md-3 col-sm-12">
+                                    <div class="form-group">
+                                        <form action="{{ route('human-resource.pegawai.kinerja-karyawan.upload-data-absensi') }}" method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                            <input type="file" name="form_upload_presensi">
+                                            <button type="submit">Upload</button>
+                                        </form>
+{{--                                        <form action="{{ route('human-resource.pegawai.kinerja-karyawan.upload-data-absensi') }}" method="POST" enctype="multipart/form-data">--}}
+{{--                                            @csrf--}}
+{{--                                            <input type="file" class="form-control col-md-8" name="form_upload_presensi">--}}
+{{--                                            <button type="submit" class="col-md-3">Upload</button>--}}
+{{--                                            <div class="row">--}}
+{{--                                                <div class="col-md-8">--}}
+{{--                                                    <div class="form-group">--}}
+{{--                                                        <label for="">Upload Absensi (.xlsx) </label>--}}
+{{--                                                        <input required type="file" name="form_upload_presensi"--}}
+{{--                                                               accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"--}}
+{{--                                                               class="form-control" style="float: right!important;">--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="col-md-3">--}}
+{{--                                                    <div class="form-group">--}}
+{{--                                                        <label for="" style="color: white">Hai</label><br>--}}
+{{--                                                        <button class="btn btn-primary mr-1" type="submit" title="upload data">--}}
+{{--                                                            <i class="fe fe-upload"></i> Upload--}}
+{{--                                                        </button>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+
+{{--                                        </form>--}}
                                     </div>
                                 </div>
-                            </form>
-{{--                            <div class="row col-md-8">--}}
-{{--                                <div class="col-md-3 col-sm-12">--}}
-{{--                                    <div class="form-group">--}}
-{{--                                        <label for="">Upload Data (.xlsx)</label>--}}
-{{--                                        <input type="file" name="" id="" class="form-control btn btn-outline-primary">--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
+
+                            </div>
                             <div class="row col-md-8">
                                 <div class="col-md-3 col-sm-12">
                                     <div class="form-group">

@@ -5,12 +5,14 @@ namespace App\Http\Controllers\Admin\HumanResource;
 use App\Http\Controllers\Controller;
 use App\Models\HumanResource\Absensi;
 use App\Models\HumanResource\Employee;
-//use App\Imports\AbsensiImport;
+use App\Imports\AbsensiImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session; // Added Session facade
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Validator; // Added Validator facade
+
+use Carbon\Carbon;
 
 class DataAbsensiController extends Controller
 {
@@ -53,9 +55,9 @@ class DataAbsensiController extends Controller
     }
 
 
-    public function uploadDataAbsensi(Request $request)
+    public function uploadAbsensi(Request $request)
     {
-        $file = $request->file('        ');
+        $file = $request->file('form_upload_presensi');
 
         $array = Excel::toArray(new AbsensiImport, $file);
         $output = $array[0];
@@ -94,7 +96,6 @@ class DataAbsensiController extends Controller
 
         // Insert hanya data yang belum ada di database
         if (!empty($absensiToInsert)) {
-
             Absensi::insert($absensiToInsert);
             Session::flash('message', ['Berhasil upload data absensi', 'success']);
         } else {
@@ -103,5 +104,7 @@ class DataAbsensiController extends Controller
 
         return redirect(route('human-resource.pegawai.kinerja-karyawan.list-data-absensi'));
     }
+
+ 
 
 }

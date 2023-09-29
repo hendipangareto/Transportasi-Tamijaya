@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\HumanResource\Employee;
 use App\Models\HumanResource\GajiEmployee;
 use App\Models\HumanResource\RequestGaji;
+use App\Models\HumanResource\RequestKasbon;
 use App\Models\MasterData\Department;
 use App\Models\MasterData\Position;
 use Illuminate\Http\Request;
@@ -43,11 +44,11 @@ class RequestGajiController extends Controller
     {
         DB::beginTransaction();
         try {
-            // Ambil data pegawai berdasarkan employee_id
+
             $employeeId = $request->employee_id;
             $gajiEmployee = GajiEmployee::where('employee_id', '=', $employeeId)->first();
 
-            // Hitung gaji total
+
             $gaji = $gajiEmployee->g_pokok +
                 $gajiEmployee->t_masa_kerja +
                 $gajiEmployee->t_transport +
@@ -94,6 +95,43 @@ class RequestGajiController extends Controller
 
 
         return response()->json($employee);
+    }
+
+
+    public function RequestKasbon(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $data = new RequestKasbon();
+
+            $employee = Employee::find($request->employee_id);
+
+            if ($employee) {
+                // Employee ditemukan, maka akses properti departemen_id dan position_id
+                $data->employee_id = $request->employee_id;
+                $data->kode_employee = $request->kode_employee;
+                $data->departemen_id = $employee->departemen_id;
+                $data->position_id = $employee->position_id;
+                $data->employee_status = $request->employee_status;
+                $data->tanggal = $request->tanggal;
+                $data->nominal = str_replace('.', '', $request->nominal);
+                $data->keterangan_kasbon = $request->keterangan_kasbon;
+
+//                dd($data);
+                $data->save();
+
+                DB::commit();
+                Session::flash('message', ['Berhasil menyimpan daftar kasbon karyawan', 'success']);
+            } else {
+
+                Session::flash('message', ['Gagal menyimpan daftar kasbon karyawan. Employee tidak ditemukan.', 'error']);
+            }
+        } catch (\Exception $e) {
+            DB::rollback();
+            Session::flash('message', ['Gagal menyimpan daftar kasbon karyawan', 'error']);
+        }
+
+        return redirect()->route('human-resource.pegawai.request-gaji.list-gaji');
     }
 
     public function getFormEdit(Request $request)
