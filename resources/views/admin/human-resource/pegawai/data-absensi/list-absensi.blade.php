@@ -34,9 +34,9 @@
                             <h2 class="h4 "></h2>
                             <div class="col ml-auto">
                                 <div class="dropdown float-right">
-{{--                                    <a href="{{ route('human-resource.pegawai.request-gaji.form-tambah') }}"--}}
-{{--                                       class="btn btn-primary mr-1">--}}
-{{--                                        <i class="bx bx-plus-circle"></i> Tambah Data</a>--}}
+                                    {{--                                    <a href="{{ route('human-resource.pegawai.request-gaji.form-tambah') }}"--}}
+                                    {{--                                       class="btn btn-primary mr-1">--}}
+                                    {{--                                        <i class="bx bx-plus-circle"></i> Tambah Data</a>--}}
                                     <a target="_blank"
                                        href=""
                                        type="button"
@@ -48,93 +48,88 @@
                         </div>
                     </div>
 
-                    <form action="">
+                    <form action="{{route('human-resource.pegawai.kinerja-karyawan.upload-data-absensi')}}"
+                          method="POST"
+                          enctype="multipart/form-data">
                         @csrf
                         <div class="row">
-
                             <div class="row col-md-12">
                                 <div class="col-md-3 col-sm-12">
                                     <div class="form-group">
-                                        <form action="{{ route('human-resource.pegawai.kinerja-karyawan.upload-data-absensi') }}" method="POST" enctype="multipart/form-data">
-                                            @csrf
-                                            <input type="file" name="form_upload_presensi">
-                                            <button type="submit">Upload</button>
-                                        </form>
-{{--                                        <form action="{{ route('human-resource.pegawai.kinerja-karyawan.upload-data-absensi') }}" method="POST" enctype="multipart/form-data">--}}
-{{--                                            @csrf--}}
-{{--                                            <input type="file" class="form-control col-md-8" name="form_upload_presensi">--}}
-{{--                                            <button type="submit" class="col-md-3">Upload</button>--}}
-{{--                                            <div class="row">--}}
-{{--                                                <div class="col-md-8">--}}
-{{--                                                    <div class="form-group">--}}
-{{--                                                        <label for="">Upload Absensi (.xlsx) </label>--}}
-{{--                                                        <input required type="file" name="form_upload_presensi"--}}
-{{--                                                               accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"--}}
-{{--                                                               class="form-control" style="float: right!important;">--}}
-{{--                                                    </div>--}}
-{{--                                                </div>--}}
-{{--                                                <div class="col-md-3">--}}
-{{--                                                    <div class="form-group">--}}
-{{--                                                        <label for="" style="color: white">Hai</label><br>--}}
-{{--                                                        <button class="btn btn-primary mr-1" type="submit" title="upload data">--}}
-{{--                                                            <i class="fe fe-upload"></i> Upload--}}
-{{--                                                        </button>--}}
-{{--                                                    </div>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-
-{{--                                        </form>--}}
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="row col-md-8">
-                                <div class="col-md-3 col-sm-12">
-                                    <div class="form-group">
-                                        <label for="">Bulan / Tahun</label>
-                                        <select class="form-control"
-                                                name="departemen_id">
-                                            <option disabled selected>Filter By Bulan/Tahun</option>
-                                            <option>Pilih Departemen</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-sm-12">
-                                    <div class="form-group">
-                                        <label for="">Nama Karyawan</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-sm-12">
-                                    <div class="form-group">
-                                        <label for="">Departemen</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-sm-12">
-                                    <div class="form-group">
-                                        <label for="" style="color: white">Filter</label><br>
-                                        <button class="btn btn-primary">Filter <i
-                                                class="bx bx-filter fe-12"></i></button>
-                                        <a href=" " class="btn btn-warning">Clear <i
-                                                class="bx bx-street-view fe-12"></i></a>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="">Upload Absensi (.xlsx) </label>
+                                                    <input required type="file" name="form_upload_presensi"
+                                                           accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                                                           class="form-control" style="float: right!important;">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="" style="color: white">Hai</label><br>
+                                                    <button class="btn btn-primary mr-1" type="submit"
+                                                            title="upload data">
+                                                        <i class="fe fe-upload"></i> Upload
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </form>
 
+                    <br>
+                    <form action="">
+                        @csrf
+                        <div class="row col-md-8">
+                            <div class="col-md-3 col-sm-12">
+                                <div class="form-group">
+                                    <label for="">Bulan / Tahun</label>
+                                    <select class="form-control"
+                                            name="departemen_id">
+                                        <option disabled selected>Filter By Bulan/Tahun</option>
+                                        <option>Pilih Departemen</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-12">
+                                <div class="form-group">
+                                    <label for="">Nama Karyawan</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-12">
+                                <div class="form-group">
+                                    <label for="">Departemen</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-12">
+                                <div class="form-group">
+                                    <label for="" style="color: white">Filter</label><br>
+                                    <button class="btn btn-primary">Filter <i
+                                            class="bx bx-filter fe-12"></i></button>
+                                    <a href=" " class="btn btn-warning">Clear <i
+                                            class="bx bx-street-view fe-12"></i></a>
+                                </div>
+                            </div>
+                        </div>
                     </form>
                     <br>
                     <div class="table-responsive mt-2 mb-3" id="show-data-filter-accounting">
                         <table class="table table-bordered table-hover" id="table-armada">
                             <thead class="text-center">
-                            <tr >
-                                <th  class="w-2p" rowspan="2">No</th>
-                                <th  class="w-4p" rowspan="2">Nama Karyawan</th>
-                                <th  class="w-4p" rowspan="2">Departemen, Jabatan</th>
-{{--                                <th colspan="5"  class="w-5p">Absensi (Hari)</th>--}}
-                                <th colspan="5"  class="w-4p">Absensi (Hari)</th>
-                                <th  class="w-2p" rowspan="2">Action</th>
+                            <tr>
+                                <th class="w-2p" rowspan="2">No</th>
+                                <th class="w-4p" rowspan="2">Nama Karyawan</th>
+                                <th class="w-4p" rowspan="2">Departemen</th>
+                                <th class="w-4p" rowspan="2">Jabatan</th>
+                                {{--                                <th colspan="5"  class="w-5p">Absensi (Hari)</th>--}}
+                                <th colspan="5" class="w-4p">Absensi (Hari)</th>
+                                <th class="w-2p" rowspan="2">Action</th>
 
                             </tr>
                             <tr>
@@ -147,47 +142,57 @@
                             </tr>
                             </thead>
                             <tbody>
+                            @php
+                                $no = 1;
+                            @endphp
+                            @forelse($absensi as $item)
+                                @php
+                                    $masuk = '';
+                                    $sakit = '';
+                                    $ijin = '';
+                                    $alpha = '';
+                                    $libur = '';
 
-                            @foreach($absensi as $item)
+                                    if ($item->status_absensi == 'M')
+                                        $masuk = 'M';
+                                @endphp
                                 <tr class="text-center">
-                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $no++ }}</td>
                                     <td>{{ $item->employee_name }} </td>
+                                    <td> {{ $item->department_name }}</td>
                                     <td> {{ $item->position_name }}</td>
-                                    <td>
-                                        @if ($item->status_absensi == 'M')
-                                            <span style="background-color: #fdf33d; color: #020000;">{{ $item->status_absensi }}</span>
-                                        @elseif ($item->status_absensi == 'S')
-                                            <span style="background-color: #fdc04c; color: #020000;">{{ $item->status_absensi }}</span>
-                                        @elseif($item->status_absensi == 'I')
-                                            {{ $item->status_absensi }}
-                                        @endif
-                                    </td>
+                                    <td>{{$masuk}}</td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
+
 
                                     <td class="text-center">
                                         <div class="d-flex">
-                                            <div class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"
-                                                 data-toggle="modal"
-                                                 data-target="#DetailAbsensi ">
+                                            <div
+                                                class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"
+                                                data-toggle="modal"
+                                                data-target="#DetailAbsensi ">
                                                 <i class="bx bx-info-circle font-size-base"></i>
                                             </div>
-{{--                                            <div class="badge-circle badge-circle-sm badge-circle-warning mr-1 pointer"--}}
-{{--                                                 data-toggle="modal"--}}
-{{--                                                 data-target="#EditSatuan ">--}}
-{{--                                                <i class="bx bx-edit font-size-base"></i>--}}
-{{--                                            </div>--}}
-{{--                                            <a class="badge-circle badge-circle-sm badge-circle-danger pointer"--}}
-{{--                                               href=" ">--}}
-{{--                                                <i class="bx bx-trash font-size-base"></i>--}}
-{{--                                            </a>--}}
+                                            <div class="badge-circle badge-circle-sm badge-circle-warning mr-1 pointer"
+                                                 data-toggle="modal"
+                                                 data-target="#EditSatuan ">
+                                                <i class="bx bx-edit font-size-base"></i>
+                                            </div>
+                                            <a class="badge-circle badge-circle-sm badge-circle-danger pointer"
+                                               href=" ">
+                                                <i class="bx bx-trash font-size-base"></i>
+                                            </a>
                                         </div>
                                     </td>
                                 </tr>
-                            @endforeach
-
+                            @empty
+                                <tr>
+                                    <td colspan="11">Data tidak ada</td>
+                                </tr>
+                            @endforelse
                             </tbody>
                         </table>
                     </div>

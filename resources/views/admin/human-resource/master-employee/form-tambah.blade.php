@@ -44,16 +44,22 @@
                 </div>
                 <div class="card-header">
                     <div class="row">
+
+
+                                <input type="hidden" class="form-control" placeholder="ID pegawai otomatis" style="font-style: italic"
+                                       readonly>
+
+
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="">ID Pegawai :</label>
-                                <input type="text" class="form-control" placeholder="ID pegawai otomatis" style="font-style: italic"
-                                       readonly>
+                                <label for="">Fingerprint Pegawai :</label>
+                                <input type="number" class="form-control" name="id_fingerprint" placeholder="ID pegawai otomatis" style="font-style: italic"
+                                        >
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="">Nama Pegawai dfsdsfdsf:</label>
+                                <label for="">Nama Pegawai:</label>
                                 <input type="text" class="form-control" name="namaPegawai"
                                        placeholder="Masukan nama pegawai">
                             </div>

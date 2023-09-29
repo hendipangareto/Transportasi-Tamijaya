@@ -9,13 +9,13 @@ class Absensi extends Model
     protected $table = 'absensis';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'fingerprint_id',
+        'id_fingerprint',
         'tanggal',
         'scan_satu',
         'scan_dua',
         'scan_tiga',
         'scan_empat',
-        'status_absensi',
+        'status_absensi'
 
     ];
 }

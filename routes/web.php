@@ -204,7 +204,7 @@ Route::group(
                     });
                     Route::prefix('data-absensi')->group(function () {
                         Route::get('/list-data-absensi', 'HumanResource\DataAbsensiController@getDataAbsensi')->name('human-resource.pegawai.kinerja-karyawan.list-data-absensi');
-                        Route::post('/upload-data-absensi', 'HumanResource\DataAbsensiController@UploadAbsensi')->name('human-resource.pegawai.kinerja-karyawan.upload-data-absensi');
+                        Route::post('/upload-data-absensi', 'HumanResource\DataAbsensiController@uploadAbsensi')->name('human-resource.pegawai.kinerja-karyawan.upload-data-absensi');
                     });
                 });
             });
@@ -213,6 +213,9 @@ Route::group(
             //HUMAN RESOURCE   Route::resource('human-resource/agent', 'HumanResource\AgentController');
             Route::prefix('status')->group(function () {
                 Route::get('/list-status', 'HumanResource\StatusController@getListStatus')->name('human-resource.status.list-status');
+                Route::post('/tambah-status', 'HumanResource\StatusController@TambahStatus')->name('human-resource.status.tambah-status');
+                Route::post('/update-status/{id}', 'HumanResource\StatusController@UpdateStatus')->name('human-resource.status.update-status');
+
                 Route::get('/tambah-data-aset', 'HumanResource\Aset\DataAsetController@getTambahDataAset')->name('master-keuangan.aset.data-aset.tambah-data-aset');
             });
             Route::prefix('satuan')->group(function () {

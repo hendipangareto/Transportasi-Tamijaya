@@ -128,6 +128,7 @@ class EmployeeController extends Controller
             $employee->email = $request->emailPegawai;
             $employee->rekening_name = $request->namaRekening;
             $employee->no_rekening = $request->noRekPegawai;
+            $employee->id_fingerprint = $request->id_fingerprint;
 
 //            dd($employee);
             $employee->save();

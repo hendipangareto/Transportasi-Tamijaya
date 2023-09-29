@@ -72,9 +72,8 @@
                         </div>
                     </form>
                     <br>
-                    <div class="table-responsive">
-                        <input type="hidden" id="Tablesemployee" value="">
-                        <table class="table table-bordered table-hover" id="table-list-employees">
+                    <div class="table-responsive mt-2">
+                        <table class="table table-bordered table-hover" id="table-status">
                             <thead>
                             <tr class="text-uppercase text-center">
                                 <th class="w-2p">No</th>
@@ -84,31 +83,37 @@
                                 <th class="w-3p">Action</th>
                             </tr>
                             </thead>
-                            <tbody id="show-data-employee">
-                            <tr class="text-center">
-                                <td>1</td>
-                                <td>1101</td>
-                                <td>Mobil Pickup</td>
-                                <td>Kendaraan</td>
-
-                                <td>
-                                    <a href=""
-                                       class="btn btn-sm btn-outline-primary" data-toggle="modal"
-                                       data-target="#DetailModalStatus"><i
-                                            class="bx bx-info-circle font-size-base"></i>
-                                    </a>
-                                    <a href=""
-                                       class="btn btn-sm btn-outline-warning" data-toggle="modal"
-                                       data-target="#EditModalStatus"><i
-                                            class="bx bx-edit-alt font-size-base"></i>
-                                    </a>
-                                    <button class="btn btn-sm btn-outline-danger btn-delete-employee "
-                                            data-iddelete=""><i class="bx bx-trash font-size-base"></i>
-                                    </button>
-                                </td>
-
-
-                            </tr>
+                            <tbody>
+                            @forelse ($status as $item)
+                                <tr class="text-center">
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $item->status_code }}</td>
+                                    <td>{{ $item->status_name }}</td>
+                                    <td>{{ $item->status_description }}</td>
+                                    <td class="text-center">
+                                        <div class="d-flex">
+                                            <div class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"
+                                                 data-toggle="modal"
+                                                 data-target="#DetailModalStatus-{{ $item->id }}">
+                                                <i class="bx bx-info-circle font-size-base"></i>
+                                            </div>
+                                            <div class="badge-circle badge-circle-sm badge-circle-warning mr-1 pointer"
+                                                 data-toggle="modal"
+                                                 data-target="#UpdateModalStatus-{{ $item->id }}">
+                                                <i class="bx bx-edit font-size-base"></i>
+                                            </div>
+                                            <div class="badge-circle badge-circle-sm badge-circle-danger pointer delete-button "
+                                                 data-id="{{ $item->id }}">
+                                                <i class="bx bx-trash font-size-base"></i>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="5" class="text-center">Tidak ada data kategori.</td>
+                                </tr>
+                            @endforelse
                             </tbody>
                         </table>
                     </div>
@@ -127,7 +132,7 @@
 
 
         $(document).ready(function () {
-            $("#table-employee").DataTable();
+            $("#table-status").DataTable();
         });
 
     </script>
