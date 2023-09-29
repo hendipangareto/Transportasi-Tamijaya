@@ -27,7 +27,7 @@ class RequestGajiController extends Controller
             ->join('positions', 'request_gaji_employees.gaji_employee_id', 'positions.id')
             ->join('employees', 'request_gaji_employees.gaji_employee_id', 'employees.id')
             ->get();
-        return view('admin.human-resource.pegawai.request-gaji.list-gaji', compact('departemen','position','employee'));
+        return view('admin.human-resource.pegawai.request-gaji.list-gaji', compact('departemen', 'position', 'employee', 'requestGaji'));
     }
 
     public function getFormTambah()
@@ -43,11 +43,11 @@ class RequestGajiController extends Controller
     {
         DB::beginTransaction();
         try {
+            // Ambil data pegawai berdasarkan employee_id
+            $employeeId = $request->employee_id;
+            $gajiEmployee = GajiEmployee::where('employee_id', '=', $employeeId)->first();
 
-            $id_pegawai = $request->pegawai_name;
-
-            $gajiEmployee = GajiEmployee::where('employee_id','=',$id_pegawai)->first();
-
+            // Hitung gaji total
             $gaji = $gajiEmployee->g_pokok +
                 $gajiEmployee->t_masa_kerja +
                 $gajiEmployee->t_transport +
@@ -57,16 +57,18 @@ class RequestGajiController extends Controller
                 $gajiEmployee->bpjs_kesehatan +
                 $gajiEmployee->bpjs_ketenagakerjaan;
 
-
+            // Simpan data pengajuan gaji
             $requestGaji = new RequestGaji();
 
-            $requestGaji->gaji_employee_id = $id_pegawai;
+            $requestGaji->gaji_employee_id = $employeeId;
+//            $requestGaji->gaji_employee_id = $request->employee_id;
             $requestGaji->tanggal = now();
             $requestGaji->nominal = $gaji;
             $requestGaji->cek_pegajuan = '0';
             $requestGaji->status_bayar = 'Berhasil';
             $requestGaji->cara_bayar = 'cash';
 
+//            dd($requestGaji);
             $requestGaji->save();
 
             DB::commit();
@@ -83,10 +85,8 @@ class RequestGajiController extends Controller
 
         $employeeId = $request->input('employee_id');
 
-//        $employee = GajiEmployee::where('employee_id','=',$employeeId)->first();
-
         $employee = DB::table('gaji_employees')
-            ->select('gaji_employees.*', 'departments.departemen_name', 'positions.position_name', 'employees.employee_name', 'employees.employee_id as kode_employee')
+            ->select('gaji_employees.*', 'departments.department_name', 'positions.position_name', 'employees.employee_name', 'employees.employee_id as kode_employee')
             ->join('departments', 'gaji_employees.departemen_id', 'departments.id')
             ->join('positions', 'gaji_employees.position_id', 'positions.id')
             ->join('employees', 'gaji_employees.employee_id', 'employees.id')
@@ -95,6 +95,7 @@ class RequestGajiController extends Controller
 
         return response()->json($employee);
     }
+
     public function getFormEdit(Request $request)
     {
         return view('admin.human-resource.pegawai.request-gaji.form-edit');

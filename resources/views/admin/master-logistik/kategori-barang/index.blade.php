@@ -67,16 +67,6 @@
                                         <td>{{ $index + 1 }}</td>
                                         <td>{{ $item->kode_kategori }}</td>
                                         <td>{{ $item->nama_kategori }}</td>
-{{--                                        <td>{{ $item->deskripsi_kategori }}</td>--}}
-{{--                                        <td class="text-center">--}}
-{{--                                            <a href="#" class="btn btn-outline-primary" data-toggle="modal"--}}
-{{--                                               data-target="#DetailKategori-{{ $item->id }}"><i class="bx bx-info-circle"></i></a>--}}
-{{--                                            <a href="#" class="btn btn-outline-warning" data-toggle="modal"--}}
-{{--                                               data-target="#EditkategoriBarang-{{ $item->id }}"><i--}}
-{{--                                                    class="bx bx-edit"></i></a>--}}
-{{--                                            <a href="{{ route('master-logistik.delete-kategori-barang', ['id' => $item->id]) }}"--}}
-{{--                                               class="btn btn-outline-danger delete-button"><i class="bx bx-trash"></i></a>--}}
-{{--                                        </td>--}}
                                         <td class="text-center">
                                             <div class="d-flex">
                                                 <div class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"

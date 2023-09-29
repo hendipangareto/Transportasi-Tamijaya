@@ -156,28 +156,63 @@
                             </thead>
                             <tbody id="show-data-employee">
                             <tr class="text-center">
-                                <td>1</td>
-                                <td>#</td>
-                                <td>#</td>
-                                <td>#</td>
-                                <td>#</td>
-                                <td><input type="checkbox"></td>
-                                <td>#</td>
-                                <td>#</td>
-                                <td>
-                                    <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal"
-                                            data-target="#DetailRequest"><i
-                                            class="bx bx-info-circle font-size-base"></i></button>|
+{{--                                <td>1</td>--}}
+{{--                                <td>#</td>--}}
+{{--                                <td>#</td>--}}
+{{--                                <td>#</td>--}}
+{{--                                <td>#</td>--}}
+{{--                                <td><input type="checkbox"></td>--}}
+{{--                                <td>#</td>--}}
+{{--                                <td>#</td>--}}
+{{--                                <td>--}}
+{{--                                    <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal"--}}
+{{--                                            data-target="#DetailRequest"><i--}}
+{{--                                            class="bx bx-info-circle font-size-base"></i></button>|--}}
 
-                                    <a href="{{ route('human-resource.pegawai.request-gaji.form-edit') }}"
-                                       class="btn btn-sm btn-outline-warning"><i
-                                            class="bx bx-edit font-size-base"></i>
-                                    </a>
-                                    <button class="btn btn-sm btn-outline-danger btn-delete-employee "
-                                            data-iddelete=" "><i class="bx bx-trash font-size-base"></i>
-                                    </button>
-                                </td>
-                            </tr>
+{{--                                    <a href="{{ route('human-resource.pegawai.request-gaji.form-edit') }}"--}}
+{{--                                       class="btn btn-sm btn-outline-warning"><i--}}
+{{--                                            class="bx bx-edit font-size-base"></i>--}}
+{{--                                    </a>--}}
+{{--                                    <button class="btn btn-sm btn-outline-danger btn-delete-employee "--}}
+{{--                                            data-iddelete=" "><i class="bx bx-trash font-size-base"></i>--}}
+{{--                                    </button>--}}
+                                        @forelse ($requestGaji as $index => $item)
+                                            <tr class="text-center">
+                                                <td>{{ $index + 1 }}</td>
+                                                <td>{{ $item->tanggal }}</td>
+                                                <td>{{ $item->employee_name }}</td>
+                                                <td>{{ $item->cara_bayar }}</td>
+                                                <td>@currency($item->nominal)</td>
+                                                <td><input type="checkbox"></td>
+                                                <td>{{ $item->status_bayar }}</td>
+                                                <td>{{ $item->cara_bayar }}</td>
+                                                <td class="text-center">
+                                                    <div class="d-flex">
+                                                        <div class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"
+                                                             data-toggle="modal"
+                                                             data-target="#DetailKategori-{{ $item->id }}">
+                                                            <i class="bx bx-info-circle font-size-base"></i>
+                                                        </div>
+                                                        <div class="badge-circle badge-circle-sm badge-circle-warning mr-1 pointer"
+                                                             data-toggle="modal"
+                                                             data-target="#EditkategoriBarang-{{ $item->id }}">
+                                                            <i class="bx bx-edit font-size-base"></i>
+                                                        </div>
+                                                        <div class="badge-circle badge-circle-sm badge-circle-danger pointer delete-button "
+                                                             data-id="{{ $item->id }}">
+                                                            <i class="bx bx-trash font-size-base"></i>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="5" class="text-center">Tidak ada data kategori.</td>
+                                            </tr>
+                                        @endforelse
+                                        </tbody>
+                                            </td>
+                                        </tr>
                             </tbody>
                         </table>
                     </div>

@@ -247,10 +247,13 @@
                     <ul class="menu-content">
                         <li @if (Request::segment(3) == 'master-employee-list-data') class="active" @endif>
                             <a href="{{ route('human-resource-master-employee-list-data') }}"><i
-                                    class="bx bx-right-arrow-alt"></i><span class="menu-item ">Data
+                                    class="bx bx-file"></i><span class="menu-item ">Data
                                     Karyawan</span></a>
                         </li>
-
+                        <li @if (Request::segment(4) == 'data-absensi') class="active" @endif>
+                            <a href="{{ route('human-resource.pegawai.kinerja-karyawan.list-data-absensi') }}"><i
+                                    class="bx bx-file"></i><span class="menu-item">Data Absensi</span></a>
+                        </li>
                         <li @if (Request::segment(3) == 'data-gaji-pegawai')  @endif>
                             <a href= ""><i class="bx bx-file"></i><span
                                     class="menu-item">Data Gaji Pegawai</span></a>
@@ -259,6 +262,7 @@
                                     <a href="{{route('data-gaji-pegawai.human-resource-pegawai-list-data')}}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item ">Daftar Gaji
                                     Karyawan</span></a>
                                 </li>
+
                                 <li @if (Request::segment(4) == 'request-gaji') class="active" @endif>
                                     <a href="{{ route('human-resource.pegawai.request-gaji.list-gaji') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item ">Daftar Request Gaji
                                      </span></a>
@@ -267,11 +271,7 @@
                         </li>
                         <li @if (Request::segment(4) == 'kinerja-karyawan') class="active" @endif>
                             <a href="{{ route('human-resource.pegawai.kinerja-karyawan.list-kinerja') }}"><i
-                                    class="bx bx-right-arrow-alt"></i><span class="menu-item">Kinerja Karyawan</span></a>
-                        </li>
-                        <li @if (Request::segment(4) == 'data-absensi') class="active" @endif>
-                            <a href="{{ route('human-resource.pegawai.kinerja-karyawan.list-data-absensi') }}"><i
-                                    class="bx bx-right-arrow-alt"></i><span class="menu-item">Data Absensi</span></a>
+                                    class="bx bx-file"></i><span class="menu-item">Kinerja Karyawan</span></a>
                         </li>
                     </ul>
                 </li>

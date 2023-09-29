@@ -18,4 +18,3 @@ class RequestGaji extends Model
 
     ];
 }
-
