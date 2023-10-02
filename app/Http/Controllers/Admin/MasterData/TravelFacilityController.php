@@ -60,14 +60,26 @@ class TravelFacilityController extends Controller
             $TravelFacility->save();
 
             DB::commit();
-            Session::flash('message', ['Berhasil menyimpan data fasilitas perjalanan', 'success']);
+            Session::flash('message', ['Berhasil mengubah data fasilitas perjalanan', 'success']);
         } catch (\Exception $e) {
             DB::rollback();
-            Session::flash('message', ['Gagal menyimpan data fasilitas perjalanan', 'error']);
+            Session::flash('message', ['Gagal mengubah data fasilitas perjalanan', 'error']);
         }
 
         return redirect()->route('travel-facility');
     }
 
+    public function DeleteTravelFacility(Request $request)
+    {
+        $TravelFacilityId = $request->input('employee_id');
+        $data = TravelFacility::find($TravelFacilityId);
+        $data->delete();
+
+        return response()->json([
+            'data' => $data,
+            'message' => 'Berhasil menghapus data fasilitas perjalanan',
+            'status' => 200,
+        ]);
+    }
 
 }

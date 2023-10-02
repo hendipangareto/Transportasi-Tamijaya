@@ -43,7 +43,7 @@
 
 
 {{--================================EDIT DATA===============================================================================--}}
-
+@foreach($TravelFacility as $data)
 <div class="modal fade text-left" id="UpdateTravelFacility-{{ $data->id }}" tabindex="-1" role="dialog" aria-labelledby="modal-title"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -84,3 +84,4 @@
         </div>
     </div>
 </div>
+@endforeach
