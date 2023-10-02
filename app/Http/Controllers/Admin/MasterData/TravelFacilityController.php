@@ -48,7 +48,26 @@ class TravelFacilityController extends Controller
     }
 
 
-    public func
+    public function UpdateTravelFacility(Request $request, $id)
+    {
+        DB::beginTransaction();
+        try {
+            $TravelFacility = TravelFacility::findOrFail($id);
+
+            $TravelFacility->travel_facility_name = $request->travel_facility_name;
+            $TravelFacility->travel_facility_description = $request->travel_facility_description;
+
+            $TravelFacility->save();
+
+            DB::commit();
+            Session::flash('message', ['Berhasil menyimpan data fasilitas perjalanan', 'success']);
+        } catch (\Exception $e) {
+            DB::rollback();
+            Session::flash('message', ['Gagal menyimpan data fasilitas perjalanan', 'error']);
+        }
+
+        return redirect()->route('travel-facility');
+    }
 
 
 }

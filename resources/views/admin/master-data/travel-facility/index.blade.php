@@ -62,9 +62,8 @@
                                                 <div class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer" onclick="openInfoSeat(this)" >
                                                     <i class="bx bx-info-circle font-size-base"></i>
                                                 </div>
-                                                <div class="badge-circle badge-circle-sm badge-circle-warning mr-1 pointer"
-                                                     onclick="openModal('armada','edit', {{ $data->id }})"
-                                                >
+                                                <div class="badge-circle badge-circle-sm badge-circle-warning mr-1 pointer" data-toggle="modal"
+                                                     data-target="#UpdateTravelFacility-{{ $data->id }}">
                                                     <i class="bx bx-edit font-size-base"></i>
                                                 </div>
                                                 <div class="badge-circle badge-circle-sm badge-circle-danger pointer"
