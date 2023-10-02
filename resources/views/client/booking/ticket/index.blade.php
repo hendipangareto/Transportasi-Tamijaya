@@ -479,6 +479,8 @@
                                         </li>
                                     </ul>
                                 </div>
+                                <a href="#">Cari Bus</a>
+
                             </div>
                             <div class="col-12 col-lg-5">
 {{--                                <img src="{{ asset('images/Bus-Tamijaya.png') }}" class="w-100 img-fluid" alt="Bus Tamijaya">--}}

@@ -41,6 +41,9 @@ Route::group(
         Route::get('/booking-ticket', function () {
             return view('client.booking.ticket.index');
         })->name('booking-ticket');
+
+
+
         #EndPage
 
         // Dashboard
@@ -63,6 +66,7 @@ Route::group(
         Route::get('/account/inbox', function () {
             return view('client.dashboard.pages.inbox');
         })->name('inbox');
+
 
 
         // Functional
