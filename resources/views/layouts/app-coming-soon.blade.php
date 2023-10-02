@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
     <meta name="keywords" content="" />
 
     <!-- CSRF Token -->
-    
+
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Tami Jaya Transport - Coming Soon</title>
     <link rel="icon" href="{{ asset('images/logo-icon.png') }}" type="image/x-icon">

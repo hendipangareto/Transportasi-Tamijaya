@@ -39,6 +39,8 @@ use Illuminate\Http\Request;
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/owl-carousel.css') }}" rel="stylesheet">
     <link href="{{ asset('css/owl-carousel-theme.css') }}" rel="stylesheet">
+
+
 </head>
 
 <body>

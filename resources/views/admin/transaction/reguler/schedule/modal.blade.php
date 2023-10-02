@@ -16,7 +16,7 @@
                         <div class="col-md-6">
                             <label>Tanggal Keberangkatan: </label>
                             <div class="form-group">
-                                <input type="date" readonly id="edit-date_departure" name="date_departure"
+                                <input type="date" id="edit-date_departure" name="date_departure"
                                     class="form-control form-control-sm bg-transparent">
                             </div>
                         </div>

@@ -134,6 +134,7 @@ function parseDate(str) {
     var mdy = str.split('-');
     return new Date(mdy[0], mdy[1] - 1, mdy[2]);
 }
+
 function parseDatePhp(str) {
     var mdy = str.split('-');
     return new Date(mdy[2], mdy[1] - 1, mdy[0]);
@@ -158,6 +159,7 @@ function formatDate(date) {
 }
 
 var filteredArmada = []
+
 function generateSchedule() {
     var typeBus = $("#type_bus").val();
     var startDate = $("#start_date").val();
@@ -179,13 +181,13 @@ function generateSchedule() {
         return;
     }
 
-    // if (countDay > 31) {
-    //     Toast.fire({
-    //         icon: "error",
-    //         title: 'Pembuatan Jadwal Maksimal 1 Bulan'
-    //     });
-    //     return;
-    // }
+    if (countDay > 31) {
+        Toast.fire({
+            icon: "error",
+            title: 'Pembuatan Jadwal Maksimal 1 Bulan'
+        });
+        return;
+    }
 
     if (!typeBus) {
         Toast.fire({
@@ -198,7 +200,7 @@ function generateSchedule() {
     $.ajax({
         type: "post",
         url: "/admin/transaction/reguler/schedule-reguler/check-schedule-reguler",
-        data: { startDate, endDate, countDay, typeBus },
+        data: {startDate, endDate, countDay, typeBus},
         success: function (response) {
             console.log(response);
             var countData = response.data.JOG_DPS.length;

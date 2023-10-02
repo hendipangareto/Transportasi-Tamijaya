@@ -1,3 +1,31 @@
+<style>
+    /* Untuk mengubah warna latar belakang tab aktif */
+    .nav-tabs-bus .nav-item.active .nav-link {
+        background-color: #1aff00; /* Ganti #ff0000 dengan kode warna yang Anda inginkan */
+        color: #ffffff; /* Ganti #ffffff dengan kode warna teks yang Anda inginkan */
+    }
+
+    /* Untuk mengubah warna latar belakang tab tidak aktif */
+    .nav-tabs-bus .nav-item .nav-link {
+        background-color: #00ff00; /* Ganti #00ff00 dengan kode warna yang Anda inginkan */
+        color: #000000; /* Ganti #000000 dengan kode warna teks yang Anda inginkan */
+    }
+
+    /* Untuk mengubah warna latar belakang suite */
+    .bus-info h5 {
+        background-color: #ffffff; /* Ganti #0000ff dengan kode warna yang Anda inginkan */
+        color: #ffffff; /* Ganti #ffffff dengan kode warna teks yang Anda inginkan */
+    }
+
+    /* Untuk mengubah warna latar belakang kursi yang bisa dipilih */
+    ul.seats .seat input[type="checkbox"]:checked + label::before {
+        background-color: #ff00ff; /* Ganti #ff00ff dengan kode warna yang Anda inginkan */
+    }
+
+    /* Untuk mengubah warna
+
+</style>
+
 <ul class="nav nav-tabs-bus" role="tablist">
     <li class="nav-item">
         <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">Ground</a>

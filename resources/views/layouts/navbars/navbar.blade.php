@@ -62,7 +62,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="btn-reservation" href="{{ route('coming-soon') }}">Pesan Tiket</a>
+                    <a class="btn-reservation" href="{{ route('booking-ticket') }}">Pesan Tiket</a>
                 </li>
 
                 <li class="nav-item dropdown" id="login-register-nav" style="display: none">

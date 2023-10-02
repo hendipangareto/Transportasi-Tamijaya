@@ -38,6 +38,9 @@ Route::group(
         Route::get('/coming-soon', function () {
             return view('client.pages.coming-soon');
         })->name('coming-soon');
+        Route::get('/booking-ticket', function () {
+            return view('client.booking.ticket.index');
+        })->name('booking-ticket');
         #EndPage
 
         // Dashboard
