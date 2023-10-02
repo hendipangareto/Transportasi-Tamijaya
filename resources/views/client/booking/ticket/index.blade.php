@@ -147,7 +147,7 @@
             justify-content: space-between;
             font-size: 0.7rem;
             padding-left: 13px;
-            color: #ffffff;
+            color: #000000;
         }
         .mon-day:before {
             content: "";
@@ -457,6 +457,27 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+
+                                <div class="screen-home__rs-wrap">
+                                    <ul class="screen-home__rs-row">
+                                        <li class="screen-home__rs-col">
+                                            <div class="screen-homers-from-to">
+                                                <span>Chennai</span>
+                                                <span class="screen-home__rs-arrow"></span>
+                                                <span>Bangalore</span>
+                                            </div>
+                                            <div class="screen-home__rs-date">05 / 12 / 2019</div>
+                                        </li>
+                                        <li class="screen-home__rs-col">
+                                            <div class="screen-homers-from-to">
+                                                <span>Chennai</span>
+                                                <span class="screen-home__rs-arrow"></span>
+                                                <span>Bangalore</span>
+                                            </div>
+                                            <div class="screen-home__rs-date">05 / 12 / 2019</div>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                             <div class="col-12 col-lg-5">
