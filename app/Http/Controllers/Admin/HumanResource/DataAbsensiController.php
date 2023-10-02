@@ -65,6 +65,7 @@ class DataAbsensiController extends Controller
 //            'employee_name' => $employee_name,
 //        );
 
+        dd($absensi);
         return view('admin.human-resource.pegawai.data-absensi.list-absensi', ['absensi' => $absensi, 'employee' => $employee]);
     }
 

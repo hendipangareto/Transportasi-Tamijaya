@@ -46,15 +46,15 @@
         <div class="col-md-12">
             <table class="table table-bordered table-hover" id="table-input-schedule-reguler">
                 <thead>
-                    <tr>
-                        <th class="w-12p">Berangkat</th>
-                        <th class="w-12p">Pulang</th>
-                        <th class="w-15p">Jenis</th>
-                        <th class="w-18p">Armada Bus</th>
-                        <th>Sopir 1</th>
-                        <th>Sopir 2</th>
-                        <th>Kernet</th>
-                    </tr>
+                <tr>
+                    <th class="w-12p">Berangkat</th>
+                    <th class="w-12p">Pulang</th>
+                    <th class="w-15p">Jenis</th>
+                    <th class="w-18p">Armada Bus</th>
+                    <th>Sopir 1</th>
+                    <th>Sopir 2</th>
+                    <th>Kernet</th>
+                </tr>
                 </thead>
                 <tbody id="input-body-schedule-reguler">
                 </tbody>

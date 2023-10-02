@@ -285,12 +285,17 @@
                             MASTER TICKETING</span></a>
                     <ul class="menu-content">
                         <li @if (Request::segment(3) == 'bus') class="active" @endif>
-                            <a href="{{ route('bus.index') }}"><i class="bx bx-right-arrow-alt"></i><span
+                            <a href="{{ route('bus.index') }}"><i class="bx bx-bus"></i><span
                                     class="menu-item">Armada</span></a>
                         </li>
+
                         <li @if (Request::segment(3) == 'facility') class="active" @endif>
                             <a href="{{ route('facility.index') }}"><i class="bx bx-right-arrow-alt"></i><span
                                     class="menu-item">Fasilitas Armada</span></a>
+                        </li>
+                        <li @if (Request::segment(3) == 'travel-facility') class="active" @endif>
+                            <a href="{{ route('travel-facility') }}"><i class="bx bx-right-arrow-alt"></i><span
+                                    class="menu-item">Fasilitas Perjalanan</span></a>
                         </li>
                         <li @if (Request::segment(3) == 'province') class="active" @endif>
                             <a href="{{ route('province.index') }}"><i class="bx bx-right-arrow-alt"></i><span

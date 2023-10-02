@@ -434,6 +434,11 @@ Route::group(
             #endregion
 
             #region Master Data
+//            =====================================================================================================
+            Route::prefix('master-data')->group(function () {
+                Route::get('/travel-facility', 'MasterData\TravelFacilityController@getTravelFacility')->name('travel-facility');
+                Route::post('/simpan-travel-facility', 'MasterData\TravelFacilityController@TambahTravelFacility')->name('simpan-travel-facility');
+            });
             Route::resource('master-data/pick-point', 'MasterData\PickPointController');
             Route::resource('master-data/premi', 'MasterData\PremiController');
             Route::resource('master-data/salary', 'MasterData\SalaryController');

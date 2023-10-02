@@ -24,7 +24,7 @@
                     <div class="row">
                         {{-- <div class="col-md-3">
                             <div class="d-flex justify-content-between">
-                                
+
                             </div>
                         </div> --}}
                         <div class="col-md-3">
@@ -54,15 +54,15 @@
                         </div>
                         <div class="col-md-5">
                             <button type="button" class="btn btn-sm btn-outline-primary mr-1"
-                                id="btn-add-schedule-extra-reguler"
-                                onclick="openModal('schedule-reguler','extra-schedule')"><i class="bx bx-calendar-alt"></i>
+                                    id="btn-add-schedule-extra-reguler"
+                                    onclick="openModal('schedule-reguler','extra-schedule')"><i class="bx bx-calendar-alt"></i>
                                 Jadwal
                                 Tambahan</button>
                             <button type="button" class="btn btn-sm btn-primary mr-1" id="btn-add-schedule-reguler"
-                                onclick="openModal('schedule-reguler','add')"><i class="bx bx-plus-circle"></i> Tambah
+                                    onclick="openModal('schedule-reguler','add')"><i class="bx bx-plus-circle"></i> Tambah
                                 Data</button>
                             <button type="button" style="display:none" class="btn btn-warning text-white mr-1"
-                                id="btn-back-schedule-reguler" onclick="openModal('schedule-reguler','back')"><i
+                                    id="btn-back-schedule-reguler" onclick="openModal('schedule-reguler','back')"><i
                                     class="bx bx-left-arrow-alt"></i> Kembali</button>
 
 
