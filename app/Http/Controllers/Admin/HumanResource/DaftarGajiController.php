@@ -202,12 +202,11 @@ class DaftarGajiController extends Controller
             ->join('departments', 'gaji_employees.departemen_id', 'departments.id')
             ->join('positions', 'gaji_employees.position_id', 'positions.id')
             ->join('employees', 'gaji_employees.employee_id', 'employees.id')
-            ->get()
-            ->toArray(); // Ubah hasil query ke dalam array
+            ->get();
 
         $filename = 'SubBagian' . "_" . now()->format('Y_m_d_H_i_s') . '.pdf';
 
-        $pdf = PDF::loadView('admin.human-resource.pegawai.cetak-pdf', compact('data')); // Menggunakan compact() untuk mengirimkan data ke view
+        $pdf = PDF::loadView('admin.human-resource.pegawai.cetak-pdf', compact('data'));
 
         $pdf->setPaper('A4', 'portrait');
 
@@ -221,4 +220,5 @@ class DaftarGajiController extends Controller
 
         return $pdf->stream($filename);
     }
+
 }

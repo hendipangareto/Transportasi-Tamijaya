@@ -63,18 +63,23 @@
         .posisi {
             text-align: center;
         }
+
+        /* CSS untuk halaman baru */
+        .page-break {
+            page-break-before: always;
+        }
     </style>
 </head>
 <body>
 <div class="header">
-    <h1>Invoice Gaji</h1>
-    <p>PT Anugerah Karya Utami Gemilang</p>
+
 </div>
 
 <div class="invoice-container">
     @forelse ($data as $item)
         <div class="invoice-header">
-            <h2>Detail Data Gaji Pegawai</h2>
+            <h1>Invoice Gaji</h1>
+            <p>PT Anugerah Karya Utami Gemilang</p>
         </div>
 
         <div class="invoice-details">
@@ -142,6 +147,9 @@
                 </tr>
             </table>
         </div>
+
+        <!-- Tambahkan class "page-break" pada halaman baru -->
+        <div class="page-break"></div>
     @empty
         <div class="no-data">Data tidak ditemukan</div>
     @endforelse
