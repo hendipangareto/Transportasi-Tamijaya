@@ -2,7 +2,7 @@
     <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
             <li class="nav-item mr-auto"><a class="navbar-brand" href="#">
-                    <div class="brand-logo"><img class="logo" src="{{ asset('images/logo-icon.png') }}" />
+                    <div class="brand-logo"><img class="logo" src="{{ asset('images/logo-icon.png') }}"/>
                     </div>
                     <h2 class="brand-text mb-0 ">Tami Jaya</h2>
                 </a></li>
@@ -199,6 +199,19 @@
                     </ul>
                 </li>
 
+                {{--Menu keuangan finance accounting--}}
+                <li class="nav-item"><a href="index.html"><i class="bx bx-folder"></i><span
+                            class="menu-title">Finance</span></a>
+                    <ul class="menu-content">
+                        <li @if (Request::segment(3) == 'jurnal-umum') class="active" @endif>
+                            <a href="{{ route('finance-accounting-menu-keuangan-finance-jurnal-umum-index') }}"><i
+                                    class="bx bx-right-arrow-alt"></i><span
+                                    class="menu-item ">Jurnal Umum</span></a>
+                        </li>
+                    </ul>
+                </li>
+                {{--End Menu keuangan finance accounting--}}
+
                 <li class=" nav-item @if (Request::segment(3) == 'cash-flow') active @endif"><a
                         href="{{ route('cash-flow.index') }}"><i class="bx bx-money"></i><span
                             class="menu-title">Cash Flow</span></a>
@@ -255,16 +268,18 @@
                                     class="bx bx-file"></i><span class="menu-item">Data Absensi</span></a>
                         </li>
                         <li @if (Request::segment(3) == 'data-gaji-pegawai')  @endif>
-                            <a href= ""><i class="bx bx-file"></i><span
+                            <a href=""><i class="bx bx-file"></i><span
                                     class="menu-item">Data Gaji Pegawai</span></a>
                             <ul class="menu-content">
                                 <li @if (Request::segment(4) == 'daftar-gaji') class="active" @endif>
-                                    <a href="{{route('data-gaji-pegawai.human-resource-pegawai-list-data')}}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item ">Daftar Gaji
+                                    <a href="{{route('data-gaji-pegawai.human-resource-pegawai-list-data')}}"><i
+                                            class="bx bx-right-arrow-alt"></i><span class="menu-item ">Daftar Gaji
                                     Karyawan</span></a>
                                 </li>
 
                                 <li @if (Request::segment(4) == 'request-gaji') class="active" @endif>
-                                    <a href="{{ route('human-resource.pegawai.request-gaji.list-gaji') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item ">Daftar Request Gaji
+                                    <a href="{{ route('human-resource.pegawai.request-gaji.list-gaji') }}"><i
+                                            class="bx bx-right-arrow-alt"></i><span class="menu-item ">Daftar Request Gaji
                                      </span></a>
                                 </li>
                             </ul>
@@ -342,25 +357,32 @@
                         {{--                            <a href="{{ route('master-logistik-list-supplier-barang') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item">Supplier Barang</span></a>--}}
                         {{--                        </li>--}}
                         <li @if (Request::segment(3) == 'kategori-barang') class="active" @endif>
-                            <a href="{{ route('master-logistik-list-kategori-barang') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item">Kategori</span></a>
+                            <a href="{{ route('master-logistik-list-kategori-barang') }}"><i
+                                    class="bx bx-right-arrow-alt"></i><span class="menu-item">Kategori</span></a>
                         </li>
                         <li @if (Request::segment(3) == 'bagian') class="active" @endif>
-                            <a href="{{ route('admin.master-logistik.bagian.list-bagian') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item">Bagian</span></a>
+                            <a href="{{ route('admin.master-logistik.bagian.list-bagian') }}"><i
+                                    class="bx bx-right-arrow-alt"></i><span class="menu-item">Bagian</span></a>
                         </li>
                         <li @if (Request::segment(3) == 'sub-bagian') class="active" @endif>
-                            <a href="{{ route('admin.master-logistik.bagian.sub-bagian') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item">Sub Bagian</span></a>
+                            <a href="{{ route('admin.master-logistik.bagian.sub-bagian') }}"><i
+                                    class="bx bx-right-arrow-alt"></i><span class="menu-item">Sub Bagian</span></a>
                         </li>
                         <li @if (Request::segment(3) == 'komponen') class="active" @endif>
-                            <a href="{{ route('admin.master-logistik.komponen.list-komponen') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item">Komponen</span></a>
+                            <a href="{{ route('admin.master-logistik.komponen.list-komponen') }}"><i
+                                    class="bx bx-right-arrow-alt"></i><span class="menu-item">Komponen</span></a>
                         </li>
                         <li @if (Request::segment(3) == 'alat-kerja-bengkel') class="active" @endif>
-                            <a href="{{ route('admin.master-logistik.alat-kerja-bengkel.list-alat-kerja-bengkel') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item">Alat Kerja Bengkel</span></a>
+                            <a href="{{ route('admin.master-logistik.alat-kerja-bengkel.list-alat-kerja-bengkel') }}"><i
+                                    class="bx bx-right-arrow-alt"></i><span class="menu-item">Alat Kerja Bengkel</span></a>
                         </li>
                         <li @if (Request::segment(3) == 'bengkel-luar') class="active" @endif>
-                            <a href="{{ route('admin.master-logistik.bengkel-luar.list-bengkel-luar') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item">Bengkel Luar</span></a>
+                            <a href="{{ route('admin.master-logistik.bengkel-luar.list-bengkel-luar') }}"><i
+                                    class="bx bx-right-arrow-alt"></i><span class="menu-item">Bengkel Luar</span></a>
                         </li>
                         <li @if (Request::segment(3) == 'toko') class="active" @endif>
-                            <a href="{{route ('admin.master-logistik.toko.list-toko')}}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item">Toko</span></a>
+                            <a href="{{route ('admin.master-logistik.toko.list-toko')}}"><i
+                                    class="bx bx-right-arrow-alt"></i><span class="menu-item">Toko</span></a>
                         </li>
                     </ul>
                 </li>
@@ -377,26 +399,30 @@
                                     class="menu-item">Akun</span></a>
                         </li>
                         <li @if (Request::segment(3) == 'sub-akun') class="active" @endif>
-                            <a href="{{ route('master-keuangan.sub-akun.list-sub-akun') }}"><i class="bx bx-file"></i><span
+                            <a href="{{ route('master-keuangan.sub-akun.list-sub-akun') }}"><i
+                                    class="bx bx-file"></i><span
                                     class="menu-item">Sub-Akun</span></a>
                         </li>
 
                         <li @if (Request::segment(3) == 'ase') class="active" @endif>
-                            <a href= ""><i class="bx bx-folder-plus"></i><span
+                            <a href=""><i class="bx bx-folder-plus"></i><span
                                     class="menu-item">Aset</span></a>
                             <ul class="menu-content">
 
                                 <li @if (Request::segment(4) == 'tipe-aset') class="active" @endif>
-                                    <a href="{{ route('master-keuangan.aset.tipe-aset') }}"><i class="bx bx-right-arrow-alt"></i><span
+                                    <a href="{{ route('master-keuangan.aset.tipe-aset') }}"><i
+                                            class="bx bx-right-arrow-alt"></i><span
                                             class="menu-item">Tipe Aset</span></a>
                                 </li>
 
                                 <li @if (Request::segment(4) == 'kategori-aset') class="active" @endif>
-                                    <a href="{{ route('master-keuangan.aset.list-kategori-aset') }}"><i class="bx bx-right-arrow-alt"></i><span
+                                    <a href="{{ route('master-keuangan.aset.list-kategori-aset') }}"><i
+                                            class="bx bx-right-arrow-alt"></i><span
                                             class="menu-item">Kategori Aset</span></a>
                                 </li>
                                 <li @if (Request::segment(4) == 'data-aset') class="active" @endif>
-                                    <a href="{{ route('master-keuangan.aset.list-data-aset') }}"><i class="bx bx-right-arrow-alt"></i><span
+                                    <a href="{{ route('master-keuangan.aset.list-data-aset') }}"><i
+                                            class="bx bx-right-arrow-alt"></i><span
                                             class="menu-item">Data Aset</span></a>
                                 </li>
                             </ul>
@@ -406,7 +432,8 @@
                                     class="menu-item">Kategori Pajak</span></a>
                         </li>
                         <li @if (Request::segment(4) == 'metode-penyusutan') class="active" @endif>
-                            <a href="{{ route('master-keuangan.metode-penyusutan.list-metode-penyusutan') }}"><i class="bx bx-file"></i><span
+                            <a href="{{ route('master-keuangan.metode-penyusutan.list-metode-penyusutan') }}"><i
+                                    class="bx bx-file"></i><span
                                     class="menu-item">Metode Penyusutan</span></a>
                         </li>
                     </ul>
@@ -450,7 +477,8 @@
                                     class="menu-title">Data Customer</span></a>
                         </li>
                         <li @if (Request::segment(2) == 'data-agent') class="active" @endif>
-                            <a href="{{ route('human-resource.data-agent.list-data-agent') }}"><i class="bx bx-file"></i><span
+                            <a href="{{ route('human-resource.data-agent.list-data-agent') }}"><i
+                                    class="bx bx-file"></i><span
                                     class="menu-item">Data
                                     Agent</span></a>
                         </li>
@@ -515,18 +543,21 @@
                     <ul class="menu-content">
                         <li @if (Request::segment(3) == 'check-fisik-layanan') class="active" @endif>
                             <a href="{{ route('perawatan-pemeliharaan.sopir.check-fisik-layanan') }}"><i
-                                    class="bx bx-right-arrow-alt"></i><span class="menu-item ">Check Fisik Layanan</span></a>
+                                    class="bx bx-right-arrow-alt"></i><span
+                                    class="menu-item ">Check Fisik Layanan</span></a>
                         </li>
                         <li @if (Request::segment(3) == 'daftar-gaji') class="active" @endif>
-                            <a href="{{ route('perawatan-pemeliharaan.sopir.report-perjalanan') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item ">Report Laporan Perjalanan</span></a>
+                            <a href="{{ route('perawatan-pemeliharaan.sopir.report-perjalanan') }}"><i
+                                    class="bx bx-right-arrow-alt"></i><span
+                                    class="menu-item ">Report Laporan Perjalanan</span></a>
                         </li>
 
                     </ul>
                 </li>
             @endif
             @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 8)
-{{--                <li class=" navigation-header" style="color: darkred"><span>PERAWATAN & PEMELIHARAAN</span>--}}
-{{--                </li>--}}
+                {{--                <li class=" navigation-header" style="color: darkred"><span>PERAWATAN & PEMELIHARAAN</span>--}}
+                {{--                </li>--}}
                 <li class="nav-item @if (Request::segment(2) == 'perawatan-pemeliharaan') open @endif">
                     <a href=""><i class="bx bxs-group"></i><span class="menu-title">Petugas Cuci</span></a>
                     <ul class="menu-content">
@@ -568,7 +599,8 @@
                         </li>
                         <li @if (Request::segment(4) == 'list-penentuan-bengkel') class="active" @endif>
                             <a href="{{ route('perawatan-pemeliharaan.supervisor-check-armada.list-penentuan-bengkel') }}"><i
-                                    class="bx bx-file"></i><span class="menu-item ">Penentuan Bengkel Luar/Bengkel</span></a>
+                                    class="bx bx-file"></i><span
+                                    class="menu-item ">Penentuan Bengkel Luar/Bengkel</span></a>
                         </li>
                         <li @if (Request::segment(4) == 'list-approval-logistik-perjalanan') class="active" @endif>
                             <a href=" "><i
@@ -579,37 +611,43 @@
                                     class="bx bx-file"></i><span class="menu-item ">Report All</span></a>
                         </li>
                         <li @if (Request::segment(3) == 'bengkel-dalam') class="active" @endif>
-                            <a href= ""><i class="bx bx-file"></i><span
+                            <a href=""><i class="bx bx-file"></i><span
                                     class="menu-item">Bengkel Dalam</span></a>
                             <ul class="menu-content">
                                 <li @if (Request::segment(4) == 'list-bengkel-dalam') class="active" @endif>
-                                    <a href="{{ route('perawatan-pemeliharaan.bengkel-dalam.list-bengkel-dalam') }} "><i class="bx bx-right-arrow-alt"></i><span
+                                    <a href="{{ route('perawatan-pemeliharaan.bengkel-dalam.list-bengkel-dalam') }} "><i
+                                            class="bx bx-right-arrow-alt"></i><span
                                             class="menu-item">Data Bengkel Dalam</span></a>
                                 </li>
                                 <li @if (Request::segment(4) == 'checklist-perbaikan-bengkel') class="active" @endif>
-                                    <a href="{{ route('perawatan-pemeliharaan.bengkel-dalam.checklist-perbaikan-bengkel') }}"><i class="bx bx-right-arrow-alt"></i><span
+                                    <a href="{{ route('perawatan-pemeliharaan.bengkel-dalam.checklist-perbaikan-bengkel') }}"><i
+                                            class="bx bx-right-arrow-alt"></i><span
                                             class="menu-item">Checklist Perbaikan Bengkel</span></a>
                                 </li>
                                 <li @if (Request::segment(4) == 'list-pengajuan-logistik-dalam') class="active" @endif>
-                                    <a href="{{ route('perawatan-pemeliharaan.bengkel-dalam.list-pengajuan-logistik') }}"><i class="bx bx-right-arrow-alt"></i><span
+                                    <a href="{{ route('perawatan-pemeliharaan.bengkel-dalam.list-pengajuan-logistik') }}"><i
+                                            class="bx bx-right-arrow-alt"></i><span
                                             class="menu-item">Pengajuan ke Logistik</span></a>
                                 </li>
                             </ul>
                         </li>
                         <li @if (Request::segment(3) == 'bengkel-luar') class="active" @endif>
-                            <a href= ""><i class="bx bx-file"></i><span
+                            <a href=""><i class="bx bx-file"></i><span
                                     class="menu-item">Bengkel Luar</span></a>
                             <ul class="menu-content">
                                 <li @if (Request::segment(4) == 'list-bengkel-luar') class="active" @endif>
-                                    <a href="{{ route('perawatan-pemeliharaan.bengkel-dalam.list-bengkel-luar') }}"><i class="bx bx-right-arrow-alt"></i><span
+                                    <a href="{{ route('perawatan-pemeliharaan.bengkel-dalam.list-bengkel-luar') }}"><i
+                                            class="bx bx-right-arrow-alt"></i><span
                                             class="menu-item">Data Bengkel Luar</span></a>
                                 </li>
                                 <li @if (Request::segment(4) == 'checklist-perbaikan-bengkel-luar') class="active" @endif>
-                                    <a href="{{ route('perawatan-pemeliharaan.bengkel-luar.checklist-perbaikan-bengkel-luar') }}"><i class="bx bx-right-arrow-alt"></i><span
+                                    <a href="{{ route('perawatan-pemeliharaan.bengkel-luar.checklist-perbaikan-bengkel-luar') }}"><i
+                                            class="bx bx-right-arrow-alt"></i><span
                                             class="menu-item">Checklist Perbaikan Bengkel</span></a>
                                 </li>
                                 <li @if (Request::segment(4) == 'list-pengajuan-logistik-luar') class="active" @endif>
-                                    <a href=" {{ route('perawatan-pemeliharaan.bengkel-luar.laporan-perbaikan-bengkel-luar') }}"><i class="bx bx-right-arrow-alt"></i><span
+                                    <a href=" {{ route('perawatan-pemeliharaan.bengkel-luar.laporan-perbaikan-bengkel-luar') }}"><i
+                                            class="bx bx-right-arrow-alt"></i><span
                                             class="menu-item">Laporan Perbaikan Bengkel</span></a>
                                 </li>
                             </ul>

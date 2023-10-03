@@ -43,7 +43,6 @@ Route::group(
         })->name('booking-ticket');
 
 
-
         #EndPage
 
         // Dashboard
@@ -66,7 +65,6 @@ Route::group(
         Route::get('/account/inbox', function () {
             return view('client.dashboard.pages.inbox');
         })->name('inbox');
-
 
 
         // Functional
@@ -203,7 +201,6 @@ Route::group(
                             Route::post('/form-request-kasbon', 'HumanResource\RequestGajiController@RequestKasbon')->name('human-resource.human-resource.pegawai.request-kasbon-karyawan');
                         });
                     });
-
 
 
                     Route::prefix('kinerja-karyawan')->group(function () {
@@ -576,7 +573,18 @@ Route::group(
             Route::resource('finance-accounting/reservation-transaction', 'FinanceAccounting\ReservationTransactionController');
             Route::resource('finance-accounting/payment-request', 'FinanceAccounting\PaymentRequestController');
             Route::post('finance-accounting/payment-request/payment-approve-reject', 'FinanceAccounting\PaymentRequestController@paymentApproveReject');
+
             #endregion
+            // Menu Keuangan Finance Accounting
+            Route::prefix('finance')->group(function () {
+                Route::prefix('jurnal-umum')->group(function () {
+                    Route::get('/', 'FinanceAccounting\MenuKeuangan\Finance\JurnalUmumController@index')->name('finance-accounting-menu-keuangan-finance-jurnal-umum-index');
+                    Route::post('/store', 'FinanceAccounting\MenuKeuangan\Finance\JurnalUmumController@store')->name('finance-accounting-menu-keuangan-finance-jurnal-umum-store');
+                    Route::post('/update/{id}', 'FinanceAccounting\MenuKeuangan\Finance\JurnalUmumController@update')->name('finance-accounting-menu-keuangan-finance-jurnal-umum-update');
+                    Route::delete('/delete', 'FinanceAccounting\MenuKeuangan\Finance\JurnalUmumController@delete')->name('finance-accounting-menu-keuangan-finance-jurnal-umum-delete');
+                    Route::get('/get-code-group-account', 'FinanceAccounting\MenuKeuangan\Finance\JurnalUmumController@getCodeGroupAccount')->name('finance-accounting-menu-keuangan-finance-jurnal-umum-getCodeGroupAccount');
+                });
+            });
 
 
             #region General
