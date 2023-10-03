@@ -20,7 +20,7 @@
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-form-label">Nama</label>
                                     <div class="col-sm-8">
-                                        <select name="edit_employee_id" id="edit_employee_id" class="form-control" disabled>
+                                        <select name="employee_id" id="employee_id" class="form-control" disabled>
                                             @foreach($employee as $dt)
                                                 @php
                                                     $selected = ($item->employee_id == $dt->id) ? "selected" : "";

@@ -25,17 +25,6 @@
                     <div class="col-md-12 d-flex">
                         <h2 class="h4 mb-1">Daftar Gaji Pegawai</h2>
                         <div class="col ml-auto">
-{{--                            <div class="dropdown float-right">--}}
-{{--                                <button type="button" data-toggle="modal"--}}
-{{--                                        data-target="#modal-tambah-daftar-gaji-pegawai"--}}
-{{--                                        class="btn btn-primary mr-1">--}}
-{{--                                    <i class="fe fe-plus"></i> Tambah Data--}}
-{{--                                </button>--}}
-{{--                                <a target="_blank" id="btn-report"--}}
-{{--                                   href=" "--}}
-{{--                                   type="button" class="btn btn-danger text-white mr-1">--}}
-{{--                                    <i class="bi bi-filetype-pdf"></i> Report PDF</a>--}}
-{{--                            </div>--}}
                         </div>
                     </div>
                 </div>
@@ -153,18 +142,7 @@
                                 <td>{{$item->employee_status}}</td>
                                 <td> @currency($item->g_pokok)</td>
                                 <td>{{$item->keterangan}}</td>
-{{--                                <td class="text-center">--}}
-{{--                                    <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal"--}}
-{{--                                            data-target="#DetailGaji-{{ $item->id }}"><i--}}
-{{--                                            class="bx bx-info-circle font-size-base"></i></button>|--}}
-{{--                                    <button type="button" class="btn btn-sm btn-outline-warning" data-toggle="modal"--}}
-{{--                                            data-target="#EditGaji-{{$item->id}}"><i--}}
-{{--                                            class="bx bx-edit font-size-base"></i>--}}
-{{--                                    </button> |--}}
-{{--                                    <a href="{{ route('data-gaji-pegawai.human-resource-pegawai-form-delete', ['id' => $item->id]) }}"--}}
-{{--                                       class="btn btn-outline-danger btn-sm delete-button"><i--}}
-{{--                                            class="bx bx-trash"></i></a>--}}
-{{--                                </td>--}}
+
                                 <td class="text-center">
                                     <div class="d-flex">
                                         <div class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"
@@ -177,10 +155,11 @@
                                              data-target="#EditGaji-{{ $item->id }}">
                                             <i class="bx bx-edit font-size-base"></i>
                                         </div>
-                                        <a class="badge-circle badge-circle-sm badge-circle-danger pointer"
-                                           href="{{ route('data-gaji-pegawai.human-resource-pegawai-form-delete', ['id' => $item->id]) }}">
+
+                                        <div class="badge-circle badge-circle-sm badge-circle-danger pointer delete-button "
+                                             data-id="{{ $item->id }}">
                                             <i class="bx bx-trash font-size-base"></i>
-                                        </a>
+                                        </div>
                                     </div>
                                 </td>
                             </tr>
@@ -269,34 +248,57 @@
 
 
 
-        // document.addEventListener('DOMContentLoaded', function () {
-        //     // Daftar id input yang ingin diformat
-        //     var inputIds = ['g_pokok', 't_masa_kerja', 't_transport', 't_kapasitas', 't_akademik', 't_struktur', 'bpjs_kesehatan', 'bpjs_ketenagakerjaan'];
-        //
-        //     // Format input nominal Rupiah
-        //     inputIds.forEach(function (inputId) {
-        //         var inputElement = document.getElementById(inputId);
-        //         if (inputElement) {
-        //             inputElement.addEventListener('input', function () {
-        //                 // Hapus karakter selain angka dan koma
-        //                 var cleanedValue = this.value.replace(/[^\d,]/g, '');
-        //
-        //                 // Hapus semua koma kecuali yang pertama, dan kemudian format dengan separator ribuan
-        //                 var parts = cleanedValue.split(',');
-        //                 var beforeDecimal = parts[0].replace(/,/g, '');
-        //                 var formattedValue = new Intl.NumberFormat('id-ID').format(beforeDecimal);
-        //
-        //                 // Jika ada bagian desimal, tambahkan kembali koma dan bagian desimalnya
-        //                 if (parts.length > 1) {
-        //                     formattedValue += ',' + parts[1];
-        //                 }
-        //
-        //                 // Set nilai yang telah diformat kembali ke input
-        //                 this.value = formattedValue;
-        //             });
-        //         }
-        //     });
-        // });
+        //menampilkan sweetalert2
+        @if(session('pesan-berhasil'))
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: '{{ session("pesan-berhasil") }}'
+        });
+        @elseif(session('pesan-gagal'))
+        Swal.fire({
+            icon: 'error',
+            title: 'Gagal',
+            text: '{{ session("pesan-gagal") }}'
+        });
+        @endif
+
+        $(document).ready(function () {
+            $('.delete-button').click(function () {
+                var GajiEmployeeId = $(this).data('id');
+
+                Swal.fire({
+                    title: "Yakin akan menghapus data?",
+                    text: "Data yang dihapus tidak dapat dikembalikan",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Ya, hapus!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: '{{ route('data-gaji-pegawai.form-delete') }}',
+                            type: 'DELETE',
+                            data: {
+                                '_token': '{{ csrf_token() }}',
+                                'gaji_employee_id': GajiEmployeeId
+                            },
+                            success: function (response) {
+                                location.reload();
+                                Toast.fire({
+                                    icon: "success",
+                                    title: "Berhasil menghapus data gaji karyawan"
+                                });
+                            },
+                            error: function (error) {
+                                console.log(err);
+                            }
+                        });
+                    }
+                });
+            });
+        });
     </script>
 @endpush
 

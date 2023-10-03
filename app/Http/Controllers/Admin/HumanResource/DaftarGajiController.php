@@ -144,11 +144,24 @@ class DaftarGajiController extends Controller
 
             $data = GajiEmployee::find($id);
 
-            $employee = Employee::find($request->employee_id);
+            if (!$data) {
+                // Handle the case where the GajiEmployee record with the given ID doesn't exist.
+                return redirect()->back()->with('error', 'GajiEmployee not found.');
+            }
+
+            // Fetch the associated employee using the provided employee ID
+            $employee = Employee::find($request->edit_employee_id);
+
+            if (!$employee) {
+                // Handle the case where the Employee record with the given ID doesn't exist.
+                return redirect()->back()->with('error', 'Employee not found.');
+            }
+
+            // Update GajiEmployee fields
             $data->employee_id = $request->edit_employee_id;
             $data->employee_status = $request->edit_employee_status;
-            $data->departemen_id = $employee->edit_departemen_id;
-            $data->position_id = $employee->edit_position_id;
+            $data->departemen_id = $employee->departemen_id; // Use the correct property name
+            $data->position_id = $employee->position_id; // Use the correct property name
             $data->g_pokok = $request->edit_g_pokok;
             $data->t_masa_kerja = $request->edit_t_masa_kerja;
             $data->t_transport = $request->edit_t_transport;
@@ -160,39 +173,33 @@ class DaftarGajiController extends Controller
             $data->tanggal = $request->edit_tanggal;
             $data->keterangan = $request->edit_keterangan;
 
-//            dd($data);
-
             $data->save();
 
 
+
             DB::commit();
-            Session::flash('message', ['Berhasil menyimpan daftar gaji karyawan', 'success']);
+            Session::flash('message', ['Berhasil mengubah daftar gaji karyawan', 'success']);
         } catch (\Exception $e) {
             DB::rollback();
-            Session::flash('message', ['Gagal menyimpan daftar gaji karyawan', 'error']);
+            Session::flash('message', ['Gagal mengubah daftar gaji karyawan', 'error']);
+            dd($e->getMessage());
         }
 
         return redirect()->route('data-gaji-pegawai.human-resource-pegawai-list-data');
     }
 
-    public function formDelete($id)
+    public function formDelete(Request $request)
     {
-        DB::beginTransaction();
-        try {
 
-            $data = GajiEmployee::find($id);
+        $GajiEmployeeId = $request->input('employee_id');
+        $data = GajiEmployee::find($GajiEmployeeId);
+        $data->delete();
 
-            $data->delete();
-
-
-            DB::commit();
-            Session::flash('message', ['Berhasil menyimpan daftar gaji karyawan', 'success']);
-        } catch (\Exception $e) {
-            DB::rollback();
-            Session::flash('message', ['Gagal menyimpan daftar gaji karyawan', 'error']);
-        }
-
-        return redirect()->route('data-gaji-pegawai.human-resource-pegawai-list-data');
+        return response()->json([
+            'data' => $data,
+            'message' => 'Berhasil menghapus data gaji karyawan',
+            'status' => 200,
+        ]);
     }
 
     public function cetakPDF()

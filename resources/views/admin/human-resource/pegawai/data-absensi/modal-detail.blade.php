@@ -8,7 +8,7 @@
     @php
         $absensiPegawai = \App\Models\HumanResource\Absensi::where('id_fingerprint','=',$item->id_fingerprint)->get();
     @endphp
-    <div class="modal fade text-left" id="DetailAbsensi-{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="modal-title"
+    <div class="modal fade text-left" id="DetailAbsensi-{{ $item->id_fingerprint }}" tabindex="-1" role="dialog" aria-labelledby="modal-title"
          aria-hidden="true">
         <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
@@ -65,13 +65,12 @@
                                 <input type="hidden" id="Tablesemployee" value=" ">
                                 <table class="table table-bordered table-hover" id="table-list-employees">
                                     <thead>
-                                    <tr class="text-uppercase text-center">
-
-                                        <th class="w-10p">No</th>
-                                        <th class="w-10p">Scan_Satu</th>
-                                        <th class="w-10p">Scan_Dua</th>
-                                        <th class="w-10p">Scan_Tiga</th>
-                                        <th class="w-10p">Scan_Empat</th>
+                                    <tr class="text-uppercase text-center" style="background-color: #ececec">
+                                        <th class="w-5p" style="background-color: #ececec">No</th>
+                                        <th class="w-4p" >Scan_Satu</th>
+                                        <th class="w-4p">Scan_Dua</th>
+                                        <th class="w-4p">Scan_Tiga</th>
+                                        <th class="w-4p">Scan_Empat</th>
                                     </tr>
                                     </thead>
                                     <tbody id="show-data-employee">

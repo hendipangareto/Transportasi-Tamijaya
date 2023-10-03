@@ -34,9 +34,7 @@
                             <h2 class="h4 "></h2>
                             <div class="col ml-auto">
                                 <div class="dropdown float-right">
-                                    {{--                                    <a href="{{ route('human-resource.pegawai.request-gaji.form-tambah') }}"--}}
-                                    {{--                                       class="btn btn-primary mr-1">--}}
-                                    {{--                                        <i class="bx bx-plus-circle"></i> Tambah Data</a>--}}
+
                                     <a target="_blank"
                                        href=""
                                        type="button"
@@ -98,13 +96,30 @@
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
                                     <label for="">Nama Karyawan</label>
-                                    <input type="text" class="form-control">
+                                    <select name="employee_name" class="form-control ">
+                                        <option value="" selected disabled> Pilih Karyawan  </option>
+                                        @foreach ($employee as $karyawan)
+                                            @php
+                                                $selected = ($params['employee_name'] == $karyawan->id) ? "selected" : "";
+                                            @endphp
+                                            <option value="{{ $karyawan->id }}" {{$selected}}>{{ $karyawan->employee_name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
                                     <label for="">Departemen</label>
-                                    <input type="text" class="form-control">
+                                    <select class="form-control" id="filter_departemen_id"
+                                            name="filter_departemen_id">
+                                        <option disabled selected>Pilih Departemen</option>
+                                        @foreach($employee as $dpt)
+                                            @php
+                                                $selected = ($params['department_name'] == $dpt->id) ? "selected" : "";
+                                            @endphp
+                                            <option value="{{$dpt->id}}" {{$selected}}>{{$dpt->department_name}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-12">
@@ -151,37 +166,13 @@
                                     <td>{{ $item->employee_name }} </td>
                                     <td> {{ $item->department_name }}</td>
                                     <td> {{ $item->position_name }}</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
 
-                                    <td>
-{{--                                        @if ($item->status_absensi == 'M')--}}
-{{--                                            M--}}
-{{--                                        @endif--}}
-                                        ({{ $totalMasuk }})
-                                    </td>
-                                    <td>
-{{--                                        @if ($item->status_absensi == 'S')--}}
-{{--                                            S--}}
-{{--                                        @endif--}}
-                                        ({{ $totalSakit }})
-                                    </td>
-                                    <td>
-{{--                                        @if ($item->status_absensi == 'I')--}}
-{{--                                            I--}}
-{{--                                        @endif--}}
-                                        ({{ $totalIzin }})
-                                    </td>
-                                    <td>
-{{--                                        @if ($item->status_absensi == 'A')--}}
-{{--                                            A--}}
-{{--                                        @endif--}}
-                                        ({{ $totalAlpha}})
-                                    </td>
-                                    <td>
-{{--                                        @if ($item->status_absensi == 'C')--}}
-{{--                                            C--}}
-{{--                                        @endif--}}
-                                        ({{ $totalLibur}})
-                                    </td>
+
 
 
                                     <td class="text-center">
@@ -189,14 +180,10 @@
                                             <div
                                                 class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"
                                                 data-toggle="modal"
-                                                data-target="#DetailAbsensi-{{ $item->id }}">
+                                                data-target="#DetailAbsensi-{{ $item->id_fingerprint }}">
                                                 <i class="bx bx-info-circle font-size-base"></i>
                                             </div>
-{{--                                            <div class="badge-circle badge-circle-sm badge-circle-warning mr-1 pointer"--}}
-{{--                                                 data-toggle="modal"--}}
-{{--                                                 data-target="#EditSatuan ">--}}
-{{--                                                <i class="bx bx-edit font-size-base"></i>--}}
-{{--                                            </div>--}}
+
                                             <a class="badge-circle badge-circle-sm badge-circle-danger pointer"
                                                href=" ">
                                                 <i class="bx bx-printer font-size-base"></i>

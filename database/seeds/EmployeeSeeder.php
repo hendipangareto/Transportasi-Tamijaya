@@ -9,7 +9,9 @@ class EmployeeSeeder extends Seeder
     {
         Employee::create([
             'employee_id' => '2023-EMP-01',
-            'employee_name' => 'MAMIEK SUKARNO',
+            'id_fingerprint' => '002',
+            'employee_name' => 'Adita Rian P
+',
             'departemen_id' => 1,
             'position_id' => 1,
             'employee_status' => 'Tetap',

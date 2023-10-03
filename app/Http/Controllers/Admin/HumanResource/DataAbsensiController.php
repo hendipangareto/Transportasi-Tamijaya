@@ -59,40 +59,21 @@ class DataAbsensiController extends Controller
             ->get();
 
 
-//        $params = array(
-//            'param_month' => $absensi_month,
-//            'employee_name' => $employee_name,
-//        );
+        $params = array(
+            'param_month' => $absensi_month,
+            'employee_name' => $employee_name,
+            'department_name' => $request->filter_departemen_id, // Assuming 'filter_departemen_id' is the department name you want to pass
+        );
 
 //        dd($absensi);
-        $totalMasuk = 0;
-        $totalIzin = 0;
-        $totalSakit = 0;
-        $totalAlpha = 0;
-        $totalLibur = 0;
-        foreach ($absensi as $item) {
-            if ($item->status_absensi == 'M') {
-                $totalMasuk++;
-            } elseif ($item->status_absensi == 'I') {
-                $totalIzin++;
-            } elseif ($item->status_absensi == 'S') {
-                $totalSakit++;
-            }elseif ($item->status_absensi == 'C') {
-                $totalLibur++;
-            }elseif ($item->status_absensi == 'A') {
-                $totalAlpha++;
-            }
-        }
+
 
         return view('admin.human-resource.pegawai.data-absensi.list-absensi',
             ['absensi' => $absensi,
                 'employee' => $employee,
                 'absensiPegawai' => $absensiPegawai,
-                'totalMasuk' => $totalMasuk,
-                'totalAlpha' => $totalAlpha,
-                'totalSakit' => $totalSakit,
-                'totalIzin' => $totalIzin,
-                'totalLibur' => $totalLibur,
+                'params' =>  $params,
+
             ]);
     }
 
