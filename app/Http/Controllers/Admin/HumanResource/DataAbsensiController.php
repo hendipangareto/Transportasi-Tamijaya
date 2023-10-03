@@ -24,19 +24,21 @@ class DataAbsensiController extends Controller
     {
         $employee = Employee::get();
 
-//        $absensi_month = "";
-//        if (isset($request->param_month)) {
-//            $absensi_month = $request->param_month;
-//        }
-//
-//        $employee_name = "";
-//        if (isset($request->employee_name)) {
-//            $employee_name = $request->employee_name;
-//        }
+        $absensi_month = "";
+        if (isset($request->param_month)) {
+            $absensi_month = $request->param_month;
+        }
+
+        $employee_name = "";
+        if (isset($request->employee_name)) {
+            $employee_name = $request->employee_name;
+        }
 
 
+        $absensiPegawai = Absensi::all();
         $absensi = DB::table('absensis')
-            ->select('absensis.*',
+            ->select(
+                'absensis.*',
                 'employees.employee_name',
                 'employees.employee_id',
                 'employees.employee_status',
@@ -45,19 +47,16 @@ class DataAbsensiController extends Controller
                 'employees.position_id',
                 'departments.department_name',
                 'positions.position_name')
-            ->join('employees', 'absensis.id_fingerprint', 'employees.id')
+            ->join('employees', 'absensis.id', 'employees.id')
             ->leftJoin('departments', 'employees.departemen_id', 'departments.id')
             ->leftJoin('positions', 'employees.position_id', 'positions.id')
+            ->when(!empty($employee_name), function ($query) use ($employee_name) {
+                $query->where('absensis.id', $employee_name);
+            })
+            ->when(!empty($absensi_month), function ($query) use ($absensi_month) {
+                $query->whereMonth('tanggal', $absensi_month);
+            })
             ->get();
-
-
-//            ->when(!empty($employee_name), function ($query) use ($employee_name) {
-//                $query->where('absensis.id', $employee_name);
-//            })
-//            ->when(!empty($absensi_month), function ($query) use ($absensi_month) {
-//                $query->whereMonth('tanggal', $absensi_month);
-//            })
-
 
 
 //        $params = array(
@@ -65,8 +64,36 @@ class DataAbsensiController extends Controller
 //            'employee_name' => $employee_name,
 //        );
 
-        dd($absensi);
-        return view('admin.human-resource.pegawai.data-absensi.list-absensi', ['absensi' => $absensi, 'employee' => $employee]);
+//        dd($absensi);
+        $totalMasuk = 0;
+        $totalIzin = 0;
+        $totalSakit = 0;
+        $totalAlpha = 0;
+        $totalLibur = 0;
+        foreach ($absensi as $item) {
+            if ($item->status_absensi == 'M') {
+                $totalMasuk++;
+            } elseif ($item->status_absensi == 'I') {
+                $totalIzin++;
+            } elseif ($item->status_absensi == 'S') {
+                $totalSakit++;
+            }elseif ($item->status_absensi == 'C') {
+                $totalLibur++;
+            }elseif ($item->status_absensi == 'A') {
+                $totalAlpha++;
+            }
+        }
+
+        return view('admin.human-resource.pegawai.data-absensi.list-absensi',
+            ['absensi' => $absensi,
+                'employee' => $employee,
+                'absensiPegawai' => $absensiPegawai,
+                'totalMasuk' => $totalMasuk,
+                'totalAlpha' => $totalAlpha,
+                'totalSakit' => $totalSakit,
+                'totalIzin' => $totalIzin,
+                'totalLibur' => $totalLibur,
+            ]);
     }
 
 

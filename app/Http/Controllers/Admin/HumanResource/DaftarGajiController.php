@@ -10,14 +10,19 @@ use App\Models\MasterData\Department;
 use App\Models\MasterData\Position;
 
 use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
+use Illuminate\Http\Request; // Pastikan mengimpor Request
+
+// ...
+
 use Illuminate\Support\Facades\Session;
 
 use Barryvdh\DomPDF\Facade as PDF;
 class DaftarGajiController extends Controller
 {
 
-    public function listData()
+
+
+    public function listData(Request $request)
     {
         $departemen = Department::get();
         $position = Position::get();
@@ -30,8 +35,8 @@ class DaftarGajiController extends Controller
         }
 
         $position_id = "";
-        if (isset($request->filter_jabatan_id)) {
-            $position_id = $request->filter_jabatan_id;
+        if (isset($request->filter_position_id)) {
+            $position_id = $request->filter_position_id;
         }
 
         $employee_status = "";
@@ -192,17 +197,17 @@ class DaftarGajiController extends Controller
 
     public function cetakPDF()
     {
-
-
-//        $data = DB::table('gaji_employees')
-//            ->select('gaji_employees.*', 'departments.department_name', 'positions.position_name', 'employees.employee_name')
-//            ->join('departments', 'gaji_employees.departemen_id', 'departments.id')
-//            ->join('positions', 'gaji_employees.position_id', 'positions.id')
-//            ->join('employees', 'gaji_employees.employee_id', 'employees.id')->get();
+        $data = DB::table('gaji_employees')
+            ->select('gaji_employees.*', 'departments.department_name', 'positions.position_name', 'employees.employee_name')
+            ->join('departments', 'gaji_employees.departemen_id', 'departments.id')
+            ->join('positions', 'gaji_employees.position_id', 'positions.id')
+            ->join('employees', 'gaji_employees.employee_id', 'employees.id')
+            ->get()
+            ->toArray(); // Ubah hasil query ke dalam array
 
         $filename = 'SubBagian' . "_" . now()->format('Y_m_d_H_i_s') . '.pdf';
 
-        $pdf = PDF::loadView('admin.master-logistik.sub-bagian.cetak-pdf' );
+        $pdf = PDF::loadView('admin.human-resource.pegawai.cetak-pdf', compact('data')); // Menggunakan compact() untuk mengirimkan data ke view
 
         $pdf->setPaper('A4', 'portrait');
 
@@ -211,9 +216,9 @@ class DaftarGajiController extends Controller
         $pdf->getDomPDF()->set_option('isPhpEnabled', true);
         $canvas->page_text(550, 820, "Page {PAGE_NUM}", null, 8);
 
-
         $canvas->page_text(550 / 2, 820, now()->format('d-m-Y'), null, 8);
         $canvas->page_text(550 / 16, 820,  'PT Anugerah Karya Utami Gemilang', null, 8);
+
         return $pdf->stream($filename);
     }
 }

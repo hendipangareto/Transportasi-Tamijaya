@@ -207,7 +207,7 @@
                                             </tr>
                                         @empty
                                             <tr>
-                                                <td colspan="5" class="text-center">Tidak ada data kategori.</td>
+                                                <td colspan="9" class="text-center">Tidak ada data request gaji.</td>
                                             </tr>
                                         @endforelse
                                         </tbody>

@@ -44,18 +44,25 @@
                 </div>
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label for="">ID Pegawai</label>
                                 <input type="text" id="edit_id_pegawai" name="edit_id_pegawai" class="form-control"
                                        value="{{$employee->employee_id}}" readonly>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label for="">Nama Pegawai</label>
                                 <input type="text" id="edit_nama_pegawai" name="edit_nama_pegawai" class="form-control"
                                        value="{{$employee->employee_name}}">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="">Fingerprint Pegawai :</label>
+                                <input type="number" class="form-control" name="id_fingerprint" value="{{ $employee->id_fingerprint }}" style="font-style: italic"
+                                >
                             </div>
                         </div>
                     </div>

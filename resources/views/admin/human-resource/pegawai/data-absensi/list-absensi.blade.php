@@ -146,26 +146,42 @@
                                 $no = 1;
                             @endphp
                             @forelse($absensi as $item)
-                                @php
-                                    $masuk = '';
-                                    $sakit = '';
-                                    $ijin = '';
-                                    $alpha = '';
-                                    $libur = '';
-
-                                    if ($item->status_absensi == 'M')
-                                        $masuk = 'M';
-                                @endphp
                                 <tr class="text-center">
                                     <td>{{ $no++ }}</td>
                                     <td>{{ $item->employee_name }} </td>
                                     <td> {{ $item->department_name }}</td>
                                     <td> {{ $item->position_name }}</td>
-                                    <td>{{$masuk}}</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+
+                                    <td>
+{{--                                        @if ($item->status_absensi == 'M')--}}
+{{--                                            M--}}
+{{--                                        @endif--}}
+                                        ({{ $totalMasuk }})
+                                    </td>
+                                    <td>
+{{--                                        @if ($item->status_absensi == 'S')--}}
+{{--                                            S--}}
+{{--                                        @endif--}}
+                                        ({{ $totalSakit }})
+                                    </td>
+                                    <td>
+{{--                                        @if ($item->status_absensi == 'I')--}}
+{{--                                            I--}}
+{{--                                        @endif--}}
+                                        ({{ $totalIzin }})
+                                    </td>
+                                    <td>
+{{--                                        @if ($item->status_absensi == 'A')--}}
+{{--                                            A--}}
+{{--                                        @endif--}}
+                                        ({{ $totalAlpha}})
+                                    </td>
+                                    <td>
+{{--                                        @if ($item->status_absensi == 'C')--}}
+{{--                                            C--}}
+{{--                                        @endif--}}
+                                        ({{ $totalLibur}})
+                                    </td>
 
 
                                     <td class="text-center">
@@ -173,17 +189,17 @@
                                             <div
                                                 class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"
                                                 data-toggle="modal"
-                                                data-target="#DetailAbsensi ">
+                                                data-target="#DetailAbsensi-{{ $item->id }}">
                                                 <i class="bx bx-info-circle font-size-base"></i>
                                             </div>
-                                            <div class="badge-circle badge-circle-sm badge-circle-warning mr-1 pointer"
-                                                 data-toggle="modal"
-                                                 data-target="#EditSatuan ">
-                                                <i class="bx bx-edit font-size-base"></i>
-                                            </div>
+{{--                                            <div class="badge-circle badge-circle-sm badge-circle-warning mr-1 pointer"--}}
+{{--                                                 data-toggle="modal"--}}
+{{--                                                 data-target="#EditSatuan ">--}}
+{{--                                                <i class="bx bx-edit font-size-base"></i>--}}
+{{--                                            </div>--}}
                                             <a class="badge-circle badge-circle-sm badge-circle-danger pointer"
                                                href=" ">
-                                                <i class="bx bx-trash font-size-base"></i>
+                                                <i class="bx bx-printer font-size-base"></i>
                                             </a>
                                         </div>
                                     </td>

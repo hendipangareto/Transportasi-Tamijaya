@@ -48,11 +48,12 @@
                         <i class="fe fe-plus"></i> Tambah Data
                     </button>
                     <a target="_blank" id="btn-report"
-                       href=" "
+                       href="{{ route('data-gaji-pegawai.human-resource-pegawai-cetak-pdf') }}?departemen={{ request()->input('filter_departemen_id') }}&position={{ request()->input('filter_position_id') }}&status={{ request()->input('filter_employee_status') }}"
                        type="button" class="btn btn-danger text-white mr-1">
-                        <i class="bi bi-filetype-pdf"></i> Report PDF</a>
+                        <i class="bi bi-filetype-pdf"></i> Report PDF
+                    </a>
+
                 </div>
-            </div>
             <div class="card-body">
 
                 <form action="">
@@ -74,7 +75,7 @@
                         </div>
                         <div class="col-md-3 col-sm-12">
                             <div class="form-group">
-                                <select name="filter_jabatan_id" id="filter_jabatan_id" class="form-control">
+                                <select name="filter_position_id" id="filter_position_id" class="form-control">
                                     <option value="" selected disabled>Pilih Jabatan</option>
                                     @foreach($position as $jbt)
                                         @php
