@@ -331,4 +331,18 @@ class EmployeeController extends Controller
         return $pdf->stream($filename);
     }
 
+
+    public function Deletekeluarga(Request $request)
+    {
+        $EmployeeId = $request->input('employee_id');
+        $data = Employee::find($EmployeeId);
+        $data->delete();
+
+        return response()->json([
+            'data' => $data,
+            'message' => 'Berhasil menghapus data gaji karyawan',
+            'status' => 200,
+        ]);
+    }
+
 }

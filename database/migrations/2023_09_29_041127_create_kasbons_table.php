@@ -24,6 +24,7 @@ class CreateKasbonsTable extends Migration
             $table->double('nominal');
             $table->string('keterangan_kasbon');
             $table->timestamps();
+
         });
     }
 

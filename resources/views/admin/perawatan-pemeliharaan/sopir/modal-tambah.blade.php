@@ -15,9 +15,14 @@
 
                     <label>Bagian : </label>
                     <div class="form-group">
-                        <select name="employee_id" id="employee_select" class="form-control">
-                            <option selected disabled>Pilih Bagian</option>
-                            <option value=" ">jkljlk </option>
+                        <select name="employee_id" id="employee_id"
+                                class="form-control">
+                            <option selected disabled>Pilih nama pegawai
+                            </option>
+                            @foreach($bagian as $item)
+                                <option
+                                    value="{{$item->id}}">{{$item->nama_bagian}}</option>
+                            @endforeach
                         </select>
                     </div>
                     <label>Keluhan : </label>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\HumanResource;
 
 use App\Http\Controllers\Controller;
+use App\Models\HumanResource\Absensi;
 use App\Models\HumanResource\Employee;
 use App\Models\HumanResource\GajiEmployee;
 use App\Models\HumanResource\RequestGaji;
@@ -21,13 +22,17 @@ class RequestGajiController extends Controller
         $position = Position::get();
         $employee = Employee::get();
 
+
         $requestGaji = DB::table('request_gaji_employees')
-            ->select('request_gaji_employees.*', 'gaji_employees.*', 'departments.department_name', 'positions.position_name', 'employees.*')
+            ->select('request_gaji_employees.*', 'gaji_employees.*', 'departments.department_name', 'positions.position_name', 'absensis.status_absensi', 'employees.*')
             ->join('gaji_employees', 'request_gaji_employees.gaji_employee_id', '=', 'gaji_employees.id')
             ->join('departments', 'request_gaji_employees.gaji_employee_id', 'departments.id')
             ->join('positions', 'request_gaji_employees.gaji_employee_id', 'positions.id')
             ->join('employees', 'request_gaji_employees.gaji_employee_id', 'employees.id')
+            ->join('absensis', 'request_gaji_employees.absensi_id', 'absensis.id')
             ->get();
+
+//        dd($requestGaji);
         return view('admin.human-resource.pegawai.request-gaji.list-gaji', compact('departemen', 'position', 'employee', 'requestGaji'));
     }
 
@@ -36,7 +41,8 @@ class RequestGajiController extends Controller
         $departemen = Department::get();
         $position = Position::get();
         $employee = Employee::get();
-        return view('admin.human-resource.pegawai.request-gaji.form-tambah', compact('employee', 'position', 'departemen'));
+        $absensi = Absensi::get();
+        return view('admin.human-resource.pegawai.request-gaji.form-tambah', compact('employee', 'position', 'departemen', 'absensi'));
     }
 
 
@@ -87,14 +93,21 @@ class RequestGajiController extends Controller
         $employeeId = $request->input('employee_id');
 
         $employee = DB::table('gaji_employees')
-            ->select('gaji_employees.*', 'departments.department_name', 'positions.position_name', 'employees.employee_name', 'employees.employee_id as kode_employee')
+            ->select('gaji_employees.*', 'departments.department_name', 'positions.position_name', 'employees.employee_name', 'employees.employee_id as kode_employee',
+                'absensis.status_absensi as absensi')
             ->join('departments', 'gaji_employees.departemen_id', 'departments.id')
             ->join('positions', 'gaji_employees.position_id', 'positions.id')
             ->join('employees', 'gaji_employees.employee_id', 'employees.id')
+            ->leftjoin('absensis', 'employees.id_fingerprint', 'absensis.id')
             ->where('gaji_employees.employee_id', '=', $employeeId)->first();
 
 
         return response()->json($employee);
+
+
+
+
+
     }
 
 

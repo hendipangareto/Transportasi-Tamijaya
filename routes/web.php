@@ -128,6 +128,8 @@ Route::group(
             Route::prefix('perawatan-pemeliharaan')->group(function () {
                 Route::prefix('sopir')->group(function () {
                     Route::get('/check-fisik-layanan', 'PerawatanPemeliharaan\SopirController@listCheckFisik')->name('perawatan-pemeliharaan.sopir.check-fisik-layanan');
+                    Route::post('/simpan-check-fisik-layanan', 'PerawatanPemeliharaan\SopirController@SumpanCheckList')->name('perawatan-pemeliharaan.sopir.simpan-check-fisik-layanan');
+
                     Route::get('/report-perjalanan', 'PerawatanPemeliharaan\SopirController@ReportPerjalanan')->name('perawatan-pemeliharaan.sopir.report-perjalanan');
                 });
 
@@ -178,6 +180,8 @@ Route::group(
                 Route::get(' /master-employee/form-edit/{id}/edit', 'HumanResource\EmployeeController@formEdit')->name('human-resource-master-employee-form-edit');
                 Route::post(' /master-employee/form-update/{id}', 'HumanResource\EmployeeController@formUpdate')->name('human-resource-master-employee-form-update');
                 Route::post(' /master-employee/keluarga-update/{id}', 'HumanResource\EmployeeController@formUpdatekeluarga')->name('human-resource-master-employee-form-update-keluarga');
+
+                Route::delete(' /master-employee/keluarga-delete', 'HumanResource\EmployeeController@Deletekeluarga')->name('human-resource-master-employee-form-delete');
                 Route::get(' /master-employee/cetak-pdf', 'HumanResource\EmployeeController@cetakPDF')->name('human-resource-master-employee-cetak-pdf');
 
                 Route::prefix('data-gaji-pegawai')->group(function () {

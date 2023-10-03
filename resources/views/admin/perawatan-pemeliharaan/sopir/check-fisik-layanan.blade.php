@@ -32,18 +32,23 @@
                                         <div class="row mt-3">
                                             <div class="col-md-4 mb-2">
                                                 <label class="form-label" for="formValidationName">Armada :</label>
-                                                <select name="employee_id" id="employee_select" class="form-control">
-                                                    <option selected disabled class="text-center">--Pilih Armada--</option>
-                                                    <option value=" ">jkljlk</option>
+                                                <select name="id_armada" id="id_armada"
+                                                        class="form-control">
+                                                    <option selected disabled>Pilih nama pegawai
+                                                    </option>
+                                                    @foreach($armada as $item)
+                                                        <option
+                                                            value="{{$item->id}}">{{$item->armada_no_police}}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                             <div class="col-md-4 mb-2">
                                                 <label class="form-label" for="formValidationEmail">Titik Keberangkatan :</label>
-                                                <input class="form-control" type="email" id="formValidationEmail" name="formValidationEmail" readonly/>
+                                                <input class="form-control" type="text" id="formValidationEmail" name="formValidationEmail" readonly/>
                                             </div>
                                             <div class="col-md-4 mb-2">
                                                 <label class="form-label" for="formValidationEmail">Tipe Armada :</label>
-                                                <input class="form-control" type="email" id="formValidationEmail" name="formValidationEmail" readonly/>
+                                                <input class="form-control" type="text" id="formValidationEmail" name="formValidationEmail" readonly/>
                                             </div>
 
                                             <div class="col-md-4 mb-2">
@@ -52,11 +57,11 @@
                                             </div>
                                             <div class="col-md-4 mb-2">
                                                 <label class="form-label" for="formValidationEmail">Titik Kedatangan :</label>
-                                                <input class="form-control" type="email" id="formValidationEmail" name="formValidationEmail" readonly/>
+                                                <input class="form-control" type="text" id="formValidationEmail" name="formValidationEmail" readonly/>
                                             </div>
                                             <div class="col-md-4 mb-2">
                                                 <label class="form-label" for="formValidationEmail">ID Perjalanan :</label>
-                                                <input class="form-control" type="email" id="formValidationEmail" name="formValidationEmail" readonly/>
+                                                <input class="form-control" type="text" id="formValidationEmail" name="formValidationEmail" readonly/>
                                             </div>
                                         </div>
                                     </div>
@@ -69,11 +74,11 @@
                                         <div class="row mt-3">
                                             <div class="col-md-6 mb-5 mt-3">
                                                 <label class="form-label" for="formValidationName">Jarak Tempuh Terakhir :</label>
-                                                <input class="form-control" type="email" id="formValidationEmail" name="formValidationEmail"/>
+                                                <input class="form-control" type="text" id="formValidationEmail" name="formValidationEmail"/>
                                             </div>
                                             <div class="col-md-6 mb-5 mt-3">
                                                 <label class="form-label" for="formValidationEmail">Bar BBM :</label>
-                                                <input class="form-control" type="email" id="formValidationEmail" name="formValidationEmail" readonly/>
+                                                <input class="form-control" type="text" id="formValidationEmail" name="formValidationEmail" readonly/>
                                             </div>
                                         </div>
                                     </div>

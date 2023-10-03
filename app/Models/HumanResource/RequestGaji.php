@@ -10,6 +10,8 @@ class RequestGaji extends Model
     protected $primaryKey = 'id';
     protected $fillable = [
         'gaji_employee_id',
+        'absensi_id',
+        'kasbon_id',
         'tanggal',
         'nominal',
         'cek_pegajuan',

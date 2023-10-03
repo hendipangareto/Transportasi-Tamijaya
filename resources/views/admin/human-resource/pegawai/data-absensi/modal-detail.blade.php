@@ -71,6 +71,7 @@
                                         <th class="w-4p">Scan_Dua</th>
                                         <th class="w-4p">Scan_Tiga</th>
                                         <th class="w-4p">Scan_Empat</th>
+                                        <th class="w-4p">Status Absensi</th>
                                     </tr>
                                     </thead>
                                     <tbody id="show-data-employee">
@@ -81,6 +82,7 @@
                                         <td>{{ $data->scan_dua }}</td>
                                         <td>{{ $data->scan_tiga }}</td>
                                         <td>{{ $data->scan_empat }}</td>
+                                        <td>{{ $data->status_absensi }}</td>
                                     </tr>
                                     @endforeach
                                     </tbody>

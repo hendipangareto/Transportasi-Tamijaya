@@ -306,6 +306,9 @@
                                 $('#tunjangan_kapasitas_pegawai').val(addCommas(data.t_kapasitas));
                                 $('#tunjangan_struktur_pegawai').val(addCommas(data.t_struktur));
                                 $('#bpjs_ketenagakerjaan_pegawai').val(addCommas(data.bpjs_ketenagakerjaan));
+                                $('#absensi').val(addCommas(data.absensi));
+
+
                             }
                         }
                     });
@@ -321,7 +324,9 @@
                     $('#tunjangan_masa_kerja_pegawai').val('');
                     $('#tunjangan_kapasitas_pegawai').val('');
                     $('#tunjangan_struktur_pegawai').val('');
-                    $('#bpjs_ketenagakerjaan_pegawai').val('');
+                    $('#absensi').val('');
+
+
                 }
             });
 

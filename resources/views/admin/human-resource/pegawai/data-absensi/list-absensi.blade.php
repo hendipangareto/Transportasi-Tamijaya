@@ -160,40 +160,50 @@
                             @php
                                 $no = 1;
                             @endphp
+
                             @forelse($absensi as $item)
-                                <tr class="text-center">
-                                    <td>{{ $no++ }}</td>
-                                    <td>{{ $item->employee_name }} </td>
-                                    <td> {{ $item->department_name }}</td>
-                                    <td> {{ $item->position_name }}</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                @php
+                                    $absensiPegawai = \App\Models\HumanResource\Absensi::where('id_fingerprint','=',$item->id_fingerprint)
+                                    ->selectRaw(('SUM(CASE WHEN status_absensi = "I" THEN 1 ELSE 0 END) as total_ijin'))
+                                    ->selectRaw(('SUM(CASE WHEN status_absensi = "S" THEN 1 ELSE 0 END) as total_sakit'))
+                                    ->selectRaw(('SUM(CASE WHEN status_absensi = "A" THEN 1 ELSE 0 END) as total_alpa'))
+                                    ->selectRaw(('SUM(CASE WHEN status_absensi = "C" THEN 1 ELSE 0 END) as total_cuti'))
+                                    ->selectRaw(('SUM(CASE WHEN status_absensi = "M" THEN 1 ELSE 0 END) as total_masuk'))
+                                    ->first();
 
-
-
-
-                                    <td class="text-center">
-                                        <div class="d-flex">
-                                            <div
-                                                class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"
-                                                data-toggle="modal"
-                                                data-target="#DetailAbsensi-{{ $item->id_fingerprint }}">
-                                                <i class="bx bx-info-circle font-size-base"></i>
-                                            </div>
-
-                                            <a class="badge-circle badge-circle-sm badge-circle-danger pointer"
-                                               href=" ">
-                                                <i class="bx bx-printer font-size-base"></i>
-                                            </a>
+                                    $totalIjin = $absensiPegawai->total_ijin;
+                                    $totalSakit = $absensiPegawai->total_sakit;
+                                    $totalAlpa = $absensiPegawai->total_alpa;
+                                    $totalCuti = $absensiPegawai->total_cuti;
+                                    $totalMasuk = $absensiPegawai->total_masuk;
+                                @endphp
+                                <tr>
+                                    <td class="w-3p">{{$no++}}</td>
+                                    <td class="w-20p">{{$item->employee_name}}</td>
+                                    <td class="w-20p">{{$item->department_name}}</td>
+                                    <td class="w-20p">{{$item->position_name}}</td>
+                                    <td class="w-3p text-center">{{$totalIjin}}</td>
+                                    <td class="w-3p text-center">{{$totalSakit}}</td>
+                                    <td class="w-3p text-center">{{$totalAlpa}}</td>
+                                    <td class="w-3p text-center">{{$totalCuti}}</td>
+                                    <td class="w-3p text-center">{{$totalMasuk}}</td>
+                                    <td class="w-5p text-center">
+                                        <div
+                                            class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"
+                                            data-toggle="modal"
+                                            data-target="#DetailAbsensi-{{ $item->id_fingerprint }}">
+                                            <i class="bx bx-info-circle font-size-base"></i>
                                         </div>
+
+                                        <a class="badge-circle badge-circle-sm badge-circle-danger pointer"
+                                           href=" ">
+                                            <i class="bx bx-printer font-size-base"></i>
+                                        </a>
                                     </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="11">Data tidak ada</td>
+                                    <td colspan="7" class="text-center">Data tidak ditemukan</td>
                                 </tr>
                             @endforelse
                             </tbody>

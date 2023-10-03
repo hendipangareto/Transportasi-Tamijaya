@@ -176,8 +176,8 @@
                                                class="badge-circle badge-circle-sm badge-circle-warning mr-1 pointer"><i
                                                     class="bx bx-edit font-size-base"></i>
                                             </a>
-                                            <button class="badge-circle badge-circle-sm badge-circle-danger pointer"
-                                                    data-iddelete="{{$item->id}}"><i
+                                            <button class="badge-circle badge-circle-sm badge-circle-danger pointer delete-button "
+                                                    data-id="{{ $item->id }}"><i
                                                     class="bx bx-trash font-size-base"></i>
                                             </button>
                                         </div>
@@ -234,6 +234,61 @@
             $("#table-employee").DataTable();
         });
 
+
+
+
+        // ==============
+        //menampilkan sweetalert2
+        @if(session('pesan-berhasil'))
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: '{{ session("pesan-berhasil") }}'
+        });
+        @elseif(session('pesan-gagal'))
+        Swal.fire({
+            icon: 'error',
+            title: 'Gagal',
+            text: '{{ session("pesan-gagal") }}'
+        });
+        @endif
+
+        $(document).ready(function () {
+            $('.delete-button').click(function () {
+                var $EmployeeId = $(this).data('id');
+
+                Swal.fire({
+                    title: "Yakin akan menghapus data?",
+                    text: "Data yang dihapus tidak dapat dikembalikan",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Ya, hapus!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: '{{ route('human-resource-master-employee-form-delete') }}',
+                            type: 'DELETE',
+                            data: {
+                                '_token': '{{ csrf_token() }}',
+                                'employee_id': $EmployeeId
+                            },
+                            success: function (response) {
+                                location.reload();
+                                Toast.fire({
+                                    icon: "success",
+                                    title: "Berhasil menghapus data gaji karyawan"
+                                });
+                            },
+                            error: function (error) {
+                                console.log(err);
+                            }
+                        });
+                    }
+                });
+            });
+        });
     </script>
 
 @endpush

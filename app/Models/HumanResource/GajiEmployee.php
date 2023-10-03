@@ -12,6 +12,7 @@ class GajiEmployee extends Model
         'employee_id',
         'departemen_id',
         'position_id',
+        'absensi_id',
         'employee_status',
         'g_pokok',
         't_masa_kerja',
