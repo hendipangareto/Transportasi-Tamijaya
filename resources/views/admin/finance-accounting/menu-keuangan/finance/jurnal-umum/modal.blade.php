@@ -147,7 +147,7 @@
                                 </div>
                                 <input type="text" class="form-control money" id="edit_nilai_debit_credit"
                                        name="edit_nilai_debit_credit"
-                                       value="{{$item->nilai_debit_credit }}" readonly>
+                                       value="{{$item->nilai_debit_credit }}">
                             </div>
                         </div>
                         <label>Description: </label>
