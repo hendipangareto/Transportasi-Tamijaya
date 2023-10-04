@@ -369,13 +369,11 @@
 
 
             @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 6)
-                {{--                <li class="navigation-header"><span>Logistik</span></li>--}}
+
                 <li class="nav-item @if (Request::segment(2) == 'master-logistik') open @endif">
                     <a href="#"> <span class="menu-title">PERAWATAN & LOGISTIK</span></a>
                     <ul class="menu-content">
-                        {{--                        <li @if (Request::segment(3) == 'supplier-barang') class="active" @endif>--}}
-                        {{--                            <a href="{{ route('master-logistik-list-supplier-barang') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item">Supplier Barang</span></a>--}}
-                        {{--                        </li>--}}
+
                         <li @if (Request::segment(3) == 'kategori-barang') class="active" @endif>
                             <a href="{{ route('master-logistik-list-kategori-barang') }}"><i
                                     class="bx bx-right-arrow-alt"></i><span class="menu-item">Kategori</span></a>
@@ -407,6 +405,7 @@
                     </ul>
                 </li>
             @endif
+
 
             @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 2 || Auth::user()->id_role == 3)
 
@@ -514,7 +513,26 @@
                     </ul>
                 </li>
             @endif
+            @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 7)
+                <li class=" navigation-header" style="color: darkred"><span>LOGISTIK</span>
+                </li>
+                <li class="nav-item @if (Request::segment(4) == 'pengajuan-pembelian') open @endif">
+                    <a href=""><i class="bx bx-git-pull-request"></i><span class="menu-title">Pengajuan Pembelian</span></a>
+                    <ul class="menu-content">
+                        <li @if (Request::segment(5) == 'pengajuan-pembelian') class="active" @endif>
+                            <a href="{{ route('master-logistik-list-pengajuan-pembelian') }}"><i
+                                    class="bx bx-right-arrow-alt"></i><span
+                                    class="menu-item ">Pengajuan Pembelian</span></a>
+                        </li>
+                        <li @if (Request::segment(3) == 'daftar-gaji') class="active" @endif>
+                            <a href="{{ route('perawatan-pemeliharaan.sopir.report-perjalanan') }}"><i
+                                    class="bx bx-right-arrow-alt"></i><span
+                                    class="menu-item ">Report Laporan Perjalanan</span></a>
+                        </li>
 
+                    </ul>
+                </li>
+            @endif
 
             @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 2 || Auth::user()->id_role == 3)
                 <li class=" navigation-header" STYLE="color: darkred"><span>MANAJEMEN CUSTOMER</span>
@@ -525,35 +543,7 @@
                 </li>
             @endif
 
-            {{-- <li class=" nav-item"><a href="index.html"><i class="bx bx-money"></i><span
-                        class="menu-title">Payroll</span></a>
-                <ul class="menu-content">
-                    <li @if (Request::segment(4) == 'about-us') class="active" @endif>
-                        <a href="#"><i class="bx bx-right-arrow-alt"></i><span
-                                class="menu-item ">Pangkat</span></a>
-                    </li>
-                    <li @if (Request::segment(4) == 'address-location') class="active" @endif>
-                        <a href="#"><i class="bx bx-right-arrow-alt"></i><span
-                                class="menu-item">Penggajian</span></a>
-                    </li>
-                    <li @if (Request::segment(4) == 'address-location') class="active" @endif>
-                        <a href="#"><i class="bx bx-right-arrow-alt"></i><span
-                                class="menu-item">Komisi</span></a>
-                    </li>
-                </ul>
-            </li>
-            <li class=" nav-item"><a href="index.html"><i class="bx bx-trophy"></i><span
-                        class="menu-title">Achievement</span></a>
-                <ul class="menu-content">
-                    <li @if (Request::segment(4) == 'about-us') class="active" @endif>
-                        <a href="#"><i class="bx bx-right-arrow-alt"></i><span
-                                class="menu-item ">Karyawan</span></a>
-                    </li>
-                    <li @if (Request::segment(4) == 'address-location') class="active" @endif>
-                        <a href="#"><i class="bx bx-right-arrow-alt"></i><span class="menu-item">Supir</span></a>
-                    </li>
-                </ul>
-            </li> --}}
+
 
             @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 7)
                 <li class=" navigation-header" style="color: darkred"><span>PERAWATAN & PEMELIHARAAN</span>
