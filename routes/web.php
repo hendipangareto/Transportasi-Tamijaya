@@ -607,6 +607,10 @@ Route::group(
                     Route::delete('/delete', 'FinanceAccounting\MenuKeuangan\Finance\PembayaranController@delete')->name('finance-accounting-menu-keuangan-finance-pembayaran-delete');
                     Route::get('/get-bank-code', 'FinanceAccounting\MenuKeuangan\Finance\PembayaranController@getBankCode')->name('finance-accounting-menu-keuangan-finance-pembayaran-get-bank_code');
                 });
+                Route::prefix('transfer-bank')->group(function () {
+                    Route::get('/', 'FinanceAccounting\MenuKeuangan\Finance\TransferBankController@index')->name('finance-accounting-menu-keuangan-finance-transfer-bank-index');
+                    Route::post('/approved', 'FinanceAccounting\MenuKeuangan\Finance\TransferBankController@approved')->name('finance-accounting-menu-keuangan-finance-transfer-bank-approved');
+                });
             });
             #End Peter
 

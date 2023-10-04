@@ -218,6 +218,11 @@
                                     class="bx bx-right-arrow-alt"></i><span
                                     class="menu-item ">Pembayaran</span></a>
                         </li>
+                        <li @if (Request::segment(3) == 'transfer-bank') class="active" @endif>
+                            <a href="{{ route('finance-accounting-menu-keuangan-finance-transfer-bank-index') }}"><i
+                                    class="bx bx-right-arrow-alt"></i><span
+                                    class="menu-item ">Transfer Bank</span></a>
+                        </li>
                     </ul>
                 </li>
                 {{--End Menu keuangan finance accounting--}}
