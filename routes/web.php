@@ -424,8 +424,8 @@ Route::group(
                         Route::post('/update-pengajuan-pembelian/{id}', 'MasterLogistik\PengajuanPembelianController@UpdatePengajuanPembelian')->name('master-logistik-update-pengajuan-pembelian');
 
                         Route::delete('/delete-pengajuan-pembelian', 'MasterLogistik\PengajuanPembelianController@DeletePengajuanPembelian')->name('master-logistik-delete-pengajuan-pembelian');
-
                     });
+
 
 
                     //Laporan Pembelian

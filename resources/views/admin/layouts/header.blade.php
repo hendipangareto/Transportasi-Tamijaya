@@ -1,11 +1,4 @@
-@if(Session::has('message'))
-    <div class="alert
-                                        alert-{{ Session::get('message') [1] }}">
-        {{ Session::get('message')[0] }}
-    </div>
-@endif
 
-<div class="header-navbar-shadow"></div>
 <nav class="header-navbar main-header-navbar navbar-expand-lg navbar navbar-with-menu fixed-top ">
     <div class="navbar-wrapper">
         <div class="navbar-container content">
