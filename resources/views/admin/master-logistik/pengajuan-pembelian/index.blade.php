@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+    @extends('admin.layouts.app')
 @section('content-header')
     {{--    <div class="content-header-left col-12 mb-2 mt-1">--}}
     {{--        <div class="row breadcrumbs-top">--}}
@@ -54,9 +54,8 @@
                                 </div>
                             </div>
                         </div>
-                        <form action="" method="">
                             <div class="table-responsive mt-2" id="show-data-filter-accounting">
-                                <table class="table table-bordered table-hover" id="table-armada">
+                                <table class="table table-bordered table-hover" id="table-pengajuan-pembelian">
                                     <thead>
                                     <tr class="text-center">
                                         <th class="w-3p">No</th>
@@ -70,30 +69,48 @@
                                         <th class="w-10p">Action</th>
                                     </tr>
                                     </thead>
+
                                     <tbody>
+
+                                    @forelse($data as $item)
                                     <tr class="text-center">
-                                        <td>1</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $item->toko }}</td>
+                                        <td>{{ $item->item }}</td>
+                                        <td>{{ $item->kuantitas }}</td>
+                                        <td>{{ $item->satuan }}</td>
+
+                                        <td>@currency($item->harga)</td>
+                                        <td>{{ $item->harga_total }}</td>
+                                        <td>{{ $item->cara_bayar }}</td>
                                         <td class="text-center">
-                                            <a href="#" class="btn btn-primary" data-toggle="modal"
-                                               data-target="#DetailSupllierBarang"><i class="bx bx-detail"></i></a>
-                                            <a href="#" class="btn btn-warning" data-toggle="modal"
-                                               data-target="#EditBarang"><i class="bx bx-edit"></i></a>
-                                            <a href="#" class="btn btn-danger" data-toggle="modal"
-                                               data-target="#"><i class="bx bx-trash"></i></a>
+                                            <div class="d-flex">
+                                                <div class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"
+                                                     data-toggle="modal"
+                                                     data-target="#DetailSubBagian-{{ $item->id }}">
+                                                    <i class="bx bx-info-circle font-size-base"></i>
+                                                </div>
+                                                <div class="badge-circle badge-circle-sm badge-circle-warning mr-1 pointer"
+                                                     data-toggle="modal"
+                                                     data-target="#UpdateSubBagian-{{ $item->id }}">
+                                                    <i class="bx bx-edit font-size-base"></i>
+                                                </div>
+                                                <a class="badge-circle badge-circle-sm badge-circle-danger pointer"
+                                                   href=" ">
+                                                    <i class="bx bx-trash font-size-base"></i>
+                                                </a>
+                                            </div>
                                         </td>
                                     </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="5" class="text-center">Tidak ada data Pengajuan Pembelian.</td>
+                                        </tr>
+                                    @endforelse
+
                                     </tbody>
                                 </table>
                             </div>
-
-                        </form>
                     </div>
                 </div>
             </div>
@@ -102,3 +119,13 @@
 
     @include('admin.master-logistik.pengajuan-pembelian.modal-tambah')
 @endsection
+    @push('page-scripts')
+        <script>
+
+            $(document).ready(function () {
+                $("#table-pengajuan-pembelian").DataTable();
+            });
+
+
+        </script>
+    @endpush@endpush
