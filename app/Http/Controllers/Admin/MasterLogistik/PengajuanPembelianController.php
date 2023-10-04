@@ -18,10 +18,10 @@ class PengajuanPembelianController
         $satuan = Satuan::get();
         $toko   = Toko::get();
         $kategori   = Kategori::get();
-        $data =  PengajuanPembelian::select("pengajuan_pembelians.*", 'tokos.nama_toko as toko', 'satuans.nama_satuan as satuan', 'kategori.nama_kategori as kategori')
-            ->join('tokos', 'tokos.id', '=', 'pengajuan_pembelians.toko_id')
-            ->join('satuans', 'satuans.id', '=', 'pengajuan_pembelians.satuan_id')
-            ->join('kategori', 'kategori.id', '=', 'pengajuan_pembelians.kategori_id')
+        $data =  PengajuanPembelian::select("pengajuan_pembelian.*", 'tokos.nama_toko as toko', 'satuans.nama_satuan as satuan', 'kategori.nama_kategori as kategori')
+            ->join('tokos', 'tokos.id', '=', 'pengajuan_pembelian.toko_id')
+            ->join('satuans', 'satuans.id', '=', 'pengajuan_pembelian.satuan_id')
+            ->join('kategori', 'kategori.id', '=', 'pengajuan_pembelian.kategori_id')
             ->get();
 
 //        dd($data);

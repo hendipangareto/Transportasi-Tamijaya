@@ -72,8 +72,8 @@
                                         <label for="flatpickr-disabled-range" class="form-label">Cara Pembayaran</label>
                                         <select name="cara_bayar" id="cara_bayar" class="form-control" required>
                                             <option selected disabled>Pilih Kategori</option>
-                                            <option value="cash">Cash</option>
-                                            <option value="transfer">Transfer</option>
+                                            <option value="lunas">Lunas</option>
+                                            <option value="hutang">Hutang</option>
                                         </select>
                                     </div>
                                     <div class="col-md-6 col-12">
