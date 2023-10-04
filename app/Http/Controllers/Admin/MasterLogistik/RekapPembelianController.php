@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin\MasterLogistik;
 
-class RekapPembelianController
+use App\Http\Controllers\Controller;
+
+class RekapPembelianController extends Controller
 {
-    public function getPembelian()
+    public function RekapPembelian()
     {
-        return view('admin.master-logistik.pembelian.index');
+        return view('admin.master-logistik.rekap-pembelian.index');
     }
 }

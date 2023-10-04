@@ -58,7 +58,7 @@
                             </div>
                         </div>
                         <form action="" method="post">
-                            <table class="table table-bordered table-hover" id="table-pengajuan-pembelian">
+                            <table class="table table-bordered table-hover table-responsive-lg" id="table-pengajuan-pembelian">
                                 <thead>
                                 <tr class="text-center">
                                     <th class="w-3p">No</th>

@@ -417,7 +417,7 @@ Route::group(
                         });
                     });
 
-                    //Pengajuan Pembelian
+                    //==================================Pengajuan Pembelian
                     Route::prefix('pengajuan-pembelian')->group(function () {
                         Route::get('/list-pengajuan-pembelian', 'MasterLogistik\PengajuanPembelianController@getPengajuanPembelian')->name('master-logistik-list-pengajuan-pembelian');
                         Route::post('/tambah-pengajuan-pembelian', 'MasterLogistik\PengajuanPembelianController@TambahPengajuanPembelian')->name('master-logistik-tambah-pengajuan-pembelian');
@@ -427,6 +427,9 @@ Route::group(
                     });
 
 
+                    Route::prefix('rekap-pembelian')->group(function () {
+                        Route::get('/list-rekap-pembelian', 'MasterLogistik\RekapPembelianController@RekapPembelian')->name('master-logistik-list-rekap-pembelian');
+                    });
 
                     //Laporan Pembelian
                     Route::prefix('laporan-pembelian')->group(function () {

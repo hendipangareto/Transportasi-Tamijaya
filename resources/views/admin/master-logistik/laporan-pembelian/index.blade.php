@@ -1,19 +1,19 @@
 @extends('admin.layouts.app')
 @section('content-header')
-    {{--    <div class="content-header-left col-12 mb-2 mt-1">--}}
-    {{--        <div class="row breadcrumbs-top">--}}
-    {{--            <div class="col-12">--}}
-    {{--                <h5 class="content-header-title float-left pr-1 mb-0">LOGISTIK</h5>--}}
-    {{--                <div class="breadcrumb-wrapper col-12">--}}
-    {{--                    <ol class="breadcrumb p-0 mb-0">--}}
-    {{--                        <li class="content-header-title float-left pr-1 mb-0">Form Logistik Keluar--}}
-    {{--                        </li>--}}
-    {{--                        <a class="content-header-title float-left pr-1 mb-0">LOGISTIK</a>--}}
-    {{--                    </ol>--}}
-    {{--                </div>--}}
-    {{--            </div>--}}
-    {{--        </div>--}}
-    {{--    </div>--}}
+        <div class="content-header-left col-12 mb-2 mt-1">
+            <div class="row breadcrumbs-top">
+                <div class="col-12">
+                    <h5 class="content-header-title float-left pr-1 mb-0">LOGISTIK</h5>
+                    <div class="breadcrumb-wrapper col-12">
+                        <ol class="breadcrumb p-0 mb-0">
+                            <li class="content-header-title float-left pr-1 mb-0">Form Logistik Keluar
+                            </li>
+                            <a class="content-header-title float-left pr-1 mb-0">LOGISTIK</a>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
 @endsection
 @section('content')
     <div class="row mt-3">
@@ -106,5 +106,5 @@
         </div>
     </div>
 
-    @include('admin.master-logistik.pengajuan-pembelian.modal-tambah')
+    
 @endsection

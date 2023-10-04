@@ -525,7 +525,7 @@
                                     class="menu-item ">Pengajuan Pembelian</span></a>
                         </li>
                         <li @if (Request::segment(3) == 'daftar-gaji') class="active" @endif>
-                            <a href="{{ route('master-logistik-laporan-pengajuan-pembelian') }}"><i
+                            <a href="{{ route('master-logistik-list-rekap-pembelian') }}"><i
                                     class="bx bx-right-arrow-alt"></i><span
                                     class="menu-item ">Rekap Pengajuan Pembelian</span></a>
                         </li>
