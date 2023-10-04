@@ -88,7 +88,7 @@
                         <input type="hidden" id="id" name="id" value="{{$item->id}}">
                         <label>No Pengajuan: </label>
                         <div class="form-group">
-                            <input type="date" id="edit_pengajuan_no" name="edit_pengajuan_no"
+                            <input type="text" id="edit_pengajuan_no" name="edit_pengajuan_no"
                                    class="form-control" value="{{$item->pengajuan_no}}" readonly>
                         </div>
                         <label>Tanggal Pengajuan: </label>
