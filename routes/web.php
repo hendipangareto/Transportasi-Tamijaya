@@ -578,9 +578,8 @@ Route::group(
             Route::resource('finance-accounting/payment-request', 'FinanceAccounting\PaymentRequestController');
             Route::post('finance-accounting/payment-request/payment-approve-reject', 'FinanceAccounting\PaymentRequestController@paymentApproveReject');
 
-            #endregion
-            // Menu Keuangan Finance Accounting
-            #Peter
+            #endregion Menu Keuangan Finance Accounting
+            #Start Peter
             Route::prefix('finance')->group(function () {
                 Route::prefix('jurnal-umum')->group(function () {
                     Route::get('/', 'FinanceAccounting\MenuKeuangan\Finance\JurnalUmumController@index')->name('finance-accounting-menu-keuangan-finance-jurnal-umum-index');
@@ -596,7 +595,15 @@ Route::group(
                     Route::get('/get-bank-code', 'FinanceAccounting\MenuKeuangan\Finance\PenerimaanController@getBankCode')->name('finance-accounting-menu-keuangan-finance-penerimaan-get-bank_code');
                     Route::delete('/delete', 'FinanceAccounting\MenuKeuangan\Finance\PenerimaanController@delete')->name('finance-accounting-menu-keuangan-finance-penerimaan-delete');
                 });
+                Route::prefix('pembayaran')->group(function () {
+                    Route::get('/', 'FinanceAccounting\MenuKeuangan\Finance\PembayaranController@index')->name('finance-accounting-menu-keuangan-finance-pembayaran-index');
+                    Route::post('/store', 'FinanceAccounting\MenuKeuangan\Finance\PembayaranController@store')->name('finance-accounting-menu-keuangan-finance-pembayaran-store');
+                    Route::post('/update/{id}', 'FinanceAccounting\MenuKeuangan\Finance\PembayaranController@update')->name('finance-accounting-menu-keuangan-finance-pembayaran-update');
+                    Route::delete('/delete', 'FinanceAccounting\MenuKeuangan\Finance\PembayaranController@delete')->name('finance-accounting-menu-keuangan-finance-pembayaran-delete');
+                    Route::get('/get-bank-code', 'FinanceAccounting\MenuKeuangan\Finance\PembayaranController@getBankCode')->name('finance-accounting-menu-keuangan-finance-pembayaran-get-bank_code');
+                });
             });
+            #End Peter
 
 
             #region General
