@@ -605,6 +605,10 @@ Route::group(
                     Route::get('/', 'FinanceAccounting\MenuKeuangan\Finance\TransferBankController@index')->name('finance-accounting-menu-keuangan-finance-transfer-bank-index');
                     Route::post('/approved', 'FinanceAccounting\MenuKeuangan\Finance\TransferBankController@approved')->name('finance-accounting-menu-keuangan-finance-transfer-bank-approved');
                 });
+                Route::prefix('report-finance')->group(function () {
+                    Route::get('/', 'FinanceAccounting\MenuKeuangan\Finance\ReportFinanceController@index')->name('finance-accounting-menu-keuangan-finance-report-finance-index');
+                    Route::get('/report-jurnal-umum', 'FinanceAccounting\MenuKeuangan\Finance\ReportFinanceController@reportPdfJurnalUmum')->name('finance-accounting-menu-keuangan-finance-report-finance-reportPdfJurnalUmum');
+                });
             });
             #End Peter
 
