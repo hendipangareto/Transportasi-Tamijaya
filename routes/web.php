@@ -580,6 +580,7 @@ Route::group(
 
             #endregion
             // Menu Keuangan Finance Accounting
+            #Peter
             Route::prefix('finance')->group(function () {
                 Route::prefix('jurnal-umum')->group(function () {
                     Route::get('/', 'FinanceAccounting\MenuKeuangan\Finance\JurnalUmumController@index')->name('finance-accounting-menu-keuangan-finance-jurnal-umum-index');

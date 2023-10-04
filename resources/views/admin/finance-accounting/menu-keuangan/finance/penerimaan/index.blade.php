@@ -55,8 +55,12 @@
                                 <tbody>
                                 @php
                                     $no = 1;
+                                    $totalNominal = 0;
                                 @endphp
                                 @forelse($data as $item)
+                                    @php
+                                        $totalNominal += $item->nominal;
+                                    @endphp
                                     <tr>
                                         <td>{{$no++}}</td>
                                         <td>{{$item->bank_code}}</td>
@@ -94,6 +98,18 @@
                                 @endforelse
                                 </tbody>
                             </table>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label for="" class="col-sm-2 col-form-label">Nominal (Rp)</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control"
+                                               value="{{ 'Rp ' . number_format($totalNominal, 0, ',', '.') }}" readonly>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
