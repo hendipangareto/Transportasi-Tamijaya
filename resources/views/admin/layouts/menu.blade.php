@@ -98,7 +98,7 @@
                     </li> --}}
                     </ul>
                 </li>
-                <li class=" nav-item"><a href="index.html"><i class="bx bx-table"></i><span
+                <li class=" nav-item"><a href=""><i class="bx bx-table"></i><span
                             class="menu-title">Data Transaksi</span></a>
                     <ul class="menu-content">
                         <li @if (Request::segment(2) == 'transaction' && Request::segment(3) == 'pariwisata' && Request::segment(4) == 'data-transaction-pariwisata') class="active" @endif>
@@ -111,7 +111,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class=" nav-item"><a href="index.html"><i class="bx bx-sync"></i><span
+                <li class=" nav-item"><a href=" "><i class="bx bx-sync"></i><span
                             class="menu-title">Reschedule/Cancelation</span></a>
                     <ul class="menu-content">
                         <li @if (Request::segment(4) == 'about-us') class="active" @endif>
@@ -124,7 +124,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class=" nav-item"><a href="index.html"><i class="bx bx-add-to-queue"></i><span
+                <li class=" nav-item"><a href=" "><i class="bx bx-add-to-queue"></i><span
                             class="menu-title">Input Transaksi</span></a>
                     <ul class="menu-content">
                         <li @if (Request::segment(2) == 'transaction' && Request::segment(3) == 'pariwisata' && Request::segment(4) == 'booking-pariwisata') class="active" @endif>
@@ -137,7 +137,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class=" nav-item"><a href="index.html"><i class="bx bx-file"></i><span
+                <li class=" nav-item"><a href=" "><i class="bx bx-file"></i><span
                             class="menu-title">Laporan Transaksi</span></a>
                     <ul class="menu-content">
                         <li>
@@ -200,7 +200,7 @@
                 </li>
 
                 {{--Menu keuangan finance accounting--}}
-                <li class="nav-item"><a href="index.html"><i class="bx bx-folder"></i><span
+                <li class="nav-item"><a href=" "><i class="bx bx-folder"></i><span
                             class="menu-title">Finance</span></a>
                     <ul class="menu-content">
                         <li @if (Request::segment(3) == 'jurnal-umum') class="active" @endif>

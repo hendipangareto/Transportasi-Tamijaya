@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Models\MasterDataLogistik;
+namespace App\Models\PerawatanPemeliharaan;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Sopir extends Model
+class CekLayananFisik extends Model
 {
     protected $table = 'check_fisik_layanan';
     protected $primaryKey = 'id';

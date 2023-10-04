@@ -14,7 +14,7 @@ class CreateArmadasTable extends Migration
     public function up()
     {
         Schema::create('armadas', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->enum('armada_category', ['REGULER','PARIWISATA']);
             $table->enum('armada_type', ['MIKRO BUS', 'MEDIUM BUS', 'BIG BUS', 'BIGBUS VIP SUITESCLASS', 'EXECUTIVE', 'SUITESS']);
             $table->integer('armada_year')->nullable();
@@ -23,6 +23,8 @@ class CreateArmadasTable extends Migration
             $table->string('armada_seat');
             $table->string('armada_merk');
             $table->string('armada_no_police');
+            $table->unsignedBigInteger('id_pick_point')->nullable();
+            $table->foreign('id_pick_point')->references('id')->on('pick_points');
             $table->timestamps();
         });
     }
