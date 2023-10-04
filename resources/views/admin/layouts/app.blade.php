@@ -10,25 +10,25 @@
     <meta name="author" content="Tami Jaya">
     <title>Tami Jaya</title>
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700"
-        rel="stylesheet">
+          rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('admin/app-assets/vendors/css/vendors.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('admin/app-assets/css/bootstrap.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('admin/app-assets/css/bootstrap-extended.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('admin/app-assets/css/colors.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('admin/app-assets/css/components.css') }}">
     <link rel="stylesheet" type="text/css"
-        href="{{ asset('admin/app-assets/css/core/menu/menu-types/vertical-menu.css') }}">
+          href="{{ asset('admin/app-assets/css/core/menu/menu-types/vertical-menu.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('admin/assets/css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('admin/assets/css/custom.css') }}">
     <link rel="icon" href="{{ asset('images/logo-icon.png') }}" type="image/x-icon">
     {{-- <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/vendors/css/forms/select/select2.min.css')}}"> --}}
     <link rel="stylesheet" type="text/css"
-        href="{{ asset('admin/app-assets/vendors/css/forms/select/select2.css') }}">
+          href="{{ asset('admin/app-assets/vendors/css/forms/select/select2.css') }}">
 
     {{-- DATATABLE --}}
 
     <link rel="stylesheet" type="text/css"
-        href="{{ asset('admin/app-assets/vendors/css/tables/datatable/datatables.min.css') }}">
+          href="{{ asset('admin/app-assets/vendors/css/tables/datatable/datatables.min.css') }}">
     @stack('page-styling')
 
     <style>
@@ -65,130 +65,128 @@
 </head>
 
 <body class="vertical-layout vertical-menu-modern boxicon-layout no-card-shadow 2-columns navbar-sticky footer-static"
-    data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
-    @include('admin.layouts.header')
-    @include('admin.layouts.menu')
-    <div class="app-content content">
-        <div class="content-overlay"></div>
-        <div class="content-wrapper">
-            <div class="content-header row">
-                @yield('content-header')
-            </div>
-            <div class="content-body">
-                @yield('content')
-            </div>
+      data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
+@include('admin.layouts.header')
+@include('admin.layouts.menu')
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            @yield('content-header')
+        </div>
+        <div class="content-body">
+            @yield('content')
         </div>
     </div>
-    @include('admin.layouts.footer')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-    <script type="text/javascript" src="{{ asset('admin/app-assets/js/scripts/navs/navs.js') }}"></script>
-    <script>
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            onOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-        })
-    </script>
-
-
-    {{-- GENERAL SCRIPT --}}
-    <script>
-        // Get Notification
-        function formatDateNotif(date) {
-            var d = new Date(date),
-                month = '' + (d.getMonth() + 1),
-                day = '' + d.getDate(),
-                year = d.getFullYear();
-            var monthLabel = new Array();
-            monthLabel[0] = "January";
-            monthLabel[1] = "February";
-            monthLabel[2] = "March";
-            monthLabel[3] = "April";
-            monthLabel[4] = "May";
-            monthLabel[5] = "June";
-            monthLabel[6] = "July";
-            monthLabel[7] = "August";
-            monthLabel[8] = "September";
-            monthLabel[9] = "October";
-            monthLabel[10] = "November";
-            monthLabel[11] = "December";
-            var newMonth = monthLabel[d.getMonth()];
-
-            hours = d.setHours();
-            minutes = d.setMinutes();
-
-            if (month.length < 2)
-                month = '0' + month;
-            if (day.length < 2)
-                day = '0' + day;
-            // - ${hours}:${minutes}
-
-            var formatDate = `${day} ${newMonth} ${year}`;
-            return formatDate;
+</div>
+@include('admin.layouts.footer')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script type="text/javascript" src="{{ asset('admin/app-assets/js/scripts/navs/navs.js') }}"></script>
+<script>
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        onOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
         }
+    })
+</script>
 
 
-        function getNotification() {
-            $.ajax({
-                url: "/admin/general/notification/create",
-                type: 'GET',
-                success: function(response) {
-                    var data = response.data;
-                    var countData = data.length;
-                    $("#icon-notif").removeClass('bx-tada')
-                    if (countData > 0) {
-                        $("#icon-notif").addClass('bx-tada')
-                    }
-                    $(".count-notification").text(countData)
-                    var html = ``;
-                    data.forEach(notification => {
-                        html +=
-                            `<li class="scrollable-container media-list py-0"><a class="d-flex justify-content-between" href="javascript:void(0)"> <div class="media d-flex align-items-center"> <div class="media-left pr-0"> <div class="avatar mr-1 m-0"><img src="{{ asset('images/logo-icon.png') }}" alt="avatar" height="39" width="39"></div> </div> <div class="media-body" > <h6 class="media-heading">${notification.message}</h6><small class="notification-text">${formatDateNotif(notification.created_at)}</small> </div> </div> </a> </li>`;
-                    });
-                    $("#notification-body").html(html)
-
-
-                },
-                error: function(err) {
-                    console.log(err);
-                }
+@if(\Session::has('message'))
+    @php
+        $message = Session::get('message');
+    @endphp
+    <script>
+        $(function () {
+            Toast.fire({
+                icon: "{{$message[1]}}",
+                title: "{{$message[0]}}"
             });
-        }
-        $(document).ready(function() {
-            getNotification()
         });
-
-
-
-
     </script>
-    @if(\Session::has('message'))
-        @php
-            $message = Session::get('message');
-        @endphp
-        <script>
-            $(function () {
-                Toast.fire({
-                    icon: "{{$message[1]}}",
-                    title: "{{$message[0]}}"
+@endif
+
+{{-- GENERAL SCRIPT --}}
+<script>
+    // Get Notification
+    function formatDateNotif(date) {
+        var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+        var monthLabel = new Array();
+        monthLabel[0] = "January";
+        monthLabel[1] = "February";
+        monthLabel[2] = "March";
+        monthLabel[3] = "April";
+        monthLabel[4] = "May";
+        monthLabel[5] = "June";
+        monthLabel[6] = "July";
+        monthLabel[7] = "August";
+        monthLabel[8] = "September";
+        monthLabel[9] = "October";
+        monthLabel[10] = "November";
+        monthLabel[11] = "December";
+        var newMonth = monthLabel[d.getMonth()];
+
+        hours = d.setHours();
+        minutes = d.setMinutes();
+
+        if (month.length < 2)
+            month = '0' + month;
+        if (day.length < 2)
+            day = '0' + day;
+        // - ${hours}:${minutes}
+
+        var formatDate = `${day} ${newMonth} ${year}`;
+        return formatDate;
+    }
+
+
+    function getNotification() {
+        $.ajax({
+            url: "/admin/general/notification/create",
+            type: 'GET',
+            success: function (response) {
+                var data = response.data;
+                var countData = data.length;
+                $("#icon-notif").removeClass('bx-tada')
+                if (countData > 0) {
+                    $("#icon-notif").addClass('bx-tada')
+                }
+                $(".count-notification").text(countData)
+                var html = ``;
+                data.forEach(notification => {
+                    html +=
+                        `<li class="scrollable-container media-list py-0"><a class="d-flex justify-content-between" href="javascript:void(0)"> <div class="media d-flex align-items-center"> <div class="media-left pr-0"> <div class="avatar mr-1 m-0"><img src="{{ asset('images/logo-icon.png') }}" alt="avatar" height="39" width="39"></div> </div> <div class="media-body" > <h6 class="media-heading">${notification.message}</h6><small class="notification-text">${formatDateNotif(notification.created_at)}</small> </div> </div> </a> </li>`;
                 });
-            });
-        </script>
-    @endif
-    @stack('page-scripts')
+                $("#notification-body").html(html)
+
+
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        getNotification()
+    });
+</script>
+
+@stack('page-scripts')
 
 {{--    sweetalert2 by hendi--}}
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 
 </body>

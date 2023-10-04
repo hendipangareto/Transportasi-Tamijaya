@@ -588,6 +588,13 @@ Route::group(
                     Route::delete('/delete', 'FinanceAccounting\MenuKeuangan\Finance\JurnalUmumController@delete')->name('finance-accounting-menu-keuangan-finance-jurnal-umum-delete');
                     Route::get('/get-code-group-account', 'FinanceAccounting\MenuKeuangan\Finance\JurnalUmumController@getCodeGroupAccount')->name('finance-accounting-menu-keuangan-finance-jurnal-umum-getCodeGroupAccount');
                 });
+                Route::prefix('penerimaan')->group(function () {
+                    Route::get('/', 'FinanceAccounting\MenuKeuangan\Finance\PenerimaanController@index')->name('finance-accounting-menu-keuangan-finance-penerimaan-index');
+                    Route::post('/store', 'FinanceAccounting\MenuKeuangan\Finance\PenerimaanController@store')->name('finance-accounting-menu-keuangan-finance-penerimaan-store');
+                    Route::post('/update/{id}', 'FinanceAccounting\MenuKeuangan\Finance\PenerimaanController@update')->name('finance-accounting-menu-keuangan-finance-penerimaan-update');
+                    Route::get('/get-bank-code', 'FinanceAccounting\MenuKeuangan\Finance\PenerimaanController@getBankCode')->name('finance-accounting-menu-keuangan-finance-penerimaan-get-bank_code');
+                    Route::delete('/delete', 'FinanceAccounting\MenuKeuangan\Finance\PenerimaanController@delete')->name('finance-accounting-menu-keuangan-finance-penerimaan-delete');
+                });
             });
 
 
