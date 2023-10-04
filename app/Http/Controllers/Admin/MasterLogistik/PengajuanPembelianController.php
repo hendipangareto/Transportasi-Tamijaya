@@ -97,4 +97,18 @@ class PengajuanPembelianController
         return redirect()->route('master-logistik-list-pengajuan-pembelian');
     }
 
+
+    public function DeletePengajuanPembelian(Request $request)
+    {
+        $PengajuanPembelianId = $request->input('employee_id');
+        $data = PengajuanPembelian::find($PengajuanPembelianId);
+        $data->delete();
+
+        return response()->json([
+            'data' => $data,
+            'message' => 'Berhasil menghapus data pengajuan pembelian',
+            'status' => 200,
+        ]);
+    }
+
 }

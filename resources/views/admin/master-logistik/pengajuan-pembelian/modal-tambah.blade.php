@@ -175,9 +175,8 @@
                                     <div class="col-md-6 col-12">
                                         <label for="flatpickr-disabled-range" class="form-label">Cara Pembayaran</label>
                                         <select name="cara_bayar" id="cara_bayar" class="form-control" required>
-
-                                            <option value="lunas">{{$item->cara_bayar}}</option>
-                                            <option value="hutang">{{$item->cara_bayar}}</option>
+                                            <option value="lunas" {{ $item->cara_bayar == 'lunas' ? 'selected' : '' }}>Lunas</option>
+                                            <option value="hutang" {{ $item->cara_bayar == 'hutang' ? 'selected' : '' }}>Hutang</option>
                                         </select>
                                     </div>
                                     <div class="col-md-6 col-12">

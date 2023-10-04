@@ -107,10 +107,10 @@
                                                      data-target="#UpdatePengajuanPembelian-{{ $item->id }}">
                                                     <i class="bx bx-edit font-size-base"></i>
                                                 </div>
-                                                <a class="badge-circle badge-circle-sm badge-circle-danger pointer"
-                                                   href=" ">
+                                                <div class="badge-circle badge-circle-sm badge-circle-danger pointer delete-button "
+                                                     data-id="{{ $item->id }}">
                                                     <i class="bx bx-trash font-size-base"></i>
-                                                </a>
+                                                </div>
                                             </div>
                                         </td>
                                     </tr>
@@ -167,7 +167,7 @@
                             </div>
                             <div class="card-header  pb-0  d-flex justify-content-between">
                                 <h4 class="card-title"></h4>
-                                <a href="" class="btn btn-warning mr-1" type="submit"><i class="bx bx-plus-circle"></i>Ajukan</a>
+                                <a href="" class="btn btn-warning mr-1" type="submit"><i class="bx bx-save"></i>Ajukan</a>
                             </div>
                         </form>
 
@@ -188,6 +188,58 @@
             $("#table-pengajuan-pembelian").DataTable();
         });
 
+
+        // HAPUS DATA
+        @if(session('pesan-berhasil'))
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: '{{ session("pesan-berhasil") }}'
+        });
+        @elseif(session('pesan-gagal'))
+        Swal.fire({
+            icon: 'error',
+            title: 'Gagal',
+            text: '{{ session("pesan-gagal") }}'
+        });
+        @endif
+
+        $(document).ready(function () {
+            $('.delete-button').click(function () {
+                var $PengajuanPembelianId = $(this).data('id');
+
+                Swal.fire({
+                    title: "Yakin akan menghapus data?",
+                    text: "Data yang dihapus tidak dapat dikembalikan",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Ya, hapus!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: '{{ route('master-logistik-delete-pengajuan-pembelian') }}',
+                            type: 'DELETE',
+                            data: {
+                                '_token': '{{ csrf_token() }}',
+                                'employee_id': $PengajuanPembelianId
+                            },
+                            success: function (response) {
+                                location.reload();
+                                Toast.fire({
+                                    icon: "success",
+                                    title: "Berhasil menghapus data Pengajuan Pembelian"
+                                });
+                            },
+                            error: function (error) {
+                                console.log(err);
+                            }
+                        });
+                    }
+                });
+            });
+        });
 
     </script>
 @endpush
