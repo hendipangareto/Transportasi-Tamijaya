@@ -66,4 +66,35 @@ class PengajuanPembelianController
     }
 
 
+    public function UpdatePengajuanPembelian(Request $request, $id)
+    {
+        DB::beginTransaction();
+        try {
+            $data = PengajuanPembelian::findOrFail($id);
+
+            $data->item = $request->item;
+            $data->harga = $request->harga;
+            $data->kuantitas = $request->kuantitas;
+            $data->cara_bayar = $request->cara_bayar;
+            $data->toko_id = $request->toko_id;
+            $data->kategori_id = $request->kategori_id;
+            $data->satuan_id = $request->satuan_id;
+            $data->catatan_pembelian = $request->catatan_pembelian;
+            $data->batas_waktu_pembayaran = $request->batas_waktu_pembayaran;
+
+
+
+//            dd($data);
+            $data->update();
+
+            DB::commit();
+            Session::flash('message', ['Berhasil mengubah data pengajuan pembelian', 'success']);
+        } catch (\Exception $e) {
+            DB::rollback();
+            Session::flash('message', ['Gagal mengubah data pengajuan pembelian', 'error']);
+        }
+
+        return redirect()->route('master-logistik-list-pengajuan-pembelian');
+    }
+
 }

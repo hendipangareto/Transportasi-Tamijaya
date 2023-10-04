@@ -421,6 +421,7 @@ Route::group(
                     Route::prefix('pengajuan-pembelian')->group(function () {
                         Route::get('/list-pengajuan-pembelian', 'MasterLogistik\PengajuanPembelianController@getPengajuanPembelian')->name('master-logistik-list-pengajuan-pembelian');
                         Route::post('/tambah-pengajuan-pembelian', 'MasterLogistik\PengajuanPembelianController@TambahPengajuanPembelian')->name('master-logistik-tambah-pengajuan-pembelian');
+                        Route::post('/update-pengajuan-pembelian/{id}', 'MasterLogistik\PengajuanPembelianController@UpdatePengajuanPembelian')->name('master-logistik-update-pengajuan-pembelian');
 
                     });
 

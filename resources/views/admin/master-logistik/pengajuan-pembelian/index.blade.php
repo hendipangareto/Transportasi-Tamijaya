@@ -57,113 +57,120 @@
                                 </div>
                             </div>
                         </div>
-                        <table class="table table-bordered table-hover" id="table-pengajuan-pembelian">
-                            <thead>
-                            <tr class="text-center">
-                                <th class="w-3p">No</th>
-                                <th class="w-3p">Nama Toko</th>
-                                <th class="w-3p">Item</th>
-                                <th class="w-10p">Kuantitas</th>
-                                <th class="w-5p">Satuan</th>
-                                <th class="w-5p">Harga Satuan (Rp)</th>
-                                <th class="w-5p">Harga Total (Rp)</th> <!-- New column for Harga Total -->
-                                <th class="w-10p">Status Transaksi</th>
-                                <th class="w-10p">Action</th>
-                            </tr>
-                            </thead>
-
-
-                            @php
-                                $totalLunas = 0;
-                                $totalHutang = 0;
-                            @endphp
-
-                            <tbody>
-                            @forelse($data as $item)
-                                @php
-                                    $totalLunas += ($item->cara_bayar === 'lunas') ? ($item->kuantitas * $item->harga) : 0;
-                                    $totalHutang += ($item->cara_bayar === 'hutang') ? ($item->kuantitas * $item->harga) : 0;
-                                @endphp
+                        <form action="" method="post">
+                            <table class="table table-bordered table-hover" id="table-pengajuan-pembelian">
+                                <thead>
                                 <tr class="text-center">
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->toko }}</td>
-                                    <td>{{ $item->item }}</td>
-                                    <td>{{ $item->kuantitas }}</td>
-                                    <td>{{ $item->satuan }}</td>
-                                    <td>@currency($item->harga)</td>
-                                    <td><b style="color: #9f191f">@currency($item->kuantitas * $item->harga)</b></td>
-                                    <!-- Calculate and display Harga Total -->
-                                    <td>{{ $item->cara_bayar }}</td>
-                                    <td class="text-center">
-                                        <div class="d-flex">
-                                            <div class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"
-                                                 data-toggle="modal"
-                                                 data-target="#DetailSubBagian-{{ $item->id }}">
-                                                <i class="bx bx-info-circle font-size-base"></i>
-                                            </div>
-                                            <div class="badge-circle badge-circle-sm badge-circle-warning mr-1 pointer"
-                                                 data-toggle="modal"
-                                                 data-target="#UpdateSubBagian-{{ $item->id }}">
-                                                <i class="bx bx-edit font-size-base"></i>
-                                            </div>
-                                            <a class="badge-circle badge-circle-sm badge-circle-danger pointer"
-                                               href=" ">
-                                                <i class="bx bx-trash font-size-base"></i>
-                                            </a>
-                                        </div>
-                                    </td>
+                                    <th class="w-3p">No</th>
+                                    <th class="w-3p">Nama Toko</th>
+                                    <th class="w-3p">Item</th>
+                                    <th class="w-10p">Kuantitas</th>
+                                    <th class="w-5p">Satuan</th>
+                                    <th class="w-5p">Harga Satuan (Rp)</th>
+                                    <th class="w-5p">Harga Total (Rp)</th> <!-- New column for Harga Total -->
+                                    <th class="w-10p">Status Transaksi</th>
+                                    <th class="w-10p">Action</th>
                                 </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="5" class="text-center">Tidak ada data Pengajuan Pembelian.</td>
-                                </tr>
-                            @endforelse
-                            </tbody>
-                        </table>
+                                </thead>
 
-                        <div class="row mt-5">
-                            <div class="col-md-6 col-12 ">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="card shadow-none bg-transparent border border-darken-4 mb-3">
-                                            <div class="card-body">
-                                                <h5 class="card-title mt-1">Total Lunas/Cash</h5>
-                                                <p class="card-text" style="color: #9f191f">
-                                                     @currency($totalLunas)
-                                                </p>
+
+                                @php
+                                    $totalLunas = 0;
+                                    $totalHutang = 0;
+                                @endphp
+
+                                <tbody>
+                                @forelse($data as $item)
+                                    @php
+                                        $totalLunas += ($item->cara_bayar === 'lunas') ? ($item->kuantitas * $item->harga) : 0;
+                                        $totalHutang += ($item->cara_bayar === 'hutang') ? ($item->kuantitas * $item->harga) : 0;
+                                    @endphp
+                                    <tr class="text-center">
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $item->toko }}</td>
+                                        <td>{{ $item->item }}</td>
+                                        <td>{{ $item->kuantitas }}</td>
+                                        <td>{{ $item->satuan }}</td>
+                                        <td>@currency($item->harga)</td>
+                                        <td><b style="color: #9f191f">@currency($item->kuantitas * $item->harga)</b></td>
+                                        <!-- Calculate and display Harga Total -->
+                                        <td>{{ $item->cara_bayar }}</td>
+                                        <td class="text-center">
+                                            <div class="d-flex">
+                                                <div class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"
+                                                     data-toggle="modal"
+                                                     data-target="#DetailSubBagian-{{ $item->id }}">
+                                                    <i class="bx bx-info-circle font-size-base"></i>
+                                                </div>
+                                                <div class="badge-circle badge-circle-sm badge-circle-warning mr-1 pointer"
+                                                     data-toggle="modal"
+                                                     data-target="#UpdatePengajuanPembelian-{{ $item->id }}">
+                                                    <i class="bx bx-edit font-size-base"></i>
+                                                </div>
+                                                <a class="badge-circle badge-circle-sm badge-circle-danger pointer"
+                                                   href=" ">
+                                                    <i class="bx bx-trash font-size-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="5" class="text-center">Tidak ada data Pengajuan Pembelian.</td>
+                                    </tr>
+                                @endforelse
+                                </tbody>
+                            </table>
+
+                            <div class="row mt-5">
+                                <div class="col-md-6 col-12 ">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="card shadow-none bg-transparent border border-darken-4 mb-3">
+                                                <div class="card-body">
+                                                    <h5 class="card-title mt-1">Total Lunas/Cash</h5>
+                                                    <p class="card-text" style="color: #9f191f">
+                                                        @currency($totalLunas)
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="card shadow-none bg-transparent border border-darken-4 mb-3">
+                                                <div class="card-body">
+                                                    <h5 class="card-title mt-1">Total Hutang</h5>
+                                                    <p class="card-text"  style="color: #9f191f">
+                                                        @currency($totalHutang)
+                                                    </p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="card shadow-none bg-transparent border border-darken-4 mb-3">
-                                            <div class="card-body">
-                                                <h5 class="card-title mt-1">Total Hutang</h5>
-                                                <p class="card-text"  style="color: #9f191f">
-                                                      @currency($totalHutang)
-                                                </p>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="row">
+                                        <div class="col-md-6">
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="card shadow-none bg-transparent border border-darken-4 mb-3">
+                                                <div class="card-body">
+                                                    <h5 class="card-title mt-1">Total Pengajuan</h5>
+                                                    <p class="card-text">
+                                                        Rp.
+                                                    </p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6 col-12 mt-2">
-                                <div class="row">
-                                    <div class="col-md-6">
-
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="card shadow-none bg-transparent border border-darken-4 mb-3">
-                                            <div class="card-body">
-                                                <h5 class="card-title mt-1">Total Pengajuan</h5>
-                                                <p class="card-text">
-                                                    Rp.
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="card-header  pb-0  d-flex justify-content-between">
+                                <h4 class="card-title"></h4>
+                                <a href="" class="btn btn-warning mr-1" type="submit"><i class="bx bx-plus-circle"></i>Ajukan</a>
                             </div>
-                        </div>
+                        </form>
+
 
                     </div>
                     </div>
