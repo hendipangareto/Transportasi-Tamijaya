@@ -208,6 +208,16 @@
                                     class="bx bx-right-arrow-alt"></i><span
                                     class="menu-item ">Jurnal Umum</span></a>
                         </li>
+                        <li @if (Request::segment(3) == 'penerimaan') class="active" @endif>
+                            <a href="{{ route('finance-accounting-menu-keuangan-finance-penerimaan-index') }}"><i
+                                    class="bx bx-right-arrow-alt"></i><span
+                                    class="menu-item ">Penerimaan</span></a>
+                        </li>
+                        <li @if (Request::segment(3) == 'pembayaran') class="active" @endif>
+                            <a href="{{ route('finance-accounting-menu-keuangan-finance-pembayaran-index') }}"><i
+                                    class="bx bx-right-arrow-alt"></i><span
+                                    class="menu-item ">Pembayaran</span></a>
+                        </li>
                     </ul>
                 </li>
                 {{--End Menu keuangan finance accounting--}}
