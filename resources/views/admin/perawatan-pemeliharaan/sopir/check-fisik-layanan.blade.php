@@ -32,36 +32,44 @@
                                         <div class="row mt-3">
                                             <div class="col-md-4 mb-2">
                                                 <label class="form-label" for="formValidationName">Armada :</label>
-                                                <select name="id_armada" id="id_armada"
-                                                        class="form-control">
-                                                    <option selected disabled>Pilih nama pegawai
-                                                    </option>
+
+                                                <select name="id_armada" id="pegawai_select" class="form-control">
+                                                    <option selected disabled>Pilih nama Armada</option>
                                                     @foreach($armada as $item)
-                                                        <option
-                                                            value="{{$item->id}}">{{$item->armada_no_police}}</option>
+                                                        <option value="{{$item->id}}">{{$item->armada_no_police}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
                                             <div class="col-md-4 mb-2">
-                                                <label class="form-label" for="formValidationEmail">Titik Keberangkatan :</label>
-                                                <input class="form-control" type="text" id="formValidationEmail" name="formValidationEmail" readonly/>
+                                                <label class="form-label" for="formValidationEmail">Titik Keberangkatan
+                                                    :</label>
+                                                <input class="form-control" type="text" id="pick_point"
+                                                       name="pick_points" readonly/>
                                             </div>
                                             <div class="col-md-4 mb-2">
-                                                <label class="form-label" for="formValidationEmail">Tipe Armada :</label>
-                                                <input class="form-control" type="text" id="formValidationEmail" name="formValidationEmail" readonly/>
+                                                <label class="form-label" for="formValidationEmail">Tipe Armada
+                                                    :</label>
+                                                <input class="form-control" type="text" id="armada_type"
+                                                       name="armada_type" readonly/>
                                             </div>
 
                                             <div class="col-md-4 mb-2">
-                                                <label class="form-label" for="formValidationName">Tipe Perjalanan :</label>
-                                                <input type="text" id="formValidationName" class="form-control" name="formValidationName" readonly/>
+                                                <label class="form-label" for="formValidationName">Tipe Perjalanan
+                                                    :</label>
+                                                <input type="text" id="armada_category" class="form-control"
+                                                       name="armada_category" readonly/>
                                             </div>
                                             <div class="col-md-4 mb-2">
-                                                <label class="form-label" for="formValidationEmail">Titik Kedatangan :</label>
-                                                <input class="form-control" type="text" id="formValidationEmail" name="formValidationEmail" readonly/>
+                                                <label class="form-label" for="formValidationEmail">Titik Kedatangan
+                                                    :</label>
+                                                <input class="form-control" type="text" id="id_route_wisata"
+                                                       name="id_route_wisata" readonly/>
                                             </div>
                                             <div class="col-md-4 mb-2">
-                                                <label class="form-label" for="formValidationEmail">ID Perjalanan :</label>
-                                                <input class="form-control" type="text" id="formValidationEmail" name="formValidationEmail" readonly/>
+                                                <label class="form-label" for="formValidationEmail">ID Perjalanan
+                                                    :</label>
+                                                <input class="form-control" type="text" id="formValidationEmail"
+                                                       name="formValidationEmail" readonly/>
                                             </div>
                                         </div>
                                     </div>
@@ -73,12 +81,15 @@
                                     <div class="card-body">
                                         <div class="row mt-3">
                                             <div class="col-md-6 mb-5 mt-3">
-                                                <label class="form-label" for="formValidationName">Jarak Tempuh Terakhir :</label>
-                                                <input class="form-control" type="text" id="formValidationEmail" name="formValidationEmail"/>
+                                                <label class="form-label" for="formValidationName">Jarak Tempuh Terakhir
+                                                    :</label>
+                                                <input class="form-control" type="text" id="formValidationEmail"
+                                                       name="formValidationEmail"/>
                                             </div>
                                             <div class="col-md-6 mb-5 mt-3">
                                                 <label class="form-label" for="formValidationEmail">Bar BBM :</label>
-                                                <input class="form-control" type="text" id="formValidationEmail" name="formValidationEmail" readonly/>
+                                                <input class="form-control" type="text" id="formValidationEmail"
+                                                       name="formValidationEmail" readonly/>
                                             </div>
                                         </div>
                                     </div>
@@ -89,7 +100,9 @@
                             <div class="col-md-12">
                                 <div class="card-header  pb-0  d-flex justify-content-between">
                                     <h4 class="card-title"></h4>
-                                    <a href="" class="btn btn-primary mr-1" data-toggle="modal" data-target="#TambahLaporanPerjalanan"><i class="bx bx-plus-circle"></i> Tambah Data</a>
+                                    <a href="" class="btn btn-primary mr-1" data-toggle="modal"
+                                       data-target="#TambahLaporanPerjalanan"><i class="bx bx-plus-circle"></i> Tambah
+                                        Data</a>
                                 </div>
                             </div>
                         </div>
@@ -114,7 +127,8 @@
                             </div>
                             <div class="card-header  pb-0  d-flex justify-content-between">
                                 <h4 class="card-title"></h4>
-                                <button type="submit" class="btn btn-success mr-1"><i class="bx bx-save"></i> Submit</button>
+                                <button type="submit" class="btn btn-success mr-1"><i class="bx bx-save"></i> Submit
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -125,3 +139,37 @@
 
     @include('admin.perawatan-pemeliharaan.sopir.modal-tambah')
 @endsection
+
+@push('page-scripts')
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('#pegawai_select').change(function () {
+                var armadaId = $(this).val();
+                console.log("armadaId: " + armadaId)
+
+                if (armadaId) {
+                    $.ajax({
+                        type: "GET",
+                        url: "{{route('perawatan-pemeliharaan.sopir.get-data-armada')}}",
+                        data: {'id_armada': armadaId},
+                        success: function (data) {
+                            console.log(JSON.stringify(data))
+                            if (data) {
+                                $('#pick_point').val(data.pick_point);
+                                $('#armada_category').val(data.armada_category);
+                                $('#position_id').val(data.position_name);
+                            }
+                        }
+                    });
+                } else {
+                    $('#pick_point').val('');
+                    $('#armada_category').val('');
+                    $('#position_id').val('');
+                }
+            });
+        });
+
+    </script>
+@endpush

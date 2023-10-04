@@ -125,10 +125,12 @@ Route::group(
             //PERAWATAN & PEMELIHARAAN
             Route::prefix('perawatan-pemeliharaan')->group(function () {
                 Route::prefix('sopir')->group(function () {
-                    Route::get('/check-fisik-layanan', 'PerawatanPemeliharaan\SopirController@listCheckFisik')->name('perawatan-pemeliharaan.sopir.check-fisik-layanan');
-                    Route::post('/simpan-check-fisik-layanan', 'PerawatanPemeliharaan\SopirController@SumpanCheckList')->name('perawatan-pemeliharaan.sopir.simpan-check-fisik-layanan');
+                    Route::get('/check-fisik-layanan', 'PerawatanPemeliharaan\Sopir\CekFisikLayananController@listCheckFisik')->name('perawatan-pemeliharaan.sopir.check-fisik-layanan');
+                    Route::get('/get-data-armada', 'PerawatanPemeliharaan\Sopir\CekFisikLayananController@getArmada')->name('perawatan-pemeliharaan.sopir.get-data-armada');
 
-                    Route::get('/report-perjalanan', 'PerawatanPemeliharaan\SopirController@ReportPerjalanan')->name('perawatan-pemeliharaan.sopir.report-perjalanan');
+                    Route::post('/simpan-check-fisik-layanan', 'PerawatanPemeliharaan\Sopir\CekFisikLayananController@SumpanCheckList')->name('perawatan-pemeliharaan.sopir.simpan-check-fisik-layanan');
+
+                    Route::get('/report-perjalanan', 'PerawatanPemeliharaan\CekFisikLayananController@ReportPerjalanan')->name('perawatan-pemeliharaan.sopir.report-perjalanan');
                 });
 
                 Route::prefix('petugas-cuci')->group(function () {
@@ -420,9 +422,6 @@ Route::group(
                         Route::get('/list-pengajuan-pembelian', 'MasterLogistik\PengajuanPembelianController@getPengajuanPembelian')->name('master-logistik-list-pengajuan-pembelian');
 
                     });
-
-
-                    //Rekap Pembelian
 
 
                     //Laporan Pembelian
