@@ -639,6 +639,9 @@ Route::group(
                 Route::prefix('voucher')->group(function () {
                     Route::get('/', 'FinanceAccounting\MenuKeuangan\Administrasi\VoucherController@index')->name('finance-accounting-menu-keuangan-administrasi-voucher-index');
                 });
+                Route::prefix('request-gaji')->group(function () {
+                    Route::get('/', 'FinanceAccounting\MenuKeuangan\Administrasi\RequestGajiController@index')->name('finance-accounting-menu-keuangan-administrasi-request-gaji-index');
+                });
             });
             #End Peter
 
