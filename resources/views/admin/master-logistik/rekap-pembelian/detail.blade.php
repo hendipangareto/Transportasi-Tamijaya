@@ -1,20 +1,20 @@
 @extends('admin.layouts.app')
-@section('content-header')
-    <div class="content-header-left col-12 mb-2 mt-1">
-        <div class="row breadcrumbs-top">
-            <div class="col-12">
-                <h5 class="content-header-title float-left pr-1 mb-0">LOGISTIK</h5>
-                <div class="breadcrumb-wrapper col-12">
-                    <ol class="breadcrumb p-0 mb-0">
-                        <li class="content-header-title float-left pr-1 mb-0">Form Logistik Keluar
-                        </li>
-                        <a class="content-header-title float-left pr-1 mb-0">LOGISTIK</a>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </div>
-@endsection
+{{--@section('content-header')--}}
+{{--    <div class="content-header-left col-12 mb-2 mt-1">--}}
+{{--        <div class="row breadcrumbs-top">--}}
+{{--            <div class="col-12">--}}
+{{--                <h5 class="content-header-title float-left pr-1 mb-0">LOGISTIK</h5>--}}
+{{--                <div class="breadcrumb-wrapper col-12">--}}
+{{--                    <ol class="breadcrumb p-0 mb-0">--}}
+{{--                        <li class="content-header-title float-left pr-1 mb-0">Form Logistik Keluar--}}
+{{--                        </li>--}}
+{{--                        <a class="content-header-title float-left pr-1 mb-0">LOGISTIK</a>--}}
+{{--                    </ol>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--@endsection--}}
 @section('content')
     <div class="row">
         <div class="col-12">
@@ -22,16 +22,14 @@
                 <div class="card-header d-flex justify-content-between" style="background-color: #00b3ff">
                     <h4 class="card-title" style="color: black"><b>LOGISTIK </b>| Pengajuan Pembelian</h4>
                 </div>
-                <div class="card-content mt-2">
+                <div class="card-content">
                     <div class="card-body card-dashboard">
 
                         <div class="row mb-3">
                             <div class="col-md-12">
                                 <div class="card-header  pb-0  d-flex justify-content-between">
                                     <h4 class="card-title"></h4>
-                                    <a href="" class="btn btn-primary mr-1" data-toggle="modal"
-                                       data-target="#TambahPengajuanPembelian"><i class="bx bx-plus-circle"></i> Tambah
-                                        Data</a>
+                                    <a href="{{ route('master-logistik-list-rekap-pembelian') }}" class="btn btn-warning mr-1" type="submit"><i class="bx bx-arrow-back"></i>Kembali</a>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
@@ -69,12 +67,20 @@
                                     <th class="w-5p">Harga Satuan (Rp)</th>
                                     <th class="w-5p">Harga Total (Rp)</th> <!-- New column for Harga Total -->
                                     <th class="w-10p">Status Transaksi</th>
-                                    <th class="w-10p">Action</th>
+
                                 </tr>
                                 </thead>
 
 
+                                <style>
+                                    .status-hutang {
+                                        background-color: #bdd3ff; /* Ganti dengan warna yang sesuai untuk status Hutang */
+                                    }
 
+                                    .status-lunas {
+                                        background-color: #fddcc0; /* Ganti dengan warna yang sesuai untuk status Lunas */
+                                    }
+                                </style>
                                 @php
                                     $totalLunas = 0;
                                     $totalHutang = 0;
@@ -95,25 +101,8 @@
                                         <td>@currency($item->harga)</td>
                                         <td><b style="color: #9f191f">@currency($item->kuantitas * $item->harga)</b></td>
                                         <!-- Calculate and display Harga Total -->
-                                        <td>{{ $item->cara_bayar }}</td>
-                                        <td class="text-center">
-                                            <div class="d-flex">
-                                                <div class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"
-                                                     data-toggle="modal"
-                                                     data-target="#DetailSubBagian-{{ $item->id }}">
-                                                    <i class="bx bx-info-circle font-size-base"></i>
-                                                </div>
-                                                <div class="badge-circle badge-circle-sm badge-circle-warning mr-1 pointer"
-                                                     data-toggle="modal"
-                                                     data-target="#UpdatePengajuanPembelian-{{ $item->id }}">
-                                                    <i class="bx bx-edit font-size-base"></i>
-                                                </div>
-                                                <div class="badge-circle badge-circle-sm badge-circle-danger pointer delete-button "
-                                                     data-id="{{ $item->id }}">
-                                                    <i class="bx bx-trash font-size-base"></i>
-                                                </div>
-                                            </div>
-                                        </td>
+                                        <td class="text-center @if($item->cara_bayar === 'hutang') status-hutang @elseif($item->cara_bayar === 'lunas') status-lunas @endif">{{ $item->cara_bayar }}</td>
+
                                     </tr>
                                 @empty
                                     <tr>
@@ -166,21 +155,18 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-header  pb-0  d-flex justify-content-between">
-                                <h4 class="card-title"></h4>
-                                <a href="" class="btn btn-warning mr-1" type="submit"><i class="bx bx-save"></i>Ajukan</a>
-                            </div>
+
                         </form>
 
 
                     </div>
-                    </div>
                 </div>
             </div>
         </div>
+    </div>
 
 
-    @include('admin.master-logistik.pengajuan-pembelian.modal-tambah')
+
 @endsection
 @push('page-scripts')
     <script>
@@ -246,3 +232,4 @@
 
     </script>
 @endpush
+

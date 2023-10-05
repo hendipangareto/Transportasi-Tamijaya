@@ -19,6 +19,7 @@ class PengajuanPembelian extends Model
         'satuan_id',
         'catatan_pembelian',
         'batas_waktu_pembayaran',
+        'tanggal_pengajuan',
 
     ];
 }
