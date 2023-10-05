@@ -1,10 +1,10 @@
-<div class="modal fade text-left" id="modal-jurnal-umum" tabindex="-1" role="dialog"
+<div class="modal fade text-left" id="modal-keseluruhan-jurnal" tabindex="-1" role="dialog"
      aria-labelledby="modal-title"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="modal-title">Parameter Laporan Jurnal Umum</h4>
+                <h4 class="modal-title" id="modal-title">Parameter Laporan Keseluruhan Jurnal</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i class="bx bx-x"></i>
                 </button>
@@ -50,7 +50,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <a target="_blank" href="{{route('finance-accounting-menu-keuangan-finance-report-finance-reportPdfJurnalUmum')}}" class="btn btn-primary">
+                <a target="_blank" href="{{route('finance-accounting-menu-keuangan-finance-report-finance-reportPdfKeseluruhanJurnal')}}" class="btn btn-primary">
                     <i class='bx bx-check-circle'></i> Tampilkan
                 </a>
             </div>

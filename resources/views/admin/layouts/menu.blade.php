@@ -198,8 +198,20 @@
                         </li>
                     </ul>
                 </li>
+                {{--Adminsitrasi Menu keuangan Peter--}}
+                <li class="nav-item"><a href=" "><i class="bx bx-folder"></i><span
+                            class="menu-title">Administrasi</span></a>
+                    <ul class="menu-content">
+                        <li @if (Request::segment(3) == 'voucher') class="active" @endif>
+                            <a href="{{route('finance-accounting-menu-keuangan-administrasi-voucher-index')}}"><i
+                                    class="bx bx-right-arrow-alt"></i><span
+                                    class="menu-item ">Voucher</span></a>
+                        </li>
+                    </ul>
+                </li>
+                {{--End Adminsitrasi Menu keuangan Peter--}}
 
-                {{--Menu keuangan finance accounting--}}
+                {{--Menu keuangan finance accounting Peter--}}
                 <li class="nav-item"><a href=" "><i class="bx bx-folder"></i><span
                             class="menu-title">Finance</span></a>
                     <ul class="menu-content">

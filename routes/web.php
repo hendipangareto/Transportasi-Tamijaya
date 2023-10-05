@@ -623,6 +623,20 @@ Route::group(
                 Route::prefix('report-finance')->group(function () {
                     Route::get('/', 'FinanceAccounting\MenuKeuangan\Finance\ReportFinanceController@index')->name('finance-accounting-menu-keuangan-finance-report-finance-index');
                     Route::get('/report-jurnal-umum', 'FinanceAccounting\MenuKeuangan\Finance\ReportFinanceController@reportPdfJurnalUmum')->name('finance-accounting-menu-keuangan-finance-report-finance-reportPdfJurnalUmum');
+                    Route::get('/report-ringkasan-buku-besar', 'FinanceAccounting\MenuKeuangan\Finance\ReportFinanceController@reportPdfRingkasanBukuBesar')->name('finance-accounting-menu-keuangan-finance-report-finance-reportPdfRingkasanBukuBesar');
+                    Route::get('/report-rincian-buku-besar', 'FinanceAccounting\MenuKeuangan\Finance\ReportFinanceController@reportPdfRincianBukuBesar')->name('finance-accounting-menu-keuangan-finance-report-finance-reportPdfRincianBukuBesar');
+                    Route::get('/report-histori-buku-besar', 'FinanceAccounting\MenuKeuangan\Finance\ReportFinanceController@reportPdfHistoriBukuBesar')->name('finance-accounting-menu-keuangan-finance-report-finance-reportPdfHistoriBukuBesar');
+                    Route::get('/report-laba-rugi', 'FinanceAccounting\MenuKeuangan\Finance\ReportFinanceController@reportPdfLabaRugi')->name('finance-accounting-menu-keuangan-finance-report-finance-reportPdfLabaRugi');
+                    Route::get('/report-keseluruhan-jurnal', 'FinanceAccounting\MenuKeuangan\Finance\ReportFinanceController@reportPdfKeseluruhanJurnal')->name('finance-accounting-menu-keuangan-finance-report-finance-reportPdfKeseluruhanJurnal');
+                    Route::get('/report-laba-rugi-multi-periode', 'FinanceAccounting\MenuKeuangan\Finance\ReportFinanceController@reportPdfLabaRugiMultiPeriode')->name('finance-accounting-menu-keuangan-finance-report-finance-reportPdfLabaRugiMultiPeriode');
+                    Route::get('/report-neraca', 'FinanceAccounting\MenuKeuangan\Finance\ReportFinanceController@reportPdfNeraca')->name('finance-accounting-menu-keuangan-finance-report-finance-reportPdfNeraca');
+                    Route::get('/report-neraca-multi-periode', 'FinanceAccounting\MenuKeuangan\Finance\ReportFinanceController@reportPdfNeracaMultiPeriode')->name('finance-accounting-menu-keuangan-finance-report-finance-reportPdfNeracaMultiPeriode');
+                });
+            });
+
+            Route::prefix('administrasi')->group(function () {
+                Route::prefix('voucher')->group(function () {
+                    Route::get('/', 'FinanceAccounting\MenuKeuangan\Administrasi\VoucherController@index')->name('finance-accounting-menu-keuangan-administrasi-voucher-index');
                 });
             });
             #End Peter
