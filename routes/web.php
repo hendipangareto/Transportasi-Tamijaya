@@ -631,6 +631,12 @@ Route::group(
                     Route::get('/report-neraca-multi-periode', 'FinanceAccounting\MenuKeuangan\Finance\ReportFinanceController@reportPdfNeracaMultiPeriode')->name('finance-accounting-menu-keuangan-finance-report-finance-reportPdfNeracaMultiPeriode');
                 });
             });
+
+            Route::prefix('administrasi')->group(function () {
+                Route::prefix('voucher')->group(function () {
+                    Route::get('/', 'FinanceAccounting\MenuKeuangan\Administrasi\VoucherController@index')->name('finance-accounting-menu-keuangan-administrasi-voucher-index');
+                });
+            });
             #End Peter
 
 
