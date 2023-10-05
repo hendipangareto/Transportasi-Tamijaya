@@ -23,33 +23,28 @@
                 <div class="card-header" style="background-color: #00b3ff">
                     <div class="toolbar row ">
                         <div class="col-md-12 d-flex">
-                            <h2 class="h4 ">Data Master Sub-Bagian</h2>
+                            <h4 class="card-title" style="color: black"><b>Data Master </b>| Sub-Bagian</h4>
                             <div class="col ml-auto">
                                 <div class="dropdown float-right">
 
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-header" >
-                    <div class="toolbar row ">
-                        <div class="col-md-12 d-flex">
                             <h2 class="h4"> </h2>
                             <div class="col ml-auto">
                                 <div class="dropdown float-right">
-                                    <a href=" "
-                                       class="btn btn-primary mr-1" data-toggle="modal" data-target="#TambahSubBagian">
-                                        <i class="bx bx-plus-circle"></i> Tambah Data</a>
-                                    <a target="_blank" href="{{ route('admin.master-logistik.bagian.cetak-pdf')  }}?bagian={{ifIsset(request()->bagian_id)}}" type="button" class="btn btn-danger text-white mr-1">
+                                    <a href="" class="btn btn-success mr-1" data-toggle="modal"
+                                       data-target="#TambahSubBagian"><i class="bx bx-plus-circle"></i>Tambah Data</a>
+                                    <a target="_blank"
+                                       href="{{ route('admin.master-logistik.bagian.cetak-pdf')  }}?bagian={{ifIsset(request()->bagian_id)}}"
+                                       type="button" class="btn btn-danger text-white mr-1">
                                         <i class="bx bxs-file-pdf"></i> Report PDF
                                     </a>
-
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
                 <div class="card-body">
                     <form action="">
                         @csrf
@@ -75,14 +70,15 @@
                                     <label for="" style="color: white">Filter</label><br>
                                     <button class="btn btn-outline-primary">Filter <i
                                             class="bx bx-filter"></i></button>
-                                    <a href="{{ route('admin.master-logistik.bagian.sub-bagian') }}" class="btn btn-outline-warning">Clear <i
+                                    <a href="{{ route('admin.master-logistik.bagian.sub-bagian') }}"
+                                       class="btn btn-outline-warning">Clear <i
                                             class="bx bx-filter"></i></a>
                                 </div>
                             </div>
                         </div>
                     </form>
 
-                    <div class="table-responsive"  >
+                    <div class="table-responsive">
                         <table class="table table-bordered table-hover" id="table-bagian">
                             <thead>
                             <tr class="text-center">
@@ -102,18 +98,7 @@
                                     <td>{{ $item->nama_sub_bagian }}</td>
                                     <td>{{ $item->bagian}}</td>
                                     <td>{{ $item->deskripsi_sub_bagian}}</td>
-{{--                                    <td>--}}
-{{--                                        <a href=""--}}
-{{--                                           class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#DetailSubBagian-{{ $item->id }}"><i--}}
-{{--                                                class="bx bx-info-circle font-size-base"></i>--}}
-{{--                                        </a>--}}
-{{--                                        <a href=""--}}
-{{--                                           class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#UpdateSubBagian-{{ $item->id }}"><i--}}
-{{--                                                class="bx bx-edit font-size-base"></i>--}}
-{{--                                        </a>--}}
-{{--                                        <a href="{{ route('admin.master-logistik.bagian.delete-sub-bagian', ['id' => $item->id]) }}" class="btn btn-outline-danger btn-sm delete-button"><i class="bx bx-trash"></i></a>--}}
-{{--                                    </td>--}}
-                                    <td class="text-center">
+                                    <td>
                                         <div class="d-flex">
                                             <div class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"
                                                  data-toggle="modal"
@@ -131,6 +116,7 @@
                                             </a>
                                         </div>
                                     </td>
+
                                 </tr>
                             @empty
                                 <tr>
@@ -146,8 +132,8 @@
         </div>
     </div>
     @include('admin.master-logistik.sub-bagian.modal-tambah')
-{{--    @include('admin.master-logistik.sub-bagian.modal-edit')--}}
-{{--    @include('admin.master-logistik.sub-bagian.cetak-pdf')--}}
+    {{--    @include('admin.master-logistik.sub-bagian.modal-edit')--}}
+    {{--    @include('admin.master-logistik.sub-bagian.cetak-pdf')--}}
 @endsection
 
 
@@ -173,7 +159,7 @@
         @endif
 
         //konfimarsi delete
-        document.addEventListener('click', function(e) {
+        document.addEventListener('click', function (e) {
             if (e.target.classList.contains('delete-button')) {
                 e.preventDefault();
 

@@ -57,7 +57,7 @@
                                 <div class="card-header  pb-0  d-flex justify-content-between">
                                     <h4 class="card-title"></h4>
                                     <a href="" class="btn btn-primary mr-1" data-toggle="modal"
-                                       data-target="#TambahPengajuanPembelian"><i class="bx bx-plus-circle"></i> Tambah
+                                       data-target="#TambahDetailLaporan"><i class="bx bx-plus-circle"></i> Tambah
                                         Data</a>
                                 </div>
                             </div>
@@ -75,7 +75,7 @@
                                     <th class="w-5p">Harga Satuan (Rp)</th>
                                     <th class="w-5p">Harga Total (Rp)</th> <!-- New column for Harga Total -->
                                     <th class="w-10p">Status Transaksi</th>
-                                    <th class="w-10p">Action</th>
+{{--                                    <th class="w-10p">Action</th>--}}
                                 </tr>
                                 </thead>
 
@@ -86,7 +86,7 @@
                                 @endphp
 
                                 <tbody>
-                                @forelse($data as $item)
+                                @forelse($detail as $item)
                                     @php
                                         $totalLunas += ($item->cara_bayar === 'lunas') ? ($item->kuantitas * $item->harga) : 0;
                                         $totalHutang += ($item->cara_bayar === 'hutang') ? ($item->kuantitas * $item->harga) : 0;
@@ -102,27 +102,27 @@
                                         </td>
                                         <!-- Calculate and display Harga Total -->
                                         <td>{{ $item->cara_bayar }}</td>
-                                        <td class="text-center">
-                                            <div class="d-flex">
-                                                <div
-                                                    class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"
-                                                    data-toggle="modal"
-                                                    data-target="#DetailSubBagian-{{ $item->id }}">
-                                                    <i class="bx bx-info-circle font-size-base"></i>
-                                                </div>
-                                                <div
-                                                    class="badge-circle badge-circle-sm badge-circle-warning mr-1 pointer"
-                                                    data-toggle="modal"
-                                                    data-target="#UpdatePengajuanPembelian-{{ $item->id }}">
-                                                    <i class="bx bx-edit font-size-base"></i>
-                                                </div>
-                                                <div
-                                                    class="badge-circle badge-circle-sm badge-circle-danger pointer delete-button "
-                                                    data-id="{{ $item->id }}">
-                                                    <i class="bx bx-trash font-size-base"></i>
-                                                </div>
-                                            </div>
-                                        </td>
+{{--                                        <td class="text-center">--}}
+{{--                                            <div class="d-flex">--}}
+{{--                                                <div--}}
+{{--                                                    class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"--}}
+{{--                                                    data-toggle="modal"--}}
+{{--                                                    data-target="#DetailSubBagian-{{ $item->id }}">--}}
+{{--                                                    <i class="bx bx-info-circle font-size-base"></i>--}}
+{{--                                                </div>--}}
+{{--                                                <div--}}
+{{--                                                    class="badge-circle badge-circle-sm badge-circle-warning mr-1 pointer"--}}
+{{--                                                    data-toggle="modal"--}}
+{{--                                                    data-target="#UpdatePengajuanPembelian-{{ $item->id }}">--}}
+{{--                                                    <i class="bx bx-edit font-size-base"></i>--}}
+{{--                                                </div>--}}
+{{--                                                <div--}}
+{{--                                                    class="badge-circle badge-circle-sm badge-circle-danger pointer delete-button "--}}
+{{--                                                    data-id="{{ $item->id }}">--}}
+{{--                                                    <i class="bx bx-trash font-size-base"></i>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </td>--}}
                                     </tr>
                                 @empty
                                     <tr>
@@ -222,32 +222,6 @@
                                 <a href="" class="btn btn-warning mr-1" type="submit"><i
                                         class="bx bx-save"></i>Ajukan</a>
                             </div>
-
-
-                            <div class="card-body">
-                                <div class="mb-3 row">
-                                    <label for="html5-url-input"
-                                           class="col-md-2 col-form-label"> - Alpha</label>
-                                    <div class="col-md-8">
-                                        <input class="form-control" name="status_absensi" id="absensi" type="text"
-                                               readonly/>
-                                    </div>
-                                    <label for="html5-url-input"
-                                           class="col-md-2 col-form-label"> Hari</label>
-                                </div>
-                                <div class="row">
-                                    <label for="html5-url-input"
-                                           class="col-md-2 col-form-label"> - Libur</label>
-                                    <div class="col-md-8">
-                                        <input class="form-control" name="status_absensi" id="absensi" type="text"
-                                               readonly/>
-                                    </div>
-                                    <label for="html5-url-input"
-                                           class="col-md-2 col-form-label"> Hari</label>
-                                </div>
-                            </div>
-
-
                         </form>
 
 
@@ -257,6 +231,7 @@
         </div>
     </div>
 
+    @include('admin.master-logistik.laporan-pembelian.modal-tambah')
 @endsection
 @push('page-scripts')
     <script>

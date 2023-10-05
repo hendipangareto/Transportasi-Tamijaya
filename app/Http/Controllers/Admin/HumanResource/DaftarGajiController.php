@@ -119,7 +119,7 @@ class DaftarGajiController extends Controller
                 $data->tanggal = $request->tanggal_gaji;
                 $data->keterangan = $request->keterangan;
 
-                dd($data);
+//                dd($data);
                 $data->save();
 
                 DB::commit();

@@ -117,7 +117,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="5" class="text-center">Tidak ada data Pengajuan Pembelian.</td>
+                                        <td colspan="9" class="text-center">Tidak ada data Pengajuan Pembelian.</td>
                                     </tr>
                                 @endforelse
                                 </tbody>
@@ -158,7 +158,7 @@
                                                 <div class="card-body">
                                                     <h5 class="card-title mt-1">Total Pengajuan</h5>
                                                     <p class="card-text">
-                                                        Rp.
+                                                        @currency($totalLunas + $totalHutang)
                                                     </p>
                                                 </div>
                                             </div>

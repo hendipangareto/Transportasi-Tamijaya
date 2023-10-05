@@ -20,23 +20,30 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-header d-flex justify-content-between" style="background-color: #00b3ff">
-                    <h4 class="card-title" style="color: black"><b>Data Master </b>| Bagian</h4>
-                </div>
-                <div class="card-content mt-2">
-                    <div class="card-body card-dashboard">
 
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="card-header  pb-0  d-flex justify-content-between">
-                                    <h4 class="card-title"></h4>
+                <div class="card-header" style="background-color: #00b3ff">
+                    <div class="toolbar row ">
+                        <div class="col-md-12 d-flex">
+                            <h4 class="card-title" style="color: black"><b>Data Master </b>| Bagian</h4>
+                            <div class="col ml-auto">
+                                <div class="dropdown float-right">
+
+                                </div>
+                            </div>
+                            <h2 class="h4"> </h2>
+                            <div class="col ml-auto">
+                                <div class="dropdown float-right">
                                     <a href="" class="btn btn-success mr-1" data-toggle="modal"
-                                       data-target="#TambahBagian"><i class="bx bx-plus-circle"></i> Tambah Data</a>
+                                       data-target="#TambahBagian"><i class="bx bx-plus-circle"></i>Tambah Data</a>
+
                                 </div>
                             </div>
                         </div>
-
-                        <div class="table-responsive mt-2">
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="card-body card-dashboard">
+                        <div class="table-responsive">
                             <table class="table table-bordered table-hover" id="table-bagian">
                                 <thead>
                                 <tr class="text-center">

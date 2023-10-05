@@ -27,7 +27,15 @@
                             <h4 class="card-title" style="color: black"><b>LOGISTIK </b>| Kategori Barang</h4>
                             <div class="col ml-auto">
                                 <div class="dropdown float-right">
-
+                                    <a href=" "
+                                          class="btn btn-success mr-1" data-toggle="modal" data-target="#TambahToko">
+                                        <i class="bx bx-plus-circle"></i> Tambah Data</a>
+                                    <a target="_blank"
+                                       href="{{ route('admin.master-logistik.toko.cetak-pdf-toko') }}"
+                                       type="button"
+                                       class="btn btn-danger text-white mr-1">
+                                        <i class="bx bxs-file-pdf"></i> Report PDF
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -35,26 +43,7 @@
                 </div>
                 <div class="card-content mt-2">
                     <div class="card-body card-dashboard">
-                        <div class="card-header" >
-                            <div class="toolbar row ">
-                                <div class="col-md-12 d-flex">
-                                    <h2 class="h4"> </h2>
-                                    <div class="col ml-auto">
-                                        <div class="dropdown float-right">
-                                            <a href=" "
-                                               class="btn btn-primary mr-1" data-toggle="modal" data-target="#TambahToko">
-                                                <i class="bx bx-plus-circle"></i> Tambah Data</a>
-                                            <a target="_blank"
-                                               href="{{ route('admin.master-logistik.toko.cetak-pdf-toko') }}"
-                                               type="button"
-                                               class="btn btn-danger text-white mr-1">
-                                                <i class="bx bxs-file-pdf"></i> Report PDF
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
                         <div class="table-responsive" id="show-data-filter-accounting">
                             <table class="table table-bordered table-hover" id="table-kategori-logistik">
                                 <thead>
@@ -84,18 +73,20 @@
                                         <td>{{ $item->province }} - {{ $item->city }}</td>
                                         <td class="text-center">
                                             <div class="d-flex">
-                                                <div class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"
-                                                     data-toggle="modal"
-                                                     data-target="#DetailToko-{{ $item->id }}">
+                                                <div
+                                                    class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"
+                                                    data-toggle="modal"
+                                                    data-target="#DetailToko-{{ $item->id }}">
                                                     <i class="bx bx-info-circle font-size-base"></i>
                                                 </div>
-                                                <div class="badge-circle badge-circle-sm badge-circle-warning mr-1 pointer"
-                                                     data-toggle="modal"
-                                                     data-target="#EditToko-{{ $item->id }}">
+                                                <div
+                                                    class="badge-circle badge-circle-sm badge-circle-warning mr-1 pointer"
+                                                    data-toggle="modal"
+                                                    data-target="#EditToko-{{ $item->id }}">
                                                     <i class="bx bx-edit font-size-base"></i>
                                                 </div>
                                                 <a class="badge-circle badge-circle-sm badge-circle-danger pointer"
-                                                   href=""  onclick="manageData('delete', {{ $item->id }})">
+                                                   href="" onclick="manageData('delete', {{ $item->id }})">
                                                     <i class="bx bx-trash font-size-base"></i>
                                                 </a>
                                             </div>
@@ -194,7 +185,7 @@
                 url: `/admin/master-data/province/get-city-by-province/${id_province}`,
                 method: "get",
                 dataType: "json",
-                success: function(response) {
+                success: function (response) {
                     var cities = response.data;
                     var html = `<option value="">Pilih Kabupaten/Kota</option>`;
                     cities.forEach(city => {
@@ -202,7 +193,7 @@
                     });
                     $("#id_city").html(html)
                 },
-                error: function(err) {
+                error: function (err) {
                     console.log(err);
                 }
             });

@@ -53,7 +53,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <label for="flatpickr-multi" class="form-label">Satuan*</label>
-                                                <select name="satuan_id" id="satuan_id" class="form-control">
+                                                <select name="satuan_id" id="satuan_id" class="form-control" required>
                                                     <option selected disabled>Pilih Satuan</option>
                                                     @foreach($satuan as $item)
                                                         <option value="{{$item->id}}">{{ $item->nama_satuan}}</option>
@@ -83,7 +83,7 @@
                                     <div class="col-md-6 col-12">
                                         <label for="flatpickr-inline" class="form-label">Batas Waktu Pembayaran</label>
                                         <input type="date" class="form-control mb-1" placeholder=" "
-                                               id="batas_waktu_pembayaran" name="batas_waktu_pembayaran"/>
+                                               id="batas_waktu_pembayaran" name="batas_waktu_pembayaran"  min="<?php echo date('Y-m-d'); ?>" />
                                     </div>
                                 </div>
                             </div>

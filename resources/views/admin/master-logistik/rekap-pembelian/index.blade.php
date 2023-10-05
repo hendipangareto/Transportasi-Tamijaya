@@ -49,7 +49,7 @@
                                             </div>
                                             <div class="col-md-2">
                                                 <label for="defaultFormControlInput" class="form-label"></label>
-                                                <a href="" class="btn btn-danger mt-2"><i class="bx bx-filter"></i>Filter</a>
+                                                <a href="" class="btn btn-danger"><i class="bx bx-filter"></i>Filter</a>
                                             </div>
                                         </div>
                                     </div>
@@ -89,7 +89,7 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $item->tanggal_pengajuan }}</td>
                                             <td>{{ $item->kode_pengajuan }}</td>
-                                            <td> </td>
+                                            <td> @currency($totalLunas + $totalHutang) </td>
                                             <td> </td>
 
                                             <td class="text-center">
@@ -103,7 +103,7 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="5" class="text-center">Tidak ada data Pengajuan Pembelian.</td>
+                                            <td colspan="6" class="text-center">Tidak ada data Pengajuan Pembelian.</td>
                                         </tr>
                                     @endforelse
                                     </tbody>

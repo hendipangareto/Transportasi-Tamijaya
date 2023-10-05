@@ -41,5 +41,7 @@ class DatabaseSeeder extends Seeder
         $this->call(RouteWisataSeeder::class);
         $this->call(ArmadaScheduleSeeder::class);
         $this->call(RoleSeeder::class);
+
+        $this->call(SatuanSeeder::class);
     }
 }

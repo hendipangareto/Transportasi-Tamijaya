@@ -8,6 +8,8 @@ use App\Models\MasterDataLogistik\BengkelLuar;
 use App\Models\MasterData\City;
 use App\Models\MasterData\Province;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
+
 class BengkelLuarController extends Controller
 {
     public function getBengkelLuar()
@@ -25,6 +27,8 @@ class BengkelLuarController extends Controller
 
     public function SimpanBengkelLuar(Request $request)
     {
+        DB::beginTransaction();
+        try {
         $BengkelLuar = new BengkelLuar();
         $lastNomor = BengkelLuar::orderBy('id', 'desc')->first();
         $lastNumber = $lastNomor ? intval(substr($lastNomor->kode_bengkel_luar, -2)) : 0;
@@ -42,15 +46,18 @@ class BengkelLuarController extends Controller
         $BengkelLuar->id_province = $request->id_province;
         $BengkelLuar->deskripsi_bengkel_luar = $request->deskripsi_bengkel_luar;
 
-
-        //   dd($BengkelLuar);
-        try {
             $BengkelLuar->save();
 
-            return redirect(route('admin.master-logistik.bengkel-luar.list-bengkel-luar'))->with('pesan-berhasil','Anda berhasil menambah data bengkel luar');
+            DB::commit();
+            Session::flash('message', ['Berhasil menyimpan data toko', 'success']);
         } catch (\Exception $e) {
-            return redirect(route('admin.master-logistik.bengkel-luar.list-bengkel-luar'))->with('pesan-gagal','Anda gagal menambah data bengkel luar');
+            DB::rollback();
+            Session::flash('message', ['Gagal menyimpan data toko', 'error']);
         }
+
+        return redirect()->route('admin.master-logistik.bengkel-luar.list-bengkel-luar');
+        //   dd($BengkelLuar);
+
     }
 
     public function EditBengkelLuar(Request $request, $id)

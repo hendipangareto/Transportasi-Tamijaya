@@ -30,26 +30,22 @@
 
                                 </div>
                             </div>
+
+                            <h2 class="h4"> </h2>
+                            <div class="col ml-auto">
+                                <div class="dropdown float-right">
+                                    <a href="" class="btn btn-success mr-1" data-toggle="modal"
+                                       data-target="#kategoriBarang"><i class="bx bx-plus-circle"></i>Tambah Data</a>
+                                    <a target="_blank" href="{{ route('master-logistik.cetak-pdf-kategori-barang') }}" class="btn btn-danger mr-1"><i class="bx bx-printer"></i>Report PDF </a>
+
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="card-content mt-2">
                     <div class="card-body card-dashboard">
-                        <div class="card-header" >
-                            <div class="toolbar row ">
-                                <div class="col-md-12 d-flex">
-                                    <h2 class="h4"> </h2>
-                                    <div class="col ml-auto">
-                                        <div class="dropdown float-right">
-                                            <a href="" class="btn btn-primary mr-1" data-toggle="modal"
-                                               data-target="#kategoriBarang"><i class="bx bx-plus-circle"></i>Tambah Data</a>
-                                            <a target="_blank" href="{{ route('master-logistik.cetak-pdf-kategori-barang') }}" class="btn btn-danger mr-1"><i class="bx bx-printer"></i>Report PDF </a>
 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <div class="table-responsive" id="show-data-filter-accounting">
                             <table class="table table-bordered table-hover" id="table-kategori-logistik">
                                 <thead>

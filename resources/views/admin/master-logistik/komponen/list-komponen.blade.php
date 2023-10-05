@@ -20,21 +20,28 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-header d-flex justify-content-between" style="background-color: #00b3ff">
-                    <h4 class="card-title" style="color: black"><b>Data Master </b>| Komponen</h4>
-                </div>
-                <div class="card-content mt-2">
-                    <div class="card-body card-dashboard">
+                <div class="card-header" style="background-color: #00b3ff">
+                    <div class="toolbar row ">
+                        <div class="col-md-12 d-flex">
+                            <h4 class="card-title" style="color: black"><b>Data Master </b>| Komponen</h4>
+                            <div class="col ml-auto">
+                                <div class="dropdown float-right">
 
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="card-header  pb-0  d-flex justify-content-between">
-                                    <h4 class="card-title"></h4>
-                                    <a href="" class="btn btn-success mr-1" data-toggle="modal" data-target="#TambahKomponen"><i class="bx bx-plus-circle"></i>   Tambah Data</a>
+                                </div>
+                            </div>
+                            <h2 class="h4"> </h2>
+                            <div class="col ml-auto">
+                                <div class="dropdown float-right">
+                                    <a href="" class="btn btn-success mr-1" data-toggle="modal"
+                                       data-target="#TambahKomponen"><i class="bx bx-plus-circle"></i>Tambah Data</a>
+
                                 </div>
                             </div>
                         </div>
-
+                    </div>
+                </div>
+                <div class="card-content mt-2">
+                    <div class="card-body card-dashboard">
                         <div class="table-responsive mt-2"  >
                             <table class="table table-bordered table-hover" id="table-bagian">
                                 <thead>
@@ -55,17 +62,6 @@
                                         <td>{{ $item->nama_komponen}}</td>
                                         <td>{{ $item->sub_bagian}}</td>
                                         <td>{{ $item->deskripsi_komponen}}</td>
-{{--                                        <td>--}}
-{{--                                            <a href=""--}}
-{{--                                               class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#DetailKomponen-{{ $item->id }}"><i--}}
-{{--                                                    class="bx bx-info-circle font-size-base"></i>--}}
-{{--                                            </a>--}}
-{{--                                            <a href=""--}}
-{{--                                               class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#EditKomponen-{{ $item->id }}"><i--}}
-{{--                                                    class="bx bx-edit font-size-base"></i>--}}
-{{--                                            </a>--}}
-{{--                                            <a href="{{ route('admin.master-logistik.komponen.delete-komponen', ['id' => $item->id]) }}" class="btn btn-outline-danger btn-sm delete-button"><i class="bx bx-trash"></i></a>--}}
-{{--                                        </td>--}}
 
                                         <td class="text-center">
                                             <div class="d-flex">
@@ -127,7 +123,6 @@
             text: '{{ session("pesan-gagal") }}'
         });
         @endif
-
 
         //konfimarsi delete
         document.addEventListener('click', function(e) {

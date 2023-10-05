@@ -8,6 +8,9 @@ use App\Models\MasterDataLogistik\Toko;
 use App\Models\MasterData\City;
 use App\Models\MasterData\Province;
 use Barryvdh\DomPDF\Facade as PDF;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
+
 class TokoController extends Controller
 {
     public function getToko (){
@@ -23,6 +26,8 @@ class TokoController extends Controller
 
     public function SimpanToko(Request $request)
     {
+        DB::beginTransaction();
+        try {
         $Toko = new Toko();
         $lastNomor = Toko::orderBy('id', 'desc')->first();
         $lastNumber = $lastNomor ? intval(substr($lastNomor->kode_toko, -2)) : 0;
@@ -39,15 +44,17 @@ class TokoController extends Controller
         $Toko->id_province = $request->id_province;
         $Toko->deskripsi_toko = $request->deskripsi_toko;
 
-
-        //   dd($Toko);
-        try {
             $Toko->save();
 
-            return redirect(route('admin.master-logistik.toko.list-toko'))->with('pesan-berhasil','Anda berhasil menambah data toko');
+            DB::commit();
+            Session::flash('message', ['Berhasil menyimpan data toko', 'success']);
         } catch (\Exception $e) {
-            return redirect(route('admin.master-logistik.toko.list-toko'))->with('pesan-gagal','Anda gagal menambah data toko');
+            DB::rollback();
+            Session::flash('message', ['Gagal menyimpan data toko', 'error']);
         }
+
+        return redirect()->route('admin.master-logistik.toko.list-toko');
+
     }
 
     public function UpdateToko(Request $request, $id)
