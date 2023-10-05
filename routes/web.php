@@ -429,6 +429,7 @@ Route::group(
 
                     Route::prefix('rekap-pembelian')->group(function () {
                         Route::get('/list-rekap-pembelian', 'MasterLogistik\RekapPembelianController@RekapPembelian')->name('master-logistik-list-rekap-pembelian');
+                        Route::get('/detail-rekap-pembelian/{id}', 'MasterLogistik\RekapPembelianController@DetailRekapPembelian')->name('master-logistik-detail-rekap-pembelian');
                     });
 
                     //Laporan Pembelian

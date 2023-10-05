@@ -29,6 +29,7 @@ class CreatePengajuanPembelianTable extends Migration
             $table->foreign('kategori_id')->references('id')->on('kategori');
             $table->text('catatan_pembelian')->nullable();
             $table->date('batas_waktu_pembayaran')->nullable();
+            $table->date('tanggal_pengajuan')->nullable();
             $table->timestamps();
         });
     }

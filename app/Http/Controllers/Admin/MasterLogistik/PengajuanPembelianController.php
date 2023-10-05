@@ -49,6 +49,7 @@ class PengajuanPembelianController
             $data->satuan_id = $request->satuan_id;
             $data->catatan_pembelian = $request->catatan_pembelian;
             $data->batas_waktu_pembayaran = $request->batas_waktu_pembayaran;
+                $data->tanggal_pengajuan = $request->tanggal_pengajuan;
 
 
 
@@ -81,6 +82,7 @@ class PengajuanPembelianController
             $data->satuan_id = $request->satuan_id;
             $data->catatan_pembelian = $request->catatan_pembelian;
             $data->batas_waktu_pembayaran = $request->batas_waktu_pembayaran;
+            $data->tanggal_pengajuan = $request->tanggal_pengajuan;
 
 
 

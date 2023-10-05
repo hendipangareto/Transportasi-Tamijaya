@@ -58,9 +58,11 @@
                                 </div>
                             </div>
                         </div>
+
+
                         <form action="" method="">
                             <div class="table-responsive mt-2" id="show-data-filter-accounting">
-                                <table class="table table-bordered table-hover" id="table-armada">
+                                <table class="table table-bordered table-hover" id="rekap-pengajuan-pembelian">
                                     <thead>
                                     <tr class="text-center">
                                         <th class="w-3p">No</th>
@@ -68,22 +70,44 @@
                                         <th class="w-10p">No Pengajuan</th>
                                         <th class="w-5p">Dana Diajukan <br> (Rp)</th>
                                         <th class="w-5p">Status Pengajuan <br> Dana</th>
-                                        <th class="w-10p">Action</th>
+                                        <th class="w-2p">Action</th>
                                     </tr>
                                     </thead>
+                                    @php
+                                        $totalLunas = 0;
+                                        $totalHutang = 0;
+                                    @endphp
+
                                     <tbody>
-                                    <tr class="text-center">
-                                        <td>1</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td class="text-center">
-                                            <a href="#" class="btn btn-primary" data-toggle="modal"
-                                               data-target="#DetailPengajuan"><i class="bx bx-detail"></i></a>
-                                        </td>
-                                    </tr>
+
+                                    @forelse($RekapPembelian as $item)
+                                        @php
+                                            $totalLunas += ($item->cara_bayar === 'lunas') ? ($item->kuantitas * $item->harga) : 0;
+                                            $totalHutang += ($item->cara_bayar === 'hutang') ? ($item->kuantitas * $item->harga) : 0;
+                                        @endphp
+                                        <tr class="text-center">
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $item->tanggal_pengajuan }}</td>
+                                            <td>{{ $item->kode_pengajuan }}</td>
+                                            <td> </td>
+                                            <td> </td>
+
+                                            <td class="text-center">
+                                                <div class="d-flex">
+                                                    <a class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"
+                                                         href="{{ route('master-logistik-detail-rekap-pembelian', $item->id) }}">
+                                                        <i class="bx bx-info-circle font-size-base"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="5" class="text-center">Tidak ada data Pengajuan Pembelian.</td>
+                                        </tr>
+                                    @endforelse
                                     </tbody>
+
                                 </table>
                             </div>
 
@@ -94,6 +118,70 @@
         </div>
     </div>
 
-    @include('admin.master-logistik.pengajuan-pembelian.rekap-pengajuan.modal-detail')
 @endsection
 
+
+@push('page-scripts')
+    <script>
+
+        $(document).ready(function () {
+            $("#rekap-pengajuan-pembelian").DataTable();
+        });
+
+
+
+
+        // HAPUS DATA
+        @if(session('pesan-berhasil'))
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: '{{ session("pesan-berhasil") }}'
+        });
+        @elseif(session('pesan-gagal'))
+        Swal.fire({
+            icon: 'error',
+            title: 'Gagal',
+            text: '{{ session("pesan-gagal") }}'
+        });
+        @endif
+
+        $(document).ready(function () {
+            $('.delete-button').click(function () {
+                var $PengajuanPembelianId = $(this).data('id');
+
+                Swal.fire({
+                    title: "Yakin akan menghapus data?",
+                    text: "Data yang dihapus tidak dapat dikembalikan",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Ya, hapus!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: '{{ route('master-logistik-delete-pengajuan-pembelian') }}',
+                            type: 'DELETE',
+                            data: {
+                                '_token': '{{ csrf_token() }}',
+                                'employee_id': $PengajuanPembelianId
+                            },
+                            success: function (response) {
+                                location.reload();
+                                Toast.fire({
+                                    icon: "success",
+                                    title: "Berhasil menghapus data Pengajuan Pembelian"
+                                });
+                            },
+                            error: function (error) {
+                                console.log(err);
+                            }
+                        });
+                    }
+                });
+            });
+        });
+
+    </script>
+@endpush

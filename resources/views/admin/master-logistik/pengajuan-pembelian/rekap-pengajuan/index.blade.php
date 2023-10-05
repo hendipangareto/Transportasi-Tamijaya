@@ -71,19 +71,7 @@
                                         <th class="w-10p">Action</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
-                                    <tr class="text-center">
-                                        <td>1</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td class="text-center">
-                                            <a href="#" class="btn btn-primary" data-toggle="modal"
-                                               data-target="#DetailPengajuan"><i class="bx bx-detail"></i></a>
-                                        </td>
-                                    </tr>
-                                    </tbody>
+
                                 </table>
                             </div>
 
