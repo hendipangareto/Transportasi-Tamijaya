@@ -44,9 +44,9 @@
                 <div class="card-body">
                     <h5 class="card-title">Ringkasan Buku Besar</h5>
                     <button type="button" class="btn btn-secondary">Lihat Laporan</button>
-                    <a href="#" class="card-text btn btn-outline-primary" title="lihat laporan">
+                    <button data-toggle="modal" data-target="#modal-ringkasan-buku-besar" class="card-text btn btn-outline-primary" title="lihat laporan">
                         <i class="bx bx-show-alt"></i>
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>
@@ -55,9 +55,9 @@
                 <div class="card-body">
                     <h5 class="card-title">Laba Rugi</h5>
                     <button type="button" class="btn btn-secondary">Lihat Laporan</button>
-                    <a href="#" class="card-text btn btn-outline-primary" title="lihat laporan">
+                    <button data-toggle="modal" data-target="#modal-laba-rugi" class="card-text btn btn-outline-primary" title="lihat laporan">
                         <i class="bx bx-show-alt"></i>
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>
@@ -66,9 +66,9 @@
                 <div class="card-body">
                     <h5 class="card-title">Neraca</h5>
                     <button type="button" class="btn btn-secondary">Lihat Laporan</button>
-                    <a href="#" class="card-text btn btn-outline-primary" title="lihat laporan">
+                    <button data-toggle="modal" data-target="#modal-neraca" class="card-text btn btn-outline-primary" title="lihat laporan">
                         <i class="bx bx-show-alt"></i>
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>
@@ -77,9 +77,9 @@
                 <div class="card-body">
                     <h5 class="card-title">Arus Kas Langsung</h5>
                     <button type="button" class="btn btn-secondary">Lihat Laporan</button>
-                    <a href="#" class="card-text btn btn-outline-primary" title="lihat laporan">
+                    <button data-toggle="modal" data-target="#modal-arus-kas-langsung" class="card-text btn btn-outline-primary" title="lihat laporan">
                         <i class="bx bx-show-alt"></i>
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>
@@ -90,9 +90,9 @@
                 <div class="card-body">
                     <h5 class="card-title">Keseluruhan Jurnal</h5>
                     <button type="button" class="btn btn-secondary">Lihat Laporan</button>
-                    <a href="#" class="card-text btn btn-outline-primary" title="lihat laporan">
+                    <button data-toggle="modal" data-target="#modal-keseluruhan-jurnal" class="card-text btn btn-outline-primary" title="lihat laporan">
                         <i class="bx bx-show-alt"></i>
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>
@@ -101,9 +101,9 @@
                 <div class="card-body">
                     <h5 class="card-title">Rincian Buku Besar</h5>
                     <button type="button" class="btn btn-secondary">Lihat Laporan</button>
-                    <a href="#" class="card-text btn btn-outline-primary" title="lihat laporan">
+                    <button data-toggle="modal" data-target="#modal-rincian-buku-besar" class="card-text btn btn-outline-primary" title="lihat laporan">
                         <i class="bx bx-show-alt"></i>
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>
@@ -112,9 +112,9 @@
                 <div class="card-body">
                     <h5 class="card-title">Laba Rugi Multi Periode</h5>
                     <button type="button" class="btn btn-secondary">Lihat Laporan</button>
-                    <a href="#" class="card-text btn btn-outline-primary" title="lihat laporan">
+                    <button data-toggle="modal" data-target="#modal-laba-rugi-multi-periode" class="card-text btn btn-outline-primary" title="lihat laporan">
                         <i class="bx bx-show-alt"></i>
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>
@@ -123,9 +123,9 @@
                 <div class="card-body">
                     <h5 class="card-title">Neraca Multi Periode</h5>
                     <button type="button" class="btn btn-secondary">Lihat Laporan</button>
-                    <a href="#" class="card-text btn btn-outline-primary" title="lihat laporan">
+                    <button data-toggle="modal" data-target="#modal-neraca-multi-periode" class="card-text btn btn-outline-primary" title="lihat laporan">
                         <i class="bx bx-show-alt"></i>
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>
@@ -134,9 +134,9 @@
                 <div class="card-body">
                     <h5 class="card-title">Arus Kas Tak Langsung</h5>
                     <button type="button" class="btn btn-secondary">Lihat Laporan</button>
-                    <a href="#" class="card-text btn btn-outline-primary" title="lihat laporan">
+                    <button data-toggle="modal" data-target="#modal-arus-kas-tak-langsung" class="card-text btn btn-outline-primary" title="lihat laporan">
                         <i class="bx bx-show-alt"></i>
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>
@@ -152,9 +152,9 @@
                 <div class="card-body">
                     <h5 class="card-title">Histori Buku Besar</h5>
                     <button type="button" class="btn btn-secondary">Lihat Laporan</button>
-                    <a href="#" class="card-text btn btn-outline-primary" title="lihat laporan">
+                    <button data-toggle="modal" data-target="#modal-histori-buku-besar" class="card-text btn btn-outline-primary" title="lihat laporan">
                         <i class="bx bx-show-alt"></i>
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>
@@ -173,9 +173,9 @@
                 <div class="card-body">
                     <h5 class="card-title">Proyeksi Kas Perperiode</h5>
                     <button type="button" class="btn btn-secondary">Lihat Laporan</button>
-                    <a href="#" class="card-text btn btn-outline-primary" title="lihat laporan">
+                    <button data-toggle="modal" data-target="#modal-proyeksi-kas-per-periode" class="card-text btn btn-outline-primary" title="lihat laporan">
                         <i class="bx bx-show-alt"></i>
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>
@@ -206,9 +206,9 @@
                 <div class="card-body">
                     <h5 class="card-title">Grafik Proyeksi Kas</h5>
                     <button type="button" class="btn btn-secondary">Lihat Laporan</button>
-                    <a href="#" class="card-text btn btn-outline-primary" title="lihat laporan">
+                    <button data-toggle="modal" data-target="#modal-grafik-proyeksi-kas" class="card-text btn btn-outline-primary" title="lihat laporan">
                         <i class="bx bx-show-alt"></i>
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>
@@ -239,15 +239,28 @@
                 <div class="card-body">
                     <h5 class="card-title">Histori Kas Bank</h5>
                     <button type="button" class="btn btn-secondary">Lihat Laporan</button>
-                    <a href="#" class="card-text btn btn-outline-primary" title="lihat laporan">
+                    <button data-toggle="modal" data-target="#modal-histori-bank" class="card-text btn btn-outline-primary" title="lihat laporan">
                         <i class="bx bx-show-alt"></i>
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 
-    @include('admin.finance-accounting.menu-keuangan.finance.report-finance.modal')
+    @include('admin.finance-accounting.menu-keuangan.finance.report-finance.pdf.jurnal-umum.modal')
+    @include('admin.finance-accounting.menu-keuangan.finance.report-finance.pdf.ringkasan-buku-besar.modal')
+    @include('admin.finance-accounting.menu-keuangan.finance.report-finance.pdf.rincian-buku-besar.modal')
+    @include('admin.finance-accounting.menu-keuangan.finance.report-finance.pdf.histori-buku-besar.modal')
+    @include('admin.finance-accounting.menu-keuangan.finance.report-finance.pdf.laba-rugi.modal')
+    @include('admin.finance-accounting.menu-keuangan.finance.report-finance.pdf.keseluruhan-jurnal.modal')
+    @include('admin.finance-accounting.menu-keuangan.finance.report-finance.pdf.laba-rugi-multi-periode.modal')
+    @include('admin.finance-accounting.menu-keuangan.finance.report-finance.pdf.neraca.modal')
+    @include('admin.finance-accounting.menu-keuangan.finance.report-finance.pdf.neraca-multi-periode.modal')
+    @include('admin.finance-accounting.menu-keuangan.finance.report-finance.pdf.arus-kas-langsung.modal')
+    @include('admin.finance-accounting.menu-keuangan.finance.report-finance.pdf.arus-kas-tak-langsung.modal')
+    @include('admin.finance-accounting.menu-keuangan.finance.report-finance.pdf.proyeksi-kas-per-periode.modal')
+    @include('admin.finance-accounting.menu-keuangan.finance.report-finance.pdf.grafik-proyeksi-kas.modal')
+    @include('admin.finance-accounting.menu-keuangan.finance.report-finance.pdf.histori-bank.modal')
 
 @endsection
 
