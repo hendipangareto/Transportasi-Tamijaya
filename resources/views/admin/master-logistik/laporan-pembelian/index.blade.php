@@ -1,20 +1,20 @@
 @extends('admin.layouts.app')
-@section('content-header')
-        <div class="content-header-left col-12 mb-2 mt-1">
-            <div class="row breadcrumbs-top">
-                <div class="col-12">
-                    <h5 class="content-header-title float-left pr-1 mb-0">LOGISTIK</h5>
-                    <div class="breadcrumb-wrapper col-12">
-                        <ol class="breadcrumb p-0 mb-0">
-                            <li class="content-header-title float-left pr-1 mb-0">Form Logistik Keluar
-                            </li>
-                            <a class="content-header-title float-left pr-1 mb-0">LOGISTIK</a>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-        </div>
-@endsection
+{{--@section('content-header')--}}
+{{--        <div class="content-header-left col-12 mb-2 mt-1">--}}
+{{--            <div class="row breadcrumbs-top">--}}
+{{--                <div class="col-12">--}}
+{{--                    <h5 class="content-header-title float-left pr-1 mb-0">LOGISTIK</h5>--}}
+{{--                    <div class="breadcrumb-wrapper col-12">--}}
+{{--                        <ol class="breadcrumb p-0 mb-0">--}}
+{{--                            <li class="content-header-title float-left pr-1 mb-0">Form Logistik Keluar--}}
+{{--                            </li>--}}
+{{--                            <a class="content-header-title float-left pr-1 mb-0">LOGISTIK</a>--}}
+{{--                        </ol>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--@endsection--}}
 @section('content')
     <div class="row mt-3">
         <div class="col-12">
@@ -25,13 +25,8 @@
                 <div class="card-content mt-2">
                     <div class="card-body card-dashboard">
 
-                        <div class="row">
+                        <div class="row mt-2">
                             <div class="col-md-12">
-                                <div class="card-header  pb-0  d-flex justify-content-between">
-                                    <h4 class="card-title"></h4>
-                                    <a href="" class="btn btn-primary mr-1" data-toggle="modal"
-                                       data-target="#TambahPengajuanPembelian"><i class="bx bx-plus-circle"></i>Tambah Data</a>
-                                </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="row">
@@ -53,10 +48,11 @@
                                                        placeholder=""
                                                        aria-describedby="defaultFormControlHelp"/>
                                             </div>
-                                            <div class="col-md-2">
-                                                <label for="defaultFormControlInput" class="form-label"></label>
-                                                <a href="" class="btn btn-danger mt-2"><i class="bx bx-filter"></i>Filter</a>
+                                            <div class="col-md-3">
+                                                <label for="defaultFormControlInput" class="form-label"> </label>
+                                                <a href="" class="btn btn-danger  mt-2"><i class="bx bx-filter"></i>Filter</a>
                                             </div>
+
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -75,26 +71,32 @@
                                         <th class="w-5p">Dana Diberikan <br> (Rp)</th>
                                         <th class="w-5p">Total Belanja <br> (Rp)</th>
                                         <th class="w-10p">Status Laporan</th>
-                                        <th class="w-10p">Action</th>
+                                        <th class="w-3p">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    @forelse($detail as $item)
                                     <tr class="text-center">
-                                        <td>1</td>
-                                        <td>#</td>
-                                        <td>#</td>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $item->tanggal_pengajuan }}</td>
+                                        <td>{{ $item->kode_pengajuan }}</td>
                                         <td>#</td>
                                         <td>#</td>
                                         <td>#</td>
                                         <td class="text-center">
-                                            <a href="#" class="btn btn-primary" data-toggle="modal"
-                                               data-target="#DetailSupllierBarang"><i class="bx bx-detail"></i></a>
-                                            <a href="#" class="btn btn-warning" data-toggle="modal"
-                                               data-target="#EditBarang"><i class="bx bx-edit"></i></a>
-                                            <a href="#" class="btn btn-danger" data-toggle="modal"
-                                               data-target="#"><i class="bx bx-trash"></i></a>
+                                            <div class="d-flex">
+                                                <a class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer text-center"
+                                                    href="{{ route('master-logistik-detail-laporan-pengajuan-pembelian', $item->id) }}">
+                                                    <i class="bx bx-info-circle font-size-base"></i>
+                                                </a>
+                                            </div>
                                         </td>
                                     </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="7" class="text-center">Tidak ada data Laporan Pembelian.</td>
+                                        </tr>
+                                    @endforelse
                                     </tbody>
                                 </table>
                             </div>
@@ -106,5 +108,5 @@
         </div>
     </div>
 
-    
+
 @endsection

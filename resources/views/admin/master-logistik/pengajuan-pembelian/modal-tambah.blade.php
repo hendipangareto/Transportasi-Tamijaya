@@ -19,7 +19,7 @@
                                 <div class="row">
                                     <input type="hidden" name="kode_pengajuan"  id="kode_pengajuan">
                                     <div class="col-md-6 col-12">
-                                        <label for="flatpickr-inline" class="form-label">Tanggal Pengajuan</label>
+                                            <label for="flatpickr-inline" class="form-label">Tanggal Pengajuan</label>
                                         <input type="date" class="form-control mb-1" placeholder=" " id="tanggal_pengajuan" name="tanggal_pengajuan" min="<?php echo date('Y-m-d'); ?>" />
                                     </div>
                                     <div class="col-md-6 col-12 mb-2">

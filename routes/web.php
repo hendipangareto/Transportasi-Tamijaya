@@ -435,6 +435,8 @@ Route::group(
                     //Laporan Pembelian
                     Route::prefix('laporan-pembelian')->group(function () {
                         Route::get('/laporan-pengajuan-pembelian', 'MasterLogistik\LaporanPembelianController@getLaporanPembelian')->name('master-logistik-laporan-pengajuan-pembelian');
+                        Route::get('/detail-laporan-pengajuan-pembelian/{id}', 'MasterLogistik\LaporanPembelianController@DetailLaporanPembelian')->name('master-logistik-detail-laporan-pengajuan-pembelian');
+
                     });
                 });
 

@@ -18,7 +18,7 @@ class CreateGajiEmployeesTable extends Migration
             $table->integer('employee_id');
             $table->integer('departemen_id');
             $table->integer('position_id');
-            $table->integer('absensi_id');
+//            $table->integer('absensi_id');
             $table->string('employee_status');
             $table->double('g_pokok')->nullable();
             $table->double('t_masa_kerja')->nullable();
