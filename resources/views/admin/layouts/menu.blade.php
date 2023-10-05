@@ -207,6 +207,11 @@
                                     class="bx bx-right-arrow-alt"></i><span
                                     class="menu-item ">Voucher</span></a>
                         </li>
+                        <li @if (Request::segment(3) == 'request-gaji') class="active" @endif>
+                            <a href="{{route('finance-accounting-menu-keuangan-administrasi-request-gaji-index')}}"><i
+                                    class="bx bx-right-arrow-alt"></i><span
+                                    class="menu-item ">Request Gaji</span></a>
+                        </li>
                     </ul>
                 </li>
                 {{--End Adminsitrasi Menu keuangan Peter--}}
