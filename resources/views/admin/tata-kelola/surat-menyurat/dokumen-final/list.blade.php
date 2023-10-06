@@ -110,6 +110,60 @@
         $(document).ready(function () {
             $("#table-surat-masuk").DataTable();
         });
+// =============================Hapus Data====================================
+
+        @if(session('pesan-berhasil'))
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: '{{ session("pesan-berhasil") }}'
+        });
+        @elseif(session('pesan-gagal'))
+        Swal.fire({
+            icon: 'error',
+            title: 'Gagal',
+            text: '{{ session("pesan-gagal") }}'
+        });
+        @endif
+
+        $(document).ready(function () {
+            $('.delete-button').click(function () {
+                var dokumenId = $(this).data('id');
+
+                Swal.fire({
+                    title: "Yakin akan menghapus data?",
+                    text: "Data yang dihapus tidak dapat dikembalikan",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Ya, hapus!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: '{{ route('data-kelola.surat-menyurat.delete-dokumen-final') }}',
+                            type: 'DELETE',
+                            data: {
+                                '_token': '{{ csrf_token() }}',
+                                'dokumen_final_id': dokumenId
+                            },
+                            success: function (response) {
+                                location.reload();
+                                Toast.fire({
+                                    icon: "success",
+                                    title: "Berhasil menghapus data gaji karyawan"
+                                });
+                            },
+                            error: function (error) {
+                                console.log(err);
+                            }
+                        });
+                    }
+                });
+            });
+        });
+
+// ====================================================================================================
 
         const changeDeparment = () => {
             var id_department = $("#id_department").val();
@@ -157,7 +211,7 @@
 
 
 
-
+// ====================Preview Data================================================
         function previewFile() {
             const fileInput = document.getElementById('lampiran_dokumen_final');
             const filePreview = document.getElementById('file-preview');

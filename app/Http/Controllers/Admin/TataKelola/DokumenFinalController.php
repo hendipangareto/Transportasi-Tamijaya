@@ -62,4 +62,18 @@ class DokumenFinalController extends Controller
 
         return redirect()->route('data-kelola.surat-menyurat.list-dokumen-final');
     }
+
+
+    public function HapusDokumen(Request $request)
+    {
+        $dokumenId = $request->input('dokumen_final_id');
+        $dokumen = DokumenFinal::find($dokumenId);
+        $dokumen->delete();
+
+        return response()->json([
+            'data' => $dokumen,
+            'message' => 'Berhasil menghapus data surat masuk',
+            'status' => 200,
+        ]);
+    }
 }
