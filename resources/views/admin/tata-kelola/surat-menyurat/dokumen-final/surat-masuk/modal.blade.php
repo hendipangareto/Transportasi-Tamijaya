@@ -38,7 +38,11 @@
 
 <div class="table-responsive">
     <input type="hidden" value=" ">
-    <table class="table table-bordered table-hover" id="table-list-employees">
+    @php
+        use Carbon\Carbon;
+         Carbon::setLocale('id');
+    @endphp
+    <table class="table table-bordered table-hover" id="table-surat-masuk">
         <thead>
         <tr class="text-uppercase text-center">
             <th class="w-3p">No</th>
@@ -55,10 +59,12 @@
         @forelse($dokumen as $item)
             <tr class="text-center">
                 <td>{{ $loop->iteration }}</td>
-                <td>{{ $item->tanggal_input }}</td>
+                 <td>{{ Carbon::parse($item->tanggal_input)->translatedFormat('l, d F Y') }}</td>
+
                 <td>{{ $item->no_registrasi_surat }}</td>
                 <td>{{ $item->no_surat }}</td>
-                <td>{{ $item->tanggal_surat }}</td>
+
+                <td>{{ Carbon::parse($item->tanggal_surat)->translatedFormat('l, d F Y') }}</td>
                 <td>{{ $item->pengirim_surat }} / {{ $item->penerima_surat }}</td>
                 <td>{{ $item->keterangan_surat }}</td>
                 <td class="text-center">

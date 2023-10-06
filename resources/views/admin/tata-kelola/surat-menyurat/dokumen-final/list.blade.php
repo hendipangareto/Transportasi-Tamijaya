@@ -107,6 +107,10 @@
             }
         });
 
+        $(document).ready(function () {
+            $("#table-surat-masuk").DataTable();
+        });
+
         const changeDeparment = () => {
             var id_department = $("#id_department").val();
             $.ajax({

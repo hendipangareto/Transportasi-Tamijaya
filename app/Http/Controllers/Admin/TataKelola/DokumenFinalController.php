@@ -8,6 +8,7 @@ use App\Models\TataKelola\DokumenFinal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Carbon\Carbon;
 
 class DokumenFinalController extends Controller
 {
@@ -26,7 +27,7 @@ class DokumenFinalController extends Controller
                 'lampiran_dokumen' => 'file|mimes:jpeg,png,pdf|max:2048',
 
             ]);
-
+            Carbon::setLocale('id');
             $dokumen = new DokumenFinal();
             $lastNomor = DokumenFinal::orderBy('id', 'desc')->first();
             $lastNumber = $lastNomor ? intval(substr($lastNomor->no_registrasi_surat, -2)) : 0;
