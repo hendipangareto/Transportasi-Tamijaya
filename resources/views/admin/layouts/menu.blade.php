@@ -262,6 +262,18 @@
                         </li>
                     </ul>
                 </li>
+                {{--Kasir--}}
+                <li class="nav-item"><a href=""><i class='bx bxl-slack' ></i><span
+                            class="menu-title">Kasir</span></a>
+                    <ul class="menu-content">
+                        <li @if (Request::segment(3) == 'daftar-transaksi') class="active" @endif>
+                            <a href="{{ route('finance-accounting-menu-keuangan-kasir-daftar-transaksi-index') }}"><i
+                                    class="bx bx-right-arrow-alt"></i><span
+                                    class="menu-item ">Daftar Transaksi</span></a>
+                        </li>
+                    </ul>
+                </li>
+
                 {{--End Menu keuangan finance accounting--}}
 
                 <li class=" nav-item @if (Request::segment(3) == 'cash-flow') active @endif"><a
