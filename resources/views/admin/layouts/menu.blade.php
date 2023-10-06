@@ -271,6 +271,11 @@
                                     class="bx bx-right-arrow-alt"></i><span
                                     class="menu-item ">Daftar Transaksi</span></a>
                         </li>
+                        <li @if (Request::segment(3) == 'laporan-dana-dari-pemandu') class="active" @endif>
+                            <a href="{{ route('finance-accounting-menu-keuangan-kasir-laporan-dana-dari-pemandu-index') }}"><i
+                                    class="bx bx-right-arrow-alt"></i><span
+                                    class="menu-item ">Laporan Dana Pemandu</span></a>
+                        </li>
                     </ul>
                 </li>
 

@@ -681,6 +681,10 @@ Route::group(
                     Route::get('/', 'FinanceAccounting\MenuKeuangan\Kasir\DaftarTransaksiController@index')->name('finance-accounting-menu-keuangan-kasir-daftar-transaksi-index');
                     Route::get('/form-kwitansi', 'FinanceAccounting\MenuKeuangan\Kasir\DaftarTransaksiController@formKwitansi')->name('finance-accounting-menu-keuangan-kasir-daftar-transaksi-formKwitansi');
                 });
+                Route::prefix('laporan-dana-dari-pemandu')->group(function () {
+                    Route::get('/', 'FinanceAccounting\MenuKeuangan\Kasir\LaporanDanaDariPemanduController@index')->name('finance-accounting-menu-keuangan-kasir-laporan-dana-dari-pemandu-index');
+                    Route::get('/print-pdf', 'FinanceAccounting\MenuKeuangan\Kasir\LaporanDanaDariPemanduController@printLaporanPemanduById')->name('finance-accounting-menu-keuangan-kasir-laporan-dana-dari-pemandu-print-pdf');
+                });
             });
             #End Peter
 
