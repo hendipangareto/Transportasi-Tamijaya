@@ -645,6 +645,9 @@ Route::group(
                 Route::prefix('reservasi-transaksi')->group(function () {
                     Route::get('/', 'FinanceAccounting\MenuKeuangan\Administrasi\ReservasiTransaksiController@index')->name('finance-accounting-menu-keuangan-administrasi-reservasi-transaksi-index');
                 });
+                Route::prefix('rekap-penagihan-transaksi')->group(function () {
+                    Route::get('/', 'FinanceAccounting\MenuKeuangan\Administrasi\RekapPenagihanTransaksiController@index')->name('finance-accounting-menu-keuangan-administrasi-rekap-penagihan-transaksi-index');
+                });
             });
             #End Peter
 

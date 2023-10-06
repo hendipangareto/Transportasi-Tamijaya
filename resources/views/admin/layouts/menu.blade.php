@@ -217,6 +217,11 @@
                                     class="bx bx-right-arrow-alt"></i><span
                                     class="menu-item ">Reservasi Transaksi</span></a>
                         </li>
+                        <li @if (Request::segment(3) == 'rekap-penagihan-transaksi') class="active" @endif>
+                            <a href="{{route('finance-accounting-menu-keuangan-administrasi-rekap-penagihan-transaksi-index')}}"><i
+                                    class="bx bx-right-arrow-alt"></i><span
+                                    class="menu-item ">Rekap Penagihan Transaksi</span></a>
+                        </li>
                     </ul>
                 </li>
                 {{--End Adminsitrasi Menu keuangan Peter--}}
