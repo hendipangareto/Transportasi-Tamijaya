@@ -23,7 +23,8 @@
                 <div class="card-header" style="background-color: #00b3ff">
                     <div class="toolbar row ">
                         <div class="col-md-12 d-flex">
-                            <h4 class="card-title" style="color: black"><b>Surat Menyurat</b>| <i class="bx bx-mail-send"></i>Dokumen Final</h4>
+                            <h6 class="card-title" style="color: black"><b>Surat Menyurat</b>| <i
+                                    class='bx bx-envelope'></i>Dokumen Final</h6>
 
                         </div>
                     </div>
@@ -48,11 +49,12 @@
                                             <a href="" class="btn btn-danger mr-1" data-toggle="modal"
                                                data-target="#TambahSurat"><i class="bx bx-archive-in"></i>Archieve Data</a>
                                             <a href="" class="btn btn-success mr-1" data-toggle="modal"
-                                               data-target="#TambahSurat"><i class="bx bx-plus-circle"></i>Tambah Data</a>
+                                               data-target="#TambahSuratMasuk"><i class="bx bx-plus-circle"></i>Tambah
+                                                Data</a>
                                         </div>
                                     </div>
                                     <h6 class="mt-2">Surat Masuk</h6>
-{{--                                    @include('admin.human-resource.pegawai.kinerja-karyawan.pretasi')--}}
+                                    @include('admin.tata-kelola.surat-menyurat.dokumen-final.surat-masuk.modal')
                                 </div>
 
                                 <div class="tab-pane fade" id="horizontal-profile">
@@ -61,11 +63,12 @@
                                             <a href="" class="btn btn-danger mr-1" data-toggle="modal"
                                                data-target="#TambahSurat"><i class="bx bx-archive-in"></i>Archieve Data</a>
                                             <a href="" class="btn btn-success mr-1" data-toggle="modal"
-                                               data-target="#TambahSurat"><i class="bx bx-plus-circle"></i>Tambah Data</a>
+                                               data-target="#TambahSurat"><i class="bx bx-plus-circle"></i>Tambah
+                                                Data</a>
                                         </div>
                                     </div>
                                     <h6 class="mt-2">Surat Keluar</h6>
-{{--                                    @include('admin.human-resource.pegawai.kinerja-karyawan.non-prestasi')--}}
+                                    {{--                                    @include('admin.human-resource.pegawai.kinerja-karyawan.non-prestasi')--}}
                                 </div>
                                 <div class="tab-pane fade" id="dokumen-final">
                                     <div class="col ml-auto">
@@ -73,7 +76,8 @@
                                             <a href="" class="btn btn-danger mr-1" data-toggle="modal"
                                                data-target="#TambahSurat"><i class="bx bx-archive-in"></i>Archieve Data</a>
                                             <a href="" class="btn btn-success mr-1" data-toggle="modal"
-                                               data-target="#TambahSurat"><i class="bx bx-plus-circle"></i>Tambah Data</a>
+                                               data-target="#TambahSurat"><i class="bx bx-plus-circle"></i>Tambah
+                                                Data</a>
                                         </div>
                                     </div>
                                     <h6 class="mt-2">Kontrak</h6>
@@ -89,7 +93,7 @@
         </div>
     </div>
 
-{{--    @include('admin.human-resource.pegawai.request-gaji.form-detail')--}}
+    {{--    @include('admin.human-resource.pegawai.request-gaji.form-detail')--}}
 @endsection
 
 @push('page-scripts')
@@ -101,6 +105,10 @@
             if (parseInt($("#Tablesemployee").val()) > 0) {
                 $("#table-list-employees").DataTable();
             }
+        });
+
+        $(document).ready(function () {
+            $("#table-surat-masuk").DataTable();
         });
 
         const changeDeparment = () => {
@@ -136,16 +144,56 @@
             $(this).tab('show');
         });
 
-        // Aktifkan tab pertama saat halaman dimuat
+
         $(document).ready(function () {
             $('#prestasi-pegawai').tab('show');
         });
 
-        // Tangani perubahan tab ketika pengguna mengklik tab lain
+
         $('.list-group-item').on('click', function (e) {
-            e.preventDefault(); // Mencegah tindakan default dari link
-            $(this).tab('show'); // Aktifkan tab yang diklik
+            e.preventDefault();
+            $(this).tab('show');
         });
+
+
+
+
+        function previewFile() {
+            const fileInput = document.getElementById('lampiran_dokumen_final');
+            const filePreview = document.getElementById('file-preview');
+
+            if (fileInput.files.length > 0) {
+                const file = fileInput.files[0];
+                if (file.type.startsWith('image/')) {
+                    // Display image preview
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.style.maxWidth = '100%';
+                        img.style.height = 'auto';
+
+                        filePreview.innerHTML = '';
+                        filePreview.appendChild(img);
+                    };
+                    reader.readAsDataURL(file);
+                } else if (file.type === 'application/pdf') {
+
+                    const object = document.createElement('object');
+                    object.data = URL.createObjectURL(file);
+                    object.type = 'application/pdf';
+                    object.width = '100%';
+
+
+                    filePreview.innerHTML = '';
+                    filePreview.appendChild(object);
+                } else {
+                    filePreview.innerHTML = 'File preview is not available for this file type.';
+                }
+            } else {
+                filePreview.innerHTML = '';
+            }
+        }
 
     </script>
 
