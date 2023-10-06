@@ -29,18 +29,14 @@ class CekFisikLayananController extends Controller
         $armadaId = $request->input('id_armada');
 
         $armada = DB::table('armadas')
-            ->select(  'bagians.nama_bagian',  'pick_points.pick_point_name')
-            ->join('bagians', 'armadas.bagian_id', 'bagians.id')
-
-            ->join('pick_points', 'armadas.id_pick_point', 'pick_points.id')
-
-            ->where('armadas.id', '=', $armadaId)
+            ->select('armadas.*', 'pick_points.pick_point_name')
+            ->join('pick_points', 'armadas.id_pick_point', '=', 'pick_points.id') // Ensure '=' for join condition
+            ->where('armadas.id', '=', $armadaId) // Ensure '=' for the where condition
             ->first();
 
         return response()->json($armada);
-
-
     }
+
 
     public function SumpanCheckList(Request $request)
     {

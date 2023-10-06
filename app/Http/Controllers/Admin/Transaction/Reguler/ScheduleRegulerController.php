@@ -21,14 +21,23 @@ class ScheduleRegulerController extends Controller
 
     public function create()
     {
-        $data = DB::select("SELECT sr.`id`, sr.`date_departure`, sr.`destination`, sr.`type_bus`,
-        concat(a.armada_merk,' - ',a.armada_no_police) as armada,
-        (SELECT e.employee_name FROM `employees` e WHERE e.id = sr.`driver_1`) AS driver_1,
-        (SELECT e.employee_name FROM `employees` e WHERE e.id = sr.`driver_2`) AS driver_2,
-        (SELECT e.employee_name FROM `employees` e WHERE e.id = sr.`conductor`) AS conductor
-        FROM `schedule_regulers` sr
-        INNER JOIN `armadas` a ON sr.`id_armada` = a.`id` ORDER BY type_bus, date_departure");
+        $data = ScheduleReguler::select(
+            'schedule_regulers.id',
+            'schedule_regulers.date_departure',
+            'schedule_regulers.destination',
+            'schedule_regulers.type_bus',
+            DB::raw('CONCAT(armadas.armada_merk, " - ", armadas.armada_no_police) as armada'),
+            DB::raw('(SELECT employee_name FROM employees WHERE id = schedule_regulers.driver_1) AS driver_1'),
+            DB::raw('(SELECT employee_name FROM employees WHERE id = schedule_regulers.driver_2) AS driver_2'),
+            DB::raw('(SELECT employee_name FROM employees WHERE id = schedule_regulers.conductor) AS conductor')
+        )
+            ->join('armadas', 'schedule_regulers.id_armada', '=', 'armadas.id')
+            ->orderBy('type_bus')
+            ->orderBy('date_departure')
+            ->get();
+
         return view('admin.transaction.reguler.schedule.display', ["data" => $data]);
+
     }
 
     public function store(Request $request)
