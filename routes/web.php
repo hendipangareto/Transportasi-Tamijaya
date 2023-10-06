@@ -662,6 +662,16 @@ Route::group(
                 Route::prefix('request-gaji')->group(function () {
                     Route::get('/', 'FinanceAccounting\MenuKeuangan\Administrasi\RequestGajiController@index')->name('finance-accounting-menu-keuangan-administrasi-request-gaji-index');
                 });
+                Route::prefix('reservasi-transaksi')->group(function () {
+                    Route::get('/', 'FinanceAccounting\MenuKeuangan\Administrasi\ReservasiTransaksiController@index')->name('finance-accounting-menu-keuangan-administrasi-reservasi-transaksi-index');
+                });
+                Route::prefix('rekap-penagihan-transaksi')->group(function () {
+                    Route::get('/', 'FinanceAccounting\MenuKeuangan\Administrasi\RekapPenagihanTransaksiController@index')->name('finance-accounting-menu-keuangan-administrasi-rekap-penagihan-transaksi-index');
+                });
+                Route::prefix('detail-pembelajaan')->group(function () {
+                    Route::get('/', 'FinanceAccounting\MenuKeuangan\Administrasi\DetailPembelajaanController@index')->name('finance-accounting-menu-keuangan-administrasi-detail-pembelajaan-index');
+                    Route::get('/form-detail', 'FinanceAccounting\MenuKeuangan\Administrasi\DetailPembelajaanController@formDetails')->name('finance-accounting-menu-keuangan-administrasi-detail-pembelajaan-formDetails');
+                });
             });
             #End Peter
 

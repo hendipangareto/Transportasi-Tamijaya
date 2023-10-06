@@ -163,7 +163,7 @@
                         href="{{ route('payment-request.index') }}"><i class="bx bx-exit"></i><span
                             class="menu-title">Request Pembayaran</span></a>
                 </li>
-                <li class=" nav-item"><a href=" "><i class="bx bx-folder"></i><span
+                <li class=" nav-item"><a href=" "><i class='bx bx-customize'></i><span
                             class="menu-title">Master Data</span></a>
                     <ul class="menu-content">
                         <li @if (Request::segment(4) == 'account') class="active" @endif>
@@ -199,7 +199,7 @@
                     </ul>
                 </li>
                 {{--Adminsitrasi Menu keuangan Peter--}}
-                <li class="nav-item"><a href=" "><i class="bx bx-folder"></i><span
+                <li class="nav-item"><a href=" "><i class='bx bxs-grid' ></i></i><span
                             class="menu-title">Administrasi</span></a>
                     <ul class="menu-content">
                         <li @if (Request::segment(3) == 'voucher') class="active" @endif>
@@ -212,12 +212,27 @@
                                     class="bx bx-right-arrow-alt"></i><span
                                     class="menu-item ">Request Gaji</span></a>
                         </li>
+                        <li @if (Request::segment(3) == 'reservasi-transaksi') class="active" @endif>
+                            <a href="{{route('finance-accounting-menu-keuangan-administrasi-reservasi-transaksi-index')}}"><i
+                                    class="bx bx-right-arrow-alt"></i><span
+                                    class="menu-item ">Reservasi Transaksi</span></a>
+                        </li>
+                        <li @if (Request::segment(3) == 'detail-pembelajaan') class="active" @endif>
+                            <a href="{{route('finance-accounting-menu-keuangan-administrasi-detail-pembelajaan-index')}}"><i
+                                    class="bx bx-right-arrow-alt"></i><span
+                                    class="menu-item ">Detail Pembelajaan</span></a>
+                        </li>
+                        <li @if (Request::segment(3) == 'rekap-penagihan-transaksi') class="active" @endif>
+                            <a href="{{route('finance-accounting-menu-keuangan-administrasi-rekap-penagihan-transaksi-index')}}"><i
+                                    class="bx bx-right-arrow-alt"></i><span
+                                    class="menu-item ">Rekap Penagihan Transaksi</span></a>
+                        </li>
                     </ul>
                 </li>
                 {{--End Adminsitrasi Menu keuangan Peter--}}
 
                 {{--Menu keuangan finance accounting Peter--}}
-                <li class="nav-item"><a href=" "><i class="bx bx-folder"></i><span
+                <li class="nav-item"><a href=" "><i class='bx bx-wallet'></i></i><span
                             class="menu-title">Finance</span></a>
                     <ul class="menu-content">
                         <li @if (Request::segment(3) == 'jurnal-umum') class="active" @endif>
@@ -333,7 +348,7 @@
                 <li class=" navigation-header" style="color: #af0303"><span>DATA MASTER</span>
                 </li>
                 <li class="nav-item @if (Request::segment(2) == 'master-data' && Request::segment(3) !== 'armada') open @endif">
-                    <a href=""> <span class="menu-title">
+                    <a href=""><i class='bx bx-customize' ></i><span class="menu-title">
                             MASTER TICKETING</span></a>
                     <ul class="menu-content">
                         <li @if (Request::segment(3) == 'bus') class="active" @endif>
@@ -388,7 +403,7 @@
             @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 6)
 
                 <li class="nav-item @if (Request::segment(2) == 'master-logistik') open @endif">
-                    <a href="#"> <span class="menu-title">PERAWATAN & LOGISTIK</span></a>
+                    <a href="#"><i class='bx bx-right-indent'></i><span class="menu-title">PERAWATAN & LOGISTIK</span></a>
                     <ul class="menu-content">
 
                         <li @if (Request::segment(3) == 'kategori-barang') class="active" @endif>
@@ -427,7 +442,7 @@
             @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 2 || Auth::user()->id_role == 3)
 
                 <li class="nav-item @if (Request::segment(2) == 'master-keuangan' && Request::segment(3) !== 'armada') open @endif">
-                    <a href="#"> <span class="menu-title">
+                    <a href="#"><i class='bx bx-grid-alt'></i><span class="menu-title">
                            MASTER KEUANGAN</span></a>
                     <ul class="menu-content">
                         <li @if (Request::segment(3) == 'akun') class="active" @endif>
@@ -479,7 +494,7 @@
             @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 2 || Auth::user()->id_role == 3)
 
                 <li class="nav-item @if (Request::segment(2) == 'master-' && Request::segment(3) !== 'armada') open @endif">
-                    <a href="#"> <span class="menu-title">
+                    <a href="#"><i class='bx bx-collapse'></i><span class="menu-title">
                            MASTER HRD</span></a>
                     <ul class="menu-content">
                         <li @if (Request::segment(3) == 'office') class="active" @endif>
@@ -505,7 +520,7 @@
             @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 2 || Auth::user()->id_role == 3)
 
                 <li class="nav-item @if (Request::segment(2) == 'master-' && Request::segment(3) !== 'armada') open @endif">
-                    <a href="#"> <span class="menu-title">
+                    <a href="#"><i class='bx bxl-react' ></i><span class="menu-title">
                            MASTER UMUM</span></a>
                     <ul class="menu-content">
                         <li class=" nav-item @if (Request::segment(3) == 'customer') active @endif"><a
