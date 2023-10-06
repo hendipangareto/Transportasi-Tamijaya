@@ -642,6 +642,9 @@ Route::group(
                 Route::prefix('request-gaji')->group(function () {
                     Route::get('/', 'FinanceAccounting\MenuKeuangan\Administrasi\RequestGajiController@index')->name('finance-accounting-menu-keuangan-administrasi-request-gaji-index');
                 });
+                Route::prefix('reservasi-transaksi')->group(function () {
+                    Route::get('/', 'FinanceAccounting\MenuKeuangan\Administrasi\ReservasiTransaksiController@index')->name('finance-accounting-menu-keuangan-administrasi-reservasi-transaksi-index');
+                });
             });
             #End Peter
 
