@@ -653,6 +653,13 @@ Route::group(
                     Route::get('/form-detail', 'FinanceAccounting\MenuKeuangan\Administrasi\DetailPembelajaanController@formDetails')->name('finance-accounting-menu-keuangan-administrasi-detail-pembelajaan-formDetails');
                 });
             });
+
+            Route::prefix('kasir')->group(function () {
+                Route::prefix('daftar-transaksi')->group(function () {
+                    Route::get('/', 'FinanceAccounting\MenuKeuangan\Kasir\DaftarTransaksiController@index')->name('finance-accounting-menu-keuangan-kasir-daftar-transaksi-index');
+                    Route::get('/form-kwitansi', 'FinanceAccounting\MenuKeuangan\Kasir\DaftarTransaksiController@formKwitansi')->name('finance-accounting-menu-keuangan-kasir-daftar-transaksi-formKwitansi');
+                });
+            });
             #End Peter
 
 

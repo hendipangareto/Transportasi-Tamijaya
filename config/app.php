@@ -175,9 +175,11 @@ return [
 
         Barryvdh\DomPDF\ServiceProvider::class,
 
-
 //        excel
         Maatwebsite\Excel\ExcelServiceProvider::class,
+
+        //Barcode
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
     ],
 
     /*
@@ -233,5 +235,6 @@ return [
         'PDF' => Barryvdh\DomPDF\Facade::class,
 
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
     ],
 ];
