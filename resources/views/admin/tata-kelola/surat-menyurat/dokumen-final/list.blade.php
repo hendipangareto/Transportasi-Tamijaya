@@ -68,7 +68,7 @@
                                         </div>
                                     </div>
                                     <h6 class="mt-2">Surat Keluar</h6>
-                                    {{--                                    @include('admin.human-resource.pegawai.kinerja-karyawan.non-prestasi')--}}
+                                    @include('admin.tata-kelola.surat-menyurat.dokumen-final.surat-keluar.modal')
                                 </div>
                                 <div class="tab-pane fade" id="dokumen-final">
                                     <div class="col ml-auto">
@@ -81,7 +81,7 @@
                                         </div>
                                     </div>
                                     <h6 class="mt-2">Kontrak</h6>
-                                    {{--                                    @include('admin.human-resource.pegawai.kinerja-karyawan.non-prestasi')--}}
+                                    @include('admin.tata-kelola.surat-menyurat.dokumen-final.kontrak.modal')
                                 </div>
                             </div>
                         </div>
