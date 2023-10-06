@@ -23,7 +23,8 @@
                 <div class="card-header" style="background-color: #00b3ff">
                     <div class="toolbar row ">
                         <div class="col-md-12 d-flex">
-                            <h4 class="card-title" style="color: black"><b>Surat Menyurat</b>| <i class="bx bx-mail-send"></i>Dokumen Final</h4>
+                            <h6 class="card-title" style="color: black"><b>Surat Menyurat</b>| <i
+                                    class='bx bx-envelope'></i>Dokumen Final</h6>
 
                         </div>
                     </div>
@@ -48,11 +49,12 @@
                                             <a href="" class="btn btn-danger mr-1" data-toggle="modal"
                                                data-target="#TambahSurat"><i class="bx bx-archive-in"></i>Archieve Data</a>
                                             <a href="" class="btn btn-success mr-1" data-toggle="modal"
-                                               data-target="#TambahSurat"><i class="bx bx-plus-circle"></i>Tambah Data</a>
+                                               data-target="#TambahSuratMasuk"><i class="bx bx-plus-circle"></i>Tambah
+                                                Data</a>
                                         </div>
                                     </div>
                                     <h6 class="mt-2">Surat Masuk</h6>
-{{--                                    @include('admin.human-resource.pegawai.kinerja-karyawan.pretasi')--}}
+                                    @include('admin.tata-kelola.surat-menyurat.dokumen-final.surat-masuk.list')
                                 </div>
 
                                 <div class="tab-pane fade" id="horizontal-profile">
@@ -61,11 +63,12 @@
                                             <a href="" class="btn btn-danger mr-1" data-toggle="modal"
                                                data-target="#TambahSurat"><i class="bx bx-archive-in"></i>Archieve Data</a>
                                             <a href="" class="btn btn-success mr-1" data-toggle="modal"
-                                               data-target="#TambahSurat"><i class="bx bx-plus-circle"></i>Tambah Data</a>
+                                               data-target="#TambahSurat"><i class="bx bx-plus-circle"></i>Tambah
+                                                Data</a>
                                         </div>
                                     </div>
                                     <h6 class="mt-2">Surat Keluar</h6>
-{{--                                    @include('admin.human-resource.pegawai.kinerja-karyawan.non-prestasi')--}}
+                                    {{--                                    @include('admin.human-resource.pegawai.kinerja-karyawan.non-prestasi')--}}
                                 </div>
                                 <div class="tab-pane fade" id="dokumen-final">
                                     <div class="col ml-auto">
@@ -73,7 +76,8 @@
                                             <a href="" class="btn btn-danger mr-1" data-toggle="modal"
                                                data-target="#TambahSurat"><i class="bx bx-archive-in"></i>Archieve Data</a>
                                             <a href="" class="btn btn-success mr-1" data-toggle="modal"
-                                               data-target="#TambahSurat"><i class="bx bx-plus-circle"></i>Tambah Data</a>
+                                               data-target="#TambahSurat"><i class="bx bx-plus-circle"></i>Tambah
+                                                Data</a>
                                         </div>
                                     </div>
                                     <h6 class="mt-2">Kontrak</h6>
@@ -89,7 +93,7 @@
         </div>
     </div>
 
-{{--    @include('admin.human-resource.pegawai.request-gaji.form-detail')--}}
+    {{--    @include('admin.human-resource.pegawai.request-gaji.form-detail')--}}
 @endsection
 
 @push('page-scripts')

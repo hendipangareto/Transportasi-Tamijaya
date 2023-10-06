@@ -65,8 +65,6 @@
                                                       >
                                                     <i class="bx bx-download font-size-base"></i>
                                                 </a>
-
-
                                             </div>
                                         </td>
                                     </tr>
