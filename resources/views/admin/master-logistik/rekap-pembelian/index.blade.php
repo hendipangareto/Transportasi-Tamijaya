@@ -61,55 +61,64 @@
 
 
                         <form action="" method="">
-                            <div class="table-responsive mt-2" id="show-data-filter-accounting">
-                                <table class="table table-bordered table-hover" id="rekap-pengajuan-pembelian">
-                                    <thead>
-                                    <tr class="text-center">
-                                        <th class="w-3p">No</th>
-                                        <th class="w-3p">Tanggal Pengajuan</th>
-                                        <th class="w-10p">No Pengajuan</th>
-                                        <th class="w-5p">Dana Diajukan <br> (Rp)</th>
-                                        <th class="w-5p">Status Pengajuan <br> Dana</th>
-                                        <th class="w-2p">Action</th>
-                                    </tr>
-                                    </thead>
-                                    @php
-                                        $totalLunas = 0;
-                                        $totalHutang = 0;
-                                    @endphp
-
-                                    <tbody>
-
-                                    @forelse($RekapPembelian as $item)
-                                        @php
-                                            $totalLunas += ($item->cara_bayar === 'lunas') ? ($item->kuantitas * $item->harga) : 0;
-                                            $totalHutang += ($item->cara_bayar === 'hutang') ? ($item->kuantitas * $item->harga) : 0;
-                                        @endphp
+                            <form action="" method="">
+                                <div class="table-responsive mt-2" id="show-data-filter-accounting">
+                                    <table class="table table-bordered table-hover" id="rekap-pengajuan-pembelian">
+                                        <thead>
                                         <tr class="text-center">
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $item->tanggal_pengajuan }}</td>
-                                            <td>{{ $item->kode_pengajuan }}</td>
-                                            <td> @currency($totalLunas + $totalHutang) </td>
-                                            <td> </td>
-
-                                            <td class="text-center">
-                                                <div class="d-flex">
-                                                    <a class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"
-                                                         href="{{ route('master-logistik-detail-rekap-pembelian', $item->id) }}">
-                                                        <i class="bx bx-info-circle font-size-base"></i>
-                                                    </a>
-                                                </div>
-                                            </td>
+                                            <th class="w-3p">No</th>
+                                            <th class="w-3p">Tanggal Pengajuan</th>
+                                            <th class="w-10p">No Pengajuan</th>
+                                            <th class="w-5p">Dana Diajukan <br> (Rp)</th>
+                                            <th class="w-5p">Status Pengajuan <br> Dana</th>
+                                            <th class="w-2p">Action</th>
                                         </tr>
-                                    @empty
-                                        <tr>
-                                            <td colspan="6" class="text-center">Tidak ada data Pengajuan Pembelian.</td>
-                                        </tr>
-                                    @endforelse
-                                    </tbody>
+                                        </thead>
+                                        @php
+                                            $totalLunas = 0;
+                                            $totalHutang = 0;
+                                        @endphp
 
-                                </table>
-                            </div>
+                                        <tbody>
+
+                                        @forelse($RekapPembelian as $item)
+                                            @php
+                                                $totalLunas += ($item->cara_bayar === 'lunas') ? ($item->kuantitas * $item->harga) : 0;
+                                                $totalHutang += ($item->cara_bayar === 'hutang') ? ($item->kuantitas * $item->harga) : 0;
+                                            @endphp
+                                            <tr class="text-center">
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $item->tanggal_pengajuan }}</td>
+                                                <td>{{ $item->kode_pengajuan }}</td>
+                                                <td>@currency($totalLunas + $totalHutang)</td>
+                                                <td>{{ $item->approval_status }}</td> <!-- Display approval status here -->
+
+                                                <td class="text-center">
+                                                    <div class="d-flex">
+                                                        <a class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"
+                                                           href="{{ route('master-logistik-detail-rekap-pembelian', $item->id) }}">
+                                                            <i class="bx bx-info-circle font-size-base"></i>
+                                                        </a>
+                                                        @if ($item->approval_status === 'Request') <!-- Check if approval status is 'Request' -->
+                                                        <a class="badge-circle badge-circle-sm badge-circle-success mr-1 pointer"
+                                                           href="{{ route('approve-pengajuan-pembelian', $item->id) }}">
+
+                                                        </a>
+                                                        @endif
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="6" class="text-center">Tidak ada data Pengajuan Pembelian.</td>
+                                            </tr>
+                                        @endforelse
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                            </form>
+
 
                         </form>
                     </div>

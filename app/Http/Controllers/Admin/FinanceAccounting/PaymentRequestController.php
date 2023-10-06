@@ -16,11 +16,7 @@ use App\Models\General\Notification;
 
 class PaymentRequestController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         return view('admin.finance-accounting.payment-request.index');

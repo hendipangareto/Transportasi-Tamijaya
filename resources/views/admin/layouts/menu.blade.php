@@ -530,6 +530,58 @@
                     </ul>
                 </li>
             @endif
+
+
+            @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 2 || Auth::user()->id_role == 3)
+
+                <li class="nav-item @if (Request::segment(2) == 'master-' && Request::segment(3) !== 'armada') open @endif">
+                    <a href="#"> <span class="menu-title">
+                           TATA KELOLA</span></a>
+                    <ul class="menu-content">
+                        <li @if (Request::segment(3) == 'ase') class="active" @endif>
+                            <a href=""><i class="bx bx-calendar"></i><span
+                                    class="menu-item">Jadwal Bus</span></a>
+                            <ul class="menu-content">
+
+                                <li @if (Request::segment(4) == 'tipe-aset') class="active" @endif>
+                                    <a href=" "><i
+                                            class="bx bx-right-arrow-alt"></i><span
+                                            class="menu-item">Bus Regules</span></a>
+                                </li>
+
+                                <li @if (Request::segment(4) == 'kategori-aset') class="active" @endif>
+                                    <a href=" "><i
+                                            class="bx bx-right-arrow-alt"></i><span
+                                            class="menu-item">Bus Parawisata</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li @if (Request::segment(2) == 'data-kelola') class="active" @endif>
+                            <a href=""><i class="bx bx-file-find"></i><span
+                                    class="menu-item">Surat Menyurat</span></a>
+                            <ul class="menu-content">
+
+                                <li @if (Request::segment(3) == 'surat-menyurat') class="active" @endif>
+                                    <a href="{{ route('data-kelola.surat-menyurat.list-template-surat') }}"><i
+                                            class="bx bx-right-arrow-alt"></i><span
+                                            class="menu-item">Template Surat</span></a>
+                                </li>
+
+                                <li @if (Request::segment(3) == 'dokumen-final') class="active" @endif>
+                                    <a href="{{ route('data-kelola.surat-menyurat.list-dokumen-final') }}"><i
+                                            class="bx bx-right-arrow-alt"></i><span
+                                            class="menu-item">Dokumen Final</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            @endif
+
+
+
+
+
             @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 7)
                 <li class=" navigation-header" style="color: darkred"><span>LOGISTIK</span>
                 </li>
@@ -541,12 +593,12 @@
                                     class="bx bx-right-arrow-alt"></i><span
                                     class="menu-item ">Pengajuan Pembelian</span></a>
                         </li>
-                        <li @if (Request::segment(4) == 'daftar-gaji') class="active" @endif>
+                        <li @if (Request::segment(4) == 'rekap-pembelian') class="active" @endif>
                             <a href="{{ route('master-logistik-list-rekap-pembelian') }}"><i
                                     class="bx bx-right-arrow-alt"></i><span
                                     class="menu-item ">Rekap Pengajuan Pembelian</span></a>
                         </li>
-                        <li @if (Request::segment(4) == 'daftar-gaji') class="active" @endif>
+                        <li @if (Request::segment(4) == 'laporan-pembelian') class="active" @endif>
                             <a href="{{ route('master-logistik-laporan-pengajuan-pembelian') }}"><i
                                     class="bx bx-right-arrow-alt"></i><span
                                     class="menu-item ">Laporan Pembelian</span></a>

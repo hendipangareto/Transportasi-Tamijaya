@@ -126,7 +126,7 @@ Route::group(
             Route::prefix('perawatan-pemeliharaan')->group(function () {
                 Route::prefix('sopir')->group(function () {
                     Route::get('/check-fisik-layanan', 'PerawatanPemeliharaan\Sopir\CekFisikLayananController@listCheckFisik')->name('perawatan-pemeliharaan.sopir.check-fisik-layanan');
-                    Route::get('/get-data-armada', 'PerawatanPemeliharaan\Sopir\CekFisikLayananController@getArmada')->name('perawatan-pemeliharaan.sopir.get-data-armada');
+                    Route::get('/get-armada', 'PerawatanPemeliharaan\Sopir\CekFisikLayananController@getArmada')->name('perawatan-pemeliharaan.sopir.get-armada');
 
                     Route::post('/simpan-check-fisik-layanan', 'PerawatanPemeliharaan\Sopir\CekFisikLayananController@SumpanCheckList')->name('perawatan-pemeliharaan.sopir.simpan-check-fisik-layanan');
 
@@ -245,6 +245,24 @@ Route::group(
                 Route::get('/cetak-pdf-agent', 'HumanResource\AgentController@AgentPDF')->name('human-resource.data-agent.cetak-pdf-agent');
             });
 
+
+
+//            ======================TATA KELOLA==================================
+            Route::prefix('data-kelola')->group(function () {
+
+                Route::prefix('surat-menyurat')->group(function () {
+                    Route::get('/list-template-surat', 'TataKelola\TemplateSuratController@getSurat')->name('data-kelola.surat-menyurat.list-template-surat');
+                    Route::post('/simpan-template-surat', 'TataKelola\TemplateSuratController@SimpanSurat')->name('data-kelola.surat-menyurat.simpan-template-surat');
+                    Route::get('/download-pdf/{filename}', 'TataKelola\TemplateSuratController@downloadPdf')->name('download-pdf');
+
+                });
+
+                Route::prefix('dokumen-final')->group(function () {
+                    Route::get('/list-dokumen-final', 'TataKelola\DokumenFinalController@getDokumen')->name('data-kelola.surat-menyurat.list-dokumen-final');
+                });
+
+            });
+
             //MASTER KEUANGAN
             Route::prefix('master-keuangan')->group(function () {
                 Route::prefix('akun')->group(function () {
@@ -253,6 +271,7 @@ Route::group(
                     Route::post('/update-akun/{id}', 'MasterKeuangan\AkunController@UpdateAkun')->name('master-keuangan.akun.update-akun');
                     Route::get('/delete-akun/{id}', 'MasterKeuangan\AkunController@DeleteAkun')->name('master-keuangan.akun.delete-akun');
                 });
+
                 Route::prefix('sub-akun')->group(function () {
                     Route::get('/list-sub-akun', 'MasterKeuangan\SubAkunController@getListSubAkun')->name('master-keuangan.sub-akun.list-sub-akun');
                     Route::post('/tambah-sub-akun', 'MasterKeuangan\SubAkunController@TambahSubAkun')->name('master-keuangan.sub-akun.tambah-sub-akun');
@@ -389,7 +408,6 @@ Route::group(
                 Route::prefix('rekap-keluar-masuk-logistik')->group(function () {
                     Route::get('/list-data-keluar', 'MasterLogistik\RekapKeluarMasuk\Keluar\LogistikKeluarController@getRekapKeluar')->name('master-logistik.rekap-keluar-logistik.list-data-keluar');
 
-//
                     Route::prefix('sparepart')->group(function () {
                         Route::get('/list-data', 'MasterLogistik\RekapKeluarMasuk\Keluar\SparePartController@getSparepart')->name('master-logistik-logbook-sparepart-list-data');
                     });
@@ -422,6 +440,8 @@ Route::group(
                         Route::get('/list-pengajuan-pembelian', 'MasterLogistik\PengajuanPembelianController@getPengajuanPembelian')->name('master-logistik-list-pengajuan-pembelian');
                         Route::post('/tambah-pengajuan-pembelian', 'MasterLogistik\PengajuanPembelianController@TambahPengajuanPembelian')->name('master-logistik-tambah-pengajuan-pembelian');
                         Route::post('/update-pengajuan-pembelian/{id}', 'MasterLogistik\PengajuanPembelianController@UpdatePengajuanPembelian')->name('master-logistik-update-pengajuan-pembelian');
+
+                        Route::post('/approve-pengajuan-pembelian/{id}', 'MasterLogistik\PengajuanPembelianController@approvePengajuanPembelian')->name('master-logistik-approve-pengajuan-pembelian');
 
                         Route::delete('/delete-pengajuan-pembelian', 'MasterLogistik\PengajuanPembelianController@DeletePengajuanPembelian')->name('master-logistik-delete-pengajuan-pembelian');
                     });

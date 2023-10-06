@@ -45,23 +45,21 @@
                                         <input type="text" class="form-control" placeholder="" id="item" name="item"/>
                                     </div>
                                     <div class="col-md-6 col-12 mb-2">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label for="flatpickr-multi" class="form-label">Kuantitas*</label>
-                                                <input type="number" class="form-control" placeholder="Kuantitas"
-                                                       id="kuantitas" name="kuantitas"/>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="flatpickr-multi" class="form-label">Satuan*</label>
-                                                <select name="satuan_id" id="satuan_id" class="form-control" required>
-                                                    <option selected disabled>Pilih Satuan</option>
-                                                    @foreach($satuan as $item)
-                                                        <option value="{{$item->id}}">{{ $item->nama_satuan}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
+                                        <label for="flatpickr-multi" class="form-label">Kuantitas*</label>
+                                        <input type="number" class="form-control" placeholder="Kuantitas"
+                                               id="kuantitas" name="kuantitas"/>
                                     </div>
+                                    <div class="col-md-6 col-12 mb-2">
+                                        <label for="flatpickr-multi" class="form-label">Satuan*</label>
+                                        <select name="satuan_id" id="satuan_id" class="form-control" required>
+                                            <option selected disabled>Pilih Satuan</option>
+                                            @foreach($satuan as $item)
+                                                <option value="{{$item->id}}">{{ $item->nama_satuan}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+
                                     <div class="col-md-12 col-12 mb-2">
                                         <label for="flatpickr-range" class="form-label">Harga Satuan</label>
                                         <input type="number" class="form-control" placeholder="" id="harga" name="harga"/>

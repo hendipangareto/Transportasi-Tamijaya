@@ -43,8 +43,8 @@
                                             <div class="col-md-4 mb-2">
                                                 <label class="form-label" for="formValidationEmail">Titik Keberangkatan
                                                     :</label>
-                                                <input class="form-control" type="text" id="pick_point"
-                                                       name="pick_points" readonly/>
+                                                <input class="form-control" type="text" id="id_pick_point"
+                                                       name="id_pick_point" readonly/>
                                             </div>
                                             <div class="col-md-4 mb-2">
                                                 <label class="form-label" for="formValidationEmail">Tipe Armada
@@ -147,29 +147,35 @@
         $(document).ready(function () {
             $('#pegawai_select').change(function () {
                 var armadaId = $(this).val();
-                console.log("armadaId: " + armadaId)
+                console.log("armadaId: " + armadaId);
 
                 if (armadaId) {
                     $.ajax({
                         type: "GET",
-                        url: "{{route('perawatan-pemeliharaan.sopir.get-data-armada')}}",
-                        data: {'id_armada': armadaId},
+                        url: "{{ route('perawatan-pemeliharaan.sopir.get-armada') }}",
+                        data: { 'id_armada': armadaId },
                         success: function (data) {
-                            console.log(JSON.stringify(data))
+                            console.log(JSON.stringify(data));
                             if (data) {
-                                $('#pick_point').val(data.pick_point);
+                                $('#id_pick_point').val(data.id_pick_point);
                                 $('#armada_category').val(data.armada_category);
-                                $('#position_id').val(data.position_name);
+                                $('#armada_type').val(data.armada_type);
+                                $('#armada_no_police').val(data.armada_no_police);
                             }
+                        },
+                        error: function () {
+
                         }
                     });
                 } else {
-                    $('#pick_point').val('');
+                    $('#id_pick_point').val('');
                     $('#armada_category').val('');
-                    $('#position_id').val('');
+                    $('#armada_no_police').val('');
                 }
             });
         });
+
+
 
     </script>
 @endpush
