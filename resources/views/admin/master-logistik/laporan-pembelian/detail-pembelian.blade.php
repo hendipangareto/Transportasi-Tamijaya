@@ -75,7 +75,7 @@
                                     <th class="w-5p">Harga Satuan (Rp)</th>
                                     <th class="w-5p">Harga Total (Rp)</th> <!-- New column for Harga Total -->
                                     <th class="w-10p">Status Transaksi</th>
-{{--                                    <th class="w-10p">Action</th>--}}
+                                    {{--                                    <th class="w-10p">Action</th>--}}
                                 </tr>
                                 </thead>
 
@@ -102,27 +102,27 @@
                                         </td>
                                         <!-- Calculate and display Harga Total -->
                                         <td>{{ $item->cara_bayar }}</td>
-{{--                                        <td class="text-center">--}}
-{{--                                            <div class="d-flex">--}}
-{{--                                                <div--}}
-{{--                                                    class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"--}}
-{{--                                                    data-toggle="modal"--}}
-{{--                                                    data-target="#DetailSubBagian-{{ $item->id }}">--}}
-{{--                                                    <i class="bx bx-info-circle font-size-base"></i>--}}
-{{--                                                </div>--}}
-{{--                                                <div--}}
-{{--                                                    class="badge-circle badge-circle-sm badge-circle-warning mr-1 pointer"--}}
-{{--                                                    data-toggle="modal"--}}
-{{--                                                    data-target="#UpdatePengajuanPembelian-{{ $item->id }}">--}}
-{{--                                                    <i class="bx bx-edit font-size-base"></i>--}}
-{{--                                                </div>--}}
-{{--                                                <div--}}
-{{--                                                    class="badge-circle badge-circle-sm badge-circle-danger pointer delete-button "--}}
-{{--                                                    data-id="{{ $item->id }}">--}}
-{{--                                                    <i class="bx bx-trash font-size-base"></i>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                        </td>--}}
+                                        {{--                                        <td class="text-center">--}}
+                                        {{--                                            <div class="d-flex">--}}
+                                        {{--                                                <div--}}
+                                        {{--                                                    class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"--}}
+                                        {{--                                                    data-toggle="modal"--}}
+                                        {{--                                                    data-target="#DetailSubBagian-{{ $item->id }}">--}}
+                                        {{--                                                    <i class="bx bx-info-circle font-size-base"></i>--}}
+                                        {{--                                                </div>--}}
+                                        {{--                                                <div--}}
+                                        {{--                                                    class="badge-circle badge-circle-sm badge-circle-warning mr-1 pointer"--}}
+                                        {{--                                                    data-toggle="modal"--}}
+                                        {{--                                                    data-target="#UpdatePengajuanPembelian-{{ $item->id }}">--}}
+                                        {{--                                                    <i class="bx bx-edit font-size-base"></i>--}}
+                                        {{--                                                </div>--}}
+                                        {{--                                                <div--}}
+                                        {{--                                                    class="badge-circle badge-circle-sm badge-circle-danger pointer delete-button "--}}
+                                        {{--                                                    data-id="{{ $item->id }}">--}}
+                                        {{--                                                    <i class="bx bx-trash font-size-base"></i>--}}
+                                        {{--                                                </div>--}}
+                                        {{--                                            </div>--}}
+                                        {{--                                        </td>--}}
                                     </tr>
                                 @empty
                                     <tr>
@@ -135,15 +135,8 @@
                             <div class="row mt-5">
                                 <div class="col-md-12 col-12 ">
                                     <div class="row">
-                                        <div class="col-md-4">
-                                            {{--                                            <div class="card shadow-none bg-transparent border border-darken-4 mb-3">--}}
-                                            {{--                                                <div class="card-body">--}}
-                                            {{--                                                    <h5 class="card-title mt-1">Total Lunas/Cash</h5>--}}
-                                            {{--                                                    <p class="card-text" style="color: #9f191f">--}}
-                                            {{--                                                        @currency($totalLunas)--}}
-                                            {{--                                                    </p>--}}
-                                            {{--                                                </div>--}}
-                                            {{--                                            </div>--}}
+                                        <div class="col-md-6">
+
                                             <div class="mb-2 row">
                                                 <label
                                                     class="col-md-6  col-form-label">Total Nota</label>
@@ -183,8 +176,26 @@
                                                            type="text" readonly/>
                                                 </div>
                                             </div>
+                                            <hr>
+                                            <div class="mb-1 row">
+                                                <label
+                                                    class="col-md-6 col-form-label">Total Belanja</label>
+                                                <label for="html5-url-input"
+                                                       class="col-md-1 col-form-label"> = </label>
+                                                <div class="col-md-5">
+                                                    <input class="form-control" name="status_absensi" id="absensi"
+                                                           type="text" readonly/>
+                                                </div>
+                                            </div>
+                                            <div class="mb-1 row">
+                                                <div class="col-md-7 col-form-label">
+                                                    <label for="">Lampiran Dokumen</label>
+                                                    <input class="form-control mt-1" name="status_absensi" id="absensi"
+                                                                                           type="file"/>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <div class="card shadow-none bg-transparent border border-darken-4 mb-3">
                                                 <div class="card-body">
                                                     <h5 class="card-title mt-1">Total Hutang</h5>
@@ -193,17 +204,8 @@
                                                     </p>
                                                 </div>
                                             </div>
-
-
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="row">
-                                        <div class="col-md-6">
-
-                                        </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-3">
                                             <div class="card shadow-none bg-transparent border border-darken-4 mb-3">
                                                 <div class="card-body">
                                                     <h5 class="card-title mt-1">Total Pengajuan</h5>
@@ -215,7 +217,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                             <div class="card-header  pb-0  d-flex justify-content-between">
                                 <h4 class="card-title"></h4>

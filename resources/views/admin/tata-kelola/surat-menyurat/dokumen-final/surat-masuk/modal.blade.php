@@ -71,7 +71,7 @@
                     <div class="d-flex">
                         <div class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"
                              data-toggle="modal"
-                             data-target="#DetailSurat">
+                             data-target="#DetailSurat-{{ $item->id }}">
                             <i class="bx bx-info-circle font-size-base"></i>
                         </div>
 {{--                        <a href=" " class="badge-circle badge-circle-sm badge-circle-warning mr-1 pointer">--}}
@@ -189,4 +189,96 @@
 </div>
 
 
-
+{{--===================DETAIL SURAT========--}}
+@foreach($dokumen as $item)
+<div class="modal fade text-left" id="DetailSurat-{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="modal-title"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h5 class=" text-center">Detail Surat Masuk</h5>
+                <div class="card">
+                    <div class="table">
+                        <hr style="border-top: 1px dashed #808080;">
+                        <div class="row  ">
+                            <div class="col-md-12">
+                                <div class="form-group row">
+                                    <h6 class="col-sm-5">Tangal Input Surat</h6>
+                                    <div class="col-sm-7">
+                                        : {{ Carbon::parse($item->tanggal_input)->translatedFormat('l, d F Y') }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group row">
+                                    <h6 class="col-sm-5">No Registrasi Surat</h6>
+                                    <div class="col-sm-7">
+                                        :{{  $item->no_registrasi_surat   }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group row">
+                                    <h6 class="col-sm-5">No. Surat</h6>
+                                    <div class="col-sm-7">
+                                        : {{ $item->no_surat}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group row">
+                                    <h6 class="col-sm-5">Tanggal Surat</h6>
+                                    <div class="col-sm-7">
+                                        : {{ Carbon::parse($item->tanggal_surat)->translatedFormat('l, d F Y') }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group row">
+                                    <h6 class="col-sm-5">Pengirim Surat</h6>
+                                    <div class="col-sm-7">
+                                        : {{ $item->pengirim_surat }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group row">
+                                    <h6 class="col-sm-5">Penerima Surat</h6>
+                                    <div class="col-sm-7">
+                                        : {{ $item->penerima_surat }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group row">
+                                    <h6 class="col-sm-5">Keterangan Surat</h6>
+                                    <div class="col-sm-7">
+                                        : {{ $item->keterangan_surat }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr style="border-top: 1px dashed #808080;">
+                    </div>
+                    <div class="row ml-1 justify-content-lg-end">
+                        <button type="button" class="btn btn-secondary mr-1" data-dismiss="modal"> Kembali ➡
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach

@@ -73,6 +73,7 @@ class LaporanPembelianController
             $laporan->no_rekening = $request->no_rekening;
             $laporan->catatan_laporan_pembelian = $request->catatan_laporan_pembelian;
             $laporan->batas_pembayaran = $request->batas_pembayaran;
+            $laporan->pengajuan_pembelian_id =   1;
 
 
 //            dd($laporan);

@@ -8,7 +8,7 @@
                     <i class="bx bx-x"></i>
                 </button>
             </div>
-            <form action="{{ route('data-kelola.surat-menyurat.simpan-template-surat') }}" method="post"
+            <form action="{{ route('data-kelola.surat-menyurat.tambah-surat-keluar') }}" method="post"
                   enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">

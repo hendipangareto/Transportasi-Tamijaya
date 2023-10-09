@@ -135,8 +135,8 @@
                     const object = document.createElement('object');
                     object.data = URL.createObjectURL(file);
                     object.type = 'application/pdf';
-                    object.width = '30%';
-                    // object.height = '500px'; // Adjust the height as needed
+                    object.width = '100%';
+
 
                     filePreview.innerHTML = '';
                     filePreview.appendChild(object);

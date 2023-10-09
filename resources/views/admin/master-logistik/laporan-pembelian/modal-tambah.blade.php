@@ -78,7 +78,7 @@
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <label for="flatpickr-inline" class="form-label">Nomor Rekening</label>
-                                        <input type="date" class="form-control mb-1" placeholder=" "
+                                        <input type="number" class="form-control mb-1" placeholder=" "
                                                id="no_rekening" name="no_rekening"/>
                                     </div>
                                     <div class="col-md-6 col-12">

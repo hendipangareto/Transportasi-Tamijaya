@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin\TataKelola;
 use App\Http\Controllers\Controller;
 use App\Models\TataKelola\DokumenFinal;
 
+use App\Models\TataKelola\Kontrak;
+use App\Models\TataKelola\SuratKeluar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -15,7 +17,9 @@ class DokumenFinalController extends Controller
     public function getDokumen()
     {
         $dokumen = DokumenFinal::get();
-        return view('admin.tata-kelola.surat-menyurat.dokumen-final.list', compact('dokumen'));
+        $SuratKeluar = SuratKeluar::all();
+        $kontrak    = Kontrak::get();
+        return view('admin.tata-kelola.surat-menyurat.dokumen-final.list', compact('dokumen','SuratKeluar', 'kontrak'));
     }
 
     public function TambahDokumen(Request $request)

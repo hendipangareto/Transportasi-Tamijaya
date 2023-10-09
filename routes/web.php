@@ -263,6 +263,18 @@ Route::group(
                     Route::delete('/delete-dokumen-final', 'TataKelola\DokumenFinalController@HapusDokumen')->name('data-kelola.surat-menyurat.delete-dokumen-final');
                 });
 
+                Route::prefix('surat-keluar')->group(function () {
+                    Route::get('/list-surat-keluar', 'TataKelola\SuratKeluarController@getSuratKeluar')->name('data-kelola.surat-menyurat.list-surat-keluar');
+                    Route::post('/tambah-surat-keluar', 'TataKelola\SuratKeluarController@TambahSuratKeluar')->name('data-kelola.surat-menyurat.tambah-surat-keluar');
+                    Route::delete('/delete-surat-keluar', 'TataKelola\SuratKeluarController@HapusSuratKeluar')->name('data-kelola.surat-menyurat.delete-surat-keluar');
+                });
+
+                Route::prefix('kontraks')->group(function () {
+                    Route::get('/list-kontrak', 'TataKelola\KontrakController@getKontrak')->name('data-kelola.surat-menyurat.list-kontrak');
+                    Route::post('/tambah-kontrak', 'TataKelola\KontrakController@TambahKontrak')->name('data-kelola.surat-menyurat.tambah-kontrak');
+                    Route::delete('/delete-kontrak', 'TataKelola\KontrakController@HapusKontrak')->name('data-kelola.surat-menyurat.delete-kontrak');
+                });
+
             });
 
             //MASTER KEUANGAN
@@ -442,8 +454,6 @@ Route::group(
                         Route::get('/list-pengajuan-pembelian', 'MasterLogistik\PengajuanPembelianController@getPengajuanPembelian')->name('master-logistik-list-pengajuan-pembelian');
                         Route::post('/tambah-pengajuan-pembelian', 'MasterLogistik\PengajuanPembelianController@TambahPengajuanPembelian')->name('master-logistik-tambah-pengajuan-pembelian');
                         Route::post('/update-pengajuan-pembelian/{id}', 'MasterLogistik\PengajuanPembelianController@UpdatePengajuanPembelian')->name('master-logistik-update-pengajuan-pembelian');
-
-
 
                         Route::delete('/delete-pengajuan-pembelian', 'MasterLogistik\PengajuanPembelianController@DeletePengajuanPembelian')->name('master-logistik-delete-pengajuan-pembelian');
                     });

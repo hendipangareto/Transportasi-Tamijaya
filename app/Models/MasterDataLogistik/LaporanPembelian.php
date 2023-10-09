@@ -12,7 +12,7 @@ class LaporanPembelian extends Model
         'kode_laporan_pembelian',
         'kuantitas',
         'satuan_id',
-        'kuantitas',
+
         'harga_satuan',
         'cara_bayar',
         'tipe_bayar',

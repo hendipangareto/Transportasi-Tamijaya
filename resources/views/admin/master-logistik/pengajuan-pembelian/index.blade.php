@@ -102,15 +102,13 @@
                                         <td><b style="color: {{ ($item->cara_bayar === 'lunas') ? '#0077ff' : ($item->cara_bayar === 'hutang' ? '#ff7e00' : '') }};  ">{{ $item->cara_bayar }}</b></td>
 
 {{--                                        <td style="background-color: #0077ff"></td>--}}
-                                    @if($item->status == null)
+                                        @if($item->status == null)
                                             <td><label class="btn btn-warning">Belum disetujui</label></td>
                                         @elseif($item->status == 1)
                                             <td><label class="btn btn-success">Disetujui</label></td>
                                         @elseif($item->status == 2)
                                             <td><label class="btn btn-danger">Ditolak</label></td>
                                         @endif
-
-
 
                                         <td class="text-center">
                                             <div class="d-flex">

@@ -63,7 +63,7 @@
                                             <a href="" class="btn btn-danger mr-1" data-toggle="modal"
                                                data-target="#TambahSurat"><i class="bx bx-archive-in"></i>Archieve Data</a>
                                             <a href="" class="btn btn-success mr-1" data-toggle="modal"
-                                               data-target="#TambahSurat"><i class="bx bx-plus-circle"></i>Tambah
+                                               data-target="#TambahSuratKeluar"><i class="bx bx-plus-circle"></i>Tambah
                                                 Data</a>
                                         </div>
                                     </div>
@@ -76,7 +76,7 @@
                                             <a href="" class="btn btn-danger mr-1" data-toggle="modal"
                                                data-target="#TambahSurat"><i class="bx bx-archive-in"></i>Archieve Data</a>
                                             <a href="" class="btn btn-success mr-1" data-toggle="modal"
-                                               data-target="#TambahSurat"><i class="bx bx-plus-circle"></i>Tambah
+                                               data-target="#TambahKontrak"><i class="bx bx-plus-circle"></i>Tambah
                                                 Data</a>
                                         </div>
                                     </div>
@@ -98,20 +98,19 @@
 
 @push('page-scripts')
     <script>
-
+        // Initialize DataTables when '#Tablesemployee' has a valid value
         $(function () {
-            var countSelected = 0;
-
             if (parseInt($("#Tablesemployee").val()) > 0) {
                 $("#table-list-employees").DataTable();
             }
         });
 
+        // Initialize DataTable for '#table-surat-masuk'
         $(document).ready(function () {
             $("#table-surat-masuk").DataTable();
         });
-// =============================Hapus Data====================================
 
+        // Handle success and error messages using Swal
         @if(session('pesan-berhasil'))
         Swal.fire({
             icon: 'success',
@@ -126,6 +125,7 @@
         });
         @endif
 
+        // Handle delete button click
         $(document).ready(function () {
             $('.delete-button').click(function () {
                 var dokumenId = $(this).data('id');
@@ -155,7 +155,7 @@
                                 });
                             },
                             error: function (error) {
-                                console.log(err);
+                                console.log(error); // Change 'err' to 'error'
                             }
                         });
                     }
@@ -163,95 +163,66 @@
             });
         });
 
-// ====================================================================================================
+        // Add your 'changeDeparment' function here with the correct URL
 
-        const changeDeparment = () => {
-            var id_department = $("#id_department").val();
-            $.ajax({
-                url: ` `,
-                method: "get",
-                dataType: "json",
-                success: function (response) {
-                    var positions = response.data;
-                    var html = `<option value="">Silahkan Pilih Jabatan</option>`;
-                    positions.forEach(position => {
-                        html += `<option value="${position.id}">${position.position_name}</option>`;
-                    });
-                    $("#id_position").html(html)
-                },
-                error: function (err) {
-                    console.log(err);
-                }
-            });
-        }
+        // Initialize DataTable for '#table-employee'
         $(document).ready(function () {
             $("#table-employee").DataTable();
         });
 
-
+        // Initialize tabs
         $(document).ready(function () {
             $('#home-list-item').tab('show');
+            $('.list-group-item').on('click', function (e) {
+                e.preventDefault();
+                $(this).tab('show');
+            });
         });
 
-        $('.list-group-item').on('click', function (e) {
-            e.preventDefault();
-            $(this).tab('show');
-        });
+        // Add your 'previewFile' function here
 
-
+        // Handle delete button click for surat keluar
         $(document).ready(function () {
-            $('#prestasi-pegawai').tab('show');
+            $('.delete-data').click(function () {
+                var SuratKeluarId = $(this).data('id');
+
+                Swal.fire({
+                    title: "Yakin akan menghapus data?",
+                    text: "Data yang dihapus tidak dapat dikembalikan",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Ya, hapus!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: '{{ route('data-kelola.surat-menyurat.delete-surat-keluar') }}',
+                            type: 'DELETE',
+                            data: {
+                                '_token': '{{ csrf_token() }}',
+                                'surat_keluar__id': SuratKeluarId
+                            },
+                            success: function (response) {
+                                location.reload();
+                                Toast.fire({
+                                    icon: "success",
+                                    title: "Berhasil menghapus data gaji karyawan"
+                                });
+                            },
+                            error: function (error) {
+                                console.log(error);
+                            }
+                        });
+                    }
+                });
+            });
         });
 
-
-        $('.list-group-item').on('click', function (e) {
-            e.preventDefault();
-            $(this).tab('show');
-        });
-
-
-
-// ====================Preview Data================================================
-        function previewFile() {
-            const fileInput = document.getElementById('lampiran_dokumen_final');
-            const filePreview = document.getElementById('file-preview');
-
-            if (fileInput.files.length > 0) {
-                const file = fileInput.files[0];
-                if (file.type.startsWith('image/')) {
-                    // Display image preview
-                    const reader = new FileReader();
-                    reader.onload = function (e) {
-                        const img = document.createElement('img');
-                        img.src = e.target.result;
-                        img.style.maxWidth = '100%';
-                        img.style.height = 'auto';
-
-                        filePreview.innerHTML = '';
-                        filePreview.appendChild(img);
-                    };
-                    reader.readAsDataURL(file);
-                } else if (file.type === 'application/pdf') {
-
-                    const object = document.createElement('object');
-                    object.data = URL.createObjectURL(file);
-                    object.type = 'application/pdf';
-                    object.width = '100%';
-
-
-                    filePreview.innerHTML = '';
-                    filePreview.appendChild(object);
-                } else {
-                    filePreview.innerHTML = 'File preview is not available for this file type.';
-                }
-            } else {
-                filePreview.innerHTML = '';
-            }
-        }
 
     </script>
-
 @endpush
+
 
 
 
