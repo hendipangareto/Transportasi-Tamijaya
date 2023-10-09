@@ -453,6 +453,7 @@ Route::group(
                         Route::get('/list-rekap-pembelian', 'MasterLogistik\RekapPembelianController@RekapPembelian')->name('master-logistik-list-rekap-pembelian');
                         Route::get('/detail-rekap-pembelian/{id}', 'MasterLogistik\RekapPembelianController@DetailRekapPembelian')->name('master-logistik-detail-rekap-pembelian');
                         Route::get('/setujui-pengajuan-pembelian/{id}', 'MasterLogistik\RekapPembelianController@setujuiPengajuanPembelian')->name('master-logistik-setujui-pengajuan-pembelian');
+                        Route::get('/tolak-pengajuan-pembelian/{id}', 'MasterLogistik\RekapPembelianController@TolakPengajuanPembelian')->name('master-logistik-tolak-pengajuan-pembelian');
                     });
 
                     //Laporan Pembelian

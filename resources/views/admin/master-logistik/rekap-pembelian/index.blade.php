@@ -92,12 +92,25 @@
                                                 <td>{{ $item->kode_pengajuan }}</td>
                                                 <td>@currency($totalLunas + $totalHutang)</td>
 {{--                                                <td>{{ $item->approval_status }}</td>  --}}
-                                                <td>
-                                                    <a href="{{ route('master-logistik-setujui-pengajuan-pembelian', $item->id) }}" class="btn btn-primary" id="btn-setujui-{{ $item->id }}" onclick="changeButtonColor('btn-setujui-{{ $item->id }}')">
-                                                        <i class="bx bx-check-circle"></i>Setujui
-                                                    </a>
-                                                </td>
-
+{{--                                                <td>--}}
+{{--                                                    <a href="{{ route('master-logistik-setujui-pengajuan-pembelian', $item->id) }}" class="btn btn-primary" id="btn-setujui-{{ $item->id }}" onclick="changeButtonColor('btn-setujui-{{ $item->id }}')">--}}
+{{--                                                        <i class="bx bx-check-circle"></i>Setujui--}}
+{{--                                                    </a>--}}
+{{--                                                </td>--}}
+                                                @if($item->status == null)
+                                                    <td>
+                                                        <a href="{{ route('master-logistik-setujui-pengajuan-pembelian', $item->id) }}" class="btn btn-xs btn-primary btn-flat"><i class="fa fa-check"></i> Setujui</a>
+                                                        <a href="{{ route('master-logistik-tolak-pengajuan-pembelian', $item->id) }}" class="btn btn-xs btn-danger btn-flat"><i class="fa"></i> Tolak</a>
+                                                    </td>
+                                                @elseif($item->status == 1)
+                                                    <td>
+                                                        <a href="{{ route('master-logistik-setujui-pengajuan-pembelian', $item->id) }}" class="btn btn-xs btn-primary btn-flat"><i class="bx bx-check-circle"></i>Di Setujui</a>
+                                                    </td>
+                                                @elseif($item->status == 2)
+                                                    <td>
+                                                        <a href="{{ route('master-logistik-tolak-pengajuan-pembelian', $item->id) }}" class="btn btn-xs btn-danger btn-flat"><i class="bx bx-reject"></i>Di Tolak</a>
+                                                    </td>
+                                                @endif
                                                 <td class="text-center">
                                                     <div class="d-flex">
                                                         <a class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"

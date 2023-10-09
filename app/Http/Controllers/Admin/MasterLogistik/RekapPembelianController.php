@@ -37,4 +37,10 @@ class RekapPembelianController extends Controller
         PengajuanPembelian::where('id',$id)->update(['status'=>1]);
         return redirect()->route('master-logistik-list-rekap-pembelian');
     }
+
+    public function TolakPengajuanPembelian($id)
+    {
+        PengajuanPembelian::where('id',$id)->update(['status'=>2]);
+        return redirect()->route('master-logistik-list-rekap-pembelian');
+    }
 }
