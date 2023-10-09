@@ -67,6 +67,17 @@ class PengajuanPembelianController
     }
 
 
+    public function setujuiPengajuanPembelian($id)
+    {
+
+        PengajuanPembelian::where('id',$id)->update(['status'=>1]);
+
+        return redirect()->route('master-logistik-list-pengajuan-pembelian');
+
+    }
+
+
+
     public function UpdatePengajuanPembelian(Request $request, $id)
     {
         DB::beginTransaction();

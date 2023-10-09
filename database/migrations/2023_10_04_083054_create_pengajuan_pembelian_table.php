@@ -20,7 +20,7 @@ class CreatePengajuanPembelianTable extends Migration
             $table->string('item');
             $table->double('harga');
             $table->integer('kuantitas');
-            $table->enum('cara_bayar', ['lunas','hutang']);
+            $table->enum('cara_bayar', ['lunas', 'hutang']);
             $table->unsignedBigInteger('toko_id');
             $table->foreign('toko_id')->references('id')->on('tokos');
             $table->unsignedBigInteger('satuan_id');
@@ -30,6 +30,7 @@ class CreatePengajuanPembelianTable extends Migration
             $table->text('catatan_pembelian')->nullable();
             $table->date('batas_waktu_pembayaran')->nullable();
             $table->date('tanggal_pengajuan')->nullable();
+            $table->integer('status')->nullable();
             $table->timestamps();
         });
     }

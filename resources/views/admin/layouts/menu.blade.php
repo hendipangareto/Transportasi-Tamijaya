@@ -618,7 +618,7 @@
                 <li class=" navigation-header" style="color: darkred"><span>LOGISTIK</span>
                 </li>
                 <li class="nav-item @if (Request::segment(2) == 'master-logistik') open @endif">
-                    <a href=""><i class="bx bx-git-pull-request"></i><span class="menu-title">Pengajuan Pembelian</span></a>
+                    <a href=""><i class="bx bx-cart-alt"></i><span class="menu-title">Pengajuan Pembelian</span></a>
                     <ul class="menu-content">
                         <li @if (Request::segment(4) == 'pengajuan-pembelian') class="active" @endif>
                             <a href="{{ route('master-logistik-list-pengajuan-pembelian') }}"><i

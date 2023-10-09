@@ -31,4 +31,10 @@ class RekapPembelianController extends Controller
 //        dd($RekapPembelian);
         return view('admin.master-logistik.rekap-pembelian.detail', compact('detail','data'));
     }
+
+    public function setujuiPengajuanPembelian($id)
+    {
+        PengajuanPembelian::where('id',$id)->update(['status'=>1]);
+        return redirect()->route('master-logistik-list-rekap-pembelian');
+    }
 }

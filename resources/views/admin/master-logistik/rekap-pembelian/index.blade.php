@@ -91,7 +91,12 @@
                                                 <td>{{ $item->tanggal_pengajuan }}</td>
                                                 <td>{{ $item->kode_pengajuan }}</td>
                                                 <td>@currency($totalLunas + $totalHutang)</td>
-                                                <td>{{ $item->approval_status }}</td> <!-- Display approval status here -->
+{{--                                                <td>{{ $item->approval_status }}</td>  --}}
+                                                <td>
+                                                    <a href="{{ route('master-logistik-setujui-pengajuan-pembelian', $item->id) }}" class="btn btn-primary" id="btn-setujui-{{ $item->id }}" onclick="changeButtonColor('btn-setujui-{{ $item->id }}')">
+                                                        <i class="bx bx-check-circle"></i>Setujui
+                                                    </a>
+                                                </td>
 
                                                 <td class="text-center">
                                                     <div class="d-flex">
@@ -133,6 +138,23 @@
 @push('page-scripts')
     <script>
 
+        function changeButtonColor(buttonId) {
+            var button = document.getElementById(buttonId);
+            var colors = ['btn-success', 'btn-warning', 'btn-info', 'btn-danger'];
+
+            // Fungsi acak untuk memilih indeks warna baru
+            function getRandomColor() {
+                return colors[Math.floor(Math.random() * colors.length)];
+            }
+
+            // Hapus kelas CSS saat ini dan tambahkan warna acak baru
+            for (var i = 0; i < colors.length; i++) {
+                button.classList.remove(colors[i]);
+            }
+
+            var randomColor = getRandomColor();
+            button.classList.add(randomColor);
+        }
         $(document).ready(function () {
             $("#rekap-pengajuan-pembelian").DataTable();
         });

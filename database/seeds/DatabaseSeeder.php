@@ -43,5 +43,8 @@ class DatabaseSeeder extends Seeder
         $this->call(RoleSeeder::class);
 
         $this->call(SatuanSeeder::class);
+        $this->call(KategoriSeeder::class);
+
+        $this->call(BagianSeeder::class);
     }
 }

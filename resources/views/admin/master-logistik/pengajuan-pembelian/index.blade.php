@@ -58,7 +58,8 @@
                             </div>
                         </div>
                         <form action="" method="post">
-                            <table class="table table-bordered table-hover table-responsive-lg" id="table-pengajuan-pembelian">
+                            <table class="table table-bordered table-hover table-responsive-lg"
+                                   id="table-pengajuan-pembelian">
                                 <thead>
                                 <tr class="text-center">
                                     <th class="w-3p">No</th>
@@ -67,12 +68,14 @@
                                     <th class="w-10p">Kuantitas</th>
                                     <th class="w-5p">Satuan</th>
                                     <th class="w-5p">Harga Satuan (Rp)</th>
-                                    <th class="w-5p">Harga Total (Rp)</th> <!-- New column for Harga Total -->
+                                    <th class="w-5p">Harga Total (Rp)</th>
                                     <th class="w-10p">Status Transaksi</th>
+                                    <th class="w-10p">Status Pengajuan</th>
+{{--                                    <th class="w-10p">Action Persetujuan</th>--}}
+
                                     <th class="w-10p">Action</th>
                                 </tr>
                                 </thead>
-
 
 
                                 @php
@@ -93,23 +96,37 @@
                                         <td>{{ $item->kuantitas }}</td>
                                         <td>{{ $item->satuan }}</td>
                                         <td>@currency($item->harga)</td>
-                                        <td><b style="color: #9f191f">@currency($item->kuantitas * $item->harga)</b></td>
-                                        <!-- Calculate and display Harga Total -->
-                                        <td>{{ $item->cara_bayar }}</td>
+                                        <td><b style="color: #9f191f">@currency($item->kuantitas * $item->harga)</b>
+                                        </td>
+
+                                        <td style="background-color: {{ ($item->cara_bayar === 'lunas') ? '#0077ff' : ($item->cara_bayar === 'hutang' ? '#ff7e00' : '') }}; color: whitesmoke">{{ $item->cara_bayar }}</td>
+
+{{--                                        <td style="background-color: #0077ff"></td>--}}
+                                    @if($item->status == null)
+                                            <td><label class="btn btn-warning">Belum disetujui</label></td>
+                                        @elseif($item->status == 1)
+                                            <td><label class="btn btn-success">Disetujui</label></td>
+                                        @endif
+
+
+
                                         <td class="text-center">
                                             <div class="d-flex">
-                                                <div class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"
-                                                     data-toggle="modal"
-                                                     data-target="#DetailSubBagian-{{ $item->id }}">
+                                                <div
+                                                    class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"
+                                                    data-toggle="modal"
+                                                    data-target="#DetailSubBagian-{{ $item->id }}">
                                                     <i class="bx bx-info-circle font-size-base"></i>
                                                 </div>
-                                                <div class="badge-circle badge-circle-sm badge-circle-warning mr-1 pointer"
-                                                     data-toggle="modal"
-                                                     data-target="#UpdatePengajuanPembelian-{{ $item->id }}">
+                                                <div
+                                                    class="badge-circle badge-circle-sm badge-circle-warning mr-1 pointer"
+                                                    data-toggle="modal"
+                                                    data-target="#UpdatePengajuanPembelian-{{ $item->id }}">
                                                     <i class="bx bx-edit font-size-base"></i>
                                                 </div>
-                                                <div class="badge-circle badge-circle-sm badge-circle-danger pointer delete-button "
-                                                     data-id="{{ $item->id }}">
+                                                <div
+                                                    class="badge-circle badge-circle-sm badge-circle-danger pointer delete-button "
+                                                    data-id="{{ $item->id }}">
                                                     <i class="bx bx-trash font-size-base"></i>
                                                 </div>
                                             </div>
@@ -140,7 +157,7 @@
                                             <div class="card shadow-none bg-transparent border border-darken-4 mb-3">
                                                 <div class="card-body">
                                                     <h5 class="card-title mt-1">Total Hutang</h5>
-                                                    <p class="card-text"  style="color: #9f191f">
+                                                    <p class="card-text" style="color: #9f191f">
                                                         @currency($totalHutang)
                                                     </p>
                                                 </div>
@@ -168,16 +185,17 @@
                             </div>
                             <div class="card-header  pb-0  d-flex justify-content-between">
                                 <h4 class="card-title"></h4>
-                                <a href="" class="btn btn-warning mr-1" type="submit"><i class="bx bx-save"></i>Ajukan</a>
+                                <a href="" class="btn btn-warning mr-1" type="submit"><i
+                                        class="bx bx-save"></i>Ajukan</a>
                             </div>
                         </form>
 
 
                     </div>
-                    </div>
                 </div>
             </div>
         </div>
+    </div>
 
 
     @include('admin.master-logistik.pengajuan-pembelian.modal-tambah')
@@ -188,8 +206,6 @@
         $(document).ready(function () {
             $("#table-pengajuan-pembelian").DataTable();
         });
-
-
 
 
         // HAPUS DATA

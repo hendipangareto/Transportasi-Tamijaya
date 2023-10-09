@@ -443,7 +443,7 @@ Route::group(
                         Route::post('/tambah-pengajuan-pembelian', 'MasterLogistik\PengajuanPembelianController@TambahPengajuanPembelian')->name('master-logistik-tambah-pengajuan-pembelian');
                         Route::post('/update-pengajuan-pembelian/{id}', 'MasterLogistik\PengajuanPembelianController@UpdatePengajuanPembelian')->name('master-logistik-update-pengajuan-pembelian');
 
-                        Route::post('/approve-pengajuan-pembelian/{id}', 'MasterLogistik\PengajuanPembelianController@approvePengajuanPembelian')->name('master-logistik-approve-pengajuan-pembelian');
+
 
                         Route::delete('/delete-pengajuan-pembelian', 'MasterLogistik\PengajuanPembelianController@DeletePengajuanPembelian')->name('master-logistik-delete-pengajuan-pembelian');
                     });
@@ -452,6 +452,7 @@ Route::group(
                     Route::prefix('rekap-pembelian')->group(function () {
                         Route::get('/list-rekap-pembelian', 'MasterLogistik\RekapPembelianController@RekapPembelian')->name('master-logistik-list-rekap-pembelian');
                         Route::get('/detail-rekap-pembelian/{id}', 'MasterLogistik\RekapPembelianController@DetailRekapPembelian')->name('master-logistik-detail-rekap-pembelian');
+                        Route::get('/setujui-pengajuan-pembelian/{id}', 'MasterLogistik\RekapPembelianController@setujuiPengajuanPembelian')->name('master-logistik-setujui-pengajuan-pembelian');
                     });
 
                     //Laporan Pembelian

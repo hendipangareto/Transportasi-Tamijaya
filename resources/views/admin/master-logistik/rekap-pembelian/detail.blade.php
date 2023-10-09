@@ -74,11 +74,11 @@
 
                                 <style>
                                     .status-hutang {
-                                        background-color: #bdd3ff; /* Ganti dengan warna yang sesuai untuk status Hutang */
+                                        background-color: #ff7e00;  color: whitesmoke;
                                     }
 
                                     .status-lunas {
-                                        background-color: #fddcc0; /* Ganti dengan warna yang sesuai untuk status Lunas */
+                                        background-color: #0077ff; color: whitesmoke;
                                     }
                                 </style>
                                 @php
