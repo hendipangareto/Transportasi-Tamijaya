@@ -201,7 +201,7 @@
                             type: 'DELETE',
                             data: {
                                 '_token': '{{ csrf_token() }}',
-                                'surat_keluar__id': SuratKeluarId
+                                'keluar_surat_id': SuratKeluarId
                             },
                             success: function (response) {
                                 location.reload();

@@ -47,10 +47,10 @@ class KontrakController extends Controller
             $Kontrak->save();
 
             DB::commit();
-            Session::flash('message', ['Berhasil menyimpan data surat keluar', 'success']);
+            Session::flash('message', ['Berhasil menyimpan data kontrak', 'success']);
         } catch (\Exception $e) {
             DB::rollback();
-            Session::flash('message', ['Gagal menyimpan data surat keluar', 'error']);
+            Session::flash('message', ['Gagal menyimpan data kontrak', 'error']);
         }
 
 //        return back('data-kelola.surat-menyurat.list-dokumen-final');

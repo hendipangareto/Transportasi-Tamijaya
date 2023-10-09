@@ -270,6 +270,18 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group row">
+                                    <h6 class="col-sm-5">Lampiran Surat</h6>
+                                    <div class="col-sm-7">
+                                        : <a href="{{ route('download-pdf-surat', ['filename' => $item->lampiran_dokumen_final]) }}">{{ $item->lampiran_dokumen_final }}</a>
+                                        <img src="{{ asset('storage/dokumen-final/' . $item->lampiran_dokumen_final) }}" width="200" height="200" alt="Gambar">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <hr style="border-top: 1px dashed #808080;">
                     </div>
                     <div class="row ml-1 justify-content-lg-end">

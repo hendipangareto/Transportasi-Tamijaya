@@ -68,7 +68,7 @@ class SuratKeluarController extends Controller
 
     public function HapusSuratKeluar(Request $request)
     {
-        $SuratKeluarId = $request->input('surat_keluar_id');
+        $SuratKeluarId = $request->input('keluar_surat_id');
         $SuratKeluar = SuratKeluar::find($SuratKeluarId);
         $SuratKeluar->delete();
 

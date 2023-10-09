@@ -74,10 +74,7 @@
                                      data-target="#DetailSurat">
                                     <i class="bx bx-info-circle font-size-base"></i>
                                 </div>
-                                                        <a href=" " class="badge-circle badge-circle-sm badge-circle-warning mr-1 pointer">
 
-                                                            <i class="bx bx-trash font-size-base"></i>
-                                                        </a>
                                 <div class="badge-circle badge-circle-sm badge-circle-danger pointer delete-button "
                                      data-id="{{ $item->id }}">
                                     <i class="bx bx-trash font-size-base"></i>

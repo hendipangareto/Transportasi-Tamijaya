@@ -80,4 +80,17 @@ class DokumenFinalController extends Controller
             'status' => 200,
         ]);
     }
+
+    public function downloadPdf($filename)
+    {
+        $filePath = storage_path('app/surat/' . $filename);
+
+        if (file_exists($filePath)) {
+
+            return response()->download($filePath, $filename);
+        } else {
+
+            abort(404);
+        }
+    }
 }
