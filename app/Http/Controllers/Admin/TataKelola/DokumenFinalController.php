@@ -28,11 +28,17 @@ class DokumenFinalController extends Controller
         if (!empty($penerima_surat)) {
             $query->where('penerima_surat', $penerima_surat);
         }
-
-        if (!empty($tanggal_input) && !empty($tanggal_surat)) {
-            $query->whereBetween('tanggal_input', [$tanggal_input, $tanggal_surat])
-                ->orWhereBetween('tanggal_surat', [$tanggal_input, $tanggal_surat]);
+        if (!empty($tanggal_input)) {
+            $query->where('tanggal_input', $tanggal_input);
         }
+        if (!empty($tanggal_surat)) {
+            $query->where('tanggal_surat', $tanggal_surat);
+        }
+
+//        if (!empty($tanggal_input) && !empty($tanggal_surat)) {
+//            $query->whereBetween('tanggal_input', [$tanggal_input, $tanggal_surat])
+//                ->orWhereBetween('tanggal_surat', [$tanggal_input, $tanggal_surat]);
+//        }
 
         $dokumen = $query->get();
 

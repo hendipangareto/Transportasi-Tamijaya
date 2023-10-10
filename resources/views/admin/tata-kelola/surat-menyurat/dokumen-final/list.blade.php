@@ -163,9 +163,7 @@
             });
         });
 
-        // Add your 'changeDeparment' function here with the correct URL
 
-        // Initialize DataTable for '#table-employee'
         $(document).ready(function () {
             $("#table-employee").DataTable();
         });
@@ -179,9 +177,6 @@
             });
         });
 
-        // Add your 'previewFile' function here
-
-        // Handle delete button click for surat keluar
         $(document).ready(function () {
             $('.delete-data').click(function () {
                 var SuratKeluarId = $(this).data('id');

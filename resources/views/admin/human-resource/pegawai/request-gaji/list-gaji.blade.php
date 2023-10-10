@@ -253,25 +253,28 @@
             }
         });
 
-        const changeDeparment = () => {
-            var id_department = $("#id_department").val();
-            $.ajax({
-                url: ` `,
-                method: "get",
-                dataType: "json",
-                success: function (response) {
-                    var positions = response.data;
-                    var html = `<option value="">Silahkan Pilih Jabatan</option>`;
-                    positions.forEach(position => {
-                        html += `<option value="${position.id}">${position.position_name}</option>`;
-                    });
-                    $("#id_position").html(html)
-                },
-                error: function (err) {
-                    console.log(err);
-                }
-            });
-        }
+        // const changeDeparment = () => {
+        //     var id_department = $("#id_department").val();
+        //     $.ajax({
+        //         url: ` `,
+        //         method: "get",
+        //         dataType: "json",
+        //         success: function (response) {
+        //             var positions = response.data;
+        //             var html = `<option value="">Silahkan Pilih Jabatan</option>`;
+        //             positions.forEach(position => {
+        //                 html += `<option value="${position.id}">${position.position_name}</option>`;
+        //             });
+        //             $("#id_position").html(html)
+        //         },
+        //         error: function (err) {
+        //             console.log(err);
+        //         }
+        //     });
+        // }
+
+
+
         $(document).ready(function () {
             $("#table-employee").DataTable();
         });

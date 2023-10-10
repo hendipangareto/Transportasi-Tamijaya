@@ -14,8 +14,8 @@ class ScheduleRegulerController extends Controller
     public function index()
     {
         $armadas =  Armada::where('armada_category', 'REGULER')->orderBy('id', 'ASC')->get();
-        $drivers =   Employee::where('departemen_id', 5)->orderBy('id', 'ASC')->get();
-        $conductors =  Employee::where('departemen_id', 6)->orderBy('id', 'ASC')->get();
+        $drivers =   Employee::where('id_department', 5)->orderBy('id', 'ASC')->get();
+        $conductors =  Employee::where('id_department', 6)->orderBy('id', 'ASC')->get();
         return view('admin.transaction.reguler.schedule.index', ["armadas" => $armadas, "drivers" => $drivers, "conductors" => $conductors]);
     }
 
@@ -27,14 +27,15 @@ class ScheduleRegulerController extends Controller
             'schedule_regulers.destination',
             'schedule_regulers.type_bus',
             DB::raw('CONCAT(armadas.armada_merk, " - ", armadas.armada_no_police) as armada'),
-            DB::raw('(SELECT employee_name FROM employees WHERE id = schedule_regulers.driver_1) AS driver_1'),
-            DB::raw('(SELECT employee_name FROM employees WHERE id = schedule_regulers.driver_2) AS driver_2'),
-            DB::raw('(SELECT employee_name FROM employees WHERE id = schedule_regulers.conductor) AS conductor')
+            DB::raw('(SELECT employee_name FROM employees WHERE id = schedule_regulers.driver_1) AS driver_1_name'),
+            DB::raw('(SELECT employee_name FROM employees WHERE id = schedule_regulers.driver_2) AS driver_2_name'),
+            DB::raw('(SELECT employee_name FROM employees WHERE id = schedule_regulers.conductor) AS conductor_name')
         )
             ->join('armadas', 'schedule_regulers.id_armada', '=', 'armadas.id')
             ->orderBy('type_bus')
             ->orderBy('date_departure')
             ->get();
+
 
         return view('admin.transaction.reguler.schedule.display', ["data" => $data]);
 

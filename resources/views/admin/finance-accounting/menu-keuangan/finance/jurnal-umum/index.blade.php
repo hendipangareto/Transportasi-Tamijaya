@@ -81,7 +81,9 @@
                                         <td>{{$item->tanggal}}</td>
                                         <td>{{$item->group_account_name}}</td>
                                         <td>{{$item->tipe_transaksi}}</td>
-                                        <td>{{'Rp' . number_format($nilaiDebit)}}</td>
+                                        <td>{{'Rp' . number_format($nilaiDebit)}}
+
+                                        </td>
                                         <td>{{'Rp' . number_format($nilaicredit)}}</td>
                                         <td>{{$item->description}}</td>
                                         <td>
@@ -111,27 +113,36 @@
                                     </tr>
                                 @endforelse
                                 </tbody>
+
                             </table>
                         </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group row">
-                                    <label for="" class="col-sm-2 col-form-label">Total Debit</label>
-                                    <div class="col-sm-4">
-                                        <input type="text" class="form-control"
-                                               value="{{ 'Rp ' . number_format($totalDebit, 0, ',', '.') }}" readonly>
-                                    </div>
-                                </div>
+                        <div class="row mt-1">
+                            <div class="col-md-6 col-12 ">
+
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group row">
-                                    <label for="" class="col-sm-2 col-form-label">Total Credit</label>
-                                    <div class="col-sm-4">
-                                        <input type="text" class="form-control"
-                                               value="{{ 'Rp ' . number_format($totalCredit, 0, ',', '.') }}" readonly>
+                            <div class="col-md-6 col-12">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="card shadow-none bg-transparent border border-darken-4 mb-3">
+                                            <div class="card-body">
+                                                <h5 class="card-title mt-1">Total Debit</h5>
+                                                <p class="card-text" style="color: #420104">
+                                                   <b>@currency($totalDebit)</b>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="card shadow-none bg-transparent border border-darken-4 mb-3">
+                                            <div class="card-body">
+                                                <h5 class="card-title mt-1">Total Kredit</h5>
+                                                <p class="card-text">
+                                                    <b>@currency($totalCredit)</b>
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

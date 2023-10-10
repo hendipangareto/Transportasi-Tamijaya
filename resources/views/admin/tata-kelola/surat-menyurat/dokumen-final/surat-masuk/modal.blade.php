@@ -30,8 +30,8 @@
         <div class="col-md-2 col-sm-12">
             <div class="form-group">
                 <label for="" style="color: white">Filter</label><br>
-                <button class="btn btn-outline-primary">Filter <i class="fe fe-filter fe-12"></i></button>
-                <a href="{{ route('data-kelola.surat-menyurat.list-dokumen-final') }}" class="btn btn-outline-secondary">Clear <i class="fe fe-refresh-cw fe-12"></i></a>
+                <button class="btn btn-primary"><i class="bx bx-filter"></i>    Filter </button>
+                <a href="{{ route('data-kelola.surat-menyurat.list-dokumen-final') }}" class="btn btn-warning"><i class="bx bx-reset"></i> Reset</a>
             </div>
         </div>
     </div>

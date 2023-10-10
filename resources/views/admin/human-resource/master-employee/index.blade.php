@@ -57,7 +57,7 @@
                                         <option disabled selected>Pilih Departemen</option>
                                         @foreach($departemen as $dpt)
                                             @php
-                                                $selected = ($params['departemen_id'] == $dpt->id) ? "selected" : "";
+                                                $selected = ($params['id_department'] == $dpt->id) ? "selected" : "";
                                             @endphp
                                             <option
                                                 value="{{$dpt->id}}" {{$selected}}>{{$dpt->department_name}}</option>

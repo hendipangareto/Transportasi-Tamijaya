@@ -22,9 +22,9 @@ class EmployeeController extends Controller
         $position = Position::get();
         $keluargaEmployees = KeluargaEmployee::get();
 
-        $departemen_id = "";
-        if (isset($request->departemen_id)) {
-            $departemen_id = $request->departemen_id;
+        $id_department = "";
+        if (isset($request->id_department)) {
+            $id_department = $request->id_department;
         }
 
         $position_id = "";
@@ -46,10 +46,10 @@ class EmployeeController extends Controller
 
         $employee = DB::table('employees')
             ->select('employees.*', 'departments.department_name', 'positions.position_name')
-            ->join('departments', 'employees.departemen_id', 'departments.id')
+            ->join('departments', 'employees.id_department', 'departments.id')
             ->join('positions', 'employees.position_id', 'positions.id')
-            ->when(!empty($departemen_id), function ($query) use ($departemen_id) {
-                $query->where('employees.departemen_id', $departemen_id);
+            ->when(!empty($departemen_id), function ($query) use ($id_department) {
+                $query->where('employees.departemen_id', $id_department);
             })
             ->when(!empty($position_id), function ($query) use ($position_id) {
                 $query->where('employees.position_id', $position_id);
@@ -64,7 +64,7 @@ class EmployeeController extends Controller
             ->get();
 
         $params = array(
-            'departemen_id' => $departemen_id,
+            'id_department' => $id_department,
             'position_id' => $position_id,
             'employee_status' => $employee_status,
         );
@@ -110,7 +110,7 @@ class EmployeeController extends Controller
 
             $employee->employee_id = $noEmployee;
             $employee->employee_name = $request->namaPegawai;
-            $employee->departemen_id = $request->idDepartemen;
+            $employee->id_department = $request->idDepartemen;
             $employee->position_id = $request->jabatanPegawai;
             $employee->employee_status = $request->statusPegawai;
             $employee->awal_kontrak = $request->awalKontrakPegawai;
@@ -195,7 +195,7 @@ class EmployeeController extends Controller
     public function formDetail(Request $request, $id)
     {
         $employee = Employee::select('employees.*', 'departments.department_name', 'positions.position_name')
-            ->join('departments', 'employees.departemen_id', '=', 'departments.id')
+            ->join('departments', 'employees.id_department', '=', 'departments.id')
             ->join('positions', 'employees.position_id', '=', 'positions.id')
             ->where('employees.id', $id)
             ->first();

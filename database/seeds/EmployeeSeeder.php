@@ -12,7 +12,7 @@ class EmployeeSeeder extends Seeder
             'id_fingerprint' => '002',
             'employee_name' => 'Adita Rian P
 ',
-            'departemen_id' => 1,
+            'id_department' => 1,
             'position_id' => 1,
             'employee_status' => 'Tetap',
             'awal_kontrak' => '2018-03-24',

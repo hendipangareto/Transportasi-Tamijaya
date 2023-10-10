@@ -357,6 +357,12 @@
                             <a href="{{ route('human-resource.pegawai.kinerja-karyawan.list-kinerja') }}"><i
                                     class="bx bx-file"></i><span class="menu-item">Kinerja Karyawan</span></a>
                         </li>
+                        <li @if (Request::segment(4) == 'driver-conductor') class="active" @endif>
+                            <a href="{{ route('driver-conductor.index') }}">
+                                <i class="bx bx-file"></i><span class="menu-item">Sopir & Konduktor</span>
+                            </a>
+                        </li>
+
                     </ul>
                 </li>
             @endif

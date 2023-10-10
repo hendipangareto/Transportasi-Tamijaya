@@ -87,28 +87,76 @@ class RequestGajiController extends Controller
         return redirect()->route('human-resource.pegawai.request-gaji.list-gaji');
     }
 
+//    public function getEmployee(Request $request)
+//    {
+//
+//        $employeeId = $request->input('employee_id');
+//
+//        $employee = DB::table('gaji_employees')
+//            ->select('gaji_employees.*', 'departments.department_name', 'positions.position_name', 'employees.employee_name', 'employees.employee_id as kode_employee',
+//                'absensis.status_absensi as absensi')
+//            ->join('departments', 'gaji_employees.departemen_id', 'departments.id')
+//            ->join('positions', 'gaji_employees.position_id', 'positions.id')
+//            ->join('employees', 'gaji_employees.employee_id', 'employees.id')
+//            ->leftjoin('absensis', 'employees.id_fingerprint', 'absensis.id')
+//            ->where('gaji_employees.employee_id', '=', $employeeId)->first();
+//
+//
+//        return response()->json($employee);
+//
+//    }
+
+
     public function getEmployee(Request $request)
     {
-
         $employeeId = $request->input('employee_id');
 
         $employee = DB::table('gaji_employees')
-            ->select('gaji_employees.*', 'departments.department_name', 'positions.position_name', 'employees.employee_name', 'employees.employee_id as kode_employee',
-                'absensis.status_absensi as absensi')
-            ->join('departments', 'gaji_employees.departemen_id', 'departments.id')
-            ->join('positions', 'gaji_employees.position_id', 'positions.id')
-            ->join('employees', 'gaji_employees.employee_id', 'employees.id')
-            ->leftjoin('absensis', 'employees.id_fingerprint', 'absensis.id')
-            ->where('gaji_employees.employee_id', '=', $employeeId)->first();
+            ->select(
+                'gaji_employees.*',
+                'departments.department_name',
+                'positions.position_name',
+                'employees.employee_name',
+                'employees.employee_id as kode_employee',
+                'employees.id_fingerprint as id_fingerprint'
 
+            )
+            ->leftJoin('departments', 'gaji_employees.departemen_id', 'departments.id')
+            ->leftJoin('positions', 'gaji_employees.position_id', 'positions.id')
+            ->leftJoin('employees', 'gaji_employees.employee_id', 'employees.id')
+            ->leftJoin('absensis', 'employees.id_fingerprint', 'absensis.id')
+            ->where('gaji_employees.employee_id', '=', $employeeId)
+            ->first();
+
+        if (!$employee) {
+            return response()->json([
+                'message' => 'Data pegawai tidak ditemukan',
+                'status' => 404,
+            ]);
+        }
+
+        // Dapatkan jumlah absensi dari tabel absensi berdasarkan 'id_fingerprint'
+        $absensi = DB::table('absensis')
+            ->selectRaw('
+            SUM(CASE WHEN status_absensi = "I" THEN 1 ELSE 0 END) as total_ijin,
+            SUM(CASE WHEN status_absensi = "S" THEN 1 ELSE 0 END) as total_sakit,
+            SUM(CASE WHEN status_absensi = "A" THEN 1 ELSE 0 END) as total_alpa,
+            SUM(CASE WHEN status_absensi = "C" THEN 1 ELSE 0 END) as total_cuti,
+            SUM(CASE WHEN status_absensi = "M" THEN 1 ELSE 0 END) as total_masuk
+        ')
+            ->where('id_fingerprint', '=', $employeeId) // Menggunakan 'id_fingerprint' sebagai referensi
+            ->first();
+
+        $employee->total_ijin = $absensi->total_ijin;
+        $employee->total_sakit = $absensi->total_sakit;
+        $employee->total_alpa = $absensi->total_alpa;
+        $employee->total_cuti = $absensi->total_cuti;
+        $employee->total_masuk = $absensi->total_masuk;
 
         return response()->json($employee);
-
-
-
-
-
     }
+
+
 
 
     public function RequestKasbon(Request $request)

@@ -262,15 +262,15 @@
 @push('page-scripts')
 
     <script>
-        // Aktifkan tab pertama saat halaman dimuat
+
         $(document).ready(function () {
             $('#home-list-item').tab('show');
         });
 
-        // Tangani perubahan tab ketika pengguna mengklik tab lain
+
         $('.list-group-item').on('click', function (e) {
-            e.preventDefault(); // Mencegah tindakan default dari link
-            $(this).tab('show'); // Aktifkan tab yang diklik
+            e.preventDefault();
+            $(this).tab('show');
         });
 
         function addCommas(number) {
@@ -306,7 +306,7 @@
                                 $('#tunjangan_kapasitas_pegawai').val(addCommas(data.t_kapasitas));
                                 $('#tunjangan_struktur_pegawai').val(addCommas(data.t_struktur));
                                 $('#bpjs_ketenagakerjaan_pegawai').val(addCommas(data.bpjs_ketenagakerjaan));
-                                $('#absensi').val(addCommas(data.absensi));
+                                $('#total_ijin').val(addCommas(data.total_ijin));
 
 
                             }
@@ -324,7 +324,7 @@
                     $('#tunjangan_masa_kerja_pegawai').val('');
                     $('#tunjangan_kapasitas_pegawai').val('');
                     $('#tunjangan_struktur_pegawai').val('');
-                    $('#absensi').val('');
+                    $('#total_ijin').val('');
 
 
                 }

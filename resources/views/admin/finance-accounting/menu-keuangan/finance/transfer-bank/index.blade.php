@@ -93,10 +93,13 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">Rp</span>
                                                 </div>
-                                                <input type="text" class="form-control money" id="nominal_transfer"
-                                                       style="font-style: italic"
-                                                       name="nominal_transfer"
-                                                       placeholder="Masukan nominal transfer">
+{{--                                                <input type="text" class="form-control money" id="nominal_transfer"--}}
+{{--                                                       style="font-style: italic"--}}
+{{--                                                       name="nominal_transfer"--}}
+{{--                                                       placeholder="Masukan nominal transfer">--}}
+                                                <input type="text" id="nominal_transfer" name="nominal_transfer"
+                                                       class="form-control money" placeholder="Masukkan nominal transfer"
+                                                       oninput="convertToTerbilang(this.value)">
                                             </div>
                                         </div>
                                     </div>
@@ -145,4 +148,15 @@
 @endsection
 
 @push('page-scripts')
+    <script>
+
+        function convertToTerbilang(value) {
+            var teks = `${angkaKeTeks(value)} rupiah`;
+            document.getElementById("terbilang").value = teks;
+            let teksBersih = teks.replace('undefined ', '');
+            console.log([teks, teksBersih]);
+        }
+
+    </script>
+
 @endpush

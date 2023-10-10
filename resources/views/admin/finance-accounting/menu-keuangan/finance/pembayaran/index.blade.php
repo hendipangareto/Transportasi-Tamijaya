@@ -100,6 +100,23 @@
                             </table>
                         </div>
                         <hr>
+                        <div class="row mt-1">
+                            <div class="col-md-6 col-12">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="card shadow-none bg-transparent border border-darken-4 mb-3">
+                                            <div class="card-body">
+                                                <h5 class="card-title mt-1"><b>Total Nominal</b></h5>
+                                                <hr>
+                                                <p class="card-text" style="color: #420104">
+                                                    <b>@currency($totalNominal)</b>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group row">
