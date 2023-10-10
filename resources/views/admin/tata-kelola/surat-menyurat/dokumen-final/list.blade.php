@@ -34,6 +34,8 @@
                     <div class="col-lg">
                         <div class="demo-inline-spacing ">
                             <div class="list-group list-group-horizontal-md text-md-center">
+{{--                                <a class="list-group-item list-group-item-action active" id="prestasi-pegawai"--}}
+{{--                                   data-bs-toggle="list" href="#horizontal-home">Surat Masuk</a>--}}
                                 <a class="list-group-item list-group-item-action active" id="prestasi-pegawai"
                                    data-bs-toggle="list" href="#horizontal-home">Surat Masuk</a>
                                 <a class="list-group-item list-group-item-action" id="profile-list-item"
@@ -214,6 +216,44 @@
             });
         });
 
+
+
+        function previewFile() {
+            const fileInput = document.getElementById('lampiran_dokumen_final');
+            const filePreview = document.getElementById('file-preview');
+
+            if (fileInput.files.length > 0) {
+                const file = fileInput.files[0];
+                if (file.type.startsWith('image/')) {
+                    // Display image preview
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.style.maxWidth = '100%';
+                        img.style.height = 'auto';
+
+                        filePreview.innerHTML = '';
+                        filePreview.appendChild(img);
+                    };
+                    reader.readAsDataURL(file);
+                } else if (file.type === 'application/pdf') {
+                    // Display PDF preview
+                    const object = document.createElement('object');
+                    object.data = URL.createObjectURL(file);
+                    object.type = 'application/pdf';
+                    object.width = '100%';
+
+
+                    filePreview.innerHTML = '';
+                    filePreview.appendChild(object);
+                } else {
+                    filePreview.innerHTML = 'File preview is not available for this file type.';
+                }
+            } else {
+                filePreview.innerHTML = '';
+            }
+        }
 
     </script>
 @endpush

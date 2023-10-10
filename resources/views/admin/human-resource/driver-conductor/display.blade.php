@@ -4,7 +4,7 @@
             <th class="w-5p">No</th>
             <th class="w-10p">Kode</th>
             <th class="w-20p">Department</th>
-            <th class="w-20p">Jabatansdgdasgs</th>
+            <th class="w-20p">Jabatan</th>
             <th>Nama Karyawan</th>
             <th class="w-10p text-center">Action</th>
         </tr>
