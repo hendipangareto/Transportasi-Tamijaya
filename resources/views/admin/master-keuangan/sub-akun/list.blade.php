@@ -26,42 +26,34 @@
                             <h2 class="h4 ">Data Master Sub-Akun</h2>
                             <div class="col ml-auto">
                                 <div class="dropdown float-right">
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-header" >
-                    <div class="toolbar row ">
-                        <div class="col-md-12 d-flex">
-                            <h2 class="h4"> </h2>
-                            <div class="col ml-auto">
-                                <div class="dropdown float-right">
                                     <a href=" "
                                        class="btn btn-primary mr-1" data-toggle="modal" data-target="#TambahSubAkun">
                                         <i class="bx bx-plus-circle"></i> Tambah Data</a>
-                                    <a target="_blank" href="{{ route('admin.master-logistik.bagian.cetak-pdf') }}?bagian={{ request()->input('bagian_id') }}" type="button" class="btn btn-danger text-white mr-1">
+                                    <a target="_blank" href="{{ route('admin.master-keuangan.sub-akun.cetak-pdf') }}?akun={{ request()->input('id_akun') }}" type="button" class="btn btn-danger text-white mr-1">
                                         <i class="bx bxs-file-pdf"></i> Report PDF
                                     </a>
-
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
                 <div class="card-body">
+
                     <form action="">
                         @csrf
                         <div class="row">
                             <div class="col-md-2 col-sm-12">
                                 <div class="form-group">
-                                    <label for="">Bagian :</label>
+                                    <label for="">Akun :</label>
                                     <div class="form-group">
-                                        <select name="bagian_id" id="bagian_id" class="form-control">
-                                            <option selected disabled>Pilih Bagian</option>
-                                            @foreach($akun as $akn)
-                                                <option value="{{$akn->id}}" >{{$akn->nama_akun}}</option>
+                                        <select name="id_akun" id="id_akun" class="form-control">
+                                            <option selected disabled>Pilih Akun</option>
+                                            @foreach($akun as $ak)
+                                                @php
+                                                    $selected = ($params['id_akun'] == $ak->id) ? "selected" : "";
+                                                @endphp
+                                                <option value="{{$ak->id}}" {{$selected}}>{{$ak->nama_akun}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -72,11 +64,13 @@
                                     <label for="" style="color: white">Filter</label><br>
                                     <button class="btn btn-outline-primary">Filter <i
                                             class="bx bx-filter"></i></button>
+                                    <a href="{{ route('master-keuangan.sub-akun.list-sub-akun') }}"
+                                       class="btn btn-outline-warning">Clear <i
+                                            class="bx bx-filter"></i></a>
                                 </div>
                             </div>
                         </div>
                     </form>
-
                     <div class="table-responsive"  >
                         <table class="table table-bordered table-hover" id="table-bagian">
                             <thead>
@@ -120,10 +114,10 @@
                                                  data-target="#UpdateSubBagian-{{ $item->id }}">
                                                 <i class="bx bx-edit font-size-base"></i>
                                             </div>
-                                            <a class="badge-circle badge-circle-sm badge-circle-danger pointer"
-                                               href="{{ route('admin.master-logistik.bagian.delete-sub-bagian', ['id' => $item->id]) }}">
+                                            <div class="badge-circle badge-circle-sm badge-circle-danger pointer delete-button "
+                                                 data-id="{{ $item->id }}">
                                                 <i class="bx bx-trash font-size-base"></i>
-                                            </a>
+                                            </div>
                                         </div>
                                     </td>
                                 </tr>
@@ -167,25 +161,43 @@
         @endif
 
         //konfimarsi delete
-        document.addEventListener('click', function(e) {
-            if (e.target.classList.contains('delete-button')) {
-                e.preventDefault();
+        $(document).ready(function () {
+            $('.delete-button').click(function () {
+                var subakunId = $(this).data('id');
 
                 Swal.fire({
-                    title: 'Apakah Anda yakin?',
-                    text: 'Data ini akan dihapus!',
-                    icon: 'warning',
+                    title: "Yakin akan menghapus data?",
+                    text: "Data yang dihapus tidak dapat dikembalikan",
+                    icon: "warning",
                     showCancelButton: true,
-                    confirmButtonText: 'Ya, Hapus!',
-                    cancelButtonText: 'Batal'
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Ya, hapus!"
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        // Jika pengguna mengonfirmasi penghapusan, lanjutkan ke tautan penghapusan
-                        window.location.href = e.target.href;
+                        $.ajax({
+                            url: '{{ route('admin.master-keuangan.sub-akun.delete') }}',
+                            type: 'DELETE',
+                            data: {
+                                '_token': '{{ csrf_token() }}',
+                                'sub_akun_id': subakunId
+                            },
+                            success: function (response) {
+                                console.log(response);
+                                location.reload();
+                                Toast.fire({
+                                    icon: "success",
+                                    title: "Berhasil menghapus data sub akun"
+                                });
+                            },
+                            error: function (error) {
+                                console.log(error);
+                            }
+                        });
                     }
                 });
-            }
+            });
         });
     </script>
 
-@endpush@endpush
+@endpush

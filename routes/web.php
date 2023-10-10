@@ -263,6 +263,8 @@ Route::group(
                     Route::delete('/delete-dokumen-final', 'TataKelola\DokumenFinalController@HapusDokumen')->name('data-kelola.surat-menyurat.delete-dokumen-final');
 
                     Route::get('/download-pdf/{filename}', 'TataKelola\DokumenFinalController@downloadPdf')->name('download-pdf-surat');
+//                    Route::post('/filter-data', 'TataKelola\DokumenFinalController@filter')->name('data-kelola.surat-menyurat.filter-data');
+
 
                 });
 
@@ -286,13 +288,18 @@ Route::group(
                     Route::get('/list-akun', 'MasterKeuangan\AkunController@getListAkun')->name('master-keuangan.akun.list-akun');
                     Route::post('/tambah-akun', 'MasterKeuangan\AkunController@TambahAkun')->name('master-keuangan.akun.tambah-akun');
                     Route::post('/update-akun/{id}', 'MasterKeuangan\AkunController@UpdateAkun')->name('master-keuangan.akun.update-akun');
-                    Route::get('/delete-akun/{id}', 'MasterKeuangan\AkunController@DeleteAkun')->name('master-keuangan.akun.delete-akun');
+                    Route::delete('/delete-akun', 'MasterKeuangan\AkunController@DeleteAkun')->name('master-keuangan.akun.delete-akun');
                 });
 
                 Route::prefix('sub-akun')->group(function () {
                     Route::get('/list-sub-akun', 'MasterKeuangan\SubAkunController@getListSubAkun')->name('master-keuangan.sub-akun.list-sub-akun');
                     Route::post('/tambah-sub-akun', 'MasterKeuangan\SubAkunController@TambahSubAkun')->name('master-keuangan.sub-akun.tambah-sub-akun');
                     Route::post('/update-sub-akun/{id}', 'MasterKeuangan\SubAkunController@UpdateSubAkun')->name('master-keuangan.sub-akun.update-sub-akun');
+
+                    Route::get('/sub-akun/cetak-pdf', 'MasterKeuangan\SubAkunController@cetakPDF')->name('admin.master-keuangan.sub-akun.cetak-pdf');
+                    Route::delete('/sub-akun/delete', 'MasterKeuangan\SubAkunController@DeleteSubAkun')->name('admin.master-keuangan.sub-akun.delete');
+
+
                 });
 
                 Route::prefix('aset')->group(function () {
@@ -362,7 +369,7 @@ Route::group(
                     Route::get('/delete-sub-bagian/{id}', 'MasterLogistik\SubBagianController@DeleteSubBagian')->name('admin.master-logistik.bagian.delete-sub-bagian');
 
 
-                    Route::get('/sub-akun/cetak-pdf', 'MasterLogistik\SubBagianController@cetakPDF')->name('admin.master-logistik.bagian.cetak-pdf');
+                    Route::get('/sub-bagian/cetak-pdf', 'MasterLogistik\SubBagianController@cetakPDF')->name('admin.master-logistik.bagian.cetak-pdf');
                 });
 
                 Route::prefix('komponen')->group(function () {

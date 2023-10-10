@@ -82,10 +82,10 @@
                                                      data-target="#UpdateAkun-{{ $item->id }}">
                                                     <i class="bx bx-edit font-size-base"></i>
                                                 </div>
-                                                <a class="badge-circle badge-circle-sm badge-circle-danger pointer"
-                                                   href="{{ route('master-keuangan.akun.delete-akun', ['id' => $item->id]) }}">
+                                                <div class="badge-circle badge-circle-sm badge-circle-danger pointer delete-button "
+                                                     data-id="{{ $item->id }}">
                                                     <i class="bx bx-trash font-size-base"></i>
-                                                </a>
+                                                </div>
                                             </div>
                                         </td>
                                     </tr>
@@ -131,25 +131,41 @@
         @endif
 
 
-        //konfimarsi delete
-        document.addEventListener('click', function (e) {
-            if (e.target.classList.contains('delete-button')) {
-                e.preventDefault();
+        $(document).ready(function () {
+            $('.delete-button').click(function () {
+                var akunId = $(this).data('id');
 
                 Swal.fire({
-                    title: 'Apakah Anda yakin?',
-                    text: 'Data ini akan dihapus!',
-                    icon: 'warning',
+                    title: "Yakin akan menghapus data?",
+                    text: "Data yang dihapus tidak dapat dikembalikan",
+                    icon: "warning",
                     showCancelButton: true,
-                    confirmButtonText: 'Ya, Hapus!',
-                    cancelButtonText: 'Batal'
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Ya, hapus!"
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        // Jika pengguna mengonfirmasi penghapusan, lanjutkan ke tautan penghapusan
-                        window.location.href = e.target.href;
+                        $.ajax({
+                            url: '{{ route('master-keuangan.akun.delete-akun') }}',
+                            type: 'DELETE',
+                            data: {
+                                '_token': '{{ csrf_token() }}',
+                                'akun_id': akunId
+                            },
+                            success: function (response) {
+                                location.reload();
+                                Toast.fire({
+                                    icon: "success",
+                                    title: "Berhasil menghapus data akun"
+                                });
+                            },
+                            error: function (error) {
+                                console.log(err);
+                            }
+                        });
                     }
                 });
-            }
+            });
         });
     </script>
 

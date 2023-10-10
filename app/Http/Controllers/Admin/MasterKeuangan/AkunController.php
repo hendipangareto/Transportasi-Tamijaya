@@ -37,40 +37,63 @@ class AkunController extends Controller
             $akun->save();
 
             DB::commit();
-            Session::flash('message', ['Berhasil menyimpan data kategori barang', 'success']);
+            Session::flash('message', ['Berhasil menyimpan data akun', 'success']);
         } catch (\Exception $e) {
             DB::rollback();
-            Session::flash('message', ['Gagal menyimpan data kategori barang', 'error']);
+            Session::flash('message', ['Gagal menyimpan data akun', 'error']);
         }
 
         return redirect()->route('master-keuangan.akun.list-akun');
-
 
 
     }
 
     public function UpdateAkun(Request $request, $id)
     {
-        $akun = Akun::findOrFail($id);
-        $akun->nama_akun = $request->nama_akun;
-        $akun->deskripsi_akun = $request->deskripsi_akun;
+        DB::beginTransaction();
         try {
+            $akun = Akun::findOrFail($id);
+            $akun->nama_akun = $request->nama_akun;
+            $akun->deskripsi_akun = $request->deskripsi_akun;
+
             $akun->save();
-            return redirect(route('master-keuangan.akun.list-akun'))->with('pesan-berhasil', 'Anda berhasil menambah data akun');
+
+            DB::commit();
+            Session::flash('message', ['Berhasil mengubah data akun', 'success']);
         } catch (\Exception $e) {
-            return redirect(route('master-keuangan.akun.list-akun'))->with('pesan-gagal', 'Anda gagal menambah data akun');
+            DB::rollback();
+            Session::flash('message', ['Gagal mengubah data akun', 'error']);
         }
+
+        return redirect()->route('master-keuangan.akun.list-akun');
+
     }
 
-    public function DeleteAkun($id)
+
+
+    public function DeleteAkun(Request $request)
     {
-        $akun = Akun::findOrFail($id);
+
+
+
 
         try {
+
+            $akunId = $request->input('akun_id');
+            $akun = Akun::find($akunId);
             $akun->delete();
-            return redirect(route('master-keuangan.akun.list-akun'))->with('pesan-berhasil', 'Anda berhasil menghapus data akun');
+
+            return response()->json([
+                'data' => $akun,
+                'message' => 'Berhasil menghapus data  akun',
+                'status' => 200,
+            ]);
         } catch (\Exception $e) {
-            return redirect(route('master-keuangan.akun.list-akun'))->with('pesan-gagal', 'Anda gagal menghapus data akun');
+            return response()->json([
+                'message' => 'Gagal menghapus data  akun',
+                'status' => 500,
+            ]);
         }
+
     }
 }

@@ -1,40 +1,42 @@
-<div class="row mt-5">
-    <div class="col-md-2 col-sm-12">
-        <div class="form-group">
-            <label for="">Tanggal Waktu</label>
-            <input type="date" id="end_date" name="end_date" value=""
-                   class="form-control">
+<form method="get" action="{{ route('data-kelola.surat-menyurat.list-dokumen-final') }}">
+    @csrf
+    <div class="row mt-5">
+        <div class="col-md-2 col-sm-12">
+            <div class="form-group">
+                <label for="tanggal_input">Tanggal Input</label>
+                <input type="date" id="tanggal_input" name="tanggal_input" value="{{ $params['tanggal_input'] ?? '' }}" class="form-control">
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-12">
+            <div class="form-group">
+                <label for="tanggal_surat">Tanggal Surat</label>
+                <input type="date" id="tanggal_surat" name="tanggal_surat" value="{{ $params['tanggal_surat'] ?? '' }}" class="form-control">
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-12">
+            <div class="form-group">
+                <label for="penerima_surat">Penerima Surat</label>
+                <select class="form-control" name="penerima_surat">
+                    <option disabled selected>Pilih Penerima Surat</option>
+                    @foreach($dokumen as $jbt)
+                        @php
+                            $selected = ($params['penerima_surat'] == $jbt->penerima_surat) ? "selected" : "";
+                        @endphp
+                        <option value="{{ $jbt->penerima_surat }}" {{ $selected }}>{{ $jbt->penerima_surat }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-12">
+            <div class="form-group">
+                <label for="" style="color: white">Filter</label><br>
+                <button class="btn btn-outline-primary">Filter <i class="fe fe-filter fe-12"></i></button>
+                <a href="{{ route('data-kelola.surat-menyurat.list-dokumen-final') }}" class="btn btn-outline-secondary">Clear <i class="fe fe-refresh-cw fe-12"></i></a>
+            </div>
         </div>
     </div>
-    <div class="col-md-2 col-sm-12">
-        <div class="form-group">
-            <label for="">Tanggal Surat</label>
-            <input type="date" id="end_date" name="end_date" value=""
-                   class="form-control">
-        </div>
-    </div>
-    <div class="col-md-2 col-sm-12">
-        <div class="form-group">
-            <label for="">Filter By Jabatan</label>
-            <select class="form-control"
-                    name="postionfilter">
-                <option disabled selected>Pilih Jabatan</option>
+</form>
 
-            </select>
-        </div>
-    </div>
-
-    <div class="col-md-2 col-sm-12">
-        <div class="form-group">
-            <label for="" style="color: white">Filter</label><br>
-            <button class="btn btn-outline-primary">Filter <i
-                    class="fe fe-filter fe-12"></i></button>
-            <a href=" "
-               class="btn btn-outline-secondary">Clear <i
-                    class="fe fe-refresh-cw fe-12"></i></a>
-        </div>
-    </div>
-</div>
 
 <div class="table-responsive">
     <input type="hidden" value=" ">

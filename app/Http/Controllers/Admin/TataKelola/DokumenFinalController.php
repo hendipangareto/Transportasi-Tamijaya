@@ -14,13 +14,37 @@ use Carbon\Carbon;
 
 class DokumenFinalController extends Controller
 {
-    public function getDokumen()
+    public function getDokumen(Request $request)
     {
-        $dokumen = DokumenFinal::get();
         $SuratKeluar = SuratKeluar::all();
-        $kontrak    = Kontrak::get();
-        return view('admin.tata-kelola.surat-menyurat.dokumen-final.list', compact('dokumen','SuratKeluar', 'kontrak'));
+        $kontrak = Kontrak::get();
+
+        $penerima_surat = $request->input('penerima_surat');
+        $tanggal_input = $request->input('tanggal_input');
+        $tanggal_surat = $request->input('tanggal_surat');
+
+        $query = DB::table('dokumen_final');
+
+        if (!empty($penerima_surat)) {
+            $query->where('penerima_surat', $penerima_surat);
+        }
+
+        if (!empty($tanggal_input) && !empty($tanggal_surat)) {
+            $query->whereBetween('tanggal_input', [$tanggal_input, $tanggal_surat])
+                ->orWhereBetween('tanggal_surat', [$tanggal_input, $tanggal_surat]);
+        }
+
+        $dokumen = $query->get();
+
+        $params = [
+            'penerima_surat' => $penerima_surat,
+            'tanggal_input' => $tanggal_input,
+            'tanggal_surat' => $tanggal_surat,
+        ];
+
+        return view('admin.tata-kelola.surat-menyurat.dokumen-final.list', compact('dokumen', 'SuratKeluar', 'kontrak', 'params'));
     }
+
 
     public function TambahDokumen(Request $request)
     {
