@@ -165,13 +165,12 @@
                     <div class="mb-2 row">
                         <label for="html5-url-input" class="col-md-3 col-form-label">Lampiran Dokumen</label>
                         <div class="col-md-9">
-                            <input class="form-control" type="file" name="lampiran_dokumen_final" id="lampiran_dokumen_final" placeholder="Lampiran Dokumen" onchange="previewFile()">
-
+                            <input class="form-control" type="file" name="lampiran_dokumen_final_masuk" id="lampiran_dokumen_final_masuk" placeholder="Lampiran Dokumen" onchange="previewFile('masuk')">
                         </div>
                     </div>
                     <div class="mb-2 row">
                         <label for="html5-url-input" class="col-md-3 col-form-label" style="color: white;">Pratinjau Dokumen</label>
-                        <div id="file-preview" class="col-md-9"></div>
+                        <div id="file-preview-masuk" class="col-md-9"></div>
                     </div>
 
 

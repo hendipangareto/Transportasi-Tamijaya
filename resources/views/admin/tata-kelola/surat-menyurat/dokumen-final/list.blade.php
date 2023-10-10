@@ -220,7 +220,7 @@
 
         function previewFile() {
             const fileInput = document.getElementById('lampiran_dokumen_final');
-            const filePreview = document.getElementById('file-preview');
+            const filePreview = document.getElementById('file-preview-masuk');
 
             if (fileInput.files.length > 0) {
                 const file = fileInput.files[0];

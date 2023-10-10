@@ -25,10 +25,9 @@
                     </div>
                     <label>Deskripsi Surat: </label>
                     <div class="form-group">
-                        <input class="form-control" type="file" name="lampiran_dokumen" id="lampiran_dokumen"
-                               placeholder="Lampiran Dokumen" onchange="previewFile()">
+                        <input class="form-control" type="file" name="lampiran_dokumen_final_keluar" id="lampiran_dokumen_final_keluar" placeholder="Lampiran Dokumen" onchange="previewFile('keluar')">
                     </div>
-                    <div id="file-preview"></div>
+                    <div id="file-preview-keluar" class="col-md-9"></div>
 
 
                 </div>

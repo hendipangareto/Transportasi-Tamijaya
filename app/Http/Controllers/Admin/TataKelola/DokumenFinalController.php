@@ -75,7 +75,7 @@ class DokumenFinalController extends Controller
             $dokumen->penerima_surat = $request->penerima_surat;
             $dokumen->tanggal_surat = $request->tanggal_surat;
             $dokumen->keterangan_surat = $request->keterangan_surat;
-            $dokumen->lampiran_dokumen_final = $request->lampiran_dokumen_final;
+            $dokumen->lampiran_dokumen_final = $request->lampiran_dokumen_final_masuk;
             if ($request->hasFile('lampiran_dokumen_final')) {
                 $file = $request->file('lampiran_dokumen_final');
                 $fileName = $file->getClientOriginalName();
