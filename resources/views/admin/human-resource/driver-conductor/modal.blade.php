@@ -14,7 +14,7 @@
                     <input type="hidden" id="id" name="id" value="">
                     <label>Kode Jabatan: </label>
                     <div class="form-group">
-                        <input type="text" readonly id="employee_code" name="employee_code"
+                        <input type="text" readonly id="employee_id" name="employee_id"
                             class="form-control bg-transparent">
                     </div>
                     <div class="row">

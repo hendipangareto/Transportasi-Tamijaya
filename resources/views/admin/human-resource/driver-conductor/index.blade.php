@@ -75,6 +75,5 @@
 
 @push('page-scripts')
     <script src="{{ asset('script/admin/human-resource/driver-conductor.js') }}"></script>
-    <script>
-    </script>
+
 @endpush

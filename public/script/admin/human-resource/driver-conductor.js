@@ -300,7 +300,7 @@ function fetchData(data, response, type = null) {
     switch (data) {
         case "master-employee":
             $("#id").val(response.id);
-            $("#employee_code").val(response.employee_code);
+            $("#employee_id").val(response.employee_code);
             $("#id_department").val(response.id_department);
             getPositionByDeparment(response.id_department)
 

@@ -4,7 +4,7 @@
             <th class="w-5p">No</th>
             <th class="w-10p">Kode</th>
             <th class="w-20p">Department</th>
-            <th class="w-20p">Jabatan</th>
+            <th class="w-20p">Jabatansdgdasgs</th>
             <th>Nama Karyawan</th>
             <th class="w-10p text-center">Action</th>
         </tr>
@@ -13,7 +13,7 @@
         @forelse ($data as $key => $item)
             <tr id="row-master-employee-{{ $item->id }}">
                 <td>{{ $key + 1 }}</td>
-                <td>{{ $item->employee_code }}</td>
+                <td>{{ $item->employee_id }}</td>
                 <td>{{ $item->department_name }}</td>
                 <td>{{ $item->position_name }}</td>
                 <td>{{ $item->employee_name }}</td>

@@ -42,21 +42,25 @@ class DriverConductorController extends Controller
      */
     public function show($type)
     {
-
         if ($type == 'driver') {
-            $data = DB::table('employees')->join('departments', 'departments.id', 'employees.id_department')
-                ->join('positions', 'positions.id', 'employees.id_position')
-                ->where('employees.id_position', 16)
-                ->select('employees.*', 'positions.position_name', 'departments.department_name')->get();
+            $data = DB::table('employees')
+                ->join('departments', 'departments.id', '=', 'employees.id_department') // Ubah 'departemen_id' menjadi 'id_department'
+                ->join('positions', 'positions.id', '=', 'employees.position_id')
+                ->where('employees.position_id', 16)
+                ->select('employees.*', 'positions.position_name', 'departments.department_name')
+                ->get();
         } else {
-            $data = DB::table('employees')->join('departments', 'departments.id', 'employees.id_department')
-                ->join('positions', 'positions.id', 'employees.id_position')
-                ->whereIn('employees.id_position', [17, 18])
-                ->select('employees.*', 'positions.position_name', 'departments.department_name')->get();
+            $data = DB::table('employees')
+                ->join('departments', 'departments.id', '=', 'employees.id_department') // Ubah 'departemen_id' menjadi 'id_department'
+                ->join('positions', 'positions.id', '=', 'employees.position_id')
+                ->whereIn('employees.position_id', [17, 18])
+                ->select('employees.*', 'positions.position_name', 'departments.department_name')
+                ->get();
         }
 
-        return view('admin.human-resource.master-employee.display', ['data' => $data]);
+        return view('admin.human-resource.driver-conductor.display', ['data' => $data]);
     }
+
 
     /**
      * Show the form for editing the specified resource.
