@@ -682,6 +682,7 @@ Route::group(
             Route::prefix('administrasi')->group(function () {
                 Route::prefix('voucher')->group(function () {
                     Route::get('/', 'FinanceAccounting\MenuKeuangan\Administrasi\VoucherController@index')->name('finance-accounting-menu-keuangan-administrasi-voucher-index');
+                    Route::post('/store', 'FinanceAccounting\MenuKeuangan\Administrasi\VoucherController@store')->name('finance-accounting-menu-keuangan-administrasi-voucher-store');
                 });
                 Route::prefix('request-gaji')->group(function () {
                     Route::get('/', 'FinanceAccounting\MenuKeuangan\Administrasi\RequestGajiController@index')->name('finance-accounting-menu-keuangan-administrasi-request-gaji-index');
