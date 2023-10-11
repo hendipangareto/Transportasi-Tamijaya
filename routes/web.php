@@ -127,15 +127,25 @@ Route::group(
                 Route::prefix('sopir')->group(function () {
                     Route::get('/check-fisik-layanan', 'PerawatanPemeliharaan\Sopir\CekFisikLayananController@listCheckFisik')->name('perawatan-pemeliharaan.sopir.check-fisik-layanan');
                     Route::get('/get-armada', 'PerawatanPemeliharaan\Sopir\CekFisikLayananController@getArmada')->name('perawatan-pemeliharaan.sopir.get-armada');
+                    Route::post('/check-fisik-layanan/tambah', 'PerawatanPemeliharaan\Sopir\CekFisikLayananController@TambahArmada')->name('perawatan-pemeliharaan.sopir.check-fisik-layanan.tambah');
 
                     Route::post('/simpan-check-fisik-layanan', 'PerawatanPemeliharaan\Sopir\CekFisikLayananController@SumpanCheckList')->name('perawatan-pemeliharaan.sopir.simpan-check-fisik-layanan');
-
                     Route::get('/report-perjalanan', 'PerawatanPemeliharaan\CekFisikLayananController@ReportPerjalanan')->name('perawatan-pemeliharaan.sopir.report-perjalanan');
+
+//                    ===========
+
                 });
 
                 Route::prefix('petugas-cuci')->group(function () {
                     Route::get('/list-notifikasi-cuci', 'PerawatanPemeliharaan\PetugasCuciController@listNotifikasi')->name('perawatan-pemeliharaan.petugas-cuci.list-notifikasi-cuci');
                     Route::get('/list-form-cuci', 'PerawatanPemeliharaan\PetugasCuciController@FormCuci')->name('perawatan-pemeliharaan.petugas-cuci.list-form-cuci');
+
+                    Route::get('/setujui-cuci-check-fisik-layanan/{id}', 'PerawatanPemeliharaan\PetugasCuciController@setujuiCuci')
+                        ->name('perawatan-pemeliharaan.petugas-cuci.setujui-cuci-check-fisik-layanan');
+
+                    Route::get('/tolak-cuci-check-fisik-layanan/{id}', 'PerawatanPemeliharaan\PetugasCuciController@TolakCuci')
+                        ->name('perawatan-pemeliharaan.petugas-cuci.tolak-cuci-check-fisik-layanan');
+
 
                 });
 
@@ -472,6 +482,7 @@ Route::group(
                     Route::prefix('rekap-pembelian')->group(function () {
                         Route::get('/list-rekap-pembelian', 'MasterLogistik\RekapPembelianController@RekapPembelian')->name('master-logistik-list-rekap-pembelian');
                         Route::get('/detail-rekap-pembelian/{id}', 'MasterLogistik\RekapPembelianController@DetailRekapPembelian')->name('master-logistik-detail-rekap-pembelian');
+
                         Route::get('/setujui-pengajuan-pembelian/{id}', 'MasterLogistik\RekapPembelianController@setujuiPengajuanPembelian')->name('master-logistik-setujui-pengajuan-pembelian');
                         Route::get('/tolak-pengajuan-pembelian/{id}', 'MasterLogistik\RekapPembelianController@TolakPengajuanPembelian')->name('master-logistik-tolak-pengajuan-pembelian');
                     });

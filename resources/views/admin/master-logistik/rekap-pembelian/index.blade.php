@@ -117,7 +117,7 @@
                                                            href="{{ route('master-logistik-detail-rekap-pembelian', $item->id) }}">
                                                             <i class="bx bx-info-circle font-size-base"></i>
                                                         </a>
-                                                        @if ($item->approval_status === 'Request') <!-- Check if approval status is 'Request' -->
+                                                        @if ($item->approval_status === 'Request')
                                                         <a class="badge-circle badge-circle-sm badge-circle-success mr-1 pointer"
                                                            href="{{ route('approve-pengajuan-pembelian', $item->id) }}">
 

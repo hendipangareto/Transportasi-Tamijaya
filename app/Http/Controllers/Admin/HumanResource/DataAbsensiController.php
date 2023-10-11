@@ -43,12 +43,12 @@ class DataAbsensiController extends Controller
                 'employees.employee_id',
                 'employees.employee_status',
                 'employees.id_fingerprint',
-                'employees.departemen_id',
+                'employees.id_department',
                 'employees.position_id',
                 'departments.department_name',
                 'positions.position_name')
             ->join('employees', 'absensis.id', 'employees.id')
-            ->leftJoin('departments', 'employees.departemen_id', 'departments.id')
+            ->leftJoin('departments', 'employees.id_department', 'departments.id')
             ->leftJoin('positions', 'employees.position_id', 'positions.id')
             ->when(!empty($employee_name), function ($query) use ($employee_name) {
                 $query->where('absensis.id', $employee_name);

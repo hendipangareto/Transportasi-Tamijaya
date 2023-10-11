@@ -25,6 +25,8 @@ class CreateArmadasTable extends Migration
             $table->string('armada_no_police');
             $table->unsignedBigInteger('id_pick_point')->nullable();
             $table->foreign('id_pick_point')->references('id')->on('pick_points');
+            $table->unsignedBigInteger('id_destination_wisata')->nullable();
+            $table->foreign('id_destination_wisata')->references('id')->on('destination_wisatas');
             $table->timestamps();
         });
     }

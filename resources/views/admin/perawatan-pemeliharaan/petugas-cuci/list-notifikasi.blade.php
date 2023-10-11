@@ -43,23 +43,57 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr class="text-center">
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td><a href="" data-toggle="modal" data-target="#DetailNotifikasi"><i class="bx bx-street-view"></i></a></td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td><a href="{{ route('perawatan-pemeliharaan.petugas-cuci.list-form-cuci') }}" class="btn btn-primary">Cuci Sekarang</a></td>
-                                    </tr>
+
+                                    @forelse($sopir as $item)
+
+                                        <tr class="text-center">
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $item->tanggal_pengajuan }}</td>
+                                            <td>{{ $item->kode_pengajuan }}</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+
+                                            @if($item->status == null)
+                                                <td>
+                                                    <a href="{{ route('perawatan-pemeliharaan.petugas-cuci.setujui-cuci-check-fisik-layanan', $item->id) }}" class="btn btn-xs btn-primary btn-flat">
+                                                        <i class="fa fa-check"></i> Setujui
+                                                    </a>
+                                                    <a href="{{ route('perawatan-pemeliharaan.petugas-cuci.tolak-cuci-check-fisik-layanan', $item->id) }}" class="btn btn-xs btn-danger btn-flat">
+                                                        <i class="fa"></i> Tolak
+                                                    </a>
+                                                </td>
+                                            @elseif($item->status == 1)
+                                                <td>
+                                                    <a href="{{ route('perawatan-pemeliharaan.petugas-cuci.setujui-cuci-check-fisik-layanan', $item->id) }}" class="btn btn-xs btn-primary btn-flat">
+                                                        <i class="bx bx-check-circle"></i> Di Setujui
+                                                    </a>
+                                                </td>
+                                            @elseif($item->status == 2)
+                                                <td>
+                                                    <a href="{{ route('perawatan-pemeliharaan.petugas-cuci.tolak-cuci-check-fisik-layanan', $item->id) }}" class="btn btn-xs btn-danger btn-flat">
+                                                        <i class="bx bx-reject"></i> Di Tolak
+                                                    </a>
+                                                </td>
+                                            @endif
+
+
+
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="6" class="text-center">Tidak ada data Pengajuan Pembelian.</td>
+                                        </tr>
+                                    @endforelse
                                     </tbody>
                                 </table>
                             </div>
                             <div class="card-header  pb-0  d-flex justify-content-between">
                                 <h4 class="card-title"></h4>
-                                <button type="submit" class="btn btn-success mr-1"><i class="bx bx-save"></i> Submit</button>
+                                <button type="submit" class="btn btn-success mr-1"><i class="bx bx-save"></i> Submit
+                                </button>
                             </div>
                         </form>
                     </div>

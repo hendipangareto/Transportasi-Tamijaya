@@ -83,7 +83,7 @@ class DaftarGajiController extends Controller
 
         $employee = DB::table('employees')
             ->select('departments.department_name', 'positions.position_name', 'employees.employee_name', 'employees.employee_id as kode_employee', 'employees.employee_status')
-            ->join('departments', 'employees.departemen_id', 'departments.id')
+            ->join('departments', 'employees.id_department', 'departments.id')
             ->join('positions', 'employees.position_id', 'positions.id')
             ->where('employees.id', '=', $employeeId)->first();
 
