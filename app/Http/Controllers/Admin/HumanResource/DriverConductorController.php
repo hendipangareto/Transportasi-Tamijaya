@@ -44,14 +44,14 @@ class DriverConductorController extends Controller
     {
         if ($type == 'driver') {
             $data = DB::table('employees')
-                ->join('departments', 'departments.id', '=', 'employees.id_department') // Ubah 'departemen_id' menjadi 'id_department'
+                ->join('departments', 'departments.id', '=', 'employees.departemen_id')
                 ->join('positions', 'positions.id', '=', 'employees.position_id')
                 ->where('employees.position_id', 16)
                 ->select('employees.*', 'positions.position_name', 'departments.department_name')
                 ->get();
         } else {
             $data = DB::table('employees')
-                ->join('departments', 'departments.id', '=', 'employees.id_department') // Ubah 'departemen_id' menjadi 'id_department'
+                ->join('departments', 'departments.id', '=', 'employees.departemen_id')
                 ->join('positions', 'positions.id', '=', 'employees.position_id')
                 ->whereIn('employees.position_id', [17, 18])
                 ->select('employees.*', 'positions.position_name', 'departments.department_name')
