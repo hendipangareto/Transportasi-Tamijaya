@@ -3,7 +3,7 @@
     <div class="content-header-left col-12 mb-2 mt-1">
         <div class="row breadcrumbs-top">
             <div class="col-12">
-                <h5 class="content-header-title float-left pr-1 mb-0">Finance & Accounting</h5>
+                <h5 class="content-header-title float-left pr-1 mb-0">Administrasi</h5>
                 <div class="breadcrumb-wrapper col-12">
                     <ol class="breadcrumb p-0 mb-0">
                         <li class="breadcrumb-item"><a href="#"><i class="bx bx-home-alt"></i></a>
@@ -51,7 +51,8 @@
                                                 @php
                                                     $selected = ($params['nilai_v'] == $vou->nilai_voucher) ? "selected" : "";
                                                 @endphp
-                                                <option value="{{$vou->nilai_voucher}}" {{$selected}}>{{$vou->nilai_voucher}}</option>
+                                                <option
+                                                    value="{{$vou->nilai_voucher}}" {{$selected}}>{{$vou->nilai_voucher}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -59,7 +60,15 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="">Tanggal Dibuat</label>
-                                        <input type="date" name="date_make" class="form-control" value="{{$params['date_make']}}">
+                                        <input type="date" name="date_make" class="form-control"
+                                               value="{{$params['date_make']}}">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="">Tanggal Dikeluarkan</label>
+                                        <input type="date" name="date_keluar" class="form-control"
+                                               value="{{$params['date_keluar']}}">
                                     </div>
                                 </div>
                             </div>
@@ -73,19 +82,12 @@
                                                 @php
                                                     $selected = ($params['pic_make'] == $vou->pic_pembuat) ? "selected" : "";
                                                 @endphp
-                                                <option value="{{$vou->pic_pembuat}}" {{$selected}}>{{$vou->pic_pembuat}}</option>
+                                                <option
+                                                    value="{{$vou->pic_pembuat}}" {{$selected}}>{{$vou->pic_pembuat}}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="">Tanggal Dikeluarkan</label>
-                                        <input type="date" name="date_make" class="form-control" value="">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="">PIC Pengeluar Voucher</label>
@@ -95,15 +97,10 @@
                                                 @php
                                                     $selected = ($params['pic_pengeluar'] == $vou->pic_pengeluar_voucher) ? "selected" : "";
                                                 @endphp
-                                                <option value="{{$vou->pic_pengeluar_voucher}}" {{$selected}}>{{$vou->pic_pengeluar_voucher}}</option>
+                                                <option
+                                                    value="{{$vou->pic_pengeluar_voucher}}" {{$selected}}>{{$vou->pic_pengeluar_voucher}}</option>
                                             @endforeach
                                         </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="">Tanggal Dipakai</label>
-                                        <input type="date" name="date_use" class="form-control" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
@@ -111,7 +108,8 @@
                                         <label for="" style="color: white">Filter</label><br>
                                         <button class="btn btn-outline-primary"> Filter <i class="bx bx-filter"></i>
                                         </button>
-                                        <a href="{{route('finance-accounting-menu-keuangan-administrasi-voucher-index')}}" class="btn btn-outline-secondary"> Reset <i class="bx bx-reset"></i></a>
+                                        <a href="{{route('finance-accounting-menu-keuangan-administrasi-voucher-index')}}"
+                                           class="btn btn-outline-secondary"> Reset <i class="bx bx-reset"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -129,8 +127,6 @@
                                     <th class="w-5p">Tanggal Dibuat</th>
                                     <th class="w-10p">PIC (Pembuat Voucher)</th>
                                     <th class="w-5p">Jumlah Voucher Dibuat</th>
-                                    {{--                                    <th class="w-5p">Tanggal Keluar</th>--}}
-                                    {{--                                    <th class="w-10p">PIC (Pengeluar Voucher)</th>--}}
                                     <th class="w-5p">Jumlah Voucher Keluar</th>
                                     <th class="w-5p">Stock Akhir</th>
                                     <th class="w-5p">Aksi</th>
@@ -154,8 +150,6 @@
                                         <td>{{$item->tanggal_buat_voucher}}</td>
                                         <td>{{$item->pic_pembuat}}</td>
                                         <td>{{$item->Jumlah_voucher_dibuat}}</td>
-                                        {{--                                    <td>#</td>--}}
-                                        {{--                                    <td>#</td>--}}
                                         <td>{{$item->jumlah_voucher_keluar}}</td>
                                         <td>{{$stock}}</td>
                                         <td>
@@ -163,18 +157,18 @@
                                                 <div
                                                     class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"
                                                     data-toggle="modal"
-                                                    data-target="#modal-detail_voucher">
+                                                    data-target="#modal-detail-voucher{{$item->id}}">
                                                     <i class="bx bx-info-circle font-size-base"></i>
                                                 </div>
                                                 <div
                                                     class="badge-circle badge-circle-sm badge-circle-warning mr-1 pointer"
                                                     data-toggle="modal" title="edit"
-                                                    data-target="#modal-edit-voucher">
+                                                    data-target="#modal-edit-voucher{{$item->id}}">
                                                     <i class="bx bx-edit font-size-base"></i>
                                                 </div>
                                                 <div
-                                                    class="badge-circle badge-circle-sm badge-circle-danger mr-1 pointer delete-jurnals-umum"
-                                                    data-id="" title="delete">
+                                                    class="badge-circle badge-circle-sm badge-circle-danger mr-1 pointer delete-voucher"
+                                                    data-id="{{$item->id}}" title="delete">
                                                     <i class="bx bx-trash font-size-base"></i>
                                                 </div>
                                             </div>
@@ -203,10 +197,50 @@
             $("#modal-add-voucher").modal('show');
         }
 
-        // $(function () {
-        //     if (parseInt($("#tablesjurnalUmums").val()) > 0) {
-        //         $("#table-jurnal-umum-menu-keuangan").DataTable();
-        //     }
-        // });
+        $(function () {
+            if (parseInt($("#tablesVoucher").val()) > 0) {
+                $("#table-voucher-menu-keuangan").DataTable();
+            }
+        });
+
+        $(document).ready(function (){
+            $("#table-voucher-menu-keuangan").on('click', '.delete-voucher', function (e) {
+                var voucherId = $(this).data('id');
+                console.log(voucherId)
+
+                Swal.fire({
+                    title: "Yakin akan menghapus data?",
+                    text: "Data yang dihapus tidak dapat dikembalikan",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Ya, hapus!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: '{{ route('finance-accounting-menu-keuangan-administrasi-voucher-delete') }}',
+                            type: 'DELETE',
+                            data: {
+                                '_token': '{{ csrf_token() }}',
+                                'id': voucherId
+                            },
+                            success: function (response) {
+                                console.log(response)
+                                location.reload();
+                                Toast.fire({
+                                    icon: "success",
+                                    title: "Berhasil menghapus data voucher"
+                                });
+                            },
+                            error: function (err) {
+                                console.log(err);
+                            }
+                        });
+                    }
+                });
+            });
+        });
+
     </script>
 @endpush

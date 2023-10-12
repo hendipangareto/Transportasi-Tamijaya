@@ -24,9 +24,13 @@ class VoucherController extends Controller
         if (isset($request->pic_pengeluar)) {
             $pic_pengeluar = $request->pic_pengeluar;
         }
-        $make_date = "";
+        $date_make = "";
         if (isset($request->date_make)) {
-            $make_date = $request->date_make;
+            $date_make = $request->date_make;
+        }
+        $date_keluar = "";
+        if (isset($request->date_keluar)) {
+            $date_keluar = $request->date_keluar;
         }
 
         $voucher = DB::table('voucher')
@@ -40,8 +44,11 @@ class VoucherController extends Controller
             ->when(!empty($pic_pengeluar), function ($query) use ($pic_pengeluar) {
                 $query->where('voucher.pic_pengeluar_voucher', $pic_pengeluar);
             })
-            ->when(!empty($make_date), function ($query) use ($make_date) {
-                $query->where('voucher.tanggal_buat_voucher', $make_date);
+            ->when($request->date_make, function ($query) use ($request) {
+                $query->where('tanggal_buat_voucher', $request->date_make);
+            })
+            ->when($request->date_keluar, function ($query) use ($request) {
+                $query->where('tanggal_keluar_voucher', $request->date_keluar);
             })
             ->get();
 
@@ -49,7 +56,8 @@ class VoucherController extends Controller
             'nilai_v' => $nilai_v,
             'pic_make' => $pic_make,
             'pic_pengeluar' => $pic_pengeluar,
-            'date_make' => $make_date,
+            'date_make' => $request->date_make,
+            'date_keluar' => $request->date_keluar,
         );
 
         return view('admin.finance-accounting.menu-keuangan.administrasi.voucher.index', ['voucher' => $voucher, 'params' => $params]);
@@ -90,11 +98,40 @@ class VoucherController extends Controller
 
     public function update(Request $request, $id)
     {
-        //
+        DB::beginTransaction();
+        try {
+
+            $voucher = Voucher::findOrFail($id);
+
+            $voucher->nilai_voucher = $request->edit_nilai_voucher;
+            $voucher->tanggal_buat_voucher = $request->edit_tanggal_buat_voucher;
+            $voucher->pic_pembuat = $request->edit_pic_pembuat;
+            $voucher->Jumlah_voucher_dibuat = $request->edit_Jumlah_voucher_dibuat;
+            $voucher->tanggal_keluar_voucher = $request->edit_tanggal_keluar_voucher;
+            $voucher->pic_pengeluar_voucher = $request->edit_pic_pengeluar_voucher;
+            $voucher->jumlah_voucher_keluar = $request->edit_jumlah_voucher_keluar;
+            $voucher->save();
+
+            DB::commit();
+            Session::flash('message', ['Berhasil mengubah voucher', 'success']);
+        } catch (\Exception $e) {
+            DB::rollback();
+            Session::flash('message', ['Gagal meengubah voucher', 'error']);
+        }
+
+        return redirect()->route('finance-accounting-menu-keuangan-administrasi-voucher-index');
     }
 
-    public function delete($id)
+    public function delete(Request $request)
     {
-        //
+        $voucherId = $request->input('id');
+        $data = Voucher::find($voucherId);
+        $data->delete();
+
+        return response()->json([
+            'data' => $data,
+            'message' => 'Berhasil menghapus data voucher',
+            'status' => 200,
+        ]);
     }
 }
