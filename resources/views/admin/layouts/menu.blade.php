@@ -294,6 +294,17 @@
                     </ul>
                 </li>
 
+                <li class="nav-item"><a href=""><i class='bx bxs-hot'></i><span
+                            class="menu-title">Keuangan Pimpinan</span></a>
+                    <ul class="menu-content">
+                        <li class=" nav-item @if (Request::segment(2) == 'request-pengajuan-dana') active @endif"><a
+                                href="{{ route('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-index') }}"><i
+                                    class='bx bx-right-arrow-alt'></i><span
+                                    class="menu-title">Request Pengajuan Dana</span></a>
+                        </li>
+                    </ul>
+                </li>
+
                 {{--End Menu keuangan finance accounting--}}
 
                 <li class=" nav-item @if (Request::segment(3) == 'cash-flow') active @endif"><a
