@@ -722,6 +722,10 @@ Route::group(
                     Route::get('/print-pdf', 'FinanceAccounting\MenuKeuangan\Kasir\LaporanDanaDariPemanduController@printLaporanPemanduById')->name('finance-accounting-menu-keuangan-kasir-laporan-dana-dari-pemandu-print-pdf');
                 });
             });
+
+            Route::prefix('pengajuan-dana-user')->group(function () {
+                Route::get('/', 'FinanceAccounting\MenuKeuangan\User\PengajuanDanaUserController@index')->name('finance-accounting-menu-keuangan-user-pengajuan-dana-user-index');
+            });
             #End Peter
 
 
