@@ -505,6 +505,9 @@ Route::group(
 
                     });
                 });
+                Route::prefix('notif-permintaan-logistik')->group(function () {
+                    Route::get('/', 'MasterLogistik\NotifPermintaan\NotifPermintaanLogistikController@index')->name('master-logistik-notif-permintaan-index');
+                });
 
                 //PENGAJUAN PEMBELIAN
 //                Route::prefix('pengajuan-pembelian')->group(function () {
@@ -704,6 +707,8 @@ Route::group(
                 Route::prefix('voucher')->group(function () {
                     Route::get('/', 'FinanceAccounting\MenuKeuangan\Administrasi\VoucherController@index')->name('finance-accounting-menu-keuangan-administrasi-voucher-index');
                     Route::post('/store', 'FinanceAccounting\MenuKeuangan\Administrasi\VoucherController@store')->name('finance-accounting-menu-keuangan-administrasi-voucher-store');
+                    Route::post('/update/{id}', 'FinanceAccounting\MenuKeuangan\Administrasi\VoucherController@update')->name('finance-accounting-menu-keuangan-administrasi-voucher-update');
+                    Route::delete('/delete', 'FinanceAccounting\MenuKeuangan\Administrasi\VoucherController@delete')->name('finance-accounting-menu-keuangan-administrasi-voucher-delete');
                 });
                 Route::prefix('request-gaji')->group(function () {
                     Route::get('/', 'FinanceAccounting\MenuKeuangan\Administrasi\RequestGajiController@index')->name('finance-accounting-menu-keuangan-administrasi-request-gaji-index');
@@ -729,6 +734,20 @@ Route::group(
                     Route::get('/', 'FinanceAccounting\MenuKeuangan\Kasir\LaporanDanaDariPemanduController@index')->name('finance-accounting-menu-keuangan-kasir-laporan-dana-dari-pemandu-index');
                     Route::get('/print-pdf', 'FinanceAccounting\MenuKeuangan\Kasir\LaporanDanaDariPemanduController@printLaporanPemanduById')->name('finance-accounting-menu-keuangan-kasir-laporan-dana-dari-pemandu-print-pdf');
                 });
+            });
+
+            Route::prefix('pengajuan-dana-user')->group(function () {
+                Route::get('/', 'FinanceAccounting\MenuKeuangan\User\PengajuanDanaUserController@index')->name('finance-accounting-menu-keuangan-user-pengajuan-dana-user-index');
+                Route::get('/rekap', 'FinanceAccounting\MenuKeuangan\User\PengajuanDanaUserController@rekap')->name('finance-accounting-menu-keuangan-user-pengajuan-dana-user-rekap');
+                Route::get('/detail-rekap', 'FinanceAccounting\MenuKeuangan\User\PengajuanDanaUserController@detailRekap')->name('finance-accounting-menu-keuangan-user-pengajuan-dana-user-detail-rekap');
+            });
+            Route::prefix('laporan-nota-belanja')->group(function () {
+                Route::get('/', 'FinanceAccounting\MenuKeuangan\User\LaporanNotaBelanjaController@index')->name('finance-accounting-menu-keuangan-user-laporan-nota-belanja-index');
+                Route::get('/detail-nota', 'FinanceAccounting\MenuKeuangan\User\LaporanNotaBelanjaController@detailNota')->name('finance-accounting-menu-keuangan-user-laporan-nota-belanja-detail-nota');
+            });
+            Route::prefix('request-pengajuan-dana')->group(function () {
+                Route::get('/', 'FinanceAccounting\MenuKeuangan\Pimpinan\RequestPengajuanDanaController@index')->name('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-index');
+                Route::get('/approval-pengajuan', 'FinanceAccounting\MenuKeuangan\Pimpinan\RequestPengajuanDanaController@approvalPengajuan')->name('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-approval-pengajuan');
             });
             #End Peter
 
