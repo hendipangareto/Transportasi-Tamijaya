@@ -668,6 +668,10 @@
                                     class="bx bx-right-arrow-alt"></i><span
                                     class="menu-item ">Laporan Pembelian</span></a>
                         </li>
+                        <li @if (Request::segment(3) == 'notif-permintaan-logistik') class="active" @endif>
+                            <a href="{{route ('master-logistik-notif-permintaan-index')}}"><i
+                                    class="bx bx-right-arrow-alt"></i><span class="menu-item">Notif Permintaan</span></a>
+                        </li>
 
                     </ul>
                 </li>

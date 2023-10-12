@@ -495,6 +495,9 @@ Route::group(
 
                     });
                 });
+                Route::prefix('notif-permintaan-logistik')->group(function () {
+                    Route::get('/', 'MasterLogistik\NotifPermintaan\NotifPermintaanLogistikController@index')->name('master-logistik-notif-permintaan-index');
+                });
 
                 //PENGAJUAN PEMBELIAN
 //                Route::prefix('pengajuan-pembelian')->group(function () {
