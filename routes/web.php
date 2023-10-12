@@ -725,6 +725,12 @@ Route::group(
 
             Route::prefix('pengajuan-dana-user')->group(function () {
                 Route::get('/', 'FinanceAccounting\MenuKeuangan\User\PengajuanDanaUserController@index')->name('finance-accounting-menu-keuangan-user-pengajuan-dana-user-index');
+                Route::get('/rekap', 'FinanceAccounting\MenuKeuangan\User\PengajuanDanaUserController@rekap')->name('finance-accounting-menu-keuangan-user-pengajuan-dana-user-rekap');
+                Route::get('/detail-rekap', 'FinanceAccounting\MenuKeuangan\User\PengajuanDanaUserController@detailRekap')->name('finance-accounting-menu-keuangan-user-pengajuan-dana-user-detail-rekap');
+            });
+            Route::prefix('laporan-nota-belanja')->group(function () {
+                Route::get('/', 'FinanceAccounting\MenuKeuangan\User\LaporanNotaBelanjaController@index')->name('finance-accounting-menu-keuangan-user-laporan-nota-belanja-index');
+                Route::get('/detail-nota', 'FinanceAccounting\MenuKeuangan\User\LaporanNotaBelanjaController@detailNota')->name('finance-accounting-menu-keuangan-user-laporan-nota-belanja-detail-nota');
             });
             #End Peter
 

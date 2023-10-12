@@ -8,7 +8,7 @@
                     <ol class="breadcrumb p-0 mb-0">
                         <li class="breadcrumb-item"><a href="#"><i class="bx bx-home-alt"></i></a>
                         </li>
-                        <li class="breadcrumb-item active">Pengajuan Dana User
+                        <li class="breadcrumb-item active">Rekap Pengajuan Dana User
                         </li>
                     </ol>
                 </div>
@@ -23,14 +23,7 @@
                 <div class="card-header" style="background-color: #00b3ff">
                     <div class="toolbar row ">
                         <div class="col-md-12 d-flex">
-                            <h4 class="card-title">List Pengajuan Dana Belanja User</h4>
-                            <div class="col ml-auto">
-                                <div class="dropdown float-right">
-                                    <button class="btn btn-primary" data-toggle="modal" data-target="#modal-add-pengajuan-dana-belanja-user">
-                                        <i class="bx bx-plus-circle"></i> Tambah Data
-                                    </button>
-                                </div>
-                            </div>
+                            <h4 class="card-title">List Rekap Pengajuan Dana Belanja User</h4>
                         </div>
                     </div>
                 </div>
@@ -57,31 +50,28 @@
                                         <label for="" style="color: white">Filter</label><br>
                                         <button class="btn btn-outline-primary"> Filter <i class="bx bx-filter"></i>
                                         </button>
-                                        <a href="{{route('finance-accounting-menu-keuangan-user-pengajuan-dana-user-index')}}" class="btn btn-outline-secondary"> Reset <i class="bx bx-reset"></i></a>
+                                        <a href="{{route('finance-accounting-menu-keuangan-user-pengajuan-dana-user-rekap')}}" class="btn btn-outline-secondary"> Reset <i class="bx bx-reset"></i></a>
                                     </div>
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div class="card-header">
-                        <a href="{{route('finance-accounting-menu-keuangan-user-pengajuan-dana-user-index')}}" class="btn btn-primary">Pengajuan Dana</a>
-                        <a href="{{route('finance-accounting-menu-keuangan-user-pengajuan-dana-user-rekap')}}" class="btn btn-outline-primary">Rekap</a>
+                        <a href="{{route('finance-accounting-menu-keuangan-user-pengajuan-dana-user-index')}}" class="btn btn-outline-primary">Pengajuan Dana</a>
+                        <a href="{{route('finance-accounting-menu-keuangan-user-pengajuan-dana-user-rekap')}}" class="btn btn-primary">Rekap</a>
                     </div>
                     <div class="card-body card-dashboard">
                         <div class="table-responsive">
-                            {{--                            <input type="hidden" id="tableDaftarTransaksiKasir" value="{{$data->count()}}">--}}
+                            {{--                            <input type="hidden" id="tableRekapPengajuanDanaUser" value="{{$data->count()}}">--}}
                             <table class="table datatables table-bordered table-hover"
-                                   id="table-daftar-transaksi-kasir">
+                                   id="table-rekap-penagjuan-dana-user">
                                 <thead>
                                 <tr>
                                     <th class="w-3p">No</th>
-                                    <th class="w-15p">Nama Toko</th>
-                                    <th class="w-10p">Nama Item</th>
-                                    <th class="w-5p">Kuantitas</th>
-                                    <th class="w-5p">Satuan</th>
-                                    <th class="w-5p">Harga Satuan (Rp)</th>
-                                    <th class="w-5p">Harga Total (Rp)</th>
-                                    <th class="w-10p">Status Transaksi</th>
+                                    <th class="w-15p">Tanggal Pengajuan</th>
+                                    <th class="w-10p">No Pengajuan</th>
+                                    <th class="w-5p">Dana Diajukan (Rp)</th>
+                                    <th class="w-5p">Status Pengajuan Dana</th>
                                     <th class="w-5p">Aksi</th>
                                 </tr>
                                 </thead>
@@ -92,26 +82,10 @@
                                     <td>#</td>
                                     <td>#</td>
                                     <td>#</td>
-                                    <td>#</td>
-                                    <td>#</td>
-                                    <td>#</td>
                                     <td>
                                         <div class="d-flex">
-                                            <div class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"
-                                                 data-toggle="modal"
-                                                 data-target="#modal-details-pengajuan-dana-belanja-user">
-                                                <i class="bx bx-info-circle font-size-base"></i>
-                                            </div>
-                                            <div
-                                                class="badge-circle badge-circle-sm badge-circle-warning mr-1 pointer"
-                                                data-toggle="modal" title="edit"
-                                                data-target="#modal-edit-pengajuan-dana-belanja-user">
-                                                <i class="bx bx-edit font-size-base"></i>
-                                            </div>
-                                            <div
-                                                class="badge-circle badge-circle-sm badge-circle-danger mr-1 pointer delete-jurnals-umum"
-                                                data-id="" title="delete">
-                                                <i class="bx bx-trash font-size-base"></i>
+                                            <div class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer">
+                                                <a href="{{route('finance-accounting-menu-keuangan-user-pengajuan-dana-user-detail-rekap')}}" class="bx bx-info-circle font-size-base" style="color: white"></a>
                                             </div>
                                         </div>
                                     </td>

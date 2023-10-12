@@ -279,10 +279,19 @@
                     </ul>
                 </li>
                 {{--Pengajuan Dana User--}}
-                <li class=" nav-item @if (Request::segment(2) == 'pengajuan-dana-user') active @endif"><a
-                        href="{{ route('finance-accounting-menu-keuangan-user-pengajuan-dana-user-index') }}"><i
-                            class='bx bx-user-voice'></i><span
-                            class="menu-title">Pengajuan Dana User</span></a>
+                <li class="nav-item"><a href=""><i class='bx bx-credit-card-alt'></i><span
+                            class="menu-title">Keuangan User</span></a>
+                    <ul class="menu-content">
+                        <li class=" nav-item @if (Request::segment(2) == 'pengajuan-dana-user') active @endif"><a
+                                href="{{ route('finance-accounting-menu-keuangan-user-pengajuan-dana-user-index') }}"><i
+                                    class='bx bx-right-arrow-alt'></i><span
+                                    class="menu-title">Pengajuan Dana User</span></a>
+                        </li>
+                        <li @if (Request::segment(2) == 'laporan-nota-belanja') class="active" @endif>
+                            <a href="{{route('finance-accounting-menu-keuangan-user-laporan-nota-belanja-index')}}"><i class="bx bx-right-arrow-alt"></i><span
+                                    class="menu-item ">Laporan Nota Belanja</span></a>
+                        </li>
+                    </ul>
                 </li>
 
                 {{--End Menu keuangan finance accounting--}}
