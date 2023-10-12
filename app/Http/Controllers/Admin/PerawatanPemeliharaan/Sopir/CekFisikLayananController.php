@@ -68,27 +68,28 @@ class CekFisikLayananController extends Controller
     {
         DB::beginTransaction();
         try {
+            $validatedData = $request->validate([
+                'id_armada' => 'required|numeric',
+                'bagian_id' => 'required|numeric',
+                'keluhan' => 'required|string',
+            ]);
 
             $sopir = new CekLayananFisik();
-
-            $sopir->id_armada = $request->id_armada;
-            $sopir->bagian_id = $request->bagian_id;
-//            $sopir->id_pick_point = $request->id_pick_point;
-//            $sopir->id_destination_wisata = $request->id_destination_wisata;
-            $sopir->keluhan = $request->keluhan;
-
-//             dd($sopir);
+            $sopir->id_armada = $validatedData['id_armada'];
+            $sopir->bagian_id = $validatedData['bagian_id'];
+            $sopir->keluhan = $validatedData['keluhan'];
             $sopir->save();
 
             DB::commit();
-            Session::flash('message', ['Berhasil menyimpan data check fisik layanan', 'success']);
+            session()->flash('message', ['Berhasil menyimpan data check fisik layanan', 'success']);
         } catch (\Exception $e) {
             DB::rollback();
-            Session::flash('message', ['Gagal menyimpan data check fisik layanan', 'error']);
+            session()->flash('message', ['Gagal menyimpan data check fisik layanan', 'error']);
         }
 
         return redirect()->route('perawatan-pemeliharaan.sopir.check-fisik-layanan');
     }
+
 
 
     public function ReportPerjalanan()

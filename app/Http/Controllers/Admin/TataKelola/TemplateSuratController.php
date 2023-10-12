@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\TataKelola\SuratMenyurat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 
 class TemplateSuratController extends Controller
@@ -23,7 +24,6 @@ class TemplateSuratController extends Controller
         DB::beginTransaction();
         try {
             $request->validate([
-
                 'lampiran_dokumen' => 'file|mimes:jpeg,png,pdf|max:2048',
             ]);
 
@@ -36,21 +36,22 @@ class TemplateSuratController extends Controller
             $surat->kode_surat = $nosurat;
             $surat->nama_surat = $request->nama_surat;
             $surat->deskripsi = $request->deskripsi;
+            $surat->lampiran_dokumen = $request->lampiran_dokumen;
             if ($request->hasFile('lampiran_dokumen')) {
                 $file = $request->file('lampiran_dokumen');
                 $fileName = $file->getClientOriginalName();
-                $file->storeAs('surat', $fileName);
+                $file->storeAs('template_dokumen', $fileName);
                 $surat->lampiran_dokumen = $fileName;
             }
+            dd($surat);
 
-
-//            dd($surat);
             $surat->save();
 
             DB::commit();
             Session::flash('message', ['Berhasil menyimpan data surat menyurat', 'success']);
         } catch (\Exception $e) {
             DB::rollback();
+            Log::error('Error saving surat menyurat: ' . $e->getMessage());
             Session::flash('message', ['Gagal menyimpan data surat menyurat', 'error']);
         }
 

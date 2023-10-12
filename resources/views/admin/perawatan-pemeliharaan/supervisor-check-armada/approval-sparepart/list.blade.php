@@ -105,11 +105,11 @@
                                         <th colspan="2"  class="w-5p">Check Kondisi</th>
                                         <th  class="w-3p" rowspan="2">Approval <br> SPV</th>
                                         <th  class="w-10p" rowspan="2">Catatan</th>
+                                        <th  class="w-10p" rowspan="2">Bagian</th>
                                     </tr>
                                     <tr>
                                         <td>Baik, Lengkap</td>
                                         <td>Rusak, Perlu Perawatan</td>
-
                                     </tr>
                                     </thead>
                                     <tbody>

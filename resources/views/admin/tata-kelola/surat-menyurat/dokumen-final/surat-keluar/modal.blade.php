@@ -165,7 +165,7 @@
                     </div>
                     <div class="mb-2 row">
                         <label for="html5-url-input" class="col-md-3 col-form-label" style="color: white;">Pratinjau Dokumen</label>
-                        <div id="file-preview" class="col-md-9"></div>
+                        <div id="file-preview-keluar" class="col-md-9"></div>
                     </div>
 
                 </div>

@@ -20,22 +20,45 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-header d-flex justify-content-between">
-                    <h4 class="card-title">List Jadwal Bus Pariwisata</h4>
-                </div>
-                <div class="card-content">
-                    <div class="card-body card-dashboard">
-                        <div class="table-responsive" id="show-data-schedule-pariwisata">
-                            <div class="text-center">
-                                <div class="spinner-border mr-3 spinner-border text-center" role="status">
-                                    <span class="sr-only">Loading...</span>
+                <div class="card-header" style="background-color: #00b3ff">
+                    <div class="toolbar row ">
+                        <div class="col-md-12 d-flex">
+                            <h4 class="card-title" style="color: black"><b>Tata Kelola </b>| Jadwal Bus Pariwisata</h4>
+                            <div class="col ml-auto">
+                                <div class="dropdown float-right">
+                                    <a target="_blank"
+                                       href=" "
+                                       type="button"
+                                       class="btn btn-danger text-white mr-1">
+                                        <i class="bx bx-printer"></i> Report PDF
+                                    </a>
+                                    <a target="_blank"
+                                       href=""
+                                       type="button"
+                                       class="btn btn-warning text-white mr-1">
+                                        <i class="bx bx-calendar"></i>Kalender
+                                    </a>
                                 </div>
-                                <h5 for="">Please Wait.....</h5>
                             </div>
                         </div>
-                        <div id="form-data-schedule-pariwisata" style="display: none">
-                            @include('admin.transaction.pariwisata.schedule.form')
-                        </div>
+                    </div>
+                </div>
+                <div class="card-content mt-3">
+                    <div class="card-body card-dashboard">
+                        @include('admin.transaction.pariwisata.schedule.display')
+                       <div class="row">
+                           <div class="col ml-auto">
+                               <div class="dropdown float-right">
+                                   <label for="" style="color: white">Filter</label><br>
+                                   <a href="" class="btn btn-primary mr-1" data-toggle="modal"
+                                      data-target="#TambahSurat"><i class="bx bx-plus-circle"></i>Tambah Data</a>
+                               </div>
+                           </div>
+                       </div>
+                       @include('admin.transaction.pariwisata.schedule.table')
+                        {{--                        <div id="form-data-schedule-pariwisata" style="display: none">--}}
+                        {{--                            @include('admin.transaction.pariwisata.schedule.form')--}}
+                        {{--                        </div>--}}
                     </div>
                 </div>
             </div>
@@ -46,5 +69,6 @@
 @endsection
 
 @push('page-scripts')
-    <script src="{{ asset('script/admin/transaction/schedule-pariwisata.js') }}"></script>
+{{--    <script src="{{ asset('script/admin/transaction/schedule-pariwisata.js') }}"></script>--}}
+
 @endpush

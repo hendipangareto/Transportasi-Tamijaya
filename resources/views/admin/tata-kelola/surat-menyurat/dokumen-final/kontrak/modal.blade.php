@@ -159,7 +159,7 @@
                     <div class="mb-2 row">
                         <label for="html5-url-input" class="col-md-3 col-form-label">Lampiran Dokumen</label>
                         <div class="col-md-9">
-                            <input class="form-control" type="file" name="lampiran_dokumen_final_kontrak"
+                            <input class="form-control" type="file" name="lampiran_dokumen_kontrak"
                                    id="lampiran_dokumen_final_kontrak" placeholder="Lampiran Dokumen"
                                    onchange="previewFile('kontrak')">
                         </div>

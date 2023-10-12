@@ -20,18 +20,20 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
+                <div class="card-header" style="background-color: #00b3ff">
+                    <div class="toolbar row ">
+                        <div class="col-md-12 d-flex">
+                            <h4 class="card-title" style="color: black"><b>Data Master </b>|  Jadwal Bus Reguler</h4>
+                            <div class="col ml-auto">
+                                <div class="dropdown float-right">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="card-header ">
                     <div class="row">
-                        {{-- <div class="col-md-3">
-                            <div class="d-flex justify-content-between">
-
-                            </div>
-                        </div> --}}
-                        <div class="col-md-3">
-
-                            <h4 class="card-title">Jadwal Bus Reguler</h4>
-
-                        </div>
                         <div class="col-md-4">
                             <div class="input-group input-group-sm">
                                 <div class="input-group-prepend">

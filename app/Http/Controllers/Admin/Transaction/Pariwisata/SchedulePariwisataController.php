@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin\Transaction\Pariwisata;
 
 use App\Http\Controllers\Controller;
+use App\Models\MasterData\DestinationWisata;
+use App\Models\MasterData\PickPoint;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\HumanResource\Employee;
@@ -11,13 +13,70 @@ use App\Models\Transaction\SchedulePariwisata;
 
 class SchedulePariwisataController extends Controller
 {
-    public function index()
+    public function JadwalWisata()
     {
         $armadas =  Armada::where('armada_category', 'PARIWISATA')->orderBy('id', 'ASC')->get();
-        $drivers =   Employee::where('departemen_id', 5)->orderBy('id', 'ASC')->get();
-        $conductors =  Employee::where('departemen_id', 6)->orderBy('id', 'ASC')->get();
-        return view('admin.transaction.pariwisata.schedule.index', ["drivers" => $drivers, "conductors" => $conductors, "armadas" => $armadas]);
+//        $drivers =   Employee::where('id_department', 5)->orderBy('id', 'ASC')->get();
+        $conductors =  Employee::where('id_department', 6)->orderBy('id', 'ASC')->get();
+//        $PickPoin =  PickPoint::where('pick_point_origin', 6)->orderBy('id', 'ASC')->get();
+        $PickPoin =  PickPoint::get();
+        $employees = Employee::get();
+
+        $DestinasiWisata = DestinationWisata::get();
+
+        $SchedulePariwisata = SchedulePariwisata::select(
+            'schedule_pariwisatas.*',
+            'booking_transactions.booking_transactions_code as booking_code',
+            'armadas.armada_no_police as no_police',
+            'pick_points.pick_point_name as pick_point_name',
+            'destination_wisatas.destination_wisata_name as destination_name',
+            'employees.employee_name as employee_name'
+        )
+            ->join('booking_transactions', 'booking_transactions.id', '=', 'schedule_pariwisatas.id_booking_transaction')
+            ->join('armadas', 'armadas.id', '=', 'schedule_pariwisatas.id_armada')
+            ->leftJoin('pick_points', 'pick_points.id', '=', 'schedule_pariwisatas.id_pick_point')
+            ->leftJoin('destination_wisatas', 'destination_wisatas.id', '=', 'schedule_pariwisatas.id_destination_wisata')
+            ->leftJoin('employees', 'employees.id', '=', 'schedule_pariwisatas.id_employee') // Join with employees table
+            ->orderBy('armadas.id')
+            ->get();
+
+
+
+
+//        dd($SchedulePariwisata);
+        return view('admin.transaction.pariwisata.schedule.index', compact('SchedulePariwisata',
+            'armadas', 'conductors','PickPoin','DestinasiWisata', 'employees')
+        );
     }
+
+    public function TambahJadwalWisata(Request $request)
+    {
+        $request->validate([
+            // Atur aturan validasi sesuai kebutuhan Anda
+        ]);
+
+        // Simpan data jadwal pariwisata ke database
+        SchedulePariwisata::create([
+            'id_booking_transaction' => $request->input('id_booking_transaction'),
+            'date_departure' => $request->input('date_departure'),
+            'date_return' => $request->input('date_return'),
+            'bus_type' => $request->input('bus_type'),
+            'id_armada' => $request->input('id_armada'),
+            'id_pick_point' => $request->input('id_pick_point'),
+            'id_destination_wisata' => $request->input('id_destination_wisata'),
+            'id_employee' => $request->input('id_employee'),
+            'total_days' => $request->input('total_days'),
+            'bus_price' => $request->input('bus_price'),
+            'driver' => $request->input('driver'),
+            'conductor' => $request->input('conductor'),
+            'notes' => $request->input('notes'),
+        ]);
+
+        // Redirect dengan pesan sukses
+        return redirect()->route('schedule_pariwisatas.index')->with('success', 'Jadwal pariwisata berhasil disimpan.');
+
+    }
+
 
     public function create()
     {

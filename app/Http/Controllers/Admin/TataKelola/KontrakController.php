@@ -34,7 +34,7 @@ class KontrakController extends Controller
             $Kontrak->penerima_surat = $request->penerima_surat;
             $Kontrak->tanggal_surat = $request->tanggal_surat;
             $Kontrak->keterangan_surat = $request->keterangan_surat;
-            $Kontrak->lampiran_dokumen_final = $request->lampiran_dokumen_final;
+            $Kontrak->lampiran_dokumen_final = $request->lampiran_dokumen_kontrak;
             if ($request->hasFile('lampiran_dokumen_final')) {
                 $file = $request->file('lampiran_dokumen_final');
                 $fileName = $file->getClientOriginalName();
