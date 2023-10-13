@@ -509,6 +509,9 @@ Route::group(
                 Route::prefix('notif-permintaan-logistik')->group(function () {
                     Route::get('/', 'MasterLogistik\NotifPermintaan\NotifPermintaanLogistikController@index')->name('master-logistik-notif-permintaan-index');
                 });
+                Route::prefix('logistik-masuk')->group(function () {
+                    Route::get('/', 'MasterLogistik\LogistikMasuk\LogistikMasukController@index')->name('master-logistik-logistik-masuk-index');
+                });
 
             });
 

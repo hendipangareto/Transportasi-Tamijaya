@@ -669,6 +669,9 @@
                 <li @if (Request::segment(2) == 'master-logistik' && Request::segment(3) == 'notif-permintaan-logistik') class="active" @endif>
                     <a href="{{route ('master-logistik-notif-permintaan-index')}}"><i class='bx bx-cube-alt' ></i><span class="menu-item">Notif Permintaan</span></a>
                 </li>
+                <li @if (Request::segment(2) == 'master-logistik' && Request::segment(3) == 'logistik-masuk') class="active" @endif>
+                    <a href="{{route ('master-logistik-logistik-masuk-index')}}"><i class='bx bx-link-alt' ></i><span class="menu-item">Logistik Masuk</span></a>
+                </li>
             @endif
 
             @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 2 || Auth::user()->id_role == 3)
