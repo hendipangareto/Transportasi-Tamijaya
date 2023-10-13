@@ -12,7 +12,8 @@
                   enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
-                    <input type="hidden" id="edit-id" name="id" value="">
+                    <input type="hidden" id="kode_keberangkatan" name="kode_keberangkatan" value="">
+                    <input type="hidden" id="kode_tujuan" name="kode_tujuan" value="">
                     <div class="row">
                         <div class="col-md-6">
                             <label>Armada (Tipe Armada) : </label>
@@ -29,7 +30,7 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <label>Status Keberangkatan : </label>
+                            <label>Tipe Armada : </label>
                             <div class="form-group">
                                 <select name=" " id=" " class="form-control form-control-sm">
                                     <option disabled selected>Status Keberangkatan</option>
@@ -94,7 +95,6 @@
                                     <option disabled selected>Sopir 1</option>
                                     @foreach($employees as $employee)
                                         @if($employee->id_department === 5)
-                                            <!-- Ganti 1 dengan ID departemen "Sopir" sesuai dengan database Anda -->
                                             <option value="{{ $employee->id }}">{{ $employee->employee_name }}</option>
                                         @endif
                                     @endforeach

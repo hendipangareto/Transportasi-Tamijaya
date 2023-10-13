@@ -17,6 +17,8 @@ class CreateSchedulePariwisatasTable extends Migration
             $table->id();
             $table->date('date_departure');
             $table->date('date_return');
+            $table->string('kode_keberangkatan');
+            $table->string('kode_tujuan');
 
             $table->unsignedBigInteger('id_armada')->nullable();
             $table->foreign('id_armada')->references('id')->on('armadas');
@@ -34,9 +36,6 @@ class CreateSchedulePariwisatasTable extends Migration
             $table->unsignedInteger('bus_price')->nullable();
             $table->string('sopir_1')->nullable();
             $table->string('sopir_2')->nullable();
-//            $table->string('kernet')->nullable();
-
-
             $table->text('notes')->nullable();
             $table->timestamps();
         });

@@ -26,15 +26,16 @@
             @php
                 $employee = \App\Models\HumanResource\Employee::find($item->sopir_1);
                 $employees = \App\Models\HumanResource\Employee::find($item->sopir_2);
+
             @endphp
             <tr class="text-center">
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $item->date_departure }}</td>
                 <td>{{ $item->date_return }}</td>
-                <td>{{ $item->no_police }}</td>
-                <td>{{ $item->id_pick_point }}</td>
                 <td></td>
-                <td> </td>
+                <td>{{ $item->no_police }}</td>
+                <td>{{ $item->kode_keberangkatan }}</td>
+                <td>{{ $item->kode_tujuan }}</td>
                 <td>
                     @if ($employee)
                         {{ $employee->employee_name }}
@@ -77,6 +78,7 @@
                 <td colspan="12" class="text-center">Tidak ada data schedule parawisata</td>
             </tr>
         @endforelse
+
 
         </tbody>
     </table>
