@@ -770,6 +770,7 @@ Route::group(
             });
             Route::prefix('request-pengajuan-dana')->group(function () {
                 Route::get('/', 'FinanceAccounting\MenuKeuangan\Pimpinan\RequestPengajuanDanaController@index')->name('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-index');
+
                 Route::get('/approval-pengajuan', 'FinanceAccounting\MenuKeuangan\Pimpinan\RequestPengajuanDanaController@approvalPengajuan')->name('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-approval-pengajuan');
             });
             #End Peter

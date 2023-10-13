@@ -87,23 +87,60 @@
                                     <th class="w-5p">Aksi</th>
                                 </tr>
                                 </thead>
+                                @php
+                                    $totalLunas = 0;
+                                    $totalHutang = 0;
+                                @endphp
+
                                 <tbody>
-                                <tr>
-                                    <td>#</td>
-                                    <td>#</td>
-                                    <td>#</td>
-                                    <td>#</td>
-                                    <td>#</td>
-                                    <td>#</td>
-                                    <td>
-                                        <div class="d-flex">
-                                            <div class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer" title="detail pengajuan">
-                                                <a href="{{route('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-approval-pengajuan')}}"
-                                                   class="bx bx-info-circle font-size-base" style="color: white"></a>
+                                @forelse($data as $item)
+                                    @php
+                                        $totalLunas += ($item->cara_bayar === 'lunas') ? ($item->kuantitas * $item->harga) : 0;
+                                        $totalHutang += ($item->cara_bayar === 'hutang') ? ($item->kuantitas * $item->harga) : 0;
+                                    @endphp
+                                    <tr class="text-center">
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $item->tanggal_pengajuan }}</td>
+                                        <td>{{ $item->kode_pengajuan }}</td>
+                                        <td> @currency($totalLunas + $totalHutang)</td>
+
+                                        <td>{{ Auth::user()->name }}</td>
+
+
+
+                                    @if($item->status == null)
+                                            <td>
+                                                <a href="{{ route('master-logistik-setujui-pengajuan-pembelian', $item->id) }}" class="btn btn-xs btn-primary btn-flat"><i class="fa fa-check"></i> Setujui</a>
+                                                <a href="{{ route('master-logistik-tolak-pengajuan-pembelian', $item->id) }}" class="btn btn-xs btn-danger btn-flat"><i class="fa"></i> Tolak</a>
+                                            </td>
+                                        @elseif($item->status == 1)
+                                            <td>
+                                                <a href="{{ route('master-logistik-setujui-pengajuan-pembelian', $item->id) }}" class="btn btn-xs btn-primary btn-flat"><i class="bx bx-check-circle"></i>Di Setujui</a>
+                                            </td>
+                                        @elseif($item->status == 2)
+                                            <td>
+                                                <a href="{{ route('master-logistik-tolak-pengajuan-pembelian', $item->id) }}" class="btn btn-xs btn-danger btn-flat"><i class="bx bx-reject"></i>Di Tolak</a>
+                                            </td>
+                                        @endif
+
+
+                                        <td class="text-center">
+                                            <div class="d-flex">
+
+                                                <div class="d-flex">
+                                                    <div class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer" title="detail pengajuan">
+                                                        <a href="{{route('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-approval-pengajuan')}}"
+                                                           class="bx bx-info-circle font-size-base" style="color: white"></a>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                </tr>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="9" class="text-center">Tidak ada data Pengajuan Pembelian.</td>
+                                    </tr>
+                                @endforelse
                                 </tbody>
                             </table>
                         </div>
