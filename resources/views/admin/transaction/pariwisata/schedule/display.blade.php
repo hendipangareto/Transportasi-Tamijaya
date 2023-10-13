@@ -81,7 +81,7 @@
             <label for="" style="color: white">Filter</label><br>
             <button class="btn btn-primary">Filter <i
                     class="bx bx-filter"></i></button>
-            <a href=" "
+            <a href="{{ route('admin.transaction.pariwisata.schedule-pariwisata.data') }}"
                class="btn btn-warning">Clear <i
                     class="bx bx-reset"></i></a>
         </div>

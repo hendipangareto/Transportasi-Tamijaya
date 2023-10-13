@@ -267,6 +267,7 @@ Route::group(
                 Route::prefix('schedule-pariwisata')->group(function () {
                     Route::get('/pariwisata/schedule-pariwisata', 'Transaction\Pariwisata\SchedulePariwisataController@JadwalWisata')->name('admin.transaction.pariwisata.schedule-pariwisata.data');
                     Route::post('/pariwisata/schedule-pariwisata', 'Transaction\Pariwisata\SchedulePariwisataController@TambahJadwalWisata')->name('admin.transaction.pariwisata.tambah.schedule-pariwisata');
+                    Route::post('/pariwisata/schedule-pariwisata/{id}', 'Transaction\Pariwisata\SchedulePariwisataController@UpdateJadwalWisata')->name('admin.transaction.pariwisata.update.schedule-pariwisata');
                 });
 
 
