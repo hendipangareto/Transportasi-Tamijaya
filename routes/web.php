@@ -512,6 +512,9 @@ Route::group(
                 Route::prefix('logistik-masuk')->group(function () {
                     Route::get('/', 'MasterLogistik\LogistikMasuk\LogistikMasukController@index')->name('master-logistik-logistik-masuk-index');
                 });
+                Route::prefix('logistik-keluar')->group(function () {
+                    Route::get('/', 'MasterLogistik\LogistikKeluar\LogistikKeluarController@index')->name('master-logistik-logistik-keluar-index');
+                });
 
             });
 

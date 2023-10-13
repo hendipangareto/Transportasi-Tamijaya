@@ -670,7 +670,10 @@
                     <a href="{{route ('master-logistik-notif-permintaan-index')}}"><i class='bx bx-cube-alt' ></i><span class="menu-item">Notif Permintaan</span></a>
                 </li>
                 <li @if (Request::segment(2) == 'master-logistik' && Request::segment(3) == 'logistik-masuk') class="active" @endif>
-                    <a href="{{route ('master-logistik-logistik-masuk-index')}}"><i class='bx bx-link-alt' ></i><span class="menu-item">Logistik Masuk</span></a>
+                    <a href="{{route ('master-logistik-logistik-masuk-index')}}"><i class='bx bx-log-in-circle'></i><span class="menu-item">Logistik Masuk</span></a>
+                </li>
+                <li @if (Request::segment(2) == 'master-logistik' && Request::segment(3) == 'logistik-keluar') class="active" @endif>
+                    <a href="{{route ('master-logistik-logistik-keluar-index')}}"><i class='bx bx-log-out-circle'></i><span class="menu-item">Logistik Keluar</span></a>
                 </li>
             @endif
 
