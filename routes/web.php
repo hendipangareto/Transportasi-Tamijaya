@@ -515,6 +515,9 @@ Route::group(
                 Route::prefix('logistik-keluar')->group(function () {
                     Route::get('/', 'MasterLogistik\LogistikKeluar\LogistikKeluarController@index')->name('master-logistik-logistik-keluar-index');
                 });
+                Route::prefix('notif-perbaikan-bengkel-luar')->group(function () {
+                    Route::get('/', 'MasterLogistik\NotifPerbaikanBengkel\NotifPerbaikanBengkelLuarController@index')->name('master-logistik-notif-perbaikan-bengkel-luar-index');
+                });
 
             });
 
