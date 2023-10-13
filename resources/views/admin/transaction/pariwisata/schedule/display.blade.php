@@ -16,27 +16,54 @@
     <div class="col-md-2 col-sm-12">
         <div class="form-group">
             <label for="">Tipe Armada :</label>
-            <select class="form-control"
-                    name="departemen_id">
-                <option disabled selected>Pilih Tipe Armada</option>
+            <select class="form-control" name="id_armada">
+                <option disabled selected>Pilih Armada</option>
+                @foreach($armadas as $dpt)
+                    @php
+                        $selected = ($params['id_armada'] == $dpt->id) ? "selected" : "";
+                    @endphp
+                    <option value="{{$dpt->id}}" {{$selected}}>
+                        {{ $dpt->armada_merk }} - <b style="color: #83f602">{{ $dpt->armada_no_police }}</b> ({{ $dpt->armada_type }})
+                    </option>
+                @endforeach
             </select>
+
         </div>
     </div>
     <div class="col-md-2 col-sm-12">
         <div class="form-group">
             <label for="">Kota Keberangkatan :</label>
-            <select class="form-control">
+            <select class="form-control" name="id_pick_point">
                 <option disabled selected>Kota Keberangkatan</option>
+                @php
+                    $usedPickPoints = [];
+                @endphp
+                @foreach($PickPoin as $kb)
+                    @if (!in_array($kb->pick_point_origin, $usedPickPoints))
+                        @php
+                            $selectedKota = ($params['id_pick_point'] == $kb->pick_point_origin) ? "selected" : "";
+                        @endphp
+                        <option value="{{ $kb->pick_point_origin }}" {{ $selectedKota }}>
+                            {{ $kb->pick_point_origin }}
+                        </option>
+                        @php
+                            $usedPickPoints[] = $kb->pick_point_origin;
+                        @endphp
+                    @endif
+                @endforeach
             </select>
         </div>
     </div>
     <div class="col-md-2 col-sm-12">
         <div class="form-group">
             <label for="">Nama Sopir</label>
-            <select class="form-control"
-                    name="postionfilter">
-                <option disabled selected>Nama Sopir</option>
-
+            <select name="sopir_1" id="sopir_1" class="form-control form-control-sm">
+                <option disabled selected>Silah Pilih Sopir</option>
+                @foreach($employees as $employee)
+                    @if($employee->id_department === 5)
+                        <option value="{{ $employee->id }}">{{ $employee->employee_name }}</option>
+                    @endif
+                @endforeach
             </select>
         </div>
     </div>
@@ -61,18 +88,26 @@
     <div class="col-md-2 col-sm-12">
         <div class="form-group">
             <label for="">Kota Tujuan</label>
-            <select class="form-control">
+            <select name="id_destination_wisata" id="id_destination_wisata"
+                    class="form-control form-control-sm">
                 <option disabled selected>Kota Tujuan</option>
+                @foreach($DestinasiWisata as $data)
+                    <option value="{{ $data->id }}">{{ $data->destination_wisata_name }}</option>
+                @endforeach
             </select>
         </div>
     </div>
     <div class="col-md-2 col-sm-12">
         <div class="form-group">
             <label for="">Nama Kernet</label>
-            <select class="form-control"
-                    name="postionfilter">
-                <option disabled selected>Nama Kernet</option>
 
+            <select name="id_employee" id="id_employee" class="form-control form-control-sm">
+                <option value="">Silahkan Pilih Kernet</option>
+                @foreach($employees as $employee)
+                    @if(isset($employee->id) && isset($employee->id_department) && $employee->id_department === 6)
+                        <option value="{{ $employee->id }}">{{ $employee->employee_name }}</option>
+                    @endif
+                @endforeach
             </select>
         </div>
     </div>

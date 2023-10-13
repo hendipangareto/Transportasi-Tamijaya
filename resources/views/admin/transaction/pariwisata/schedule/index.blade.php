@@ -27,7 +27,7 @@
                             <div class="col ml-auto">
                                 <div class="dropdown float-right">
                                     <a target="_blank"
-                                       href=" "
+                                       href="{{ route('admin.transaction.pariwisata.schedule-pariwisata.cetak-pdf') }}"
                                        type="button"
                                        class="btn btn-danger text-white mr-1">
                                         <i class="bx bx-printer"></i> Report PDF
@@ -53,20 +53,19 @@
                                    <label for="" style="color: white">Filter</label><br>
                                    <a href="" class="btn btn-primary mr-1" data-toggle="modal"
                                       data-target="#TambahSurat"><i class="bx bx-plus-circle"></i>Tambah Data</a>
-                                   @if (session('success'))
-                                       <div class="alert alert-success">
-                                           {{ session('success') }}
-                                       </div>
-                                   @endif
-
-                                   @if (session('error'))
-                                       <div class="alert alert-danger">
-                                           {{ session('error') }}
-                                       </div>
-                                   @endif
                                </div>
 
+                               @if (session('success'))
+                                   <div class="alert alert-success">
+                                       {{ session('success') }}
+                                   </div>
+                               @endif
 
+                               @if (session('error'))
+                                   <div class="alert alert-danger">
+                                       {{ session('error') }}
+                                   </div>
+                               @endif
                            </div>
                        </div>
                        @include('admin.transaction.pariwisata.schedule.table')

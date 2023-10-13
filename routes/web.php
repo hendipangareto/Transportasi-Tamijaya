@@ -280,6 +280,9 @@ Route::group(
                     Route::get('/pariwisata/schedule-pariwisata', 'Transaction\Pariwisata\SchedulePariwisataController@JadwalWisata')->name('admin.transaction.pariwisata.schedule-pariwisata.data');
                     Route::post('/pariwisata/schedule-pariwisata', 'Transaction\Pariwisata\SchedulePariwisataController@TambahJadwalWisata')->name('admin.transaction.pariwisata.tambah.schedule-pariwisata');
                     Route::post('/pariwisata/schedule-pariwisata/{id}', 'Transaction\Pariwisata\SchedulePariwisataController@UpdateJadwalWisata')->name('admin.transaction.pariwisata.update.schedule-pariwisata');
+
+                    Route::get('/pariwisata/schedule-pariwisata/cetak-pdf', 'Transaction\Pariwisata\SchedulePariwisataController@cetakPDF')->name('admin.transaction.pariwisata.schedule-pariwisata.cetak-pdf');
+                    Route::post('/pariwisata/schedule-pariwisata/{id}', 'Transaction\Pariwisata\SchedulePariwisataController@UpdateJadwalWisata')->name('admin.transaction.pariwisata.update.schedule-pariwisata');
                 });
 
 
