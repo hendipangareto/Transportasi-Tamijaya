@@ -1,4 +1,4 @@
-<div class="modal fade text-left" id="TambahSurat" tabindex="-1" role="dialog" aria-labelledby="modal-title"
+<div class="modal fade text-left" id="TambahTemplate" tabindex="-1" role="dialog" aria-labelledby="modal-title"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -8,7 +8,7 @@
                     <i class="bx bx-x"></i>
                 </button>
             </div>
-            <form action="{{ route('data-kelola.surat-menyurat.tambah-surat-keluar') }}" method="post"
+            <form action="{{ route('data-kelola.surat-menyurat.tambah-template-surat') }}" method="post"
                   enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
@@ -23,14 +23,11 @@
                         <textarea class="form-control" name="deskripsi" id="deskripsi" cols="30"
                                   rows="3" placeholder="Silahkan masukan deskripsi surat"></textarea>
                     </div>
-
                     <div class="form-group">
                         <label for="lampiran_dokumen">Lampiran Dokumen</label>
-                        <input type="file" name="lampiran_dokumen" id="lampiran_dokumen">
+                        <input type="file" class="form-control" name="lampiran_dokumen" id="lampiran_dokumen" onchange="previewFile()">
                     </div>
                     <div id="file-preview" class="col-md-9 mt-2"></div>
-
-
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-warning mr-1" data-dismiss="modal"><i
@@ -98,10 +95,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
-
-
                             <hr style="border-top: 1px dashed #808080;">
                         </div>
                         <div class="row ml-1 justify-content-lg-end">

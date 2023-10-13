@@ -276,8 +276,9 @@ Route::group(
 
                 Route::prefix('surat-menyurat')->group(function () {
                     Route::get('/list-template-surat', 'TataKelola\TemplateSuratController@getSurat')->name('data-kelola.surat-menyurat.list-template-surat');
-                    Route::post('/simpan-template-surat', 'TataKelola\TemplateSuratController@SimpanSurat')->name('data-kelola.surat-menyurat.simpan-template-surat');
-                    Route::get('/download-pdf/{filename}', 'TataKelola\TemplateSuratController@downloadPdf')->name('download-pdf');
+                    Route::post('/tambah-template-surat', 'TataKelola\TemplateSuratController@TambahSurat')->name('data-kelola.surat-menyurat.tambah-template-surat');
+
+                    Route::get('/download-pdf/{filename}', 'TataKelola\TemplateSuratController@downloadPdf')->name('data-kelola.surat-menyurat.download-pdf');
 
                 });
 

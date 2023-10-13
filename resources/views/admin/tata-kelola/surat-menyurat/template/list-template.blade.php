@@ -23,12 +23,13 @@
                 <div class="card-header" style="background-color: #00b3ff">
                     <div class="toolbar row ">
                         <div class="col-md-12 d-flex">
-                            <h4 class="card-title" style="color: black"><b>Data Master </b>| <i class="bx bx-mail-send"></i> Tata Kelola</h4>
+                            <h4 class="card-title" style="color: black"><b>Data Master </b>| <i
+                                    class="bx bx-mail-send"></i> Tata Kelola</h4>
 
                             <div class="col ml-auto">
                                 <div class="dropdown float-right">
                                     <a href="" class="btn btn-success mr-1" data-toggle="modal"
-                                       data-target="#TambahSurat"><i class="bx bx-plus-circle"></i>Tambah Data</a>
+                                       data-target="#TambahTemplate"><i class="bx bx-plus-circle"></i>Tambah Data</a>
                                 </div>
                             </div>
                         </div>
@@ -56,13 +57,15 @@
 
                                         <td class="text-center">
                                             <div class="d-flex">
-                                                <div class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"
-                                                     data-toggle="modal"
-                                                     data-target="#DetailSurat-{{ $item->id }}">
+                                                <div
+                                                    class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"
+                                                    data-toggle="modal"
+                                                    data-target="#DetailSurat-{{ $item->id }}">
                                                     <i class="bx bx-info-circle font-size-base"></i>
                                                 </div>
-                                                <a href="{{ route('download-pdf', ['filename' => $item->lampiran_dokumen]) }}" class="badge-circle badge-circle-sm badge-circle-warning mr-1 pointer"
-                                                      >
+                                                <a href="{{ route('data-kelola.surat-menyurat.download-pdf', ['filename' => $item->lampiran_dokumen]) }}"
+                                                   class="badge-circle badge-circle-sm badge-circle-warning mr-1 pointer"
+                                                >
                                                     <i class="bx bx-download font-size-base"></i>
                                                 </a>
                                             </div>
@@ -83,7 +86,7 @@
         </div>
     </div>
 
-@include('admin.tata-kelola.surat-menyurat.modal')
+    @include('admin.tata-kelola.surat-menyurat.template.modal')
 @endsection
 
 @push('page-scripts')
@@ -93,46 +96,62 @@
         });
 
 
+        // function previewFile() {
+        //     const fileInput = document.getElementById('lampiran_dokumen');
+        //     const filePreview = document.getElementById('file-preview');
+        //
+        //     if (fileInput.files.length > 0) {
+        //         const file = fileInput.files[0];
+        //         if (file.type.startsWith('image/')) {
+        //             // Display image preview
+        //             const reader = new FileReader();
+        //             reader.onload = function (e) {
+        //                 const img = document.createElement('img');
+        //                 img.src = e.target.result;
+        //                 img.style.maxWidth = '100%';
+        //                 img.style.height = 'auto';
+        //
+        //                 filePreview.innerHTML = '';
+        //                 filePreview.appendChild(img);
+        //             };
+        //             reader.readAsDataURL(file);
+        //         } else if (file.type === 'application/pdf') {
+        //             // Display PDF preview
+        //             const object = document.createElement('object');
+        //             object.data = URL.createObjectURL(file);
+        //             object.type = 'application/pdf';
+        //             object.width = '100%';
+        //
+        //             filePreview.innerHTML = '';
+        //             filePreview.appendChild(object);
+        //         } else {
+        //             filePreview.innerHTML = 'File preview is not available for this file type: ' + file.type;
+        //         }
+        //     } else {
+        //         filePreview.innerHTML = '';
+        //     }
+        // }
 
 
         function previewFile() {
-            const fileInput = document.getElementById('lampiran_dokumen');
-            const filePreview = document.getElementById('file-preview');
+            var preview = document.querySelector('#file-preview');
+            var file = document.querySelector('input[type=file]').files[0];
+            var reader = new FileReader();
 
-            if (fileInput.files.length > 0) {
-                const file = fileInput.files[0];
-                if (file.type.startsWith('image/')) {
-                    // Display image preview
-                    const reader = new FileReader();
-                    reader.onload = function (e) {
-                        const img = document.createElement('img');
-                        img.src = e.target.result;
-                        img.style.maxWidth = '100%';
-                        img.style.height = 'auto';
+            reader.onloadend = function () {
+                var img = document.createElement('img');
+                img.src = reader.result;
+                img.style.maxWidth = '100%';
+                preview.innerHTML = '';
+                preview.appendChild(img);
+            }
 
-                        filePreview.innerHTML = '';
-                        filePreview.appendChild(img);
-                    };
-                    reader.readAsDataURL(file);
-                } else if (file.type === 'application/pdf') {
-                    // Display PDF preview
-                    const object = document.createElement('object');
-                    object.data = URL.createObjectURL(file);
-                    object.type = 'application/pdf';
-                    object.width = '100%';
-
-                    filePreview.innerHTML = '';
-                    filePreview.appendChild(object);
-                } else {
-                    filePreview.innerHTML = 'File preview is not available for this file type: ' + file.type;
-                }
+            if (file) {
+                reader.readAsDataURL(file);
             } else {
-                filePreview.innerHTML = '';
+                preview.innerHTML = '';
             }
         }
-
-
-
     </script>
 
 @endpush
