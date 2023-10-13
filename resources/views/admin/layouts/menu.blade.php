@@ -79,25 +79,25 @@
 
 
             @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 2 || Auth::user()->id_role == 5)
-                <li class=" navigation-header"><span>Transaksi</span>
-                </li>
-                <li class=" nav-item"><a href=" "><i class="bx bx-calendar-event"></i><span
-                            class="menu-title">Penjadwalan Bus</span></a>
-                    <ul class="menu-content">
-                        <li @if (Request::segment(4) == 'schedule-pariwisata') class="active" @endif>
-                            <a href="{{ route('schedule-pariwisata.index') }}"><i
-                                    class="bx bx-right-arrow-alt"></i><span class="menu-item ">Pariwisata</span></a>
-                        </li>
-                        <li @if (Request::segment(4) == 'schedule-reguler') class="active" @endif>
-                            <a href="{{ route('schedule-reguler.index') }}"><i
-                                    class="bx bx-right-arrow-alt"></i><span class="menu-item ">Reguler</span></a>
-                        </li>
-                        {{-- <li @if (Request::segment(4) == 'schedule-reguler') class="active" @endif>
-                        <a href="{{ route('schedule-reguler.index') }}"><i class="bx bx-right-arrow-alt"></i><span
-                                class="menu-item ">Table Jadwal</span></a>
-                    </li> --}}
-                    </ul>
-                </li>
+{{--                <li class=" navigation-header"><span>Transaksi</span>--}}
+{{--                </li>--}}
+{{--                <li class=" nav-item"><a href=" "><i class="bx bx-calendar-event"></i><span--}}
+{{--                            class="menu-title">Penjadwalan Bus</span></a>--}}
+{{--                    <ul class="menu-content">--}}
+{{--                        <li @if (Request::segment(4) == '') class="active" @endif>--}}
+{{--                            <a href=""><i--}}
+{{--                                    class="bx bx-right-arrow-alt"></i><span class="menu-item ">Pariwisata</span></a>--}}
+{{--                        </li>--}}
+{{--                        <li @if (Request::segment(4) == 'schedule-regule') class="active" @endif>--}}
+{{--                            <a href=""><i--}}
+{{--                                    class="bx bx-right-arrow-alt"></i><span class="menu-item ">Reguler</span></a>--}}
+{{--                        </li>--}}
+{{--                        --}}{{-- <li @if (Request::segment(4) == 'schedule-reguler') class="active" @endif>--}}
+{{--                        <a href="{{ route('schedule-reguler.index') }}"><i class="bx bx-right-arrow-alt"></i><span--}}
+{{--                                class="menu-item ">Table Jadwal</span></a>--}}
+{{--                    </li> --}}
+{{--                    </ul>--}}
+{{--                </li>--}}
                 <li class=" nav-item"><a href=""><i class="bx bx-table"></i><span
                             class="menu-title">Data Transaksi</span></a>
                     <ul class="menu-content">
@@ -600,7 +600,7 @@
             @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 2 || Auth::user()->id_role == 3)
 
                 <li class="nav-item @if (Request::segment(2) == 'master-' && Request::segment(3) !== 'armada') open @endif">
-                    <a href="#"> <span class="menu-title">
+                    <a href="#"><i class='bx bx-collapse' ></i><span class="menu-title">
                            TATA KELOLA</span></a>
                     <ul class="menu-content">
                         <li @if (Request::segment(3) == 'ase') class="active" @endif>
@@ -608,14 +608,14 @@
                                     class="menu-item">Jadwal Bus</span></a>
                             <ul class="menu-content">
 
-                                <li @if (Request::segment(4) == 'tipe-aset') class="active" @endif>
-                                    <a href=" "><i
+                                <li @if (Request::segment(4) == 'schedule-reguler') class="active" @endif>
+                                    <a href="{{ route('schedule-reguler.index') }}"><i
                                             class="bx bx-right-arrow-alt"></i><span
                                             class="menu-item">Bus Regules</span></a>
                                 </li>
 
-                                <li @if (Request::segment(4) == 'kategori-aset') class="active" @endif>
-                                    <a href=" "><i
+                                <li @if (Request::segment(3) == 'schedule-pariwisata') class="active" @endif>
+                                    <a href="{{ route('admin.transaction.pariwisata.schedule-pariwisata.data') }}"><i
                                             class="bx bx-right-arrow-alt"></i><span
                                             class="menu-item">Bus Parawisata</span></a>
                                 </li>

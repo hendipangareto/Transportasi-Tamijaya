@@ -76,40 +76,59 @@
                             </div>
                         </div>
                     </div>
+{{--                    <div class="row">--}}
+{{--                        <div class="col-md-6"></div>--}}
+{{--                        <div class="col-md-6">--}}
+{{--                            <button class="btn btn-primary btn-sm" type="button" onclick="addDataToTable()"><i--}}
+{{--                                    class="bx bx-plus"></i> Tambah--}}
+{{--                            </button>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="form-group row">
-                                <div class="col-sm-12">
-                                    <label>Bagian</label>
-                                    <select name="bagian_id" id="bagian_id"
-                                            class="form-control">
-                                        <option selected disabled>Pilih nama pegawai
-                                        </option>
-                                        @foreach($bagian as $item)
-                                            <option
-                                                value="{{$item->id}}">{{$item->nama_bagian}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
+                            <div class="form-group">
+                                <label for="bagian_id">Bagian</label>
+                                <select name="bagian_id" id="bagian_id" class="form-control">
+                                    <option value="" disabled selected>Pilih nama pegawai</option>
+                                    @foreach($bagian as $item)
+                                        <option value="{{$item->id}}">{{$item->nama_bagian}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-group row">
-                                <div class="col-sm-12">
-                                    <label>Keluhan : </label>
-                                    <textarea class="form-control" name="keluhan" id="keluhan" cols="30"
-                                              rows="3" placeholder="Silahkan masukan deskripsi bagian"></textarea>
-                                </div>
+                            <div class="form-group">
+                                <label for="keluhan">Keluhan:</label>
+                                <textarea class="form-control" name="keluhan" id="keluhan" cols="30" rows="3" placeholder="Silahkan masukkan deskripsi bagian"></textarea>
                             </div>
                         </div>
                     </div>
+
+                    <button type="button" class="btn btn-primary btn-sm" onclick="addDataToTable()"><i class="bx bx-plus"></i> Tambah</button>
+
+                    <table class="table table-bordered table-hover" id="detail-cek-layanan">
+                        <thead>
+                        <tr>
+                            <th class="w-40p">Bagian</th>
+                            <th class="w-40p">Keluhan</th>
+                            <th class="w-20p text-center">Tindakan</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <!-- Existing table rows can be added here if any -->
+                        </tbody>
+                    </table>
+
+
+                    {{--                    =================================--}}
                 </div>
                 <div class="modal-footer">
-                    {{--                    <button type="button" class="btn btn-warning mr-1" data-dismiss="modal"><i--}}
-                    {{--                            class="bx bx-arrow-back"></i> Kembali--}}
-                    {{--                    </button>--}}
-                    <button type="submit" class="btn btn-success mr-1"><i
-                            class="bx bx-save mt"></i> Submit
+{{--                                        <button type="button" class="btn btn-warning mr-1" data-dismiss="modal"><i--}}
+{{--                                                class="bx bx-arrow-back"></i> Kembali--}}
+{{--                                        </button>--}}
+                    <button type="submit" class="btn btn-success mr-1">
+                        <i class="bx bx-save mt"></i> Submit
                     </button>
                 </div>
             </div>

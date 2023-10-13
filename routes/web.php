@@ -179,6 +179,10 @@ Route::group(
                 });
 
             });
+            // PARIWISATA JADWAL
+
+
+//            Route::resource('transaction/pariwisata/schedule-pariwisata', 'Transaction\Pariwisata\SchedulePariwisataController');
 
             //DATA EMPLOYEE
             Route::prefix('human-resource')->group(function () {
@@ -259,6 +263,12 @@ Route::group(
 
 //            ======================TATA KELOLA==================================
             Route::prefix('data-kelola')->group(function () {
+
+                Route::prefix('schedule-pariwisata')->group(function () {
+                    Route::get('/pariwisata/schedule-pariwisata', 'Transaction\Pariwisata\SchedulePariwisataController@JadwalWisata')->name('admin.transaction.pariwisata.schedule-pariwisata.data');
+                    Route::post('/pariwisata/schedule-pariwisata', 'Transaction\Pariwisata\SchedulePariwisataController@TambahJadwalWisata')->name('admin.transaction.pariwisata.tambah.schedule-pariwisata');
+                });
+
 
                 Route::prefix('surat-menyurat')->group(function () {
                     Route::get('/list-template-surat', 'TataKelola\TemplateSuratController@getSurat')->name('data-kelola.surat-menyurat.list-template-surat');
@@ -597,7 +607,7 @@ Route::group(
             Route::resource('transaction/reguler/reschedule-reguler', 'Transaction\Reguler\RescheduleRegulerController');
             Route::post('transaction/reguler/reschedule-reguler/re-schedule', 'Transaction\Reguler\RescheduleRegulerController@rescheduleReguler');
             // PARIWISATA
-            Route::resource('transaction/pariwisata/schedule-pariwisata', 'Transaction\Pariwisata\SchedulePariwisataController');
+//            Route::resource('transaction/pariwisata/schedule-pariwisata', 'Transaction\Pariwisata\SchedulePariwisataController');
 
 
             // PARIWISATA

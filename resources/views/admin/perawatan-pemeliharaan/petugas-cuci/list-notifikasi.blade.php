@@ -58,22 +58,22 @@
 
                                             @if($item->status == null)
                                                 <td>
-                                                    <a href="{{ route('perawatan-pemeliharaan.petugas-cuci.setujui-cuci-check-fisik-layanan', $item->id) }}" class="btn btn-xs btn-primary btn-flat">
-                                                        <i class="fa fa-check"></i> Setujui
+                                                    <a href="{{ route('perawatan-pemeliharaan.petugas-cuci.setujui-cuci-check-fisik-layanan', $item->id) }}" class="badge bg-primary ">
+                                                        <i class="fa fa-check"></i> Cuci  Sekarang
                                                     </a>
-                                                    <a href="{{ route('perawatan-pemeliharaan.petugas-cuci.tolak-cuci-check-fisik-layanan', $item->id) }}" class="btn btn-xs btn-danger btn-flat">
+                                                    <a href="{{ route('perawatan-pemeliharaan.petugas-cuci.tolak-cuci-check-fisik-layanan', $item->id) }}" class="badge bg-danger">
                                                         <i class="fa"></i> Tolak
                                                     </a>
                                                 </td>
                                             @elseif($item->status == 1)
                                                 <td>
-                                                    <a href="{{ route('perawatan-pemeliharaan.petugas-cuci.setujui-cuci-check-fisik-layanan', $item->id) }}" class="btn btn-xs btn-primary btn-flat">
+                                                    <a href="{{ route('perawatan-pemeliharaan.petugas-cuci.setujui-cuci-check-fisik-layanan', $item->id) }}" class="badge bg-primary">
                                                         <i class="bx bx-check-circle"></i> Di Setujui
                                                     </a>
                                                 </td>
                                             @elseif($item->status == 2)
                                                 <td>
-                                                    <a href="{{ route('perawatan-pemeliharaan.petugas-cuci.tolak-cuci-check-fisik-layanan', $item->id) }}" class="btn btn-xs btn-danger btn-flat">
+                                                    <a href="{{ route('perawatan-pemeliharaan.petugas-cuci.tolak-cuci-check-fisik-layanan', $item->id) }}" class="badge bg-danger">
                                                         <i class="bx bx-reject"></i> Di Tolak
                                                     </a>
                                                 </td>
@@ -103,3 +103,4 @@
     </div>
     @include('admin.perawatan-pemeliharaan.petugas-cuci.modal-detail')
 @endsection
+

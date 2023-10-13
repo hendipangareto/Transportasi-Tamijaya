@@ -13,20 +13,39 @@ class CreateSchedulePariwisatasTable extends Migration
      */
     public function up()
     {
+//        Schema::create('schedule_pariwisatas', function (Blueprint $table) {
+//            $table->id();
+//            $table->integer('id_booking_transaction');
+//            $table->date('date_departure');
+//            $table->date('date_return');
+//            $table->string('bus_type')->nullable();
+//            $table->integer('id_armada')->nullable();
+//            $table->integer('total_days')->nullable();
+//            $table->integer('bus_price')->nullable();
+//            $table->integer('driver')->nullable();
+//            $table->integer('conductor')->nullable();
+//            $table->text('notes')->nullable();
+//            $table->timestamps();
+//        });
+
         Schema::create('schedule_pariwisatas', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_booking_transaction');
+            $table->unsignedInteger('id_booking_transaction');
             $table->date('date_departure');
             $table->date('date_return');
             $table->string('bus_type')->nullable();
-            $table->integer('id_armada')->nullable();
-            $table->integer('total_days')->nullable();
-            $table->integer('bus_price')->nullable();
-            $table->integer('driver')->nullable();
-            $table->integer('conductor')->nullable();
+            $table->unsignedInteger('id_armada')->nullable();
+            $table->unsignedInteger('id_pick_point')->nullable();
+            $table->unsignedInteger('id_destination_wisata')->nullable();
+            $table->unsignedInteger('id_employee')->nullable();
+            $table->unsignedSmallInteger('total_days')->nullable();
+            $table->unsignedInteger('bus_price')->nullable();
+            $table->unsignedInteger('driver')->nullable();
+            $table->unsignedInteger('conductor')->nullable();
             $table->text('notes')->nullable();
             $table->timestamps();
         });
+
     }
 
     /**

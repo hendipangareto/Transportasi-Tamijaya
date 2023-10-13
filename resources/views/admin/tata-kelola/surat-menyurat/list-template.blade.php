@@ -95,22 +95,6 @@
 
 
 
-        @if(session('pesan-berhasil'))
-        Swal.fire({
-            icon: 'success',
-            title: 'Berhasil',
-            text: '{{ session("pesan-berhasil") }}'
-        });
-        @elseif(session('pesan-gagal'))
-        Swal.fire({
-            icon: 'error',
-            title: 'Gagal',
-            text: '{{ session("pesan-gagal") }}'
-        });
-        @endif
-
-
-
         function previewFile() {
             const fileInput = document.getElementById('lampiran_dokumen');
             const filePreview = document.getElementById('file-preview');
@@ -123,7 +107,7 @@
                     reader.onload = function (e) {
                         const img = document.createElement('img');
                         img.src = e.target.result;
-                        img.style.maxWidth = '30%';
+                        img.style.maxWidth = '100%';
                         img.style.height = 'auto';
 
                         filePreview.innerHTML = '';
@@ -137,16 +121,16 @@
                     object.type = 'application/pdf';
                     object.width = '100%';
 
-
                     filePreview.innerHTML = '';
                     filePreview.appendChild(object);
                 } else {
-                    filePreview.innerHTML = 'File preview is not available for this file type.';
+                    filePreview.innerHTML = 'File preview is not available for this file type: ' + file.type;
                 }
             } else {
                 filePreview.innerHTML = '';
             }
         }
+
 
 
     </script>

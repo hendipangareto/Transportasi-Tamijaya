@@ -37,7 +37,7 @@
                             </div>
                         </div>
                         <form action="" method="">
-                        <div class="table-responsive">
+                        <div class="table-responsive mt-2">
                             <table class="table table-bordered table-hover" id="table-bagian">
                                     <thead>
                                     <tr class="text-center">
@@ -85,6 +85,41 @@
 @push('page-scripts')
     <script type="text/javascript">
 
+        function addDataToTable() {
+            var selectedBagian = document.getElementById("bagian_id").value;
+            var keluhan = document.getElementById("keluhan").value;
+
+            if (selectedBagian && keluhan) {
+                var tableBody = document.getElementById("detail-cek-layanan");
+                var newRow = tableBody.insertRow(tableBody.rows.length);
+                var cell1 = newRow.insertCell(0);
+                var cell2 = newRow.insertCell(1);
+                var cell3 = newRow.insertCell(2);
+
+                cell1.innerHTML = selectedBagian;
+                cell2.innerHTML = keluhan;
+                cell3.innerHTML = '<button onclick="removeRow(this)">Hapus</button>';
+
+                document.getElementById("bagian_id").value = "";
+                document.getElementById("keluhan").value = "";
+            } else {
+                alert("Harap pilih bagian dan isi keluhan terlebih dahulu.");
+            }
+        }
+
+        function removeRow(button) {
+            var row = button.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+        }
+
+
+
+
+
+
+
+        // ===============================
+
         $(document).ready(function () {
             $("#table-bagian").DataTable();
         });
@@ -113,7 +148,7 @@
                         }
                     });
                 } else {
-                    // Atur nilai elemen menjadi kosong jika id_armada tidak dipilih
+
                     $('#id_armada').val('');
                     $('#id_pick_point').val('');
                     $('#armada_category').val('');
