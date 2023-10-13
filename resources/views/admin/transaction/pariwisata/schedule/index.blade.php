@@ -6,7 +6,7 @@
                 <h5 class="content-header-title float-left pr-1 mb-0">Penjadwalan Bus</h5>
                 <div class="breadcrumb-wrapper col-12">
                     <ol class="breadcrumb p-0 mb-0">
-                        <li class="breadcrumb-item"><a href="index.html"><i class="bx bx-home-alt"></i></a>
+                        <li class="breadcrumb-item"><a href=" "><i class="bx bx-home-alt"></i></a>
                         </li>
                         <li class="breadcrumb-item active">Pariwisata
                         </li>
@@ -47,12 +47,26 @@
                     <div class="card-body card-dashboard">
                         @include('admin.transaction.pariwisata.schedule.display')
                        <div class="row">
+
                            <div class="col ml-auto">
                                <div class="dropdown float-right">
                                    <label for="" style="color: white">Filter</label><br>
                                    <a href="" class="btn btn-primary mr-1" data-toggle="modal"
                                       data-target="#TambahSurat"><i class="bx bx-plus-circle"></i>Tambah Data</a>
+                                   @if (session('success'))
+                                       <div class="alert alert-success">
+                                           {{ session('success') }}
+                                       </div>
+                                   @endif
+
+                                   @if (session('error'))
+                                       <div class="alert alert-danger">
+                                           {{ session('error') }}
+                                       </div>
+                                   @endif
                                </div>
+
+
                            </div>
                        </div>
                        @include('admin.transaction.pariwisata.schedule.table')
@@ -71,4 +85,9 @@
 @push('page-scripts')
 {{--    <script src="{{ asset('script/admin/transaction/schedule-pariwisata.js') }}"></script>--}}
 
+<script>
+    $(document).ready(function () {
+        $("#table-jadwal-pariwisata").DataTable();
+    });
+</script>
 @endpush
