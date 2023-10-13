@@ -79,25 +79,25 @@
 
 
             @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 2 || Auth::user()->id_role == 5)
-{{--                <li class=" navigation-header"><span>Transaksi</span>--}}
-{{--                </li>--}}
-{{--                <li class=" nav-item"><a href=" "><i class="bx bx-calendar-event"></i><span--}}
-{{--                            class="menu-title">Penjadwalan Bus</span></a>--}}
-{{--                    <ul class="menu-content">--}}
-{{--                        <li @if (Request::segment(4) == '') class="active" @endif>--}}
-{{--                            <a href=""><i--}}
-{{--                                    class="bx bx-right-arrow-alt"></i><span class="menu-item ">Pariwisata</span></a>--}}
-{{--                        </li>--}}
-{{--                        <li @if (Request::segment(4) == 'schedule-regule') class="active" @endif>--}}
-{{--                            <a href=""><i--}}
-{{--                                    class="bx bx-right-arrow-alt"></i><span class="menu-item ">Reguler</span></a>--}}
-{{--                        </li>--}}
-{{--                        --}}{{-- <li @if (Request::segment(4) == 'schedule-reguler') class="active" @endif>--}}
-{{--                        <a href="{{ route('schedule-reguler.index') }}"><i class="bx bx-right-arrow-alt"></i><span--}}
-{{--                                class="menu-item ">Table Jadwal</span></a>--}}
-{{--                    </li> --}}
-{{--                    </ul>--}}
-{{--                </li>--}}
+                {{--                <li class=" navigation-header"><span>Transaksi</span>--}}
+                {{--                </li>--}}
+                {{--                <li class=" nav-item"><a href=" "><i class="bx bx-calendar-event"></i><span--}}
+                {{--                            class="menu-title">Penjadwalan Bus</span></a>--}}
+                {{--                    <ul class="menu-content">--}}
+                {{--                        <li @if (Request::segment(4) == '') class="active" @endif>--}}
+                {{--                            <a href=""><i--}}
+                {{--                                    class="bx bx-right-arrow-alt"></i><span class="menu-item ">Pariwisata</span></a>--}}
+                {{--                        </li>--}}
+                {{--                        <li @if (Request::segment(4) == 'schedule-regule') class="active" @endif>--}}
+                {{--                            <a href=""><i--}}
+                {{--                                    class="bx bx-right-arrow-alt"></i><span class="menu-item ">Reguler</span></a>--}}
+                {{--                        </li>--}}
+                {{--                        --}}{{-- <li @if (Request::segment(4) == 'schedule-reguler') class="active" @endif>--}}
+                {{--                        <a href="{{ route('schedule-reguler.index') }}"><i class="bx bx-right-arrow-alt"></i><span--}}
+                {{--                                class="menu-item ">Table Jadwal</span></a>--}}
+                {{--                    </li> --}}
+                {{--                    </ul>--}}
+                {{--                </li>--}}
                 <li class=" nav-item"><a href=""><i class="bx bx-table"></i><span
                             class="menu-title">Data Transaksi</span></a>
                     <ul class="menu-content">
@@ -151,6 +151,26 @@
                     </ul>
                 </li>
             @endif
+
+            {{--Menu Marketing Ticketing Peter--}}
+            @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 2 || Auth::user()->id_role == 4)
+                <li class=" navigation-header"><span>Marketing Ticketing</span>
+                </li>
+                <li class=" nav-item @if (Request::segment(3) == 'perjalanan-bus-reguler') active @endif"><a
+                        href="{{ route('marketing-ticketing-pemandu-perjalanan-perjalanan-bus-reguler-index') }}"><i class='bx bx-car'></i><span
+                            class="menu-title">Perjalanan Bus Reguler</span></a>
+                </li>
+                <li class=" nav-item"><a href=" "><i class='bx bx-check-square'></i><span
+                            class="menu-title">Checklist Penumpang</span></a>
+                    <ul class="menu-content">
+                        <li class=" nav-item @if (Request::segment(4) == 'executive') active @endif"><a
+                                href="{{ route('marketing-ticketing-checklist-penumpang-executive-index') }}"><i class='bx bx-user-check'></i><span
+                                    class="menu-title">Executive Class</span></a>
+                        </li>
+                    </ul>
+                </li>
+            @endif
+            {{--End Menu Marketing Ticketing--}}
 
             @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 2 || Auth::user()->id_role == 4)
                 <li class=" navigation-header"><span>Finance & Accounting</span>
@@ -288,7 +308,8 @@
                                     class="menu-title">Pengajuan Dana User</span></a>
                         </li>
                         <li @if (Request::segment(2) == 'laporan-nota-belanja') class="active" @endif>
-                            <a href="{{route('finance-accounting-menu-keuangan-user-laporan-nota-belanja-index')}}"><i class="bx bx-right-arrow-alt"></i><span
+                            <a href="{{route('finance-accounting-menu-keuangan-user-laporan-nota-belanja-index')}}"><i
+                                    class="bx bx-right-arrow-alt"></i><span
                                     class="menu-item ">Laporan Nota Belanja</span></a>
                         </li>
                     </ul>
@@ -600,7 +621,7 @@
             @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 2 || Auth::user()->id_role == 3)
 
                 <li class="nav-item @if (Request::segment(2) == 'master-' && Request::segment(3) !== 'armada') open @endif">
-                    <a href="#"><i class='bx bx-collapse' ></i><span class="menu-title">
+                    <a href="#"><i class='bx bx-collapse'></i><span class="menu-title">
                            TATA KELOLA</span></a>
                     <ul class="menu-content">
                         <li @if (Request::segment(3) == 'ase') class="active" @endif>
@@ -667,16 +688,21 @@
                     </ul>
                 </li>
                 <li @if (Request::segment(3) == 'notif-permintaan-logistik') class="active" @endif>
-                    <a href="{{route ('master-logistik-notif-permintaan-index')}}"><i class='bx bx-cube-alt' ></i><span class="menu-item">Notif Permintaan</span></a>
+                    <a href="{{route ('master-logistik-notif-permintaan-index')}}"><i class='bx bx-cube-alt'></i><span
+                            class="menu-item">Notif Permintaan</span></a>
                 </li>
                 <li @if (Request::segment(3) == 'logistik-masuk') class="active" @endif>
-                    <a href="{{route ('master-logistik-logistik-masuk-index')}}"><i class='bx bx-log-in-circle'></i><span class="menu-item">Logistik Masuk</span></a>
+                    <a href="{{route ('master-logistik-logistik-masuk-index')}}"><i
+                            class='bx bx-log-in-circle'></i><span class="menu-item">Logistik Masuk</span></a>
                 </li>
                 <li @if (Request::segment(3) == 'logistik-keluar') class="active" @endif>
-                    <a href="{{route ('master-logistik-logistik-keluar-index')}}"><i class='bx bx-log-out-circle'></i><span class="menu-item">Logistik Keluar</span></a>
+                    <a href="{{route ('master-logistik-logistik-keluar-index')}}"><i
+                            class='bx bx-log-out-circle'></i><span class="menu-item">Logistik Keluar</span></a>
                 </li>
                 <li @if (Request::segment(3) == 'notif-perbaikan-bengkel-luar') class="active" @endif>
-                    <a href="{{route ('master-logistik-notif-perbaikan-bengkel-luar-index')}}"><i class='bx bxs-message-alt-dots'></i><span class="menu-item">Perbaikan Bengkel Luar</span></a>
+                    <a href="{{route ('master-logistik-notif-perbaikan-bengkel-luar-index')}}"><i
+                            class='bx bxs-message-alt-dots'></i><span
+                            class="menu-item">Perbaikan Bengkel Luar</span></a>
                 </li>
             @endif
 

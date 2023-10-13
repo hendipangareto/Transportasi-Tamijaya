@@ -122,6 +122,19 @@ Route::group(
         #endregion
         Route::middleware(['auth'])->group(function () {
 
+            //MARKETING TICKETING OFFICE
+            Route::prefix('marketing-ticketing')->group(function () {
+                Route::prefix('perjalanan-bus-reguler')->group(function () {
+                    Route::get('/', 'MarketingTicketing\PemanduPerjalanan\PerjalananBusRegulerController@index')->name('marketing-ticketing-pemandu-perjalanan-perjalanan-bus-reguler-index');
+                });
+                Route::prefix('checklist-penumpang')->group(function () {
+                    Route::prefix('executive')->group(function () {
+                        Route::get('/', 'MarketingTicketing\PemanduPerjalanan\ChecklistPenumpang\ExecutiveController@index')->name('marketing-ticketing-checklist-penumpang-executive-index');
+                    });
+                });
+
+            });
+
             //PERAWATAN & PEMELIHARAAN
             Route::prefix('perawatan-pemeliharaan')->group(function () {
                 Route::prefix('sopir')->group(function () {
@@ -258,7 +271,6 @@ Route::group(
                 Route::delete('/delete-data-agent', 'HumanResource\AgentController@DeleteAgent')->name('human-resource.data-agent.delete-data-agent');
                 Route::get('/cetak-pdf-agent', 'HumanResource\AgentController@AgentPDF')->name('human-resource.data-agent.cetak-pdf-agent');
             });
-
 
 
 //            ======================TATA KELOLA==================================
