@@ -381,7 +381,7 @@ Route::group(
                 });
 
                 Route::prefix('sub-bagian')->group(function () {
-                    Route::get('/list-bagian', 'MasterLogistik\SubBagianController@getSubBagian')->name('admin.master-logistik.bagian.sub-bagian');
+                    Route::get('/list-sub-bagian', 'MasterLogistik\SubBagianController@getSubBagian')->name('admin.master-logistik.bagian.sub-bagian');
 
                     Route::post('/tambah-sub-bagian', 'MasterLogistik\SubBagianController@TambahSubBagian')->name('admin.master-logistik.bagian.tambah-sub-bagian');
                     Route::post('/edit-sub-bagian/{id}', 'MasterLogistik\SubBagianController@EditSubBagian')->name('admin.master-logistik.bagian.edit-sub-bagian');
@@ -505,14 +505,11 @@ Route::group(
 
                     });
                 });
+
                 Route::prefix('notif-permintaan-logistik')->group(function () {
                     Route::get('/', 'MasterLogistik\NotifPermintaan\NotifPermintaanLogistikController@index')->name('master-logistik-notif-permintaan-index');
                 });
 
-                //PENGAJUAN PEMBELIAN
-//                Route::prefix('pengajuan-pembelian')->group(function () {
-//                    Route::get('/laporan-pengajuan-pembelian', 'MasterLogistik\LaporanPembelianController@getLaporanPembelian')->name('master-logistik-laporan-pengajuan-pembelian');
-//                });
             });
 
 
