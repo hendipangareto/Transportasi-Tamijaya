@@ -167,6 +167,10 @@
                                 href="{{ route('marketing-ticketing-checklist-penumpang-executive-index') }}"><i class='bx bx-user-check'></i><span
                                     class="menu-title">Executive Class</span></a>
                         </li>
+                        <li class=" nav-item @if (Request::segment(4) == 'suites') active @endif"><a
+                                href="{{ route('marketing-ticketing-checklist-penumpang-suites-index') }}"><i class='bx bxs-user-check'></i><span
+                                    class="menu-title">Suites Class</span></a>
+                        </li>
                     </ul>
                 </li>
             @endif

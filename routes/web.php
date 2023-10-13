@@ -131,6 +131,9 @@ Route::group(
                     Route::prefix('executive')->group(function () {
                         Route::get('/', 'MarketingTicketing\PemanduPerjalanan\ChecklistPenumpang\ExecutiveController@index')->name('marketing-ticketing-checklist-penumpang-executive-index');
                     });
+                    Route::prefix('suites')->group(function () {
+                        Route::get('/', 'MarketingTicketing\PemanduPerjalanan\ChecklistPenumpang\SuitesController@index')->name('marketing-ticketing-checklist-penumpang-suites-index');
+                    });
                 });
 
             });
