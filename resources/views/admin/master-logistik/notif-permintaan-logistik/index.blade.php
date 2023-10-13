@@ -8,7 +8,7 @@
                     <ol class="breadcrumb p-0 mb-0">
                         <li class="breadcrumb-item"><a href="#"><i class="bx bx-home-alt"></i></a>
                         </li>
-                        <li class="breadcrumb-item active">Notifikasi Permintaan
+                        <li class="breadcrumb-item active">Notifikasi Permintaan Logistik
                         </li>
                     </ol>
                 </div>
@@ -23,11 +23,37 @@
                 <div class="card-header" style="background-color: #00b3ff">
                     <div class="toolbar row ">
                         <div class="col-md-12 d-flex">
-                            <h4 class="card-title">Notifikasi Permintaan</h4>
+                            <h4 class="card-title">Notifikasi Permintaan Logistik</h4>
                         </div>
                     </div>
                 </div>
                 <div class="card-content pt-1">
+                    <div class="card-body card-dashboard">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <div class="form-group">
+                                    <label for="">Armada</label>
+                                    <select name="armada_logistik" id="armada_logistik" class="form-control">
+                                        <option value="" selected disabled>-Pilih Armada-</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-group">
+                                    <label for="">Tanggal Order</label>
+                                    <input type="date" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-group">
+                                    <label for="">Pic Pemohon</label>
+                                    <select name="pic_pemohon_logistik" id="pic_pemohon_logistik" class="form-control">
+                                        <option value="" selected disabled>-Pilih Pic pemohon-</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="card-body card-dashboard">
                         <ul class="nav nav-tabs nav-justified" id="tabDriverConductor" role="tablist">
                             <li class="nav-item current">
@@ -52,9 +78,10 @@
                                 </a>
                             </li>
                         </ul>
-                        <br>
+                    </div>
+                    <div class="card-body card-dashboard">
                         <!-- Tab panes 1 -->
-                        <div class="tab-content pt-1">
+                        <div class="tab-content">
                             <div class="tab-pane active" id="sparepart-data" role="tabpanel"
                                  aria-labelledby="sparepart-tab-justified">
                                 @include('admin.master-logistik.notif-permintaan-logistik.sparepart')
@@ -78,7 +105,5 @@
 @endsection
 
 @push('page-scripts')
-    <script>
-
-    </script>
+    @include('admin.master-logistik.notif-permintaan-logistik.script')
 @endpush

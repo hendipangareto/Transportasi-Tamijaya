@@ -456,31 +456,31 @@
                             class="menu-title">PERAWATAN & LOGISTIK</span></a>
                     <ul class="menu-content">
 
-                        <li @if (Request::segment(3) == 'kategori-barang') class="active" @endif>
+                        <li @if (Request::segment(4) == 'list-kategori-barang') class="active" @endif>
                             <a href="{{ route('master-logistik-list-kategori-barang') }}"><i
                                     class="bx bx-right-arrow-alt"></i><span class="menu-item">Kategori</span></a>
                         </li>
-                        <li @if (Request::segment(3) == 'bagian') class="active" @endif>
+                        <li @if (Request::segment(4) == 'list-bagian') class="active" @endif>
                             <a href="{{ route('admin.master-logistik.bagian.list-bagian') }}"><i
                                     class="bx bx-right-arrow-alt"></i><span class="menu-item">Bagian</span></a>
                         </li>
-                        <li @if (Request::segment(3) == 'sub-bagian') class="active" @endif>
+                        <li @if (Request::segment(4) == 'list-sub-bagian') class="active" @endif>
                             <a href="{{ route('admin.master-logistik.bagian.sub-bagian') }}"><i
                                     class="bx bx-right-arrow-alt"></i><span class="menu-item">Sub Bagian</span></a>
                         </li>
-                        <li @if (Request::segment(3) == 'komponen') class="active" @endif>
+                        <li @if (Request::segment(4) == 'list-komponen') class="active" @endif>
                             <a href="{{ route('admin.master-logistik.komponen.list-komponen') }}"><i
                                     class="bx bx-right-arrow-alt"></i><span class="menu-item">Komponen</span></a>
                         </li>
-                        <li @if (Request::segment(3) == 'alat-kerja-bengkel') class="active" @endif>
+                        <li @if (Request::segment(4) == 'list-alat-kerja-bengkel') class="active" @endif>
                             <a href="{{ route('admin.master-logistik.alat-kerja-bengkel.list-alat-kerja-bengkel') }}"><i
                                     class="bx bx-right-arrow-alt"></i><span class="menu-item">Alat Kerja Bengkel</span></a>
                         </li>
-                        <li @if (Request::segment(3) == 'bengkel-luar') class="active" @endif>
+                        <li @if (Request::segment(4) == 'list-bengkel-luar') class="active" @endif>
                             <a href="{{ route('admin.master-logistik.bengkel-luar.list-bengkel-luar') }}"><i
                                     class="bx bx-right-arrow-alt"></i><span class="menu-item">Bengkel Luar</span></a>
                         </li>
-                        <li @if (Request::segment(3) == 'toko') class="active" @endif>
+                        <li @if (Request::segment(4) == 'list-toko') class="active" @endif>
                             <a href="{{route ('admin.master-logistik.toko.list-toko')}}"><i
                                     class="bx bx-right-arrow-alt"></i><span class="menu-item">Toko</span></a>
                         </li>
@@ -643,37 +643,37 @@
                 </li>
             @endif
 
-
-
-
-
             @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 7)
                 <li class=" navigation-header" style="color: darkred"><span>LOGISTIK</span>
                 </li>
                 <li class="nav-item @if (Request::segment(2) == 'master-logistik') open @endif">
                     <a href=""><i class="bx bx-cart-alt"></i><span class="menu-title">Pengajuan Pembelian</span></a>
                     <ul class="menu-content">
-                        <li @if (Request::segment(4) == 'pengajuan-pembelian') class="active" @endif>
+                        <li @if (Request::segment(5) == 'list-pengajuan-pembelian') class="active" @endif>
                             <a href="{{ route('master-logistik-list-pengajuan-pembelian') }}"><i
                                     class="bx bx-right-arrow-alt"></i><span
                                     class="menu-item ">Pengajuan Pembelian</span></a>
                         </li>
-                        <li @if (Request::segment(4) == 'rekap-pembelian') class="active" @endif>
+                        <li @if (Request::segment(5) == 'list-rekap-pembelian') class="active" @endif>
                             <a href="{{ route('master-logistik-list-rekap-pembelian') }}"><i
                                     class="bx bx-right-arrow-alt"></i><span
                                     class="menu-item ">Rekap Pengajuan Pembelian</span></a>
                         </li>
-                        <li @if (Request::segment(4) == 'laporan-pembelian') class="active" @endif>
+                        <li @if (Request::segment(5) == 'laporan-pengajuan-pembelian') class="active" @endif>
                             <a href="{{ route('master-logistik-laporan-pengajuan-pembelian') }}"><i
                                     class="bx bx-right-arrow-alt"></i><span
                                     class="menu-item ">Laporan Pembelian</span></a>
                         </li>
-                        <li @if (Request::segment(3) == 'notif-permintaan-logistik') class="active" @endif>
-                            <a href="{{route ('master-logistik-notif-permintaan-index')}}"><i
-                                    class="bx bx-right-arrow-alt"></i><span class="menu-item">Notif Permintaan</span></a>
-                        </li>
-
                     </ul>
+                </li>
+                <li @if (Request::segment(2) == 'master-logistik' && Request::segment(3) == 'notif-permintaan-logistik') class="active" @endif>
+                    <a href="{{route ('master-logistik-notif-permintaan-index')}}"><i class='bx bx-cube-alt' ></i><span class="menu-item">Notif Permintaan</span></a>
+                </li>
+                <li @if (Request::segment(2) == 'master-logistik' && Request::segment(3) == 'logistik-masuk') class="active" @endif>
+                    <a href="{{route ('master-logistik-logistik-masuk-index')}}"><i class='bx bx-log-in-circle'></i><span class="menu-item">Logistik Masuk</span></a>
+                </li>
+                <li @if (Request::segment(2) == 'master-logistik' && Request::segment(3) == 'logistik-keluar') class="active" @endif>
+                    <a href="{{route ('master-logistik-logistik-keluar-index')}}"><i class='bx bx-log-out-circle'></i><span class="menu-item">Logistik Keluar</span></a>
                 </li>
             @endif
 
