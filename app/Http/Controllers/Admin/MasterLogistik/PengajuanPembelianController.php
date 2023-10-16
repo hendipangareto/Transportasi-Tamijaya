@@ -30,42 +30,36 @@ class PengajuanPembelianController
 
     }
 
-    public function TambahPengajuanPembelian(Request $request)
+    public function store(Request $request)
     {
         DB::beginTransaction();
         try {
-            $data = new PengajuanPembelian();
-            $lastNomor = PengajuanPembelian::orderBy('id', 'desc')->first();
-            $lastNumber = $lastNomor ? intval(substr($lastNomor->kode_pengajuan, -2)) : 0;
-            $newNumber = $lastNumber + 1;
-            $noPengajuanPembelian = 'PP-001' . str_pad($newNumber, 2, '0', STR_PAD_LEFT);
+            $data = new PengajuanDanaUser();
 
-            $data->kode_pengajuan = $noPengajuanPembelian;
-            $data->item = $request->item;
-            $data->harga = $request->harga;
-            $data->kuantitas = $request->kuantitas;
-            $data->cara_bayar = $request->cara_bayar;
+            $data->nama_item = $request->nama_item;
+            $data->harga_item = $request->harga_item;
+            $data->kuantitas_item = $request->kuantitas_item;
+            $data->cara_bayar_item = $request->cara_bayar_item;
             $data->toko_id = $request->toko_id;
-            $data->kategori_id = $request->kategori_id;
             $data->satuan_id = $request->satuan_id;
-            $data->catatan_pembelian = $request->catatan_pembelian;
-            $data->batas_waktu_pembayaran = $request->batas_waktu_pembayaran;
-                $data->tanggal_pengajuan = $request->tanggal_pengajuan;
+            $data->kategori_id = $request->kategori_id;
+            $data->catatan_pembelian_item = $request->catatan_pembelian_item;
+            $data->batas_waktu_pembayaran_item = $request->batas_waktu_pembayaran_item;
 
-
-
-//            dd($data);
             $data->save();
 
             DB::commit();
-            Session::flash('message', ['Berhasil menyimpan data pengajuan pembelian', 'success']);
+            Session::flash('message', 'Berhasil menyimpan data pengajuan pembelian');
+            Session::flash('alert-class', 'alert-success');
         } catch (\Exception $e) {
             DB::rollback();
-            Session::flash('message', ['Gagal menyimpan data pengajuan pembelian', 'error']);
+            Session::flash('message', 'Gagal menyimpan data pengajuan pembelian');
+            Session::flash('alert-class', 'alert-danger');
         }
 
-        return redirect()->route('master-logistik-list-pengajuan-pembelian');
+        return redirect()->route('finance-accounting-menu-keuangan-user-pengajuan-dana-user-index');
     }
+
 
     public function AjukanPengajuanPembelian(Request $request)
     {

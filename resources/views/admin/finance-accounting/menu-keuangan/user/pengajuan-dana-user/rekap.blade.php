@@ -62,7 +62,7 @@
                     </div>
                     <div class="card-body card-dashboard">
                         <div class="table-responsive">
-                            {{--                            <input type="hidden" id="tableRekapPengajuanDanaUser" value="{{$data->count()}}">--}}
+
                             <table class="table datatables table-bordered table-hover"
                                    id="table-rekap-penagjuan-dana-user">
                                 <thead>
@@ -99,7 +99,7 @@
         </div>
     </div>
 
-    @include('admin.finance-accounting.menu-keuangan.user.pengajuan-dana-user.modal')
+{{--    @include('admin.finance-accounting.menu-keuangan.user.pengajuan-dana-user.modal')--}}
 @endsection
 
 @push('page-scripts')

@@ -69,14 +69,13 @@
                     </div>
                     <div class="card-body card-dashboard">
                         <div class="table-responsive">
-                            {{--                            <input type="hidden" id="tableDaftarTransaksiKasir" value="{{$data->count()}}">--}}
+
                             <table class="table datatables table-bordered table-hover"
                                    id="table-daftar-transaksi-kasir">
                                 <thead>
                                 <tr>
                                     <th class="w-3p">No</th>
-                                    <th class="w-15p">Nama Toko</th>
-                                    <th class="w-10p">Nama Item</th>
+                                    <th class="w-5p">Nama Item</th>
                                     <th class="w-5p">Kuantitas</th>
                                     <th class="w-5p">Satuan</th>
                                     <th class="w-5p">Harga Satuan (Rp)</th>
@@ -86,15 +85,16 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                @forelse($data as $item)
                                 <tr>
-                                    <td>#</td>
-                                    <td>#</td>
-                                    <td>#</td>
-                                    <td>#</td>
-                                    <td>#</td>
-                                    <td>#</td>
-                                    <td>#</td>
-                                    <td>#</td>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $item->nama_item }}</td>
+                                    <td>{{ $item->kuantitas_item }}</td>
+                                    <td>{{ $item->satuan }}</td>
+                                    <td>{{ $item->harga_item }}</td>
+                                    <td>@currency($item->kuantitas_item * $item->harga_item)</td>
+                                    <td>{{ $item->cara_bayar_item }}</td>
+
                                     <td>
                                         <div class="d-flex">
                                             <div class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"
@@ -116,6 +116,11 @@
                                         </div>
                                     </td>
                                 </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="9" class="text-center">Data pengajuan data user belum diisi !!</td>
+                                    </tr>
+                                @endforelse
                                 </tbody>
                             </table>
                         </div>

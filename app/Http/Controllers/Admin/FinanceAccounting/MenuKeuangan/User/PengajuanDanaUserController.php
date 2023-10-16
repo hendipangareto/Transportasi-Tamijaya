@@ -3,14 +3,32 @@
 namespace App\Http\Controllers\Admin\FinanceAccounting\MenuKeuangan\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\FinanceAccounting\MenuKeuangan\User\PengajuanDanaUser;
+use App\Models\MasterData\Satuan;
+use App\Models\MasterDataLogistik\Kategori;
+
+use App\Models\MasterDataLogistik\Toko;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class PengajuanDanaUserController extends Controller
 {
     public function index()
     {
-        return view('admin.finance-accounting.menu-keuangan.user.pengajuan-dana-user.index');
+        $satuan = Satuan::get();
+        $toko   = Toko::get();
+        $kategori   = Kategori::get();
+        $data =  PengajuanDanaUser::select("pengajuan_dana_users.*", 'tokos.nama_toko as toko', 'satuans.nama_satuan as satuan', 'kategori.nama_kategori as kategori')
+            ->join('tokos', 'tokos.id', '=', 'pengajuan_dana_users.toko_id')
+            ->join('satuans', 'satuans.id', '=', 'pengajuan_dana_users.satuan_id')
+            ->join('kategori', 'kategori.id', '=', 'pengajuan_dana_users.kategori_id')
+            ->get();
+//        dd($data);
+        return view('admin.finance-accounting.menu-keuangan.user.pengajuan-dana-user.index', compact('satuan','toko', 'kategori', 'data'));
+
     }
+
 
     public function rekap()
     {
@@ -24,12 +42,60 @@ class PengajuanDanaUserController extends Controller
 
     public function store(Request $request)
     {
-        //
+        DB::beginTransaction();
+        try {
+            $data = new PengajuanDanaUser();
+
+            $data->nama_item = $request->nama_item;
+            $data->harga_item = $request->harga_item;
+            $data->kuantitas_item = $request->kuantitas_item;
+            $data->cara_bayar_item = $request->cara_bayar_item;
+            $data->toko_id = $request->toko_id;
+            $data->satuan_id = $request->satuan_id;
+            $data->kategori_id = $request->kategori_id;
+            $data->catatan_pembelian_item = $request->catatan_pembelian_item;
+            $data->batas_waktu_pembayaran_item = $request->batas_waktu_pembayaran_item;
+
+//            dd($data);
+            $data->save();
+
+            DB::commit();
+            Session::flash('message', ['Berhasil menyimpan data pengajuan pembelian', 'success']);
+        } catch (\Exception $e) {
+            DB::rollback();
+            Session::flash('message', ['Gagal menyimpan data pengajuan pembelian', 'error']);
+        }
+
+        return redirect()->route('finance-accounting-menu-keuangan-user-pengajuan-dana-user-index');
     }
 
     public function update(Request $request, $id)
     {
-        //
+        DB::beginTransaction();
+        try {
+            $data = PengajuanDanaUser::findOrFail($id);
+
+            $data->nama_item = $request->nama_item;
+            $data->harga_item = $request->harga_item;
+            $data->kuantitas_item = $request->kuantitas_item;
+            $data->cara_bayar_item = $request->cara_bayar_item;
+            $data->toko_id = $request->toko_id;
+            $data->satuan_id = $request->satuan_id;
+            $data->kategori_id = $request->kategori_id;
+            $data->catatan_pembelian_item = $request->catatan_pembelian_item;
+            $data->batas_waktu_pembayaran_item = $request->batas_waktu_pembayaran_item;
+
+//            dd($data);
+            $data->save();
+
+            DB::commit();
+            Session::flash('message', ['Berhasil menyimpan data pengajuan pembelian', 'success']);
+        } catch (\Exception $e) {
+            DB::rollback();
+            Session::flash('message', ['Gagal menyimpan data pengajuan pembelian', 'error']);
+        }
+
+        return redirect()->route('finance-accounting-menu-keuangan-user-pengajuan-dana-user-index');
     }
 
     public function delete($id)
