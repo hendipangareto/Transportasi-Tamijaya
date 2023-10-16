@@ -149,6 +149,13 @@ Route::group(
                     Route::prefix('transaction-agent')->group(function () {
                         Route::get('/', 'MarketingTicketing\PetugasPenagihan\TransactionAgentController@index')->name('marketing-ticketing-petugas-penagihan-transaction-index');
                     });
+                    Route::prefix('tagihan-agent')->group(function () {
+                        Route::get('/', 'MarketingTicketing\PetugasPenagihan\TagihanAgentController@index')->name('marketing-ticketing-petugas-penagihan-tagihan-agent-index');
+                        Route::get('/hutang-agent', 'MarketingTicketing\PetugasPenagihan\TagihanAgentController@hutangAgent')->name('marketing-ticketing-petugas-penagihan-tagihan-agent-hutang-agent');
+                    });
+                    Route::prefix('laporan')->group(function () {
+                        Route::get('/', 'MarketingTicketing\PetugasPenagihan\LaporanAgentController@index')->name('marketing-ticketing-petugas-penagihan-laporan-index');
+                    });
                 });
 
             });

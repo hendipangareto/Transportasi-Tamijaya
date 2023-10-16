@@ -194,7 +194,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class=" nav-item"><a href=" "><i class='bx bxs-ambulance' ></i><span
+                <li class=" nav-item"><a href=" "><i class='bx bx-infinite'></i><span
                             class="menu-title">Petugas Penagihan</span></a>
                     <ul class="menu-content">
                         <li class=" nav-item @if (Request::segment(4) == 'transaction-agent') active @endif"><a
@@ -202,13 +202,13 @@
                                     class='bx bx-right-arrow-alt'></i><span
                                     class="menu-title">Daftar Transaksi Agent</span></a>
                         </li>
-                        <li class=" nav-item @if (Request::segment(4) == 'penagihan-agent') active @endif"><a
-                                href="#"><i
+                        <li class=" nav-item @if (Request::segment(4) == 'tagihan-agent') active @endif"><a
+                                href="{{route('marketing-ticketing-petugas-penagihan-tagihan-agent-index')}}"><i
                                     class='bx bx-right-arrow-alt'></i><span
-                                    class="menu-title">Penagihan Agent</span></a>
+                                    class="menu-title">Tagihan Agent</span></a>
                         </li>
-                        <li class=" nav-item @if (Request::segment(4) == 'laporan-agent') active @endif"><a
-                                href="#"><i
+                        <li class=" nav-item @if (Request::segment(4) == 'laporan') active @endif"><a
+                                href="{{route('marketing-ticketing-petugas-penagihan-laporan-index')}}"><i
                                     class='bx bx-right-arrow-alt'></i><span
                                     class="menu-title">Laporan Agent</span></a>
                         </li>
