@@ -1,20 +1,20 @@
 @extends('admin.layouts.app')
-@section('content-header')
-    <div class="content-header-left col-12 mb-2 mt-1">
-        <div class="row breadcrumbs-top">
-            <div class="col-12">
-                <h5 class="content-header-title float-left pr-1 mb-0">LOGISTIK</h5>
-                <div class="breadcrumb-wrapper col-12">
-                    <ol class="breadcrumb p-0 mb-0">
-                        <li class="content-header-title float-left pr-1 mb-0">Form Logistik Keluar
-                        </li>
-                        <a class="content-header-title float-left pr-1 mb-0">LOGISTIK</a>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </div>
-@endsection
+{{--@section('content-header')--}}
+{{--    <div class="content-header-left col-12 mb-2 mt-1">--}}
+{{--        <div class="row breadcrumbs-top">--}}
+{{--            <div class="col-12">--}}
+{{--                <h5 class="content-header-title float-left pr-1 mb-0">LOGISTIK</h5>--}}
+{{--                <div class="breadcrumb-wrapper col-12">--}}
+{{--                    <ol class="breadcrumb p-0 mb-0">--}}
+{{--                        <li class="content-header-title float-left pr-1 mb-0">Form Logistik Keluar--}}
+{{--                        </li>--}}
+{{--                        <a class="content-header-title float-left pr-1 mb-0">LOGISTIK</a>--}}
+{{--                    </ol>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--@endsection--}}
 @section('content')
     <div class="row">
         <div class="col-12">
@@ -57,7 +57,9 @@
                                 </div>
                             </div>
                         </div>
-                        <form action="" method="post">
+
+                        <form action="{{ route('master-logistik.ajukan-pengajuan-pembelian') }}" method="post" enctype="multipart/form-data" onsubmit="return hideTable()">
+                            @csrf
                             <table class="table table-bordered table-hover table-responsive-lg"
                                    id="table-pengajuan-pembelian">
                                 <thead>
@@ -71,7 +73,7 @@
                                     <th class="w-5p">Harga Total (Rp)</th>
                                     <th class="w-10p">Status Transaksi</th>
                                     <th class="w-10p">Status Pengajuan</th>
-{{--                                    <th class="w-10p">Action Persetujuan</th>--}}
+                                    {{--                                    <th class="w-10p">Action Persetujuan</th>--}}
 
                                     <th class="w-10p">Action</th>
                                 </tr>
@@ -101,14 +103,10 @@
 
                                         <td><b style="color: {{ ($item->cara_bayar === 'lunas') ? '#0077ff' : ($item->cara_bayar === 'hutang' ? '#ff7e00' : '') }};  ">{{ $item->cara_bayar }}</b></td>
 
-{{--                                        <td style="background-color: #0077ff"></td>--}}
-                                        @if($item->status == null)
-                                            <td><label class="btn btn-warning">Belum disetujui</label></td>
-                                        @elseif($item->status == 1)
-                                            <td><label class="btn btn-success">Disetujui</label></td>
-                                        @elseif($item->status == 2)
-                                            <td><label class="btn btn-danger">Ditolak</label></td>
-                                        @endif
+                                        {{--                                        <td style="background-color: #0077ff"></td>--}}
+
+                                        <td><input type="checkbox" name="pengajuan_pembelian_id[]" value="{{ $item->id }}"></td>
+
 
                                         <td class="text-center">
                                             <div class="d-flex">
@@ -183,10 +181,17 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-header  pb-0  d-flex justify-content-between">
+
+
+
+
+
+                            <input type="hidden" name="status"  id="status">
+
+                            <div class="card-header pb-0 d-flex justify-content-between">
                                 <h4 class="card-title"></h4>
-                                <a href="" class="btn btn-warning mr-1" type="submit"><i
-                                        class="bx bx-save"></i>Ajukan</a>
+                                <button href="#" class="btn btn-primary mr-1" onclick="selectAllItems()" type="button"><i class="bx bx-check"></i> Pilih Semua</button>
+                                <button href="#" class="btn btn-warning mr-1" type="submit"><i class="bx bx-save"></i> Ajukan</button>
                             </div>
                         </form>
 
@@ -201,7 +206,27 @@
     @include('admin.master-logistik.pengajuan-pembelian.modal-tambah')
 @endsection
 @push('page-scripts')
+
     <script>
+        function selectAllItems() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach((checkbox) => {
+                checkbox.checked = true;
+            });
+        }
+        function selectAllItems() {
+            let checkboxes = document.getElementsByName('pengajuan_pembelian_id[]');
+            for (let i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].checked = true;
+            }
+        }
+
+        function hideTable() {
+            let table = document.getElementById('table-pengajuan-pembelian');
+            table.style.display = 'none';
+            return true;
+        }
+
 
         $(document).ready(function () {
             $("#table-pengajuan-pembelian").DataTable();

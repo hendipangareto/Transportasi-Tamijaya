@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\MasterLogistik;
 
+use App\Models\FinanceAccounting\MenuKeuangan\Finance\Pimpinan;
 use App\Models\MasterData\Satuan;
 use App\Models\MasterDataLogistik\Kategori;
 use App\Models\MasterDataLogistik\PengajuanPembelian;
@@ -61,6 +62,29 @@ class PengajuanPembelianController
         } catch (\Exception $e) {
             DB::rollback();
             Session::flash('message', ['Gagal menyimpan data pengajuan pembelian', 'error']);
+        }
+
+        return redirect()->route('master-logistik-list-pengajuan-pembelian');
+    }
+
+    public function AjukanPengajuanPembelian(Request $request)
+    {
+        DB::beginTransaction();
+
+        try {
+            foreach ($request->pengajuan_pembelian_id as $pengajuan_id) {
+                $dataPengajuanPembelian = new Pimpinan();
+                $dataPengajuanPembelian->pengajuan_pembelian_id = $pengajuan_id;
+
+//                 dd($dataPengajuanPembelian);
+                $dataPengajuanPembelian->save();
+            }
+
+            DB::commit();
+            Session::flash('message', ['Berhasil mengajukan pengajuan pembelian', 'success']);
+        } catch (\Exception $e) {
+            DB::rollback();
+            Session::flash('message', ['Gagal mengajukan pengajuan pembelian', 'error']);
         }
 
         return redirect()->route('master-logistik-list-pengajuan-pembelian');

@@ -36,7 +36,8 @@
                                 </div>
                             </div>
                         </div>
-                        <form action="" method="">
+                        <form action="{{ route('perawatan-pemeliharaan.sopir.check-fisik-layanan.ajukan') }}" method="post" enctype="multipart/form-data">
+                            @csrf
                         <div class="table-responsive mt-2">
                             <table class="table table-bordered table-hover" id="table-bagian">
                                     <thead>
@@ -44,6 +45,7 @@
                                         <th class="w-2p">No</th>
                                         <th class="w-5p">Bagian</th>
                                         <th class="w-5p">Keluhan</th>
+                                        <th class="w-5p">Pilih</th>
                                         <th class="w-5p">Status</th>
                                     </tr>
                                     </thead>
@@ -53,6 +55,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->bagian }}</td>
                                         <td>{{ $item->keluhan }}</td>
+                                        <td><input type="checkbox" name="check_fisik_layanan_id[]" value="{{ $item->id }}"></td>
                                         @if($item->status == null)
                                             <td><h6 class="badge bg-warning">Belum Dicuci</h6></td>
                                         @elseif($item->status == 1)
@@ -68,7 +71,8 @@
                                 </table>
                             </div>
                             <div class="card-header pb-0 d-flex justify-content-between">
-                                <h4 class="card-title"></h4>
+
+                                <button href="#" class="btn btn-primary mr-1" onclick="selectAllItems()" type="button"><i class="bx bx-check"></i> Pilih Semua</button>
                                 <button type="submit" class="btn btn-success mr-1">
                                     <i class="bx bx-save"></i> Submit
                                 </button>
@@ -84,6 +88,24 @@
 
 @push('page-scripts')
     <script type="text/javascript">
+
+        // ========Checklist=====
+
+        function selectAllItems() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach((checkbox) => {
+                checkbox.checked = true;
+            });
+        }
+
+        function selectAllItems() {
+            let checkboxes = document.getElementsByName('check_fisik_layanan_id[]');
+            for (let i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].checked = true;
+            }
+        }
+
+
 
         function addDataToTable() {
             var selectedBagian = document.getElementById("bagian_id").value;

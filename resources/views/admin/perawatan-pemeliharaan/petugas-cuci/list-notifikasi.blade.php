@@ -35,7 +35,7 @@
                                         <th class="w-3p">Armada</th>
                                         <th class="w-10p">Tipe Armada</th>
                                         <th class="w-10p">Tipe Perjalanan</th>
-                                        <th class="w-10p">Keluahan</th>
+                                        <th class="w-10p">Keluhan</th>
                                         <th class="w-10p">PIC Cuci</th>
                                         <th class="w-10p">Tanggal Cuci</th>
                                         <th class="w-10p">Status Cuci</th>
@@ -44,17 +44,16 @@
                                     </thead>
                                     <tbody>
 
-                                    @forelse($sopir as $item)
+                                    @forelse($CuciArmada as $item)
 
                                         <tr class="text-center">
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $item->tanggal_pengajuan }}</td>
-                                            <td>{{ $item->kode_pengajuan }}</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td>{{ $item->armada_no_police }}</td>
+                                            <td>{{ $item->armada_type }}</td>
+                                            <td>{{ $item->armada_category }}</td>
+                                            <td>{{ $item->keluhan }}</td>
+                                            <td>Sopir</td>
+                                            <td>{{ $currentDate }}</td>
 
                                             @if($item->status == null)
                                                 <td>
@@ -78,13 +77,14 @@
                                                     </a>
                                                 </td>
                                             @endif
+                                            <td></td>
 
 
 
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="6" class="text-center">Tidak ada data Pengajuan Pembelian.</td>
+                                            <td colspan="9" class="text-center">Tidak ada data Pengajuan Pembelian.</td>
                                         </tr>
                                     @endforelse
                                     </tbody>
