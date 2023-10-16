@@ -145,6 +145,11 @@ Route::group(
                         });
                     });
                 });
+                Route::prefix('petugas-penagihan')->group(function () {
+                    Route::prefix('transaction-agent')->group(function () {
+                        Route::get('/', 'MarketingTicketing\PetugasPenagihan\TransactionAgentController@index')->name('marketing-ticketing-petugas-penagihan-transaction-index');
+                    });
+                });
 
             });
 

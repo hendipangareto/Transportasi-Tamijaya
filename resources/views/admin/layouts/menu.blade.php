@@ -194,6 +194,26 @@
                         </li>
                     </ul>
                 </li>
+                <li class=" nav-item"><a href=" "><i class='bx bxs-ambulance' ></i><span
+                            class="menu-title">Petugas Penagihan</span></a>
+                    <ul class="menu-content">
+                        <li class=" nav-item @if (Request::segment(4) == 'transaction-agent') active @endif"><a
+                                href="{{route('marketing-ticketing-petugas-penagihan-transaction-index')}}"><i
+                                    class='bx bx-right-arrow-alt'></i><span
+                                    class="menu-title">Daftar Transaksi Agent</span></a>
+                        </li>
+                        <li class=" nav-item @if (Request::segment(4) == 'penagihan-agent') active @endif"><a
+                                href="#"><i
+                                    class='bx bx-right-arrow-alt'></i><span
+                                    class="menu-title">Penagihan Agent</span></a>
+                        </li>
+                        <li class=" nav-item @if (Request::segment(4) == 'laporan-agent') active @endif"><a
+                                href="#"><i
+                                    class='bx bx-right-arrow-alt'></i><span
+                                    class="menu-title">Laporan Agent</span></a>
+                        </li>
+                    </ul>
+                </li>
             @endif
             {{--End Menu Marketing Ticketing--}}
 
