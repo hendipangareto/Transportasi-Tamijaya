@@ -235,7 +235,7 @@
                                                         @foreach ($seat_d as $d_seat)
                                                             <li class="seat">
                                                                 <input onclick="selectSeat('{{ $d_seat }}')"
-                                                                       type="checkbox" id="Suite{{ $d_seat }}" />
+                                                                       type="checkbox" id="Suite{{ $d_seat }}"/>
                                                                 <label
                                                                     for="Suite{{ $d_seat }}">{{ $d_seat }}</label>
                                                             </li>
@@ -249,7 +249,7 @@
                                                         @foreach ($seat_b as $b_seat)
                                                             <li class="seat">
                                                                 <input onclick="selectSeat('{{ $b_seat }}')"
-                                                                       type="checkbox" id="Suite{{ $b_seat }}" />
+                                                                       type="checkbox" id="Suite{{ $b_seat }}"/>
                                                                 <label
                                                                     for="Suite{{ $b_seat }}">{{ $b_seat }}</label>
                                                             </li>
@@ -276,7 +276,7 @@
                                                         @foreach ($seat_c as $c_seat)
                                                             <li class="seat">
                                                                 <input onclick="selectSeat('{{ $c_seat }}')"
-                                                                       type="checkbox" id="Suite{{ $c_seat }}" />
+                                                                       type="checkbox" id="Suite{{ $c_seat }}"/>
                                                                 <label
                                                                     for="Suite{{ $c_seat }}">{{ $c_seat }}</label>
                                                             </li>
@@ -291,7 +291,7 @@
                                                         @foreach ($seat_a as $a_seat)
                                                             <li class="seat">
                                                                 <input onclick="selectSeat('{{ $a_seat }}')"
-                                                                       type="checkbox" id="Suite{{ $a_seat }}" />
+                                                                       type="checkbox" id="Suite{{ $a_seat }}"/>
                                                                 <label
                                                                     for="Suite{{ $a_seat }}">{{ $a_seat }}</label>
                                                             </li>
@@ -307,7 +307,8 @@
                         </div>
                         <div class="col-md-10 mt-1">
                             <div class="table-responsive">
-                                <table class="table dataTables table-bordered table-hover">
+                                <table class="table dataTables table-bordered table-hover"
+                                       id="table-ceklist-penumpang-suites">
                                     <thead>
                                     <tr>
                                         <th rowspan="2" class="w-3p">No Kursi</th>
@@ -323,6 +324,23 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td colspan="6"><b>Top</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td colspan="6"><b>Bottom</b></td>
+                                    </tr>
                                     <tr>
                                         <td>#</td>
                                         <td>#</td>
@@ -353,6 +371,10 @@
 
 @push('page-scripts')
     <script>
-
+        $(function () {
+            // if (parseInt($("#tablesjurnalUmums").val()) > 0) {
+            $("#table-ceklist-penumpang-suites").DataTable();
+            // }
+        });
     </script>
 @endpush

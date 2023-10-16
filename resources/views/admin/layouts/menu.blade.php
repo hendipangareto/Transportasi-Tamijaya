@@ -156,20 +156,41 @@
             @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 2 || Auth::user()->id_role == 4)
                 <li class=" navigation-header"><span>Marketing Ticketing</span>
                 </li>
-                <li class=" nav-item @if (Request::segment(3) == 'perjalanan-bus-reguler') active @endif"><a
-                        href="{{ route('marketing-ticketing-pemandu-perjalanan-perjalanan-bus-reguler-index') }}"><i class='bx bx-car'></i><span
-                            class="menu-title">Perjalanan Bus Reguler</span></a>
-                </li>
-                <li class=" nav-item"><a href=" "><i class='bx bx-check-square'></i><span
-                            class="menu-title">Checklist Penumpang</span></a>
+                <li class=" nav-item"><a href=" "><i class='bx bx-run' ></i><span
+                            class="menu-title">Pemandu Perjalanan</span></a>
                     <ul class="menu-content">
-                        <li class=" nav-item @if (Request::segment(4) == 'executive') active @endif"><a
-                                href="{{ route('marketing-ticketing-checklist-penumpang-executive-index') }}"><i class='bx bx-user-check'></i><span
-                                    class="menu-title">Executive Class</span></a>
+                        <li class=" nav-item @if (Request::segment(4) == 'perjalanan-bus-reguler') active @endif"><a
+                                href="{{ route('marketing-ticketing-pemandu-perjalanan-perjalanan-bus-reguler-index') }}"><i
+                                    class='bx bx-car'></i><span
+                                    class="menu-title">Perjalanan Bus Reguler</span></a>
                         </li>
-                        <li class=" nav-item @if (Request::segment(4) == 'suites') active @endif"><a
-                                href="{{ route('marketing-ticketing-checklist-penumpang-suites-index') }}"><i class='bx bxs-user-check'></i><span
-                                    class="menu-title">Suites Class</span></a>
+                        <li class=" nav-item"><a href=" "><i class='bx bx-user-check'></i><span
+                                    class="menu-title">Checklist Penumpang</span></a>
+                            <ul class="menu-content">
+                                <li class=" nav-item @if (Request::segment(5) == 'executive') active @endif"><a
+                                        href="{{ route('marketing-ticketing-checklist-penumpang-executive-index') }}"><i
+                                            class='bx bx-right-arrow-alt'></i><span
+                                            class="menu-title">Executive Class</span></a>
+                                </li>
+                                <li class=" nav-item @if (Request::segment(5) == 'suites') active @endif"><a
+                                        href="{{ route('marketing-ticketing-checklist-penumpang-suites-index') }}"><i
+                                            class='bx bx-right-arrow-alt'></i><span
+                                            class="menu-title">Suites Class</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class=" nav-item"><a href=" "><i class='bx bx-file'></i><span
+                                    class="menu-title">Laporan</span></a>
+                            <ul class="menu-content">
+                                <li class=" nav-item @if (Request::segment(5) == 'laporan-dana') active @endif"><a
+                                        href="{{route('marketing-ticketing-laporan-laporan-dana-index')}}"><i class='bx bx-right-arrow-alt'></i><span
+                                            class="menu-title">Laporan Dana</span></a>
+                                </li>
+                                <li class=" nav-item @if (Request::segment(5) == 'rekap-laporan-dana') active @endif"><a
+                                        href="{{route('marketing-ticketing-laporan-rekap-laporan-dana-index')}}"><i class='bx bx-right-arrow-alt'></i><span
+                                            class="menu-title">Rekap Laporan Dana</span></a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </li>

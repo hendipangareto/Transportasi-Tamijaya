@@ -124,15 +124,25 @@ Route::group(
 
             //MARKETING TICKETING OFFICE
             Route::prefix('marketing-ticketing')->group(function () {
-                Route::prefix('perjalanan-bus-reguler')->group(function () {
-                    Route::get('/', 'MarketingTicketing\PemanduPerjalanan\PerjalananBusRegulerController@index')->name('marketing-ticketing-pemandu-perjalanan-perjalanan-bus-reguler-index');
-                });
-                Route::prefix('checklist-penumpang')->group(function () {
-                    Route::prefix('executive')->group(function () {
-                        Route::get('/', 'MarketingTicketing\PemanduPerjalanan\ChecklistPenumpang\ExecutiveController@index')->name('marketing-ticketing-checklist-penumpang-executive-index');
+                Route::prefix('pemandu-perjalanan')->group(function () {
+                    Route::prefix('perjalanan-bus-reguler')->group(function () {
+                        Route::get('/', 'MarketingTicketing\PemanduPerjalanan\PerjalananBusRegulerController@index')->name('marketing-ticketing-pemandu-perjalanan-perjalanan-bus-reguler-index');
                     });
-                    Route::prefix('suites')->group(function () {
-                        Route::get('/', 'MarketingTicketing\PemanduPerjalanan\ChecklistPenumpang\SuitesController@index')->name('marketing-ticketing-checklist-penumpang-suites-index');
+                    Route::prefix('checklist-penumpang')->group(function () {
+                        Route::prefix('executive')->group(function () {
+                            Route::get('/', 'MarketingTicketing\PemanduPerjalanan\ChecklistPenumpang\ExecutiveController@index')->name('marketing-ticketing-checklist-penumpang-executive-index');
+                        });
+                        Route::prefix('suites')->group(function () {
+                            Route::get('/', 'MarketingTicketing\PemanduPerjalanan\ChecklistPenumpang\SuitesController@index')->name('marketing-ticketing-checklist-penumpang-suites-index');
+                        });
+                    });
+                    Route::prefix('laporan')->group(function () {
+                        Route::prefix('rekap-laporan-dana')->group(function () {
+                            Route::get('/', 'MarketingTicketing\PemanduPerjalanan\Laporan\RekapLaporanDanaController@index')->name('marketing-ticketing-laporan-rekap-laporan-dana-index');
+                        });
+                        Route::prefix('laporan-dana')->group(function () {
+                            Route::get('/', 'MarketingTicketing\PemanduPerjalanan\Laporan\LaporanDanaController@index')->name('marketing-ticketing-laporan-laporan-dana-index');
+                        });
                     });
                 });
 
