@@ -122,7 +122,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <input type="hidden" id="id" name="id" value="{{ $dataItem->id }}">
+                        <input type="hidden" name="id" value="{{ $dataItem->id }}">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -154,66 +154,62 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="edit_kuantitas_items">Kuantitas <sub style="color: red">*</sub></label>
-                                    <input type="text" class="form-control" id="edit_kuantitas_items" name="edit_kuantitas_items" value="{{ $dataItem->kuantitas_item }}">
+                                    <label for="kuantitas_item">Kuantitas <sub style="color: red">*</sub></label>
+                                    <input type="text" class="form-control" id="kuantitas_item" name="kuantitas_item" value="{{ $dataItem->kuantitas_item }}">
                                 </div>
                             </div>
                         </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="">Satuan <sub style="color: red">*</sub></label>
-                                <select name="satuan_id" id="satuan_id" class="form-control" required>
-
-                                    @foreach($satuan as $item)
-                                        <option value="{{$item->id}}">{{ $item->nama_satuan}}</option>
-                                    @endforeach
-                                </select>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="satuan_id">Satuan <sub style="color: red">*</sub></label>
+                                    <select name="satuan_id" id="satuan_id" class="form-control" required>
+                                        @foreach($satuan as $item)
+                                            <option value="{{ $item->id }}">{{ $item->nama_satuan }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="harga_item">Harga Satuan <sub style="color: red">*</sub></label>
+                                    <input type="text" class="form-control" id="harga_item" name="harga_item" value="{{ $dataItem->harga_item }}">
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="">Harga Satuan <sub style="color: red">*</sub></label>
-                                <input type="text" class="form-control" id="harga_item" name="harga_item" value="{{ $dataItem->harga_item }}">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="catatan_pembelian_item">Catatan</label>
+                                    <textarea name="catatan_pembelian_item" id="catatan_pembelian_item" class="form-control">{{ $dataItem->catatan_pembelian_item }}</textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="cara_bayar_item">Cara Bayar <sub style="color: red">*</sub></label>
+                                    <select name="cara_bayar_item" id="cara_bayar_item" class="form-control">
+                                        <option value="cash" {{ $dataItem->cara_bayar_item == 'cash' ? 'selected' : '' }}>Cash</option>
+                                        <option value="transfer" {{ $dataItem->cara_bayar_item == 'transfer' ? 'selected' : '' }}>Transfer</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="batas_waktu_pembayaran_item">Batas Waktu Pembayaran</label>
+                                    <input type="date" class="form-control" id="batas_waktu_pembayaran_item" name="batas_waktu_pembayaran_item" value="{{ $dataItem->batas_waktu_pembayaran_item }}">
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="">Catatan</label>
-                                <textarea name="catatan_pembelian_item" id="catatan_pembelian_item" class="form-control" data-value="{{ $dataItem->catatan_pembelian_item }}">{{ $dataItem->catatan_pembelian_item }}</textarea>
-                            </div>
-                        </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-warning"><i class="bx bx-check mt"></i> Update</button>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="">Cara Bayar <sub style="color: red">*</sub></label>
-                                <select name="cara_bayar_item" id="cara_bayar_item" class="form-control">
-
-                                    <option value="cash">{{ $dataItem->cara_bayar_item }}</option>
-                                    <option value="transfer">{{ $dataItem->cara_bayar_item }}</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="">Batas Waktu Pembayaran</label>
-                                <input type="date" class="form-control" id="batas_waktu_pembayaran_item" name="batas_waktu_pembayaran_item" value="{{ $dataItem->batas_waktu_pembayaran_item }}">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-warning"><i
-                            class="bx bx-check mt"></i> Update
-                    </button>
                 </div>
             </div>
         </div>
-    </div>
-</form>
+    </form>
 @endforeach
 
 {{--Modal Detail--}}
