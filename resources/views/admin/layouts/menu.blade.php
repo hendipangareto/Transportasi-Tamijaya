@@ -413,7 +413,7 @@
             @endif
 
             @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 2)
-                <li class=" navigation-header" style="color: darkred"><span>Human Resource</span>
+                <li class=" navigation-header" ><span>Human Resource</span>
                 </li>
                 <li class="nav-item @if (Request::segment(2) == 'human-resource') open @endif">
                     <a href=""><i class="bx bxs-group"></i><span class="menu-title">Manajemen
@@ -460,7 +460,7 @@
             @endif
 
             @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 2 || Auth::user()->id_role == 3)
-                <li class=" navigation-header" style="color: #af0303"><span>DATA MASTER</span>
+                <li class=" navigation-header"><span>DATA MASTER</span>
                 </li>
                 <li class="nav-item @if (Request::segment(2) == 'master-data' && Request::segment(3) !== 'armada') open @endif">
                     <a href=""><i class='bx bx-customize'></i><span class="menu-title">
@@ -710,7 +710,7 @@
             @endif
 
             @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 7)
-                <li class=" navigation-header" style="color: darkred"><span>LOGISTIK</span>
+                <li class=" navigation-header"><span>LOGISTIK</span>
                 </li>
                 <li class="nav-item @if (Request::segment(2) == 'master-logistik') open @endif">
                     <a href=""><i class="bx bx-cart-alt"></i><span class="menu-title">Pengajuan Pembelian</span></a>
@@ -752,7 +752,7 @@
             @endif
 
             @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 2 || Auth::user()->id_role == 3)
-                <li class=" navigation-header" STYLE="color: darkred"><span>MANAJEMEN CUSTOMER</span>
+                <li class=" navigation-header"><span>MANAJEMEN CUSTOMER</span>
                 </li>
                 <li class=" nav-item @if (Request::segment(3) == 'inbox') active @endif"><a
                         href="{{ route('inbox.index') }}"><i class="bx bxs-inbox"></i><span
@@ -763,7 +763,7 @@
 
 
             @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 7)
-                <li class=" navigation-header" style="color: darkred"><span>PERAWATAN & PEMELIHARAAN</span>
+                <li class=" navigation-header"><span>PERAWATAN & PEMELIHARAAN</span>
                 </li>
                 <li class="nav-item @if (Request::segment(2) == 'perawatan-pemeliharaan') open @endif">
                     <a href=""><i class="bx bxs-group"></i><span class="menu-title">Sopir</span></a>
@@ -883,7 +883,7 @@
                 </li>
             @endif
             @if (Auth::user()->id_role == 1)
-                <li class=" navigation-header" style="color: darkred"><span>Management Users</span>
+                <li class=" navigation-header"><span>Management Users</span>
                 </li>
                 <li class="nav-item @if (Request::segment(3) == 'role') active @endif"><a
                         href="{{ route('role.index') }}"><i class="bx bx-key"></i><span
