@@ -98,8 +98,16 @@ class PengajuanDanaUserController extends Controller
         return redirect()->route('finance-accounting-menu-keuangan-user-pengajuan-dana-user-index');
     }
 
-    public function delete($id)
+    public function delete(Request $request)
     {
-        //
+        $PengajuanDanaId = $request->input('pengajuan_dana_user_id');
+        $data = Kategori::find($PengajuanDanaId);
+        $data->delete();
+
+        return response()->json([
+            'data' => $data,
+            'message' => 'Berhasil menghapus data pengajuan dana user',
+            'status' => 200,
+        ]);
     }
 }

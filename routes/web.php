@@ -794,6 +794,7 @@ Route::group(
 
                 Route::post('/tambah-pengajuan-dana-user', 'FinanceAccounting\MenuKeuangan\User\PengajuanDanaUserController@store')->name('finance-accounting-menu-keuangan-user-pengajuan-dana-user-tambah-pengajuan-dana-user');
                 Route::post('/update-pengajuan-dana-user/{id}', 'FinanceAccounting\MenuKeuangan\User\PengajuanDanaUserController@update')->name('finance-accounting-menu-keuangan-user-pengajuan-dana-user-update-pengajuan-dana-user');
+                Route::delete('/delete-pengajuan-dana-user', 'FinanceAccounting\MenuKeuangan\User\PengajuanDanaUserController@delete')->name('finance-accounting-menu-keuangan-user-pengajuan-dana-user-delete-pengajuan-dana-user');
 
 
             });

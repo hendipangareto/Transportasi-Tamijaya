@@ -71,7 +71,7 @@
                         <div class="table-responsive">
 
                             <table class="table datatables table-bordered table-hover"
-                                   id="table-daftar-transaksi-kasir">
+                                   id="table-pengajuan-dana-user">
                                 <thead>
                                 <tr>
                                     <th class="w-3p">No</th>
@@ -108,9 +108,8 @@
                                                 data-target="#modal-edit-pengajuan-dana-belanja-user">
                                                 <i class="bx bx-edit font-size-base"></i>
                                             </div>
-                                            <div
-                                                class="badge-circle badge-circle-sm badge-circle-danger mr-1 pointer delete-jurnals-umum"
-                                                data-id="" title="delete">
+                                            <div class="badge-circle badge-circle-sm badge-circle-danger pointer delete-button "
+                                                 data-id="{{ $item->id }}">
                                                 <i class="bx bx-trash font-size-base"></i>
                                             </div>
                                         </div>
@@ -135,6 +134,46 @@
 
 @push('page-scripts')
     <script>
+        $(document).ready(function () {
+            $("#table-pengajuan-dana-user").DataTable();
+        });
 
+
+        $(document).ready(function () {
+            $('.delete-button').click(function () {
+                var $PengajuanDanaId = $(this).data('id');
+
+                Swal.fire({
+                    title: "Yakin akan menghapus data?",
+                    text: "Data yang dihapus tidak dapat dikembalikan",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Ya, hapus!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: '{{ route('finance-accounting-menu-keuangan-user-pengajuan-dana-user-delete-pengajuan-dana-user') }}',
+                            type: 'DELETE',
+                            data: {
+                                '_token': '{{ csrf_token() }}',
+                                'pengajuan_dana_user_id': $PengajuanDanaId
+                            },
+                            success: function (response) {
+                                location.reload();
+                                Toast.fire({
+                                    icon: "success",
+                                    title: "Berhasil menghapus data Pengajuan Pembelian"
+                                });
+                            },
+                            error: function (error) {
+                                console.log(err);
+                            }
+                        });
+                    }
+                });
+            });
+        });
     </script>
 @endpush
