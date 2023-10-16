@@ -144,6 +144,7 @@ Route::group(
                     Route::get('/check-fisik-layanan', 'PerawatanPemeliharaan\Sopir\CekFisikLayananController@listCheckFisik')->name('perawatan-pemeliharaan.sopir.check-fisik-layanan');
                     Route::get('/get-armada', 'PerawatanPemeliharaan\Sopir\CekFisikLayananController@getArmada')->name('perawatan-pemeliharaan.sopir.get-armada');
                     Route::post('/check-fisik-layanan/tambah', 'PerawatanPemeliharaan\Sopir\CekFisikLayananController@TambahArmada')->name('perawatan-pemeliharaan.sopir.check-fisik-layanan.tambah');
+                    Route::post('/check-fisik-layanan/ajukan', 'PerawatanPemeliharaan\Sopir\CekFisikLayananController@AjukanCuciArmada')->name('perawatan-pemeliharaan.sopir.check-fisik-layanan.ajukan');
 
                     Route::post('/simpan-check-fisik-layanan', 'PerawatanPemeliharaan\Sopir\CekFisikLayananController@SumpanCheckList')->name('perawatan-pemeliharaan.sopir.simpan-check-fisik-layanan');
                     Route::get('/report-perjalanan', 'PerawatanPemeliharaan\CekFisikLayananController@ReportPerjalanan')->name('perawatan-pemeliharaan.sopir.report-perjalanan');
@@ -153,13 +154,13 @@ Route::group(
                 });
 
                 Route::prefix('petugas-cuci')->group(function () {
-                    Route::get('/list-notifikasi-cuci', 'PerawatanPemeliharaan\PetugasCuciController@listNotifikasi')->name('perawatan-pemeliharaan.petugas-cuci.list-notifikasi-cuci');
-                    Route::get('/list-form-cuci', 'PerawatanPemeliharaan\PetugasCuciController@FormCuci')->name('perawatan-pemeliharaan.petugas-cuci.list-form-cuci');
+                    Route::get('/list-notifikasi-cuci', 'PerawatanPemeliharaan\PetugasCuci\CuciArmadaController@listNotifikasi')->name('perawatan-pemeliharaan.petugas-cuci.list-notifikasi-cuci');
+                    Route::get('/list-form-cuci', 'PerawatanPemeliharaan\PetugasCuci\CuciArmadaController@FormCuci')->name('perawatan-pemeliharaan.petugas-cuci.list-form-cuci');
 
-                    Route::get('/setujui-cuci-check-fisik-layanan/{id}', 'PerawatanPemeliharaan\PetugasCuciController@setujuiCuci')
+                    Route::get('/setujui-cuci-check-fisik-layanan/{id}', 'PerawatanPemeliharaan\PetugasCuci\CuciArmadaController@setujuiCuci')
                         ->name('perawatan-pemeliharaan.petugas-cuci.setujui-cuci-check-fisik-layanan');
 
-                    Route::get('/tolak-cuci-check-fisik-layanan/{id}', 'PerawatanPemeliharaan\PetugasCuciController@TolakCuci')
+                    Route::get('/tolak-cuci-check-fisik-layanan/{id}', 'PerawatanPemeliharaan\PetugasCuci\CuciArmadaController@TolakCuci')
                         ->name('perawatan-pemeliharaan.petugas-cuci.tolak-cuci-check-fisik-layanan');
 
 
@@ -505,6 +506,7 @@ Route::group(
                         Route::post('/tambah-pengajuan-pembelian', 'MasterLogistik\PengajuanPembelianController@TambahPengajuanPembelian')->name('master-logistik-tambah-pengajuan-pembelian');
                         Route::post('/update-pengajuan-pembelian/{id}', 'MasterLogistik\PengajuanPembelianController@UpdatePengajuanPembelian')->name('master-logistik-update-pengajuan-pembelian');
 
+                        Route::post('/ajukan-pengajuan-pembelian', 'MasterLogistik\PengajuanPembelianController@AjukanPengajuanPembelian')->name('master-logistik.ajukan-pengajuan-pembelian');
                         Route::delete('/delete-pengajuan-pembelian', 'MasterLogistik\PengajuanPembelianController@DeletePengajuanPembelian')->name('master-logistik-delete-pengajuan-pembelian');
                     });
 
@@ -771,10 +773,16 @@ Route::group(
                 Route::get('/', 'FinanceAccounting\MenuKeuangan\User\LaporanNotaBelanjaController@index')->name('finance-accounting-menu-keuangan-user-laporan-nota-belanja-index');
                 Route::get('/detail-nota', 'FinanceAccounting\MenuKeuangan\User\LaporanNotaBelanjaController@detailNota')->name('finance-accounting-menu-keuangan-user-laporan-nota-belanja-detail-nota');
             });
+
+
             Route::prefix('request-pengajuan-dana')->group(function () {
                 Route::get('/', 'FinanceAccounting\MenuKeuangan\Pimpinan\RequestPengajuanDanaController@index')->name('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-index');
 
                 Route::get('/approval-pengajuan', 'FinanceAccounting\MenuKeuangan\Pimpinan\RequestPengajuanDanaController@approvalPengajuan')->name('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-approval-pengajuan');
+                Route::get('/disetujui-pengajuan/{id}', 'FinanceAccounting\MenuKeuangan\Pimpinan\RequestPengajuanDanaController@DisetujuiPengajuanPembelian')->name('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-disetujui-pengajuan');
+                Route::get('/ditolak-pengajuan/{id}', 'FinanceAccounting\MenuKeuangan\Pimpinan\RequestPengajuanDanaController@DitolakPengajuanPembelian')->name('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-ditolak-pengajuan');
+
+
             });
             #End Peter
 

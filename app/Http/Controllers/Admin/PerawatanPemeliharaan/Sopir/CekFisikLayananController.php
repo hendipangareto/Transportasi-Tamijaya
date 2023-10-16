@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\MasterData\Armada;
 use App\Models\MasterDataLogistik\Bagian;
 use App\Models\PerawatanPemeliharaan\CekLayananFisik;
+use App\Models\PerawatanPemeliharaan\PetugasCuci\CuciArmada;
 use App\Models\TataKelola\DokumenFinal;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -21,25 +22,13 @@ class CekFisikLayananController extends Controller
         $sopir = CekLayananFisik::select("check_fisik_layanan.*", 'bagians.nama_bagian as bagian', 'armadas.armada_merk as merk')
             ->join('bagians', 'bagians.id', '=', 'check_fisik_layanan.bagian_id')
             ->join('armadas', 'armadas.id', '=', 'check_fisik_layanan.id_armada')
-            ->orderBy('bagians.id')
+            ->orderBy('created_at', 'desc')
             ->get();
         return view('admin.perawatan-pemeliharaan.sopir.check-fisik-layanan', compact('armada', 'bagian', 'sopir'));
+
+//        return view('admin.perawatan-pemeliharaan.sopir.check-fisik-layanan', compact('armada', 'bagian', 'sopir'));
     }
 
-
-//        public function getArmada(Request $request)
-//        {
-//            $armadaId = $request->input('id_armada');
-//
-//            $armada = DB::table('armadas')
-//                ->select('pick_points.pick_point_name')
-//                ->join('pick_points', 'armadas.id_pick_point', 'pick_points.id')
-//
-//                ->where('armadas.id', '=', $armadaId)->first();
-//
-//            return response()->json($armada);
-//
-//        }
 
     public function getArmada(Request $request)
     {
@@ -90,7 +79,28 @@ class CekFisikLayananController extends Controller
         return redirect()->route('perawatan-pemeliharaan.sopir.check-fisik-layanan');
     }
 
+    public function AjukanCuciArmada (Request $request)
+    {
+        DB::beginTransaction();
 
+        try {
+            foreach ($request->check_fisik_layanan_id as $check_fisik_layanan_id) {
+                $sopir = new CuciArmada();
+                $sopir->check_fisik_layanan_id = $check_fisik_layanan_id;
+
+//                dd($sopir);
+                $sopir->save();
+            }
+
+            DB::commit();
+            Session::flash('message', ['Berhasil mengajukan pengajuan pembelian', 'success']);
+        } catch (\Exception $e) {
+            DB::rollback();
+            Session::flash('message', ['Gagal mengajukan pengajuan pembelian', 'error']);
+        }
+
+        return redirect()->route('perawatan-pemeliharaan.sopir.check-fisik-layanan');
+    }
 
     public function ReportPerjalanan()
     {
