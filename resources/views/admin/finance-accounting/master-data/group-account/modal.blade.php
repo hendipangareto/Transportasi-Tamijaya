@@ -63,7 +63,7 @@
             </div>
             <div class="modal-body px-2">
                 <div class="row" id="display-detail-account">
-                   
+
                 </div>
             </div>
 

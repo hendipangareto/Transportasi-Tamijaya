@@ -30,22 +30,29 @@ class PengajuanPembelianController
 
     }
 
-    public function store(Request $request)
+    public function TambahPengajuanPembelian(Request $request)
     {
         DB::beginTransaction();
         try {
-            $data = new PengajuanDanaUser();
+            $data = new PengajuanPembelian();
+            $lastNomor = PengajuanPembelian::orderBy('id', 'desc')->first();
+            $lastNumber = $lastNomor ? intval(substr($lastNomor->kode_pengajuan, -2)) : 0;
+            $newNumber = $lastNumber + 1;
+            $nodata = 'PP-' . str_pad($newNumber, 3, '0', STR_PAD_LEFT);
 
-            $data->nama_item = $request->nama_item;
-            $data->harga_item = $request->harga_item;
-            $data->kuantitas_item = $request->kuantitas_item;
-            $data->cara_bayar_item = $request->cara_bayar_item;
+            $data->kode_pengajuan = $nodata;
+            $data->item = $request->item;
+            $data->harga = $request->harga;
+            $data->kuantitas = $request->kuantitas;
+            $data->cara_bayar = $request->cara_bayar;
             $data->toko_id = $request->toko_id;
             $data->satuan_id = $request->satuan_id;
             $data->kategori_id = $request->kategori_id;
-            $data->catatan_pembelian_item = $request->catatan_pembelian_item;
-            $data->batas_waktu_pembayaran_item = $request->batas_waktu_pembayaran_item;
+            $data->catatan_pembelian = $request->catatan_pembelian;
+            $data->tanggal_pengajuan = $request->tanggal_pengajuan;
+            $data->batas_waktu_pembayaran = $request->batas_waktu_pembayaran;
 
+//            dd($data);
             $data->save();
 
             DB::commit();
@@ -57,7 +64,7 @@ class PengajuanPembelianController
             Session::flash('alert-class', 'alert-danger');
         }
 
-        return redirect()->route('finance-accounting-menu-keuangan-user-pengajuan-dana-user-index');
+        return redirect()->route('master-logistik-list-pengajuan-pembelian');
     }
 
 

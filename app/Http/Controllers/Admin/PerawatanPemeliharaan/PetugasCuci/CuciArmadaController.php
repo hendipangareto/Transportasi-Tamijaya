@@ -25,7 +25,7 @@ class CuciArmadaController extends Controller
 //            ->Leftjoin('bagians', 'check_fisik_layanan.bagian_id', '=', 'bagians.id')
 //            ->select('cuci_armadas.*', 'armadas.*', 'bagians.*', 'check_fisik_layanan.*')
 //            ->get();
-        dd($CuciArmada);
+//        dd($CuciArmada);
         return view('admin.perawatan-pemeliharaan.petugas-cuci.list-notifikasi', compact('CuciArmada','currentDate'));
     }
 
