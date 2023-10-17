@@ -80,9 +80,9 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->tanggal_pengajuan }}</td>
                                         <td>{{ $item->kode_pengajuan }}</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
+                                        <td> </td>
+                                        <td> </td>
+                                        <td> </td>
                                         <td class="text-center">
                                             <div class="d-flex">
                                                 <a class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer text-center"
