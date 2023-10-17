@@ -536,7 +536,7 @@
                 {{--                <li class=" navigation-header" style="color: darkred"><span>PERAWATAN & PEMELIHARAAN</span>--}}
                 {{--                </li>--}}
                 <li class="nav-item @if (Request::segment(2) == 'perawatan-pemeliharaan') open @endif">
-                    <a href=""><i class="bx bxs-group"></i><span class="menu-title">Petugas Cuci</span></a>
+                    <a href=""><i class="bx bxs-brush"></i><span class="menu-title">Petugas Cuci</span></a>
                     <ul class="menu-content">
                         <li @if (Request::segment(3) == 'petugas-cuci') class="active" @endif>
                             <a href="{{ route('perawatan-pemeliharaan.petugas-cuci.list-notifikasi-cuci') }}"><i
@@ -564,7 +564,7 @@
 
             @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 11)
                 <li class="nav-item @if (Request::segment(3) == 'supervisor-check-armada') open @endif">
-                    <a href=""><i class="bx bxs-group"></i><span class="menu-title">SVP CHECK ARMADA</span></a>
+                    <a href=""><i class="bx bx-bus"></i><span class="menu-title">SVP CHECK ARMADA</span></a>
                     <ul class="menu-content">
                         <li @if (Request::segment(4) == 'list-approval-sparepart') class="active" @endif>
                             <a href="{{ route('perawatan-pemeliharaan.supervisor-check-armada.list-approval-sparepart') }}"><i

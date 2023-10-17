@@ -60,7 +60,7 @@
                         </div>
 
 
-                        <form action="" method="">
+
                             <form action="" method="">
                                 <div class="table-responsive mt-2" id="show-data-filter-accounting">
                                     <table class="table table-bordered table-hover" id="rekap-pengajuan-pembelian">
@@ -131,7 +131,7 @@
                             </form>
 
 
-                        </form>
+
                     </div>
                 </div>
             </div>
