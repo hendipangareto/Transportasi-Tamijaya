@@ -18,6 +18,7 @@ class CashFlowController extends Controller
     public function index()
     {
         $accounts = Account::get();
+//        dd($accounts);
         return view('admin.finance-accounting.cash-flow.index', ["accounts" => $accounts]);
     }
 
@@ -68,7 +69,7 @@ class CashFlowController extends Controller
             ->join('accounts', 'cash_flows.id_account', 'accounts.id')
             ->whereMonth('cash_flows.created_at', $month)
             ->get();
-        $query = "SELECT  SUM(COALESCE(CASE WHEN `type_cf` = 'DEBIT' THEN amount END,0)) TOTAL_DEBIT , SUM(COALESCE(CASE WHEN `type_cf` = 'KREDIT' THEN amount END,0)) TOTAL_KREDIT , SUM(COALESCE(CASE WHEN `type_cf` = 'DEBIT' THEN amount END,0)) - SUM(COALESCE(CASE WHEN `type_cf` = 'KREDIT' THEN amount END,0)) BALANCE FROM cash_flows 
+        $query = "SELECT  SUM(COALESCE(CASE WHEN `type_cf` = 'DEBIT' THEN amount END,0)) TOTAL_DEBIT , SUM(COALESCE(CASE WHEN `type_cf` = 'KREDIT' THEN amount END,0)) TOTAL_KREDIT , SUM(COALESCE(CASE WHEN `type_cf` = 'DEBIT' THEN amount END,0)) - SUM(COALESCE(CASE WHEN `type_cf` = 'KREDIT' THEN amount END,0)) BALANCE FROM cash_flows
         where month(created_at) =  $month HAVING BALANCE <> 0";
         $data_result = DB::select($query);
         if ($data_result) {

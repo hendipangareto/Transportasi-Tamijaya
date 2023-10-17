@@ -459,6 +459,180 @@
                 </li>
             @endif
 
+            @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 7)
+                <li class=" navigation-header"><span>USER LOGISTIK</span>
+                </li>
+                <li class="nav-item @if (Request::segment(2) == 'master-logistik') open @endif">
+                    <a href=""><i class="bx bx-cart-alt"></i><span class="menu-title">Pengajuan Pembelian</span></a>
+                    <ul class="menu-content">
+                        <li @if (Request::segment(5) == 'list-pengajuan-pembelian') class="active" @endif>
+                            <a href="{{ route('master-logistik-list-pengajuan-pembelian') }}"><i
+                                    class="bx bx-right-arrow-alt"></i><span
+                                    class="menu-item ">Pengajuan Pembelian</span></a>
+                        </li>
+                        <li @if (Request::segment(5) == 'list-rekap-pembelian') class="active" @endif>
+                            <a href="{{ route('master-logistik-list-rekap-pembelian') }}"><i
+                                    class="bx bx-right-arrow-alt"></i><span
+                                    class="menu-item ">Rekap Pengajuan Pembelian</span></a>
+                        </li>
+                        <li @if (Request::segment(5) == 'laporan-pengajuan-pembelian') class="active" @endif>
+                            <a href="{{ route('master-logistik-laporan-pengajuan-pembelian') }}"><i
+                                    class="bx bx-right-arrow-alt"></i><span
+                                    class="menu-item ">Laporan Pembelian</span></a>
+                        </li>
+                    </ul>
+                </li>
+                <li @if (Request::segment(3) == 'notif-permintaan-logistik') class="active" @endif>
+                    <a href="{{route ('master-logistik-notif-permintaan-index')}}"><i class='bx bx-cube-alt'></i><span
+                            class="menu-item">Notif Permintaan</span></a>
+                </li>
+                <li @if (Request::segment(3) == 'logistik-masuk') class="active" @endif>
+                    <a href="{{route ('master-logistik-logistik-masuk-index')}}"><i
+                            class='bx bx-log-in-circle'></i><span class="menu-item">Logistik Masuk</span></a>
+                </li>
+                <li @if (Request::segment(3) == 'logistik-keluar') class="active" @endif>
+                    <a href="{{route ('master-logistik-logistik-keluar-index')}}"><i
+                            class='bx bx-log-out-circle'></i><span class="menu-item">Logistik Keluar</span></a>
+                </li>
+                <li @if (Request::segment(3) == 'notif-perbaikan-bengkel-luar') class="active" @endif>
+                    <a href="{{route ('master-logistik-notif-perbaikan-bengkel-luar-index')}}"><i
+                            class='bx bxs-message-alt-dots'></i><span
+                            class="menu-item">Perbaikan Bengkel Luar</span></a>
+                </li>
+            @endif
+
+            @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 2 || Auth::user()->id_role == 3)
+                <li class=" navigation-header"><span>MANAJEMEN CUSTOMER</span>
+                </li>
+                <li class=" nav-item @if (Request::segment(3) == 'inbox') active @endif"><a
+                        href="{{ route('inbox.index') }}"><i class="bx bxs-inbox"></i><span
+                            class="menu-title">Inbox</span></a>
+                </li>
+            @endif
+
+
+
+            @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 7)
+                <li class=" navigation-header"><span>PERAWATAN & PEMELIHARAAN</span>
+                </li>
+                <li class="nav-item @if (Request::segment(2) == 'perawatan-pemeliharaan') open @endif">
+                    <a href=""><i class="bx bxs-group"></i><span class="menu-title">Sopir</span></a>
+                    <ul class="menu-content">
+                        <li @if (Request::segment(3) == 'check-fisik-layanan') class="active" @endif>
+                            <a href="{{ route('perawatan-pemeliharaan.sopir.check-fisik-layanan') }}"><i
+                                    class="bx bx-right-arrow-alt"></i><span
+                                    class="menu-item ">Check Fisik Layanan</span></a>
+                        </li>
+                        <li @if (Request::segment(3) == 'daftar-gaji') class="active" @endif>
+                            <a href="{{ route('perawatan-pemeliharaan.sopir.report-perjalanan') }}"><i
+                                    class="bx bx-right-arrow-alt"></i><span
+                                    class="menu-item ">Report Laporan Perjalanan</span></a>
+                        </li>
+
+                    </ul>
+                </li>
+            @endif
+            @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 8)
+                {{--                <li class=" navigation-header" style="color: darkred"><span>PERAWATAN & PEMELIHARAAN</span>--}}
+                {{--                </li>--}}
+                <li class="nav-item @if (Request::segment(2) == 'perawatan-pemeliharaan') open @endif">
+                    <a href=""><i class="bx bxs-group"></i><span class="menu-title">Petugas Cuci</span></a>
+                    <ul class="menu-content">
+                        <li @if (Request::segment(3) == 'petugas-cuci') class="active" @endif>
+                            <a href="{{ route('perawatan-pemeliharaan.petugas-cuci.list-notifikasi-cuci') }}"><i
+                                    class="bx bx-right-arrow-alt"></i><span class="menu-item ">Cuci Armada</span></a>
+                        </li>
+                    </ul>
+                </li>
+            @endif
+
+            @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 9)
+                <li class="nav-item @if (Request::segment(3) == 'supervisor-cuci-mobil') open @endif">
+                    <a href=""><i class="bx bxs-group"></i><span class="menu-title">SPV CUCI</span></a>
+                    <ul class="menu-content">
+                        <li @if (Request::segment(4) == 'list-approval-laporan') class="active" @endif>
+                            <a href="{{ route('perawatan-pemeliharaan.supervisor-cuci-mobil.list-approval-laporan') }}"><i
+                                    class="bx bx-file"></i><span class="menu-item ">Approval Laporan</span></a>
+                        </li>
+                        <li @if (Request::segment(4) == 'report-cuci-mobil') class="active" @endif>
+                            <a href="{{ route('perawatan-pemeliharaan.supervisor-cuci-mobil.report-cuci-mobil') }}"><i
+                                    class="bx bxs-file-pdf"></i><span class="menu-item ">Report Cuci Armada</span></a>
+                        </li>
+                    </ul>
+                </li>
+            @endif
+
+            @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 11)
+                <li class="nav-item @if (Request::segment(3) == 'supervisor-check-armada') open @endif">
+                    <a href=""><i class="bx bxs-group"></i><span class="menu-title">SVP CHECK ARMADA</span></a>
+                    <ul class="menu-content">
+                        <li @if (Request::segment(4) == 'list-approval-sparepart') class="active" @endif>
+                            <a href="{{ route('perawatan-pemeliharaan.supervisor-check-armada.list-approval-sparepart') }}"><i
+                                    class="bx bx-file"></i><span class="menu-item ">Approval Sparepart</span></a>
+                        </li>
+                        <li @if (Request::segment(4) == 'list-approval-logistik-perjalanan') class="active" @endif>
+                            <a href="{{ route('perawatan-pemeliharaan.supervisor-check-armada.list-approval-logistik-perjalanan') }}"><i
+                                    class="bx bx-file"></i><span class="menu-item ">Approval Logistik Perjalanan</span></a>
+                        </li>
+                        <li @if (Request::segment(4) == 'list-penentuan-bengkel') class="active" @endif>
+                            <a href="{{ route('perawatan-pemeliharaan.supervisor-check-armada.list-penentuan-bengkel') }}"><i
+                                    class="bx bx-file"></i><span
+                                    class="menu-item ">Penentuan Bengkel Luar/Bengkel</span></a>
+                        </li>
+                        <li @if (Request::segment(4) == 'list-approval-logistik-perjalanan') class="active" @endif>
+                            <a href=" "><i
+                                    class="bx bx-file"></i><span class="menu-item ">Report Kerusakan</span></a>
+                        </li>
+                        <li @if (Request::segment(4) == 'list-approval-logistik-perjalanan') class="active" @endif>
+                            <a href=" "><i
+                                    class="bx bx-file"></i><span class="menu-item ">Report All</span></a>
+                        </li>
+                        <li @if (Request::segment(3) == 'bengkel-dalam') class="active" @endif>
+                            <a href=""><i class="bx bx-file"></i><span
+                                    class="menu-item">Bengkel Dalam</span></a>
+                            <ul class="menu-content">
+                                <li @if (Request::segment(4) == 'list-bengkel-dalam') class="active" @endif>
+                                    <a href="{{ route('perawatan-pemeliharaan.bengkel-dalam.list-bengkel-dalam') }} "><i
+                                            class="bx bx-right-arrow-alt"></i><span
+                                            class="menu-item">Data Bengkel Dalam</span></a>
+                                </li>
+                                <li @if (Request::segment(4) == 'checklist-perbaikan-bengkel') class="active" @endif>
+                                    <a href="{{ route('perawatan-pemeliharaan.bengkel-dalam.checklist-perbaikan-bengkel') }}"><i
+                                            class="bx bx-right-arrow-alt"></i><span
+                                            class="menu-item">Checklist Perbaikan Bengkel</span></a>
+                                </li>
+                                <li @if (Request::segment(4) == 'list-pengajuan-logistik-dalam') class="active" @endif>
+                                    <a href="{{ route('perawatan-pemeliharaan.bengkel-dalam.list-pengajuan-logistik') }}"><i
+                                            class="bx bx-right-arrow-alt"></i><span
+                                            class="menu-item">Pengajuan ke Logistik</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li @if (Request::segment(3) == 'bengkel-luar') class="active" @endif>
+                            <a href=""><i class="bx bx-file"></i><span
+                                    class="menu-item">Bengkel Luar</span></a>
+                            <ul class="menu-content">
+                                <li @if (Request::segment(4) == 'list-bengkel-luar') class="active" @endif>
+                                    <a href="{{ route('perawatan-pemeliharaan.bengkel-dalam.list-bengkel-luar') }}"><i
+                                            class="bx bx-right-arrow-alt"></i><span
+                                            class="menu-item">Data Bengkel Luar</span></a>
+                                </li>
+                                <li @if (Request::segment(4) == 'checklist-perbaikan-bengkel-luar') class="active" @endif>
+                                    <a href="{{ route('perawatan-pemeliharaan.bengkel-luar.checklist-perbaikan-bengkel-luar') }}"><i
+                                            class="bx bx-right-arrow-alt"></i><span
+                                            class="menu-item">Checklist Perbaikan Bengkel</span></a>
+                                </li>
+                                <li @if (Request::segment(4) == 'list-pengajuan-logistik-luar') class="active" @endif>
+                                    <a href=" {{ route('perawatan-pemeliharaan.bengkel-luar.laporan-perbaikan-bengkel-luar') }}"><i
+                                            class="bx bx-right-arrow-alt"></i><span
+                                            class="menu-item">Laporan Perbaikan Bengkel</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            @endif
+
             @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 2 || Auth::user()->id_role == 3)
                 <li class=" navigation-header"><span>DATA MASTER</span>
                 </li>
@@ -709,180 +883,7 @@
                 </li>
             @endif
 
-            @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 7)
-                <li class=" navigation-header"><span>LOGISTIK</span>
-                </li>
-                <li class="nav-item @if (Request::segment(2) == 'master-logistik') open @endif">
-                    <a href=""><i class="bx bx-cart-alt"></i><span class="menu-title">Pengajuan Pembelian</span></a>
-                    <ul class="menu-content">
-                        <li @if (Request::segment(5) == 'list-pengajuan-pembelian') class="active" @endif>
-                            <a href="{{ route('master-logistik-list-pengajuan-pembelian') }}"><i
-                                    class="bx bx-right-arrow-alt"></i><span
-                                    class="menu-item ">Pengajuan Pembelian</span></a>
-                        </li>
-                        <li @if (Request::segment(5) == 'list-rekap-pembelian') class="active" @endif>
-                            <a href="{{ route('master-logistik-list-rekap-pembelian') }}"><i
-                                    class="bx bx-right-arrow-alt"></i><span
-                                    class="menu-item ">Rekap Pengajuan Pembelian</span></a>
-                        </li>
-                        <li @if (Request::segment(5) == 'laporan-pengajuan-pembelian') class="active" @endif>
-                            <a href="{{ route('master-logistik-laporan-pengajuan-pembelian') }}"><i
-                                    class="bx bx-right-arrow-alt"></i><span
-                                    class="menu-item ">Laporan Pembelian</span></a>
-                        </li>
-                    </ul>
-                </li>
-                <li @if (Request::segment(3) == 'notif-permintaan-logistik') class="active" @endif>
-                    <a href="{{route ('master-logistik-notif-permintaan-index')}}"><i class='bx bx-cube-alt'></i><span
-                            class="menu-item">Notif Permintaan</span></a>
-                </li>
-                <li @if (Request::segment(3) == 'logistik-masuk') class="active" @endif>
-                    <a href="{{route ('master-logistik-logistik-masuk-index')}}"><i
-                            class='bx bx-log-in-circle'></i><span class="menu-item">Logistik Masuk</span></a>
-                </li>
-                <li @if (Request::segment(3) == 'logistik-keluar') class="active" @endif>
-                    <a href="{{route ('master-logistik-logistik-keluar-index')}}"><i
-                            class='bx bx-log-out-circle'></i><span class="menu-item">Logistik Keluar</span></a>
-                </li>
-                <li @if (Request::segment(3) == 'notif-perbaikan-bengkel-luar') class="active" @endif>
-                    <a href="{{route ('master-logistik-notif-perbaikan-bengkel-luar-index')}}"><i
-                            class='bx bxs-message-alt-dots'></i><span
-                            class="menu-item">Perbaikan Bengkel Luar</span></a>
-                </li>
-            @endif
-
-            @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 2 || Auth::user()->id_role == 3)
-                <li class=" navigation-header"><span>MANAJEMEN CUSTOMER</span>
-                </li>
-                <li class=" nav-item @if (Request::segment(3) == 'inbox') active @endif"><a
-                        href="{{ route('inbox.index') }}"><i class="bx bxs-inbox"></i><span
-                            class="menu-title">Inbox</span></a>
-                </li>
-            @endif
-
-
-
-            @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 7)
-                <li class=" navigation-header"><span>PERAWATAN & PEMELIHARAAN</span>
-                </li>
-                <li class="nav-item @if (Request::segment(2) == 'perawatan-pemeliharaan') open @endif">
-                    <a href=""><i class="bx bxs-group"></i><span class="menu-title">Sopir</span></a>
-                    <ul class="menu-content">
-                        <li @if (Request::segment(3) == 'check-fisik-layanan') class="active" @endif>
-                            <a href="{{ route('perawatan-pemeliharaan.sopir.check-fisik-layanan') }}"><i
-                                    class="bx bx-right-arrow-alt"></i><span
-                                    class="menu-item ">Check Fisik Layanan</span></a>
-                        </li>
-                        <li @if (Request::segment(3) == 'daftar-gaji') class="active" @endif>
-                            <a href="{{ route('perawatan-pemeliharaan.sopir.report-perjalanan') }}"><i
-                                    class="bx bx-right-arrow-alt"></i><span
-                                    class="menu-item ">Report Laporan Perjalanan</span></a>
-                        </li>
-
-                    </ul>
-                </li>
-            @endif
-            @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 8)
-                {{--                <li class=" navigation-header" style="color: darkred"><span>PERAWATAN & PEMELIHARAAN</span>--}}
-                {{--                </li>--}}
-                <li class="nav-item @if (Request::segment(2) == 'perawatan-pemeliharaan') open @endif">
-                    <a href=""><i class="bx bxs-group"></i><span class="menu-title">Petugas Cuci</span></a>
-                    <ul class="menu-content">
-                        <li @if (Request::segment(3) == 'petugas-cuci') class="active" @endif>
-                            <a href="{{ route('perawatan-pemeliharaan.petugas-cuci.list-notifikasi-cuci') }}"><i
-                                    class="bx bx-right-arrow-alt"></i><span class="menu-item ">Cuci Armada</span></a>
-                        </li>
-                    </ul>
-                </li>
-            @endif
-
-            @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 9)
-                <li class="nav-item @if (Request::segment(3) == 'supervisor-cuci-mobil') open @endif">
-                    <a href=""><i class="bx bxs-group"></i><span class="menu-title">SPV CUCI</span></a>
-                    <ul class="menu-content">
-                        <li @if (Request::segment(4) == 'list-approval-laporan') class="active" @endif>
-                            <a href="{{ route('perawatan-pemeliharaan.supervisor-cuci-mobil.list-approval-laporan') }}"><i
-                                    class="bx bx-file"></i><span class="menu-item ">Approval Laporan</span></a>
-                        </li>
-                        <li @if (Request::segment(4) == 'report-cuci-mobil') class="active" @endif>
-                            <a href="{{ route('perawatan-pemeliharaan.supervisor-cuci-mobil.report-cuci-mobil') }}"><i
-                                    class="bx bxs-file-pdf"></i><span class="menu-item ">Report Cuci Armada</span></a>
-                        </li>
-                    </ul>
-                </li>
-            @endif
-
-            @if (Auth::user()->id_role == 1 || Auth::user()->id_role == 11)
-                <li class="nav-item @if (Request::segment(3) == 'supervisor-check-armada') open @endif">
-                    <a href=""><i class="bx bxs-group"></i><span class="menu-title">SVP CHECK ARMADA</span></a>
-                    <ul class="menu-content">
-                        <li @if (Request::segment(4) == 'list-approval-sparepart') class="active" @endif>
-                            <a href="{{ route('perawatan-pemeliharaan.supervisor-check-armada.list-approval-sparepart') }}"><i
-                                    class="bx bx-file"></i><span class="menu-item ">Approval Sparepart</span></a>
-                        </li>
-                        <li @if (Request::segment(4) == 'list-approval-logistik-perjalanan') class="active" @endif>
-                            <a href="{{ route('perawatan-pemeliharaan.supervisor-check-armada.list-approval-logistik-perjalanan') }}"><i
-                                    class="bx bx-file"></i><span class="menu-item ">Approval Logistik Perjalanan</span></a>
-                        </li>
-                        <li @if (Request::segment(4) == 'list-penentuan-bengkel') class="active" @endif>
-                            <a href="{{ route('perawatan-pemeliharaan.supervisor-check-armada.list-penentuan-bengkel') }}"><i
-                                    class="bx bx-file"></i><span
-                                    class="menu-item ">Penentuan Bengkel Luar/Bengkel</span></a>
-                        </li>
-                        <li @if (Request::segment(4) == 'list-approval-logistik-perjalanan') class="active" @endif>
-                            <a href=" "><i
-                                    class="bx bx-file"></i><span class="menu-item ">Report Kerusakan</span></a>
-                        </li>
-                        <li @if (Request::segment(4) == 'list-approval-logistik-perjalanan') class="active" @endif>
-                            <a href=" "><i
-                                    class="bx bx-file"></i><span class="menu-item ">Report All</span></a>
-                        </li>
-                        <li @if (Request::segment(3) == 'bengkel-dalam') class="active" @endif>
-                            <a href=""><i class="bx bx-file"></i><span
-                                    class="menu-item">Bengkel Dalam</span></a>
-                            <ul class="menu-content">
-                                <li @if (Request::segment(4) == 'list-bengkel-dalam') class="active" @endif>
-                                    <a href="{{ route('perawatan-pemeliharaan.bengkel-dalam.list-bengkel-dalam') }} "><i
-                                            class="bx bx-right-arrow-alt"></i><span
-                                            class="menu-item">Data Bengkel Dalam</span></a>
-                                </li>
-                                <li @if (Request::segment(4) == 'checklist-perbaikan-bengkel') class="active" @endif>
-                                    <a href="{{ route('perawatan-pemeliharaan.bengkel-dalam.checklist-perbaikan-bengkel') }}"><i
-                                            class="bx bx-right-arrow-alt"></i><span
-                                            class="menu-item">Checklist Perbaikan Bengkel</span></a>
-                                </li>
-                                <li @if (Request::segment(4) == 'list-pengajuan-logistik-dalam') class="active" @endif>
-                                    <a href="{{ route('perawatan-pemeliharaan.bengkel-dalam.list-pengajuan-logistik') }}"><i
-                                            class="bx bx-right-arrow-alt"></i><span
-                                            class="menu-item">Pengajuan ke Logistik</span></a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li @if (Request::segment(3) == 'bengkel-luar') class="active" @endif>
-                            <a href=""><i class="bx bx-file"></i><span
-                                    class="menu-item">Bengkel Luar</span></a>
-                            <ul class="menu-content">
-                                <li @if (Request::segment(4) == 'list-bengkel-luar') class="active" @endif>
-                                    <a href="{{ route('perawatan-pemeliharaan.bengkel-dalam.list-bengkel-luar') }}"><i
-                                            class="bx bx-right-arrow-alt"></i><span
-                                            class="menu-item">Data Bengkel Luar</span></a>
-                                </li>
-                                <li @if (Request::segment(4) == 'checklist-perbaikan-bengkel-luar') class="active" @endif>
-                                    <a href="{{ route('perawatan-pemeliharaan.bengkel-luar.checklist-perbaikan-bengkel-luar') }}"><i
-                                            class="bx bx-right-arrow-alt"></i><span
-                                            class="menu-item">Checklist Perbaikan Bengkel</span></a>
-                                </li>
-                                <li @if (Request::segment(4) == 'list-pengajuan-logistik-luar') class="active" @endif>
-                                    <a href=" {{ route('perawatan-pemeliharaan.bengkel-luar.laporan-perbaikan-bengkel-luar') }}"><i
-                                            class="bx bx-right-arrow-alt"></i><span
-                                            class="menu-item">Laporan Perbaikan Bengkel</span></a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-            @endif
-            @if (Auth::user()->id_role == 1)
+        @if (Auth::user()->id_role == 1)
                 <li class=" navigation-header"><span>Management Users</span>
                 </li>
                 <li class="nav-item @if (Request::segment(3) == 'role') active @endif"><a

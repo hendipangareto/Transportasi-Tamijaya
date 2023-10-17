@@ -181,11 +181,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
-
-
-
                             <input type="hidden" name="status"  id="status">
 
                             <div class="card-header pb-0 d-flex justify-content-between">

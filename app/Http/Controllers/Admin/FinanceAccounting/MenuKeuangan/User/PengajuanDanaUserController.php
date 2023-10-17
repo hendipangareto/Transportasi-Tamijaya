@@ -11,6 +11,7 @@ use App\Models\MasterDataLogistik\Toko;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use PhpParser\Node\Stmt\DeclareDeclare;
 
 class PengajuanDanaUserController extends Controller
 {
@@ -101,7 +102,8 @@ class PengajuanDanaUserController extends Controller
     public function delete(Request $request)
     {
         $PengajuanDanaId = $request->input('pengajuan_dana_user_id');
-        $data = Kategori::find($PengajuanDanaId);
+        $data = PengajuanDanaUser::find($PengajuanDanaId);
+
         $data->delete();
 
         return response()->json([

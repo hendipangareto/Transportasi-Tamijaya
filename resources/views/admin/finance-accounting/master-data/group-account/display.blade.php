@@ -1,4 +1,4 @@
-<style>
+ <style>
     #table-group-account tbody tr td {
         vertical-align: top;
     }
