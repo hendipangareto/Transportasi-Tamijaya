@@ -74,20 +74,25 @@ class PengajuanPembelianController
     }
 
     public function prosesTerpilih(Request $request){
-        DB::beginTransaction();
-        try {
-            foreach ($request->id_qs as $key => $val){
-                $qsActual = QsActual::find($val);
-                $qsActual->status = 3;
-                $qsActual->save();
-            }
-            DB::commit();
-            Session::flash('message', ['Sedang di review oleh Site Manager','success']);
-        } catch (\Exception $e) {
-            DB::rollback();
-            Session::flash('message', ['Gagal update job terpilih','error']);
-        }
+//        DB::beginTransaction();
+//        try {
+//            foreach ($request->id_qs as $key => $val){
+//                $qsActual = QsActual::find($val);
+//                $qsActual->status = 3;
+//                $qsActual->save();
+//            }
+//            DB::commit();
+//            Session::flash('message', ['Sedang di review oleh Site Manager','success']);
+//        } catch (\Exception $e) {
+//            DB::rollback();
+//            Session::flash('message', ['Gagal update job terpilih','error']);
+//        }
+        $id_qs = $request->id_qs;
+        $qsActual = QsActual::find($id_qs);
+        $qsActual->status = 3;
+        $qsActual->save();
 
+        Session::flash('message', ['Berhasil menyetujui pengajuan data','success']);
         return redirect()->route('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-index');
     }
 

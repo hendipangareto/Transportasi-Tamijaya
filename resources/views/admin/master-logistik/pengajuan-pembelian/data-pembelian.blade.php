@@ -73,7 +73,15 @@
                                             @php
                                                 $no = 1;
                                             @endphp
+                                            @php
+                                                $totalLunas = 0;
+                                                $totalHutang = 0;
+                                            @endphp
                                             @forelse ( $qsActual  as $item)
+                                                @php
+                                                    $totalLunas += ($item->cara_bayar === 'lunas') ? ($item->kuantitas * $item->harga) : 0;
+                                                    $totalHutang += ($item->cara_bayar === 'hutang') ? ($item->kuantitas * $item->harga) : 0;
+                                                @endphp
                                                 <tr>
                                                     <td>{{$no++}}</td>
                                                     <td>{{$item->toko}}</td>
@@ -146,8 +154,51 @@
                                 <p>&nbsp;</p>
                             </div>
                         </form>
+                    <div class="row mt-5 card-body">
+                        <div class="col-md-6 col-12 ">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="card shadow-none bg-transparent border border-darken-4 mb-3">
+                                        <div class="card-body">
+                                            <h5 class="card-title mt-1">Total Lunas/Cash</h5>
+                                            <p class="card-text" style="color: #9f191f">
+                                                @currency($totalLunas)
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card shadow-none bg-transparent border border-darken-4 mb-3">
+                                        <div class="card-body">
+                                            <h5 class="card-title mt-1">Total Hutang</h5>
+                                            <p class="card-text" style="color: #9f191f">
+                                                @currency($totalHutang)
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="row">
+                                <div class="col-md-6">
 
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card shadow-none bg-transparent border border-darken-4 mb-3">
+                                        <div class="card-body">
+                                            <h5 class="card-title mt-1">Total Pengajuan</h5>
+                                            <p class="card-text">
+                                                @currency($totalLunas + $totalHutang)
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                </div>
+
 
             </div>
 

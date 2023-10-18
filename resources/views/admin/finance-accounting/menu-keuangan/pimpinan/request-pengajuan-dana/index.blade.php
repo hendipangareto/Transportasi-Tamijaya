@@ -119,11 +119,10 @@
                                                 if($terpilih->count() > 0){
                                             @endphp
 
-                                            <form action="{{route('master-logistik-proses-terpilih-pengajuan-pembelian')}}" class="d-inline"
-                                                  method="post">
+                                            <form action="{{route('master-logistik-proses-terpilih-pengajuan-pembelian')}}" class="d-inline" method="post">
                                                 @csrf
                                                 @foreach ($terpilih as $item)
-                                                    <input type="hidden" name="id_qs[]" value="{{$item->id}}">
+                                                    <input type="hidden" name="id_qs" value="{{$item->id}}">
                                                 @endforeach
                                                 <button type="button" class="btn btn-success" id="btn-submit-pekerjaan-sm"><i class="fe fe-check-circle"></i> Oke</button>
                                             </form>
@@ -131,6 +130,7 @@
                                             @php
                                                 }
                                             @endphp
+
                                         </td>
                                         <td class="text-center">
                                             <div class="d-flex">
