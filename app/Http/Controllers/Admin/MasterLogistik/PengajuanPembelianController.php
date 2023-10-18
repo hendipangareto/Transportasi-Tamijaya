@@ -6,6 +6,7 @@ use App\Models\FinanceAccounting\MenuKeuangan\Finance\Pimpinan;
 use App\Models\MasterData\Satuan;
 use App\Models\MasterDataLogistik\Kategori;
 use App\Models\MasterDataLogistik\PengajuanPembelian;
+use App\Models\MasterDataLogistik\QsActual;
 use App\Models\MasterDataLogistik\Toko;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -15,45 +16,106 @@ class PengajuanPembelianController
 {
     public function getPengajuanPembelian()
     {
-
         $satuan = Satuan::get();
-        $toko   = Toko::get();
-        $kategori   = Kategori::get();
-        $data =  PengajuanPembelian::select("pengajuan_pembelian.*", 'tokos.nama_toko as toko', 'satuans.nama_satuan as satuan', 'kategori.nama_kategori as kategori')
-            ->join('tokos', 'tokos.id', '=', 'pengajuan_pembelian.toko_id')
-            ->join('satuans', 'satuans.id', '=', 'pengajuan_pembelian.satuan_id')
-            ->join('kategori', 'kategori.id', '=', 'pengajuan_pembelian.kategori_id')
+        $toko = Toko::get();
+        $kategori = Kategori::get();
+
+        $qsActual  =  QsActual::select("qs_actuals.*", 'tokos.nama_toko as toko', 'satuans.nama_satuan as satuan', 'kategori.nama_kategori as kategori')
+            ->join('tokos', 'tokos.id', '=', 'qs_actuals.toko_id')
+            ->join('satuans', 'satuans.id', '=', 'qs_actuals.satuan_id')
+            ->join('kategori', 'kategori.id', '=', 'qs_actuals.kategori_id')
+            ->where('qs_actuals.status', '=', 1)
             ->get();
 
-//        dd($data);
-        return view('admin.master-logistik.pengajuan-pembelian.index', compact('data','satuan','toko','kategori'));
+        $terpilih =  QsActual::select("qs_actuals.*", 'tokos.nama_toko as toko', 'satuans.nama_satuan as satuan', 'kategori.nama_kategori as kategori')
+            ->join('tokos', 'tokos.id', '=', 'qs_actuals.toko_id')
+            ->join('satuans', 'satuans.id', '=', 'qs_actuals.satuan_id')
+            ->join('kategori', 'kategori.id', '=', 'qs_actuals.kategori_id')
+            ->where('qs_actuals.status', '=', 2)
+            ->get();
 
+        $pimpinan =  QsActual::select("qs_actuals.*", 'tokos.nama_toko as toko', 'satuans.nama_satuan as satuan', 'kategori.nama_kategori as kategori')
+            ->join('tokos', 'tokos.id', '=', 'qs_actuals.toko_id')
+            ->join('satuans', 'satuans.id', '=', 'qs_actuals.satuan_id')
+            ->join('kategori', 'kategori.id', '=', 'qs_actuals.kategori_id')
+            ->where('qs_actuals.status', '=', 5)
+            ->get();
+
+        return view('admin.master-logistik.pengajuan-pembelian.data-pembelian', compact('qsActual', 'terpilih', 'pimpinan', 'satuan', 'toko', 'kategori'));
     }
+
+    public function terpilih(Request $request){
+        DB::beginTransaction();
+        try {
+            if(count($request->id_qs) > 0){
+                foreach ($request->id_qs as $key => $val){
+                    $qsActual = QsActual::find($val);
+                    $qsActual->status = 2;
+                    $qsActual->save();
+                }
+            }
+            DB::commit();
+            Session::flash('message', ['Berhasil mengajukan dana','success']);
+        } catch (\Exception $e) {
+            DB::rollback();
+            Session::flash('message', ['Gagal mengajukan dana','error']);
+        }
+        return redirect()->route('master-logistik-list-pengajuan-pembelian');
+    }
+
+    public function terpilihDelete(Request $request){
+        $id_qs = $request->id_qs;
+        $qsActual = QsActual::find($id_qs);
+        $qsActual->status = 1;
+        $qsActual->save();
+
+        Session::flash('message', ['Berhasil menolak pengajuan data','success']);
+        return redirect()->route('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-index');
+    }
+
+    public function prosesTerpilih(Request $request){
+        DB::beginTransaction();
+        try {
+            foreach ($request->id_qs as $key => $val){
+                $qsActual = QsActual::find($val);
+                $qsActual->status = 3;
+                $qsActual->save();
+            }
+            DB::commit();
+            Session::flash('message', ['Sedang di review oleh Site Manager','success']);
+        } catch (\Exception $e) {
+            DB::rollback();
+            Session::flash('message', ['Gagal update job terpilih','error']);
+        }
+
+        return redirect()->route('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-index');
+    }
+
 
     public function TambahPengajuanPembelian(Request $request)
     {
         DB::beginTransaction();
         try {
-            $data = new PengajuanPembelian();
-            $lastNomor = PengajuanPembelian::orderBy('id', 'desc')->first();
+            $qsActual = new QsActual();
+            $lastNomor = QsActual::orderBy('id', 'desc')->first();
             $lastNumber = $lastNomor ? intval(substr($lastNomor->kode_pengajuan, -2)) : 0;
             $newNumber = $lastNumber + 1;
             $nodata = 'PP-' . str_pad($newNumber, 3, '0', STR_PAD_LEFT);
 
-            $data->kode_pengajuan = $nodata;
-            $data->item = $request->item;
-            $data->harga = $request->harga;
-            $data->kuantitas = $request->kuantitas;
-            $data->cara_bayar = $request->cara_bayar;
-            $data->toko_id = $request->toko_id;
-            $data->satuan_id = $request->satuan_id;
-            $data->kategori_id = $request->kategori_id;
-            $data->catatan_pembelian = $request->catatan_pembelian;
-            $data->tanggal_pengajuan = $request->tanggal_pengajuan;
-            $data->batas_waktu_pembayaran = $request->batas_waktu_pembayaran;
+            $qsActual->kode_pengajuan = $nodata;
+            $qsActual->item = $request->item;
+            $qsActual->harga = $request->harga;
+            $qsActual->kuantitas = $request->kuantitas;
+            $qsActual->cara_bayar = $request->cara_bayar;
+            $qsActual->toko_id = $request->toko_id;
+            $qsActual->satuan_id = $request->satuan_id;
+            $qsActual->kategori_id = $request->kategori_id;
+            $qsActual->catatan_pembelian = $request->catatan_pembelian;
+            $qsActual->tanggal_pengajuan = $request->tanggal_pengajuan;
+            $qsActual->batas_waktu_pembayaran = $request->batas_waktu_pembayaran;
 
-//            dd($data);
-            $data->save();
+//            dd($qsActual);
+            $qsActual->save();
 
             DB::commit();
             Session::flash('message', 'Berhasil menyimpan data pengajuan pembelian');
@@ -68,38 +130,38 @@ class PengajuanPembelianController
     }
 
 
-    public function AjukanPengajuanPembelian(Request $request)
-    {
-        DB::beginTransaction();
 
-        try {
-            foreach ($request->pengajuan_pembelian_id as $pengajuan_id) {
-                $dataPengajuanPembelian = new Pimpinan();
-                $dataPengajuanPembelian->pengajuan_pembelian_id = $pengajuan_id;
+//    public function AjukanPengajuanPembelian(Request $request)
+//    {
+//        DB::beginTransaction();
+//
+//        try {
+//            foreach ($request->pengajuan_pembelian_id as $pengajuan_id) {
+//                $dataPengajuanPembelian = new Pimpinan();
+//                $dataPengajuanPembelian->pengajuan_pembelian_id = $pengajuan_id;
+//
+////                 dd($dataPengajuanPembelian);
+//                $dataPengajuanPembelian->save();
+//            }
+//
+//            DB::commit();
+//            Session::flash('message', ['Berhasil mengajukan pengajuan pembelian', 'success']);
+//        } catch (\Exception $e) {
+//            DB::rollback();
+//            Session::flash('message', ['Gagal mengajukan pengajuan pembelian', 'error']);
+//        }
+//
+//        return redirect()->route('master-logistik-list-pengajuan-pembelian');
+//    }
 
-//                 dd($dataPengajuanPembelian);
-                $dataPengajuanPembelian->save();
-            }
-
-            DB::commit();
-            Session::flash('message', ['Berhasil mengajukan pengajuan pembelian', 'success']);
-        } catch (\Exception $e) {
-            DB::rollback();
-            Session::flash('message', ['Gagal mengajukan pengajuan pembelian', 'error']);
-        }
-
-        return redirect()->route('master-logistik-list-pengajuan-pembelian');
-    }
-
-
-    public function setujuiPengajuanPembelian($id)
-    {
-
-        PengajuanPembelian::where('id',$id)->update(['status'=>1]);
-
-        return redirect()->route('master-logistik-list-pengajuan-pembelian');
-
-    }
+//    public function setujuiPengajuanPembelian($id)
+//    {
+//
+//        PengajuanPembelian::where('id',$id)->update(['status'=>2]);
+//
+//        return redirect()->route('admin.master-logistik.pengajuan-pembelian.rekap-pengajuan.index');
+//
+//    }
 
 
 
@@ -107,23 +169,21 @@ class PengajuanPembelianController
     {
         DB::beginTransaction();
         try {
-            $data = PengajuanPembelian::findOrFail($id);
+            $qsActual = QsActual::findOrFail($id);
 
-            $data->item = $request->item;
-            $data->harga = $request->harga;
-            $data->kuantitas = $request->kuantitas;
-            $data->cara_bayar = $request->cara_bayar;
-            $data->toko_id = $request->toko_id;
-            $data->kategori_id = $request->kategori_id;
-            $data->satuan_id = $request->satuan_id;
-            $data->catatan_pembelian = $request->catatan_pembelian;
-            $data->batas_waktu_pembayaran = $request->batas_waktu_pembayaran;
-            $data->tanggal_pengajuan = $request->tanggal_pengajuan;
+            $qsActual->item = $request->item;
+            $qsActual->harga = $request->harga;
+            $qsActual->kuantitas = $request->kuantitas;
+            $qsActual->cara_bayar = $request->cara_bayar;
+            $qsActual->toko_id = $request->toko_id;
+            $qsActual->kategori_id = $request->kategori_id;
+            $qsActual->satuan_id = $request->satuan_id;
+            $qsActual->catatan_pembelian = $request->catatan_pembelian;
+            $qsActual->batas_waktu_pembayaran = $request->batas_waktu_pembayaran;
+            $qsActual->tanggal_pengajuan = $request->tanggal_pengajuan;
 
 
-
-//            dd($data);
-            $data->update();
+            $qsActual->update();
 
             DB::commit();
             Session::flash('message', ['Berhasil mengubah data pengajuan pembelian', 'success']);
@@ -138,12 +198,12 @@ class PengajuanPembelianController
 
     public function DeletePengajuanPembelian(Request $request)
     {
-        $PengajuanPembelianId = $request->input('employee_id');
-        $data = PengajuanPembelian::find($PengajuanPembelianId);
-        $data->delete();
+        $PengajuanPembelianId = $request->input('id_qs');
+        $qsActual = QsActual::find($PengajuanPembelianId);
+        $qsActual->delete();
 
         return response()->json([
-            'data' => $data,
+            'data' => $qsActual,
             'message' => 'Berhasil menghapus data pengajuan pembelian',
             'status' => 200,
         ]);

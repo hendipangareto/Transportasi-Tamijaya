@@ -526,6 +526,11 @@ Route::group(
                     Route::prefix('pengajuan-pembelian')->group(function () {
                         Route::get('/list-pengajuan-pembelian', 'MasterLogistik\PengajuanPembelianController@getPengajuanPembelian')->name('master-logistik-list-pengajuan-pembelian');
                         Route::post('/tambah-pengajuan-pembelian', 'MasterLogistik\PengajuanPembelianController@TambahPengajuanPembelian')->name('master-logistik-tambah-pengajuan-pembelian');
+
+                        Route::post('/terpilih-pengajuan-pembelian', 'MasterLogistik\PengajuanPembelianController@terpilih')->name('master-logistik-terpilih-pengajuan-pembelian');
+                        Route::post('/terpilih-delete-pengajuan-pembelian', 'MasterLogistik\PengajuanPembelianController@terpilihDelete')->name('master-logistik-terpilih-delete-pengajuan-pembelian');
+                        Route::post('/proses-terpilih-pengajuan-pembelian', 'MasterLogistik\PengajuanPembelianController@prosesTerpilih')->name('master-logistik-proses-terpilih-pengajuan-pembelian');
+
                         Route::post('/update-pengajuan-pembelian/{id}', 'MasterLogistik\PengajuanPembelianController@UpdatePengajuanPembelian')->name('master-logistik-update-pengajuan-pembelian');
 
                         Route::post('/ajukan-pengajuan-pembelian', 'MasterLogistik\PengajuanPembelianController@AjukanPengajuanPembelian')->name('master-logistik.ajukan-pengajuan-pembelian');

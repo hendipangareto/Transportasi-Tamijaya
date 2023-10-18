@@ -61,7 +61,7 @@
                             </div>
                         </div>
                         <form action="" method="">
-                            <div class="table-responsive mt-2" id="show-data-filter-accounting">
+                            <div class="table-responsive mt-2" id="show-data-laporan">
                                 <table class="table table-bordered table-hover" id="table-armada">
                                     <thead>
                                     <tr class="text-center">
@@ -110,3 +110,11 @@
 
 
 @endsection
+@push('page-scripts')
+
+    <script>
+$(document).ready(function () {
+$("#table-armada").DataTable();
+});
+    </script>
+@endpush

@@ -30,40 +30,45 @@
                             <div class="col-md-12">
                                 <div class="card-header pb-0 d-flex justify-content-between">
                                     <h4 class="card-title"></h4>
-                                    <a href="#" class="btn btn-primary mr-1" data-toggle="modal" data-target="#TambahLaporanPerjalanan">
+                                    <a href="#" class="btn btn-primary mr-1" data-toggle="modal"
+                                       data-target="#TambahLaporanPerjalanan">
                                         <i class="bx bx-plus-circle"></i> Tambah Data
                                     </a>
                                 </div>
                             </div>
                         </div>
-                        <form action="{{ route('perawatan-pemeliharaan.sopir.check-fisik-layanan.ajukan') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('perawatan-pemeliharaan.sopir.check-fisik-layanan.ajukan') }}"
+                              method="post" enctype="multipart/form-data">
                             @csrf
-                        <div class="table-responsive mt-2">
-                            <table class="table table-bordered table-hover" id="table-bagian">
+                            <div class="table-responsive mt-2">
+                                <table class="table table-bordered table-hover" id="table-bagian">
                                     <thead>
                                     <tr class="text-center">
                                         <th class="w-2p">No</th>
                                         <th class="w-5p">Bagian</th>
                                         <th class="w-5p">Keluhan</th>
-                                        <th class="w-5p">Pilih</th>
+                                        <th class="w-5p"><input href="#" class="btn btn-primary mr-1"
+                                                                onclick="selectAllItems()" type="checkbox">Pilih
+                                            Data</input></th>
                                         <th class="w-5p">Status</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @forelse($sopir as $item)
-                                    <tr class="text-center">
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->bagian }}</td>
-                                        <td>{{ $item->keluhan }}</td>
-                                        <td><input type="checkbox" name="check_fisik_layanan_id[]" value="{{ $item->id }}"></td>
-                                        @if($item->status == null)
-                                            <td><h6 class="badge bg-warning">Belum Dicuci</h6></td>
-                                        @elseif($item->status == 1)
-                                            <td><label class="badge bg-success">DiCuci</label></td>
-                                        @elseif($item->status == 2)
-                                            <td><label class="badge bg-danger">Ditolak</label></td>
-                                        @endif
-                                    </tr>
+                                        <tr class="text-center">
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $item->bagian }}</td>
+                                            <td>{{ $item->keluhan }}</td>
+                                            <td><input type="checkbox" name="check_fisik_layanan_id[]"
+                                                       value="{{ $item->id }}"></td>
+                                            @if($item->status == null)
+                                                <td><h6 class="badge bg-warning">Belum Dicuci</h6></td>
+                                            @elseif($item->status == 1)
+                                                <td><label class="badge bg-success">DiCuci</label></td>
+                                            @elseif($item->status == 2)
+                                                <td><label class="badge bg-danger">Ditolak</label></td>
+                                            @endif
+                                        </tr>
                                     @empty
                                         <td colspan="3"></td>
                                     @endforelse
@@ -72,7 +77,7 @@
                             </div>
                             <div class="card-header pb-0 d-flex justify-content-between">
 
-                                <button href="#" class="btn btn-primary mr-1" onclick="selectAllItems()" type="button"><i class="bx bx-check"></i> Pilih Semua</button>
+                                <h1></h1>
                                 <button type="submit" class="btn btn-success mr-1">
                                     <i class="bx bx-save"></i> Submit
                                 </button>
@@ -106,7 +111,6 @@
         }
 
 
-
         function addDataToTable() {
             var selectedBagian = document.getElementById("bagian_id").value;
             var keluhan = document.getElementById("keluhan").value;
@@ -135,11 +139,6 @@
         }
 
 
-
-
-
-
-
         // ===============================
 
         $(document).ready(function () {
@@ -154,7 +153,7 @@
                     $.ajax({
                         type: "GET",
                         url: "{{ route('perawatan-pemeliharaan.sopir.get-armada') }}",
-                        data: { 'id_armada': armadaId },
+                        data: {'id_armada': armadaId},
                         success: function (data) {
                             if (data) {
                                 $('#id_pick_point').val(data.pick_point_name);

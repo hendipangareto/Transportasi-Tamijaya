@@ -94,7 +94,7 @@
 
 {{--========================UPDATE DATA REKAP PENGAJUAN========================================--}}
 
-@foreach($data as$item)
+@foreach($qsActual as $item)
     <div class="modal fade text-left" id="UpdatePengajuanPembelian-{{ $item->id }}" tabindex="-1" role="dialog"
          aria-labelledby="modal-title"
          aria-hidden="true">
@@ -174,6 +174,8 @@
                                             <label for="flatpickr-inline" class="form-label">Batas Waktu Pembayaran</label>
                                             <input type="date" class="form-control mb-1"
                                                    id="batas_waktu_pembayaran" name="batas_waktu_pembayaran" value="{{ $item->batas_waktu_pembayaran }}"/>
+{{--                                            <input type="hidden" class="form-control mb-1"--}}
+{{--                                                   id="tanggal_pengajuan" name="tanggal_pengajuan" value="{{ $item->tanggal_pengajuan }}"/>--}}
                                         </div>
                                     </div>
                                 </div>
