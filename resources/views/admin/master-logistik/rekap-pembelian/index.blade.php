@@ -76,14 +76,14 @@
                                         <td>{{$item->satuan}}</td>
                                         <td>{{$item->harga}}</td>
                                         <td>@currency($item->kuantitas * $item->harga)</td>
-                                        @if($item->status == null)
-                                            <td><a class="badge bg-warning" style="color: #ffffff">Request</a></td>
-                                        @elseif($item->status == 3)
-                                            <td><a class="badge bg-success" style="color: #ffffff">Disetujui
-                                                    Pimpinan</a></td>
-                                        @elseif($item->status == 1)
-                                            <td><a class="badge bg-danger" style="color: #ffffff">Ditolak</a></td>
+                                        @if($item->status_pimpinan == 1)
+                                            <td><a class="badge bg-success" style="color: #ffffff">Disetujui Pimpinan</a></td>
+                                        @elseif($item->status_pimpinan == 2)
+                                            <td><a class="badge bg-danger" style="color: #ffffff">Di Tolak</a></td>
+{{--                                        @elseif($item->status_pimpinan == 2)--}}
+{{--                                            <td><a class="badge bg-danger" style="color: #ffffff">Ditolak</a></td>--}}
                                         @endif
+
                                         <td class="text-center">
                                             <div class="d-flex">
                                                 <a class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"

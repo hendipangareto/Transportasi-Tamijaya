@@ -27,6 +27,7 @@ class PengajuanPembelianController
             ->where('qs_actuals.status', '=', 1)
             ->get();
 
+
         $terpilih =  QsActual::select("qs_actuals.*", 'tokos.nama_toko as toko', 'satuans.nama_satuan as satuan', 'kategori.nama_kategori as kategori')
             ->join('tokos', 'tokos.id', '=', 'qs_actuals.toko_id')
             ->join('satuans', 'satuans.id', '=', 'qs_actuals.satuan_id')

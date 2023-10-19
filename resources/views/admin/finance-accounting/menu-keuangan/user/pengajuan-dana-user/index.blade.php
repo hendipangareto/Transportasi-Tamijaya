@@ -68,68 +68,134 @@
                         <a href="{{route('finance-accounting-menu-keuangan-user-pengajuan-dana-user-rekap')}}" class="btn btn-outline-primary">Rekap</a>
                     </div>
                     <div class="card-body card-dashboard">
-                        <div class="table-responsive">
+{{--                        <div class="table-responsive">--}}
 
-                            <table class="table datatables table-bordered table-hover"
-                                   id="table-pengajuan-dana-user">
+{{--                            <table class="table datatables table-bordered table-hover"--}}
+{{--                                   id="table-pengajuan-dana-user">--}}
+{{--                                <thead>--}}
+{{--                                <tr>--}}
+{{--                                    <th class="w-3p">No</th>--}}
+{{--                                    <th class="w-5p">Nama Item</th>--}}
+{{--                                    <th class="w-5p">Kuantitas</th>--}}
+{{--                                    <th class="w-5p">Satuan</th>--}}
+{{--                                    <th class="w-5p">Harga Satuan (Rp)</th>--}}
+{{--                                    <th class="w-5p">Harga Total (Rp)</th>--}}
+{{--                                    <th class="w-10p">Status Transaksi</th>--}}
+{{--                                    <th class="w-5p">Aksi</th>--}}
+{{--                                </tr>--}}
+{{--                                </thead>--}}
+{{--                                <tbody>--}}
+{{--                                @forelse($detail as $item)--}}
+{{--                                <tr>--}}
+{{--                                    <td>{{ $loop->iteration }}</td>--}}
+{{--                                    <td>{{ $item->item }}</td>--}}
+{{--                                    <td>{{ $item->item }}</td>--}}
+{{--                                    <td>{{ $item->satuan }}</td>--}}
+{{--                                    <td>{{ $item->item }}</td>--}}
+{{--                                    <td>@currency($item->kuantitas_item * $item->harga_item)</td>--}}
+{{--                                    <td>{{ $item->cara_bayar_item }}</td>--}}
+
+{{--                                    <td>--}}
+{{--                                        <div class="d-flex">--}}
+{{--                                            <div class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"--}}
+{{--                                                 data-toggle="modal"--}}
+{{--                                                 data-target="#modal-details-pengajuan-dana-belanja-user">--}}
+{{--                                                <i class="bx bx-info-circle font-size-base"></i>--}}
+{{--                                            </div>--}}
+{{--                                            <div--}}
+{{--                                                class="badge-circle badge-circle-sm badge-circle-warning mr-1 pointer"--}}
+{{--                                                data-toggle="modal" title="edit"--}}
+{{--                                                data-target="#modal-edit-pengajuan-dana-belanja-user">--}}
+{{--                                                <i class="bx bx-edit font-size-base"></i>--}}
+{{--                                            </div>--}}
+{{--                                            <div class="badge-circle badge-circle-sm badge-circle-danger pointer delete-button "--}}
+{{--                                                 data-id="{{ $item->id }}">--}}
+{{--                                                <i class="bx bx-trash font-size-base"></i>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </td>--}}
+{{--                                </tr>--}}
+{{--                                @empty--}}
+{{--                                    <tr>--}}
+{{--                                        <td colspan="9" class="text-center">Data pengajuan data user belum diisi !!</td>--}}
+{{--                                    </tr>--}}
+{{--                                @endforelse--}}
+{{--                                </tbody>--}}
+{{--                            </table>--}}
+{{--                        </div>--}}
+
+
+                        <div class="table-responsive mt-1">
+                            <input type="hidden" id="totalTerpilih" value="{{$detail->count()}}">
+                            <table class="table datatables table-bordered table-hover table-data"
+                                   id="table-rekapitulasi-pekerjaan-terpilih">
                                 <thead>
-                                <tr>
+                                <tr class="text-center">
                                     <th class="w-3p">No</th>
+                                    <th class="w-10p">Nama Toko</th>
                                     <th class="w-5p">Nama Item</th>
-                                    <th class="w-5p">Kuantitas</th>
-                                    <th class="w-5p">Satuan</th>
-                                    <th class="w-5p">Harga Satuan (Rp)</th>
-                                    <th class="w-5p">Harga Total (Rp)</th>
-                                    <th class="w-10p">Status Transaksi</th>
-                                    <th class="w-5p">Aksi</th>
+                                    <th class="w-8p">Kuantitas</th>
+                                    <th class="w-10p">Satuan</th>
+                                    <th class="w-10p">Harga Satuan <br> (Rp.)</th>
+                                    <th class="w-10p">Harga Total <br> (Rp)</th>
+                                    <th class="w-5p">Status Transaksi</th>
+
+                                    <th class="w-5p">Action</th>
                                 </tr>
                                 </thead>
-                                <tbody>
-                                @forelse($data as $item)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->nama_item }}</td>
-                                    <td>{{ $item->kuantitas_item }}</td>
-                                    <td>{{ $item->satuan }}</td>
-                                    <td>{{ $item->harga_item }}</td>
-                                    <td>@currency($item->kuantitas_item * $item->harga_item)</td>
-                                    <td>{{ $item->cara_bayar_item }}</td>
+                                <tbody id="show-data-rencana-kerja-terpilih">
+                                @php
+                                    $totalLunas = 0;
+                                    $totalHutang = 0;
+                                @endphp
+                                @forelse ($detail as $item)
+                                    <tr class="text-center">
+                                        <td>{{$loop->iteration}}</td>
+                                        <td>{{$item->toko}}</td>
+                                        <td>{{$item->item}}</td>
+                                        <td>{{$item->kuantitas}}</td>
+                                        <td>{{$item->satuan}}</td>
+                                        <td>{{$item->harga}}</td>
+                                        <td>@currency($item->kuantitas * $item->harga)</td>
+                                        @if($item->status == 2)
+                                            <td><a class="badge bg-warning" style="color: #ffffff">Request</a></td>
+                                        @elseif($item->status == 3)
+                                            <td><a class="badge bg-success" style="color: #ffffff">Disetujui Pimpinan</a></td>
+                                        @elseif($item->status == 1)
+                                            <td><a class="badge bg-danger" style="color: #ffffff">Ditolak</a></td>
+                                        @endif
 
-                                    <td>
-                                        <div class="d-flex">
-                                            <div class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"
-                                                 data-toggle="modal"
-                                                 data-target="#modal-details-pengajuan-dana-belanja-user">
-                                                <i class="bx bx-info-circle font-size-base"></i>
+                                        <td class="text-center">
+                                            <div class="d-flex">
+                                                <a class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"
+                                                   href="{{ route('master-logistik-detail-rekap-pembelian', $item->id) }}">
+                                                    <i class="bx bx-info-circle font-size-base"></i>
+                                                </a>
+                                                @if ($item->approval_status === 'Request')
+                                                    <a class="badge-circle badge-circle-sm badge-circle-success mr-1 pointer"
+                                                       href="{{ route('master-logistik-detail-rekap-pembelian', $item->id) }}">
+
+                                                    </a>
+                                                @endif
                                             </div>
-                                            <div
-                                                class="badge-circle badge-circle-sm badge-circle-warning mr-1 pointer"
-                                                data-toggle="modal" title="edit"
-                                                data-target="#modal-edit-pengajuan-dana-belanja-user">
-                                                <i class="bx bx-edit font-size-base"></i>
-                                            </div>
-                                            <div class="badge-circle badge-circle-sm badge-circle-danger pointer delete-button "
-                                                 data-id="{{ $item->id }}">
-                                                <i class="bx bx-trash font-size-base"></i>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
+                                        </td>
+                                    </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="9" class="text-center">Data pengajuan data user belum diisi !!</td>
+                                        <td colspan="15" class="text-center">Data tidak ditemukan</td>
                                     </tr>
                                 @endforelse
                                 </tbody>
                             </table>
                         </div>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    @include('admin.finance-accounting.menu-keuangan.user.pengajuan-dana-user.modal')
+{{--    @include('admin.finance-accounting.menu-keuangan.user.pengajuan-dana-user.modal')--}}
 @endsection
 
 @push('page-scripts')
