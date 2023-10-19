@@ -1,20 +1,5 @@
 @extends('admin.layouts.app')
-{{--@section('content-header')--}}
-{{--    <div class="content-header-left col-12 mb-2 mt-1">--}}
-{{--        <div class="row breadcrumbs-top">--}}
-{{--            <div class="col-12">--}}
-{{--                <h5 class="content-header-title float-left pr-1 mb-0">LOGISTIK</h5>--}}
-{{--                <div class="breadcrumb-wrapper col-12">--}}
-{{--                    <ol class="breadcrumb p-0 mb-0">--}}
-{{--                        <li class="content-header-title float-left pr-1 mb-0">Form Logistik Keluar--}}
-{{--                        </li>--}}
-{{--                        <a class="content-header-title float-left pr-1 mb-0">LOGISTIK</a>--}}
-{{--                    </ol>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--@endsection--}}
+
 @section('content')
     <div class="row">
         <div class="col-12">
@@ -87,28 +72,24 @@
                                 @endphp
 
                                 <tbody>
-                                @forelse($data as $item)
+
                                     @php
-                                        $totalLunas += ($item->cara_bayar === 'lunas') ? ($item->kuantitas * $item->harga) : 0;
-                                        $totalHutang += ($item->cara_bayar === 'hutang') ? ($item->kuantitas * $item->harga) : 0;
+                                        $totalLunas += ($terpilih->cara_bayar === 'lunas') ? ($terpilih->kuantitas * $terpilih->harga) : 0;
+                                        $totalHutang += ($terpilih->cara_bayar === 'hutang') ? ($terpilih->kuantitas * $terpilih->harga) : 0;
                                     @endphp
                                     <tr class="text-center">
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->toko }}</td>
-                                        <td>{{ $item->item }}</td>
-                                        <td>{{ $item->kuantitas }}</td>
-                                        <td>{{ $item->satuan }}</td>
-                                        <td>@currency($item->harga)</td>
-                                        <td><b style="color: #9f191f">@currency($item->kuantitas * $item->harga)</b></td>
-                                        <!-- Calculate and display Harga Total -->
-                                        <td class="text-center @if($item->cara_bayar === 'hutang') status-hutang @elseif($item->cara_bayar === 'lunas') status-lunas @endif">{{ $item->cara_bayar }}</td>
+                                        <td> </td>
+                                        <td>{{ $terpilih->toko }}</td>
+                                        <td>{{ $terpilih->item }}</td>
+                                        <td>{{ $terpilih->kuantitas }}</td>
+                                        <td>{{ $terpilih->satuan }}</td>
+                                        <td>@currency($terpilih->harga)</td>
+                                        <td><b style="color: #9f191f">@currency($terpilih->kuantitas * $terpilih->harga)</b></td>
+
+                                        <td class="text-center @if($terpilih->cara_bayar === 'hutang') status-hutang @elseif($item->cara_bayar === 'lunas') status-lunas @endif">{{ $terpilih->cara_bayar }}</td>
 
                                     </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="5" class="text-center">Tidak ada data Pengajuan Pembelian.</td>
-                                    </tr>
-                                @endforelse
+
                                 </tbody>
                             </table>
 

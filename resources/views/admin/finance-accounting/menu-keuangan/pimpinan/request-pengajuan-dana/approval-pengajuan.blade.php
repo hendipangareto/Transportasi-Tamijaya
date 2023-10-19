@@ -65,11 +65,11 @@
                     </div>
                     <div class="card-body card-dashboard">
                         <div class="table-responsive">
-                            {{--                            <input type="hidden" id="tableResquestApprovalPengajuanDanaPimpinan" value="{{$data->count()}}">--}}
+
                             <table class="table datatables table-bordered table-hover"
                                    id="table-request-approval-pengajuan-dana-pimpinan">
                                 <thead>
-                                <tr>
+                                <tr class="text-center">
                                     <th class="w-3p">No</th>
                                     <th class="w-15p">Nama Toko</th>
                                     <th class="w-10p">Nama Item</th>
@@ -82,26 +82,33 @@
                                     <th class="w-5p">Approval Pimpinan</th>
                                 </tr>
                                 </thead>
+                                @php
+                                    $no =1;
+                                 @endphp
+
                                 <tbody>
-                                <tr>
-                                    <td>#</td>
-                                    <td>#</td>
-                                    <td>#</td>
-                                    <td>#</td>
-                                    <td>#</td>
-                                    <td>#</td>
-                                    <td>#</td>
-                                    <td>#</td>
-                                    <td>#</td>
-                                    <td>
-                                        <div class="d-flex">
-                                            <div class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer" title="detail nota">
-                                                <a href="#"
-                                                   class="bx bx-info-circle font-size-base" style="color: white"></a>
+
+                                @foreach($terpilih as $item)
+                                    <tr class="text-center">
+                                        <td>{{ $no++ }}</td>
+                                        <td>{{ $item->toko }}</td>
+                                        <td>{{ $item->item }}</td>
+                                        <td>{{ $item->kuantitas }}</td>
+                                        <td>{{ $item->satuan }}</td>
+                                        <td>{{ $item->harga }}</td>
+                                        <td>@currency($item->kuantitas * $item->harga)</td>
+                                        <td><b style="color: {{ ($item->cara_bayar === 'lunas') ? '#0077ff' : ($item->cara_bayar === 'hutang' ? '#ff7e00' : '') }};  ">{{ $item->cara_bayar }}</b></td>
+                                        <td>#</td>
+                                        <td>
+                                            <div class="d-flex">
+                                                <div class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer" title="detail nota">
+                                                    <a href="#" class="bx bx-info-circle font-size-base" style="color: white"></a>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                </tr>
+                                        </td>
+                                    </tr>
+                                @endforeach
+
                                 </tbody>
                             </table>
                         </div>

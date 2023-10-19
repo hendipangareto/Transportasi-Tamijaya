@@ -77,12 +77,12 @@
                                                 $totalLunas = 0;
                                                 $totalHutang = 0;
                                             @endphp
-                                            @forelse ( $qsActual  as $item)
+                                            @forelse ($qsActual as $item)
                                                 @php
-                                                    $totalLunas += ($item->cara_bayar === 'lunas') ? ($item->kuantitas * $item->harga) : 0;
-                                                    $totalHutang += ($item->cara_bayar === 'hutang') ? ($item->kuantitas * $item->harga) : 0;
+                                                    $totalLunas += (strtoupper($item->cara_bayar) === 'LUNAS') ? ($item->kuantitas * $item->harga) : 0;
+                                                    $totalHutang += (strtoupper($item->cara_bayar) === 'HUTANG') ? ($item->kuantitas * $item->harga) : 0;
                                                 @endphp
-                                                <tr>
+                                                <tr class="text-center">
                                                     <td>{{$no++}}</td>
                                                     <td>{{$item->toko}}</td>
                                                     <td>{{$item->item}}</td>
@@ -90,8 +90,8 @@
                                                     <td>{{$item->satuan}}</td>
                                                     <td>{{$item->harga}}</td>
                                                     <td></td>
-                                                    <td>{{$item->status}}</td>
-                                                    <td class="text-center">
+                                                    <td><b style="color: {{ (strtoupper($item->cara_bayar) === 'LUNAS') ? '#0077ff' : ((strtoupper($item->cara_bayar) === 'HUTANG') ? '#ff000c' : '') }};  ">{{ strtoupper($item->cara_bayar) }}</b></td>
+                                                    <td class="text-center" style="color: #ff000c">
                                                         @php
                                                             if($item->tanggal_pengajuan !== null){
                                                         @endphp
@@ -138,14 +138,10 @@
                                             </tbody>
                                         </table>
                                     </div>
-
                                 </div>
                             </div>
                             <div class="card-footer">
                                 <div class="float-right">
-                                    {{--                                <button type="button" class="btn btn-primary" id="btn-modal-daftar-pilihan-pekerjaan"><i--}}
-                                    {{--                                        class="fe fe-eye"></i> Preview--}}
-                                    {{--                                </button>--}}
                                     <button class="btn btn-warning d-inline" id="btn-submit-daftar-pilihan-pekerjaan"
                                             disabled>
                                         <i class="fe fe-check-circle"></i> Ajukan
@@ -198,10 +194,7 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
-
         </div>
     </div>
 

@@ -44,7 +44,7 @@
                             </div>
                         </div>
 
-                        <div class="table-responsive">
+                        <div class="table-responsive mt-1">
                             <input type="hidden" id="totalTerpilih" value="{{$terpilih->count()}}">
                             <table class="table datatables table-bordered table-hover table-data"
                                    id="table-rekapitulasi-pekerjaan-terpilih">
@@ -64,8 +64,8 @@
                                 </thead>
                                 <tbody id="show-data-rencana-kerja-terpilih">
                                 @php
-                                $totalLunas = 0;
-                                $totalHutang = 0;
+                                    $totalLunas = 0;
+                                    $totalHutang = 0;
                                 @endphp
                                 @forelse ($terpilih as $item)
                                     <tr class="text-center">
@@ -79,8 +79,9 @@
                                         @if($item->status == null)
                                             <td><a class="badge bg-warning" style="color: #ffffff">Request</a></td>
                                         @elseif($item->status == 3)
-                                            <td><a class="badge bg-success" style="color: #ffffff">Disetujui Pimpinan</a></td>
-                                        @elseif($item->status == 3)
+                                            <td><a class="badge bg-success" style="color: #ffffff">Disetujui
+                                                    Pimpinan</a></td>
+                                        @elseif($item->status == 1)
                                             <td><a class="badge bg-danger" style="color: #ffffff">Ditolak</a></td>
                                         @endif
                                         <td class="text-center">
@@ -91,19 +92,16 @@
                                                 </a>
                                                 @if ($item->approval_status === 'Request')
                                                     <a class="badge-circle badge-circle-sm badge-circle-success mr-1 pointer"
-                                                       href="{{ route('approve-pengajuan-pembelian', $item->id) }}">
+                                                       href="{{ route('master-logistik-detail-rekap-pembelian', $item->id) }}">
 
                                                     </a>
                                                 @endif
                                             </div>
                                         </td>
-
-
-
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="15">Data tidak ditemukan</td>
+                                        <td colspan="15" class="text-center">Data tidak ditemukan</td>
                                     </tr>
                                 @endforelse
                                 </tbody>
@@ -145,8 +143,6 @@
         $(document).ready(function () {
             $("#table-rekapitulasi-pekerjaan-terpilih").DataTable();
         });
-
-
 
 
     </script>

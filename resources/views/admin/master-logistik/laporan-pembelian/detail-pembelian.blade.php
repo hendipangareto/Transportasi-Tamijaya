@@ -100,29 +100,9 @@
                                         <td>@currency($item->harga)</td>
                                         <td><b style="color: #9f191f">@currency($item->kuantitas * $item->harga)</b>
                                         </td>
-                                        <!-- Calculate and display Harga Total -->
-                                        <td>{{ $item->cara_bayar }}</td>
-                                        {{--                                        <td class="text-center">--}}
-                                        {{--                                            <div class="d-flex">--}}
-                                        {{--                                                <div--}}
-                                        {{--                                                    class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"--}}
-                                        {{--                                                    data-toggle="modal"--}}
-                                        {{--                                                    data-target="#DetailSubBagian-{{ $item->id }}">--}}
-                                        {{--                                                    <i class="bx bx-info-circle font-size-base"></i>--}}
-                                        {{--                                                </div>--}}
-                                        {{--                                                <div--}}
-                                        {{--                                                    class="badge-circle badge-circle-sm badge-circle-warning mr-1 pointer"--}}
-                                        {{--                                                    data-toggle="modal"--}}
-                                        {{--                                                    data-target="#UpdatePengajuanPembelian-{{ $item->id }}">--}}
-                                        {{--                                                    <i class="bx bx-edit font-size-base"></i>--}}
-                                        {{--                                                </div>--}}
-                                        {{--                                                <div--}}
-                                        {{--                                                    class="badge-circle badge-circle-sm badge-circle-danger pointer delete-button "--}}
-                                        {{--                                                    data-id="{{ $item->id }}">--}}
-                                        {{--                                                    <i class="bx bx-trash font-size-base"></i>--}}
-                                        {{--                                                </div>--}}
-                                        {{--                                            </div>--}}
-                                        {{--                                        </td>--}}
+
+                                        <td><b style="color: {{ (strtoupper($item->cara_bayar) === 'LUNAS') ? '#0077ff' : ((strtoupper($item->cara_bayar) === 'HUTANG') ? '#ff000c' : '') }};  ">{{ strtoupper($item->cara_bayar) }}</b></td>
+
                                     </tr>
                                 @empty
                                     <tr>
@@ -136,55 +116,41 @@
                                 <div class="col-md-12 col-12 ">
                                     <div class="row">
                                         <div class="col-md-6">
-
                                             <div class="mb-2 row">
-                                                <label
-                                                    class="col-md-6  col-form-label">Total Nota</label>
-                                                <label for="html5-url-input"
-                                                       class="col-md-1 col-form-label"> = </label>
+                                                <label class="col-md-6 col-form-label">Total Nota</label>
+                                                <label for="html5-url-input" class="col-md-1 col-form-label"> = </label>
                                                 <div class="col-md-5">
-                                                    <input class="form-control" name="status_absensi" id="absensi"
-                                                           type="text" readonly/>
+                                                    <input class="form-control" name="status_absensi" id="totalNota" type="text" value="@currency($totalLunas + $totalHutang)" readonly/>
                                                 </div>
                                             </div>
 
                                             <div class="mb-1 row">
-                                                <label
-                                                    class="col-md-4 col-form-label">Diskon</label>
+                                                <label class="col-md-4 col-form-label">Diskon</label>
                                                 <div class="col-md-2">
-                                                    <input class="form-control" name="status_absensi" id="absensi"
-                                                           type="text"/>
+                                                    <input class="form-control" name="diskon" id="diskon" type="text" oninput="updateDiskon()"/>
                                                 </div>
-                                                <label for="html5-url-input"
-                                                       class="col-md-1 col-form-label"> = </label>
+                                                <label for="html5-url-input" class="col-md-1 col-form-label"> = </label>
                                                 <div class="col-md-5">
-                                                    <input class="form-control" name="status_absensi" id="absensi"
-                                                           type="text" readonly/>
+                                                    <input class="form-control" name="total_diskon" id="totalDiskon" type="text" readonly/>
                                                 </div>
                                             </div>
+
                                             <div class="mb-1 row">
-                                                <label
-                                                    class="col-md-4 col-form-label">ppn</label>
+                                                <label class="col-md-4 col-form-label">ppn</label>
                                                 <div class="col-md-2">
-                                                    <input class="form-control" name="status_absensi" id="absensi"
-                                                           type="text"/>
+                                                    <input class="form-control" name="ppn" id="ppn" oninput="updatePpn()" type="text"/>
                                                 </div>
-                                                <label for="html5-url-input"
-                                                       class="col-md-1 col-form-label"> = </label>
+                                                <label for="html5-url-input" class="col-md-1 col-form-label"> = </label>
                                                 <div class="col-md-5">
-                                                    <input class="form-control" name="status_absensi" id="absensi"
-                                                           type="text" readonly/>
+                                                    <input class="form-control" name="total_ppn" id="totalPpn" type="text" readonly/>
                                                 </div>
                                             </div>
                                             <hr>
                                             <div class="mb-1 row">
-                                                <label
-                                                    class="col-md-6 col-form-label">Total Belanja</label>
-                                                <label for="html5-url-input"
-                                                       class="col-md-1 col-form-label"> = </label>
+                                                <label class="col-md-6 col-form-label">Total Belanja</label>
+                                                <label for="html5-url-input" class="col-md-1 col-form-label"> = </label>
                                                 <div class="col-md-5">
-                                                    <input class="form-control" name="status_absensi" id="absensi"
-                                                           type="text" readonly/>
+                                                    <input class="form-control" name="totalBelanja" id="totalBelanja" value="" type="text" readonly/>
                                                 </div>
                                             </div>
                                             <div class="mb-1 row">
@@ -208,9 +174,9 @@
                                         <div class="col-md-3">
                                             <div class="card shadow-none bg-transparent border border-darken-4 mb-3">
                                                 <div class="card-body">
-                                                    <h5 class="card-title mt-1">Total Pengajuan</h5>
+                                                    <h5 class="card-title mt-1">Total Lunas</h5>
                                                     <p class="card-text">
-                                                        Rp.
+                                                        @currency($totalLunas)
                                                     </p>
                                                 </div>
                                             </div>
@@ -237,9 +203,56 @@
 @push('page-scripts')
     <script>
 
-        $(document).ready(function () {
-            $("#table-pengajuan-pembelian").DataTable();
-        });
+        function updateDiskon() {
+            var totalNota = document.getElementById('totalNota').value.replace(/[^\d]/g, '');
+            var diskonPercentage = document.getElementById('diskon').value;
+
+            if (totalNota !== "" && diskonPercentage !== "") {
+                var diskonAmount = (diskonPercentage / 100) * totalNota;
+                var totalDiskon = diskonAmount;
+                document.getElementById('totalDiskon').value = formatCurrency(totalDiskon);
+            }
+        }
+
+        // function formatCurrency(amount) {
+        //     return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(amount);
+        // }
+
+
+        function updatePpn() {
+            var totalNota = document.getElementById('totalNota').value.replace(/[^\d]/g, '');
+            var ppn = document.getElementById('ppn').value;
+
+            if (totalNota !== "" && ppn !== "") {
+                var totalPpn = (ppn / 100) * totalNota;
+                document.getElementById('totalPpn').value = formatCurrency(totalPpn);
+                updateTotalBelanja();
+            }
+        }
+
+        function updateTotalBelanja() {
+            var totalNota = document.getElementById('totalNota').value.replace(/[^\d]/g, '');
+            var diskon = document.getElementById('diskon').value;
+            var ppn = document.getElementById('ppn').value;
+
+            if (totalNota !== "" && diskon !== "" && ppn !== "") {
+                var diskonAmount = (diskon / 100) * totalNota;
+                var ppnAmount = (ppn / 100) * totalNota;
+                var totalBelanja = totalNota - diskonAmount + ppnAmount;
+                document.getElementById('totalBelanja').value = formatCurrency(totalBelanja);
+            }
+        }
+
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(amount);
+        }
+
+
+
+
+
+
+
 
 
         // HAPUS DATA

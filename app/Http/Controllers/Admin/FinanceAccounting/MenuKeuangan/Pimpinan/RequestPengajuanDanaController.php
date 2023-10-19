@@ -25,6 +25,20 @@ class RequestPengajuanDanaController extends Controller
         return view('admin.finance-accounting.menu-keuangan.pimpinan.request-pengajuan-dana.index', compact('terpilih'));
     }
 
+    public function detail(Request $request, $id)
+    {
+//        $terpilih = QsActual::findOrFail($id);
+        $terpilih =  QsActual::select("qs_actuals.*", 'tokos.nama_toko as toko', 'satuans.nama_satuan as satuan', 'kategori.nama_kategori as kategori')
+            ->join('tokos', 'tokos.id', '=', 'qs_actuals.toko_id')
+            ->join('satuans', 'satuans.id', '=', 'qs_actuals.satuan_id')
+            ->join('kategori', 'kategori.id', '=', 'qs_actuals.kategori_id')
+            ->where('qs_actuals.status', '=', 2)
+            ->get();
+
+//        dd($terpilih);
+        return view('admin.finance-accounting.menu-keuangan.pimpinan.request-pengajuan-dana.approval-pengajuan', compact('terpilih'));
+    }
+
 //    public function DisetujuiPengajuanPembelian($id)
 //    {
 //        PengajuanPembelian::where('id',$id)->update(['status'=>3]);

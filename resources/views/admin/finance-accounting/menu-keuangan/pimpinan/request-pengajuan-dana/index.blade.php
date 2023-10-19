@@ -84,7 +84,7 @@
                                     <th class="w-10p">Satuan</th>
                                     <th class="w-10p">Harga Satuan <br> (Rp.)</th>
                                     <th class="w-10p">Harga Total <br> (Rp)</th>
-                                    <th class="w-5p">Status Transaksi</th>
+                                    <th class="w-10p">Status Transaksi</th>
 
                                     <th class="w-5p">Action</th>
                                 </tr>
@@ -103,44 +103,50 @@
                                         <td>{{$item->satuan}}</td>
                                         <td>{{$item->harga}}</td>
                                         <td>@currency($item->kuantitas * $item->harga)</td>
-                                        <td class="text-center">
 
+                                        <td>
+                                            <div class="row d-flex">
+                                                <div class="col-md-6">
+                                                    <form action="{{ route('master-logistik-terpilih-delete-pengajuan-pembelian') }}" method="post" class="mb-1">
+                                                        @csrf
+                                                        <input type="hidden" name="id_qs" value="{{$item->id}}">
+                                                        <button type="button" class="btn mx-1 btn-sm btn-danger btn-hapus-item-pekerjaan-terpilih">
+                                                            <span class="bx bx-x"></span>Tolak
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                                <div class="col-md-6 ">
+                                                    @php
+                                                        if($terpilih->count() > 0){
+                                                    @endphp
 
-                                            <form action="{{ route('master-logistik-terpilih-delete-pengajuan-pembelian') }}"
-                                                  method="post">
-                                                @csrf
-                                                <input type="hidden" name="id_qs" value="{{$item->id}}">
-                                                <button type="button"
-                                                        class="btn mx-1 btn-sm btn-danger btn-hapus-item-pekerjaan-terpilih">
-                                                    <span class="bx bx-check-circle"></span></button>
-                                            </form>
+                                                    <form action="{{route('master-logistik-proses-terpilih-pengajuan-pembelian')}}" class="d-inline" method="post">
+                                                        @csrf
+                                                        @foreach ($terpilih as $item)
+                                                            <input type="hidden" name="id_qs" value="{{$item->id}}">
+                                                        @endforeach
+                                                        <button type="button" class="btn btn-sm btn-success" id="btn-submit-pekerjaan-sm">
+                                                            <i class="bx bx-check"></i>Setujui
+                                                        </button>
+                                                    </form>
 
-                                            @php
-                                                if($terpilih->count() > 0){
-                                            @endphp
+                                                    @php
+                                                        }
+                                                    @endphp
+                                                </div>
 
-                                            <form action="{{route('master-logistik-proses-terpilih-pengajuan-pembelian')}}" class="d-inline" method="post">
-                                                @csrf
-                                                @foreach ($terpilih as $item)
-                                                    <input type="hidden" name="id_qs" value="{{$item->id}}">
-                                                @endforeach
-                                                <button type="button" class="btn btn-success" id="btn-submit-pekerjaan-sm"><i class="fe fe-check-circle"></i> Oke</button>
-                                            </form>
-
-                                            @php
-                                                }
-                                            @endphp
-
+                                            </div>
                                         </td>
+
                                         <td class="text-center">
                                             <div class="d-flex">
                                                 <a class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"
-                                                   href="{{ route('master-logistik-detail-rekap-pembelian', $item->id) }}">
+                                                   href="{{ route('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-detail', $item->id) }}">
                                                     <i class="bx bx-info-circle font-size-base"></i>
                                                 </a>
-                                                @if ($item->approval_status === 'Request')
+                                                @if ($item->status === 'Request')
                                                     <a class="badge-circle badge-circle-sm badge-circle-success mr-1 pointer"
-                                                       href="{{ route('approve-pengajuan-pembelian', $item->id) }}">
+                                                       href="{{ route('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-detail', $item->id) }}">
 
                                                     </a>
                                                 @endif
@@ -151,7 +157,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="15">Data tidak ditemukan</td>
+                                        <td colspan="15" class="text-center">Data tidak ditemukan</td>
                                     </tr>
                                 @endforelse
                                 </tbody>
@@ -169,6 +175,10 @@
 
 @push('page-scripts')
     <script>
+        $(document).ready(function () {
+            $("#table-rekapitulasi-pekerjaan-terpilih").DataTable();
+        });
+
         $("#table-rekapitulasi-pekerjaan-terpilih").on("click", ".btn-hapus-item-pekerjaan-terpilih", function (e) {
             e.preventDefault();
             var form = $(this).parents('form');

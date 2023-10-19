@@ -55,7 +55,7 @@ class PengajuanPembelianController
                 }
             }
             DB::commit();
-            Session::flash('message', ['Berhasil mengajukan dana','success']);
+            Session::flash('message', ['Berhasil mengajukan dana, akan ditinjau pimpinan !','success']);
         } catch (\Exception $e) {
             DB::rollback();
             Session::flash('message', ['Gagal mengajukan dana','error']);
