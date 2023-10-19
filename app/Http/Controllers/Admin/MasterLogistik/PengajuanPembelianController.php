@@ -67,10 +67,23 @@ class PengajuanPembelianController
     public function terpilihDelete(Request $request){
         $id_qs = $request->id_qs;
         $qsActual = QsActual::find($id_qs);
-        $qsActual->status = 1;
+        $qsActual->status = 3;
         $qsActual->save();
 
         Session::flash('message', ['Berhasil menolak pengajuan data','success']);
+        return redirect()->route('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-index');
+    }
+
+
+    public function statusTransfer($id)
+    {
+        QsActual::where('id', $id)->update(['status_keuangan' => 3]);
+        return redirect()->route('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-index');
+    }
+
+    public function statusChas($id)
+    {
+        QsActual::where('id', $id)->update(['status_keuangan' => 4]);
         return redirect()->route('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-index');
     }
 
@@ -90,7 +103,7 @@ class PengajuanPembelianController
 //        }
         $id_qs = $request->id_qs;
         $qsActual = QsActual::find($id_qs);
-        $qsActual->status = 3;
+        $qsActual->status = 4;
         $qsActual->save();
 
         Session::flash('message', ['Berhasil menyetujui pengajuan data','success']);

@@ -31,6 +31,7 @@ class CreateQsActualsTable extends Migration
             $table->date('tanggal_pengajuan')->nullable();
             $table->integer('status')->default(1);
             $table->integer('status_pimpinan')->nullable();
+            $table->integer('status_keuangan')->nullable();
             $table->timestamps();
         });
     }

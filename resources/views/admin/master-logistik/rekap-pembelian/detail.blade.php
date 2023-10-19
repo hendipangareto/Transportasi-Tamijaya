@@ -86,7 +86,7 @@
                                         <td>@currency($terpilih->harga)</td>
                                         <td><b style="color: #9f191f">@currency($terpilih->kuantitas * $terpilih->harga)</b></td>
 
-                                        <td class="text-center @if($terpilih->cara_bayar === 'hutang') status-hutang @elseif($item->cara_bayar === 'lunas') status-lunas @endif">{{ $terpilih->cara_bayar }}</td>
+                                        <td><b style="color: {{ (strtoupper($terpilih->cara_bayar) === 'LUNAS') ? '#0077ff' : ((strtoupper($terpilih->cara_bayar) === 'HUTANG') ? '#ff000c' : '') }};  ">{{ strtoupper($terpilih->cara_bayar) }}</b></td>
 
                                     </tr>
 

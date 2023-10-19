@@ -19,24 +19,46 @@ class PengajuanDanaUserController extends Controller
     public function index()
     {
         $satuan = Satuan::get();
-        $toko   = Toko::get();
-        $kategori   = Kategori::get();
+        $toko = Toko::get();
+        $kategori = Kategori::get();
 //        $data =  PengajuanDanaUser::select("pengajuan_dana_users.*", 'tokos.nama_toko as toko', 'satuans.nama_satuan as satuan', 'kategori.nama_kategori as kategori')
 //            ->join('tokos', 'tokos.id', '=', 'pengajuan_dana_users.toko_id')
 //            ->join('satuans', 'satuans.id', '=', 'pengajuan_dana_users.satuan_id')
 //            ->join('kategori', 'kategori.id', '=', 'pengajuan_dana_users.kategori_id')
 //            ->get();
-                $detail =  QsActual::select("qs_actuals.*", 'tokos.nama_toko as toko', 'satuans.nama_satuan as satuan', 'kategori.nama_kategori as kategori')
+        $danaUser = QsActual::select("qs_actuals.*", 'tokos.nama_toko as toko', 'satuans.nama_satuan as satuan', 'kategori.nama_kategori as kategori')
             ->join('tokos', 'tokos.id', '=', 'qs_actuals.toko_id')
             ->join('satuans', 'satuans.id', '=', 'qs_actuals.satuan_id')
             ->join('kategori', 'kategori.id', '=', 'qs_actuals.kategori_id')
-            ->where('qs_actuals.status', '=', 3)
+            ->where('qs_actuals.status', '=', 4)
             ->get();
 //        dd($data);
-        return view('admin.finance-accounting.menu-keuangan.user.pengajuan-dana-user.index', compact('satuan','toko', 'kategori', 'detail'));
+        return view('admin.finance-accounting.menu-keuangan.user.pengajuan-dana-user.index', compact('satuan', 'toko', 'kategori', 'danaUser'));
 
     }
 
+
+    public function statusTransfer($id)
+    {
+        QsActual::where('id', $id)->update(['status_keuangan' => 3]);
+        return redirect()->route('finance-accounting-menu-keuangan-user-pengajuan-dana-user-index');
+    }
+
+    public function statusChas($id)
+    {
+        QsActual::where('id', $id)->update(['status_keuangan' => 4]);
+        return redirect()->route('finance-accounting-menu-keuangan-user-pengajuan-dana-user-index');
+    }
+
+    public function konfirmasiUser(Request $request){
+        $id_qs = $request->id_qs;
+        $qsActual = QsActual::find($id_qs);
+        $qsActual->status = 3;
+        $qsActual->save();
+
+        Session::flash('message', ['Berhasil Konfirmasi User','success']);
+        return redirect()->route('finance-accounting-menu-keuangan-user-pengajuan-dana-user-index');
+    }
 
     public function rekap()
     {

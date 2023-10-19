@@ -109,7 +109,7 @@
 </form>
 
 {{--Modal edit--}}
-@foreach($data as $dataItem)
+@foreach($danaUser as $dataItem)
     <form action="{{ route('finance-accounting-menu-keuangan-user-pengajuan-dana-user-update-pengajuan-dana-user', $dataItem->id) }}" enctype="multipart/form-data" method="post">
         @csrf
         <div class="modal fade text-left" id="modal-edit-pengajuan-dana-belanja-user" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
@@ -213,7 +213,7 @@
 @endforeach
 
 {{--Modal Detail--}}
-@foreach($data as $item)
+@foreach($danaUser as $item)
 <div class="modal fade text-left" id="modal-details-pengajuan-dana-belanja-user" tabindex="-1" role="dialog"
      aria-labelledby="modal-title"
      aria-hidden="true">

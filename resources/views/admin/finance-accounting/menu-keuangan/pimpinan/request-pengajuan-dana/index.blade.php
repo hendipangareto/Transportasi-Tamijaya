@@ -120,88 +120,48 @@
                                                 </a>
                                             @endif
                                         </td>
-
-
-                                        {{--                                        @if($item->status == null)--}}
-                                        {{--                                            <td><label class="btn btn-warning">Belum disetujui</label></td>--}}
-                                        {{--                                        @elseif($item->status_pimpinan == 1)--}}
-                                        {{--                                            <td><label class="btn btn-success">Disetujui</label></td>--}}
-                                        {{--                                        @elseif($item->status_pimpinan == 2)--}}
-                                        {{--                                            <td><label class="btn btn-danger">Ditolak</label></td>--}}
-                                        {{--                                        @endif--}}
-                                        {{--                                        <td class="text-center">--}}
-                                        {{--                                            <div class="d-flex">--}}
-                                        {{--                                                <a class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"--}}
-                                        {{--                                                   href="{{ route('master-logistik-detail-rekap-pembelian', $item->id) }}">--}}
-                                        {{--                                                    <i class="bx bx-info-circle font-size-base"></i>--}}
-                                        {{--                                                </a>--}}
-                                        {{--                                                @if ($item->approval_status === 'Request')--}}
-                                        {{--                                                    <a class="badge-circle badge-circle-sm badge-circle-success mr-1 pointer"--}}
-                                        {{--                                                       href="{{ route('approve-pengajuan-pembelian', $item->id) }}">--}}
-
-                                        {{--                                                    </a>--}}
-                                        {{--                                                @endif--}}
-                                        {{--                                            </div>--}}
-                                        {{--                                        </td>--}}
+ 
                                         <td>
                                             <div class="row d-flex">
-
                                                 <div class="col-md-2">
-                                                    <form
-                                                        action="{{ route('master-logistik-terpilih-delete-pengajuan-pembelian') }}"
-                                                        method="post" class="mb-1">
+                                                    <form action="{{ route('master-logistik-terpilih-delete-pengajuan-pembelian') }}" method="post" class="mb-1">
                                                         @csrf
                                                         <input type="hidden" name="id_qs" value="{{$item->id}}">
-                                                        <div type="button"
-                                                             class="badge-circle badge-circle-sm badge-circle-danger mr-1 pointer">
+                                                        <button type="submit" class="badge-circle badge-circle-sm badge-circle-danger mr-1 pointer">
                                                             <span class="bx bx-x"></span>
-                                                        </div>
+                                                        </button>
                                                     </form>
                                                 </div>
                                                 <div class="col-md-2">
                                                     @php
                                                         if($terpilih->count() > 0){
                                                     @endphp
-
-                                                    <form
-                                                        action="{{route('master-logistik-proses-terpilih-pengajuan-pembelian')}}"
-                                                        class="d-inline" method="post">
+                                                    <form action="{{route('master-logistik-proses-terpilih-pengajuan-pembelian')}}" class="d-inline" method="post">
                                                         @csrf
-                                                        @foreach ($terpilih as $item)
-                                                            <input type="hidden" name="id_qs" value="{{$item->id}}">
+                                                        @foreach ($terpilih as $terpilihItem)
+                                                            <input type="hidden" name="id_qs" value="{{$terpilihItem->id}}">
                                                         @endforeach
-                                                        <div type="button"
-                                                             class="badge-circle badge-circle-sm badge-circle-warning mr-1 pointer"
-                                                             id="btn-submit-pekerjaan-sm">
+                                                        <button type="submit" class="badge-circle badge-circle-sm badge-circle-warning mr-1 pointer" id="btn-submit-pekerjaan-sm">
                                                             <i class="bx bx-check"></i>
-                                                        </div>
+                                                        </button>
                                                     </form>
-
                                                     @php
                                                         }
                                                     @endphp
-
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div class="d-flex">
-                                                        <a class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"
-                                                           href="{{ route('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-detail', $item->id) }}">
+                                                        <a class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer" href="{{ route('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-detail', $item->id) }}">
                                                             <i class="bx bx-info-circle font-size-base"></i>
                                                         </a>
                                                         @if ($item->status === 'Request')
-                                                            <a class="badge-circle badge-circle-sm badge-circle-success mr-1 pointer"
-                                                               href="{{ route('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-detail', $item->id) }}">
-
+                                                            <a class="badge-circle badge-circle-sm badge-circle-success mr-1 pointer" href="{{ route('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-detail', $item->id) }}">
                                                             </a>
                                                         @endif
                                                     </div>
                                                 </div>
-
                                             </div>
                                         </td>
-
-
-
 
                                     </tr>
                                 @empty
@@ -220,6 +180,7 @@
             </div>
         </div>
     </div>
+
 @endsection
 
 @push('page-scripts')

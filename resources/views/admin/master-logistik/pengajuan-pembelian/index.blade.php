@@ -98,12 +98,7 @@
                                         <td>{{ $item->kuantitas }}</td>
                                         <td>{{ $item->satuan }}</td>
                                         <td>@currency($item->kuantitas * $item->harga)</td>
-                                        <td><b style="color: #9f191f"></b>
-                                        </td>
-
                                         <td><b style="color: {{ ($item->cara_bayar === 'lunas') ? '#0077ff' : ($item->cara_bayar === 'hutang' ? '#ff7e00' : '') }};  ">{{ $item->cara_bayar }}</b></td>
-
-                                        {{--                                        <td style="background-color: #0077ff"></td>--}}
 
                                         <td><input type="checkbox" name="pengajuan_pembelian_id[]" value="{{ $item->id }}"></td>
 

@@ -59,6 +59,7 @@
                                     <th class="w-10p">Harga Total <br> (Rp)</th>
                                     <th class="w-5p">Status Transaksi</th>
 
+
                                     <th class="w-5p">Action</th>
                                 </tr>
                                 </thead>
@@ -80,9 +81,12 @@
                                             <td><a class="badge bg-success" style="color: #ffffff">Disetujui Pimpinan</a></td>
                                         @elseif($item->status_pimpinan == 2)
                                             <td><a class="badge bg-danger" style="color: #ffffff">Di Tolak</a></td>
-{{--                                        @elseif($item->status_pimpinan == 2)--}}
-{{--                                            <td><a class="badge bg-danger" style="color: #ffffff">Ditolak</a></td>--}}
                                         @endif
+{{--                                        @if($item->status_keuangan == 3)--}}
+{{--                                            <td><a class="badge bg-primary" style="color: #ffffff">Dana DiTransfer</a></td>--}}
+{{--                                        @elseif($item->status_keuangan == 4)--}}
+{{--                                            <td><a class="badge bg-warning" style="color: #ffffff">Ambil Dana</a></td>--}}
+{{--                                        @endif--}}
 
                                         <td class="text-center">
                                             <div class="d-flex">
@@ -93,7 +97,6 @@
                                                 @if ($item->approval_status === 'Request')
                                                     <a class="badge-circle badge-circle-sm badge-circle-success mr-1 pointer"
                                                        href="{{ route('master-logistik-detail-rekap-pembelian', $item->id) }}">
-
                                                     </a>
                                                 @endif
                                             </div>
@@ -105,6 +108,7 @@
                                     </tr>
                                 @endforelse
                                 </tbody>
+
                             </table>
                         </div>
 

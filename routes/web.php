@@ -796,6 +796,9 @@ Route::group(
                 Route::get('/rekap', 'FinanceAccounting\MenuKeuangan\User\PengajuanDanaUserController@rekap')->name('finance-accounting-menu-keuangan-user-pengajuan-dana-user-rekap');
                 Route::get('/detail-rekap', 'FinanceAccounting\MenuKeuangan\User\PengajuanDanaUserController@detailRekap')->name('finance-accounting-menu-keuangan-user-pengajuan-dana-user-detail-rekap');
 
+                Route::get('/status-transfer/{id}', 'FinanceAccounting\MenuKeuangan\User\PengajuanDanaUserController@statusTransfer')->name('finance-accounting-menu-keuangan-user-pengajuan-dana-user-status-transfer');
+                Route::get('/status-chas/{id}', 'FinanceAccounting\MenuKeuangan\User\PengajuanDanaUserController@statusChas')->name('finance-accounting-menu-keuangan-user-pengajuan-dana-user-status-chas');
+
 
                 Route::post('/tambah-pengajuan-dana-user', 'FinanceAccounting\MenuKeuangan\User\PengajuanDanaUserController@store')->name('finance-accounting-menu-keuangan-user-pengajuan-dana-user-tambah-pengajuan-dana-user');
                 Route::post('/update-pengajuan-dana-user/{id}', 'FinanceAccounting\MenuKeuangan\User\PengajuanDanaUserController@update')->name('finance-accounting-menu-keuangan-user-pengajuan-dana-user-update-pengajuan-dana-user');
