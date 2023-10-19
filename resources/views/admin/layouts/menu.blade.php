@@ -272,6 +272,11 @@
                                     class="bx bx-right-arrow-alt"></i><span
                                     class="menu-item ">Voucher</span></a>
                         </li>
+                        <li @if (Request::segment(3) == 'pengajuan-dana') class="active" @endif>
+                            <a href="{{route('finance-accounting-menu-keuangan-administrasi-pengajuan-dana-index')}}"><i
+                                    class="bx bx-right-arrow-alt"></i><span
+                                    class="menu-item ">Pengajuan Dana</span></a>
+                        </li>
                         <li @if (Request::segment(3) == 'request-gaji') class="active" @endif>
                             <a href="{{route('finance-accounting-menu-keuangan-administrasi-request-gaji-index')}}"><i
                                     class="bx bx-right-arrow-alt"></i><span
