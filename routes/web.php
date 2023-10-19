@@ -765,6 +765,12 @@ Route::group(
                     Route::post('/update/{id}', 'FinanceAccounting\MenuKeuangan\Administrasi\VoucherController@update')->name('finance-accounting-menu-keuangan-administrasi-voucher-update');
                     Route::delete('/delete', 'FinanceAccounting\MenuKeuangan\Administrasi\VoucherController@delete')->name('finance-accounting-menu-keuangan-administrasi-voucher-delete');
                 });
+                Route::prefix('pengajuan-dana')->group(function () {
+                    Route::get('/', 'FinanceAccounting\MenuKeuangan\Administrasi\PengajuanDanaController@index')->name('finance-accounting-menu-keuangan-administrasi-pengajuan-dana-index');
+                    Route::get('/detail-pengajuan', 'FinanceAccounting\MenuKeuangan\Administrasi\PengajuanDanaController@detailPengajuan')->name('finance-accounting-menu-keuangan-administrasi-pengajuan-dana-detail-Pengajuan');
+                    Route::get('/rekap', 'FinanceAccounting\MenuKeuangan\Administrasi\PengajuanDanaController@rekap')->name('finance-accounting-menu-keuangan-administrasi-pengajuan-dana-rekap');
+                    Route::get('/rekap/detail-rekap', 'FinanceAccounting\MenuKeuangan\Administrasi\PengajuanDanaController@rekapDetail')->name('finance-accounting-menu-keuangan-administrasi-pengajuan-dana-rekap-detail');
+                });
                 Route::prefix('request-gaji')->group(function () {
                     Route::get('/', 'FinanceAccounting\MenuKeuangan\Administrasi\RequestGajiController@index')->name('finance-accounting-menu-keuangan-administrasi-request-gaji-index');
                 });
