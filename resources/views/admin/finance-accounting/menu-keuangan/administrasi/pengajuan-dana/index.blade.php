@@ -77,10 +77,13 @@
                     </div>
                     <div class="card-body card-dashboard">
                         <div class="table-responsive">
-                            <table class="table datatables table-bordered table-hover"
-                                   id="">
+
+                        <div class="table-responsive">
+                            <input type="hidden" id="totalTerpilih" value="{{$danaUser->count()}}">
+                            <table class="table datatables table-bordered table-hover table-data"
+                                   id="table-pengajuan-dana-administrasi">
                                 <thead>
-                                <tr>
+                                <tr class="text-center">
                                     <th class="w-3p">No</th>
                                     <th class="w-5p">Tanggal Pengajuan</th>
                                     <th class="w-10p">No Pengajuan</th>
@@ -89,25 +92,37 @@
                                     <th class="w-5p">Aksi</th>
                                 </tr>
                                 </thead>
-                                <tbody>
-                                <tr>
-                                    <td>#</td>
-                                    <td>#</td>
-                                    <td>#</td>
-                                    <td>#</td>
-                                    <td>#</td>
-                                    <td>
-                                        <div class="d-flex">
-                                            <div class="badge-circle badge-circle-sm badge-circle-primary pointer mr-1" title="view"
-                                                 data-toggle="modal" data-target="#">
-                                                <a href="{{route('finance-accounting-menu-keuangan-administrasi-pengajuan-dana-detail-Pengajuan')}}" class="bx bx-show" style="color: white"></a>
+                                <tbody id="show-data-rencana-kerja-terpilih">
+                                @php
+                                    $totalLunas = 0;
+                                    $totalHutang = 0;
+                                @endphp
+                                @forelse ($danaUser as $item)
+                                    <tr class="text-center">
+                                        <td>{{$loop->iteration}}</td>
+                                        <td>{{$item->tanggal_pengajuan}}</td>
+                                        <td>{{$item->kode_pengajuan}}</td>
+                                        <td>{{$item->auth}}</td>
+                                        <td>@currency($item->kuantitas * $item->harga)</td>
+                                        <td>
+                                            <div class="d-flex">
+                                                <div class="badge-circle badge-circle-sm badge-circle-primary pointer mr-1" title="view"
+                                                     data-toggle="modal" data-target="#">
+                                                    <a href="{{route('finance-accounting-menu-keuangan-administrasi-pengajuan-dana-detail-Pengajuan', $item->id)}}" class="bx bx-show" style="color: white"></a>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                </tr>
+                                        </td>
+
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="15" class="text-center">Data tidak ditemukan</td>
+                                    </tr>
+                                @endforelse
                                 </tbody>
                             </table>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -119,5 +134,9 @@
 
 @push('page-scripts')
     <script>
+
+        $(document).ready(function () {
+            $("#table-pengajuan-dana-administrasi").DataTable();
+        });
     </script>
 @endpush

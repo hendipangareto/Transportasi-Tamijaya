@@ -67,10 +67,11 @@
                     <form action="">
                         <div class="card-body card-dashboard">
                             <div class="table-responsive">
-                                <table class="table datatables table-bordered table-hover"
-                                       id="">
+                                <input type="hidden" id="totalTerpilih" value="{{$danaUser->count()}}">
+                                <table class="table datatables table-bordered table-hover table-data"
+                                       id="table-pengajuan-dana-detail">
                                     <thead>
-                                    <tr>
+                                    <tr class="text-center">
                                         <th class="w-3p">No</th>
                                         <th class="w-15p">Nama Toko</th>
                                         <th class="w-15p">Nama Item</th>
@@ -83,19 +84,36 @@
                                         <th class="w-10p">Approve Keuangan <input type="checkbox" id="check-all"></th>
                                     </tr>
                                     </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                    </tr>
+                                    <tbody id="show-data-rencana-kerja-terpilih">
+                                    @php
+                                        $totalLunas = 0;
+                                        $totalHutang = 0;
+                                    @endphp
+                                    @forelse ($danaUser as $item)
+                                        <tr class="text-center">
+                                            <td>{{$loop->iteration}}</td>
+                                            <td>{{$item->toko}}</td>
+                                            <td>{{$item->item}}</td>
+                                            <td>{{$item->kuantitas}}</td>
+                                            <td>{{$item->satuan}}</td>
+                                            <td>{{$item->harga}}</td>
+                                            <td>@currency($item->kuantitas * $item->harga)</td>
+                                            @if($item->status_pimpinan == 1)
+                                                <td><a class="badge bg-success" style="color: #ffffff">Disetujui
+                                                        Pimpinan</a></td>
+                                            @elseif($item->status_pimpinan == 2)
+                                                <td><a class="badge bg-danger" style="color: #ffffff">Di Tolak</a></td>
+
+                                            @endif
+                                            <td></td>
+                                            <td></td>
+
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="15" class="text-center">Data tidak ditemukan</td>
+                                        </tr>
+                                    @endforelse
                                     </tbody>
                                 </table>
                             </div>
@@ -139,10 +157,14 @@
         </div>
     </div>
 
-    {{--    @include('admin.finance-accounting.menu-keuangan.administrasi.rekap-penagihan-transaksi.modal')--}}
+
 @endsection
 
 @push('page-scripts')
     <script>
+
+        $(document).ready(function () {
+            $("#table-pengajuan-dana-detail").DataTable();
+        });
     </script>
 @endpush

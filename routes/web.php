@@ -767,7 +767,7 @@ Route::group(
                 });
                 Route::prefix('pengajuan-dana')->group(function () {
                     Route::get('/', 'FinanceAccounting\MenuKeuangan\Administrasi\PengajuanDanaController@index')->name('finance-accounting-menu-keuangan-administrasi-pengajuan-dana-index');
-                    Route::get('/detail-pengajuan', 'FinanceAccounting\MenuKeuangan\Administrasi\PengajuanDanaController@detailPengajuan')->name('finance-accounting-menu-keuangan-administrasi-pengajuan-dana-detail-Pengajuan');
+                    Route::get('/detail-pengajuan/{id}', 'FinanceAccounting\MenuKeuangan\Administrasi\PengajuanDanaController@detailPengajuan')->name('finance-accounting-menu-keuangan-administrasi-pengajuan-dana-detail-Pengajuan');
                     Route::get('/rekap', 'FinanceAccounting\MenuKeuangan\Administrasi\PengajuanDanaController@rekap')->name('finance-accounting-menu-keuangan-administrasi-pengajuan-dana-rekap');
                     Route::get('/rekap/detail-rekap', 'FinanceAccounting\MenuKeuangan\Administrasi\PengajuanDanaController@rekapDetail')->name('finance-accounting-menu-keuangan-administrasi-pengajuan-dana-rekap-detail');
                 });
@@ -802,8 +802,8 @@ Route::group(
                 Route::get('/rekap', 'FinanceAccounting\MenuKeuangan\User\PengajuanDanaUserController@rekap')->name('finance-accounting-menu-keuangan-user-pengajuan-dana-user-rekap');
                 Route::get('/detail-rekap', 'FinanceAccounting\MenuKeuangan\User\PengajuanDanaUserController@detailRekap')->name('finance-accounting-menu-keuangan-user-pengajuan-dana-user-detail-rekap');
 
-                Route::get('/status-transfer/{id}', 'FinanceAccounting\MenuKeuangan\User\PengajuanDanaUserController@statusTransfer')->name('finance-accounting-menu-keuangan-user-pengajuan-dana-user-status-transfer');
-                Route::get('/status-chas/{id}', 'FinanceAccounting\MenuKeuangan\User\PengajuanDanaUserController@statusChas')->name('finance-accounting-menu-keuangan-user-pengajuan-dana-user-status-chas');
+//                Route::get('/status-transfer/{id}', 'FinanceAccounting\MenuKeuangan\User\PengajuanDanaUserController@statusTransfer')->name('finance-accounting-menu-keuangan-user-pengajuan-dana-user-status-transfer');
+//                Route::get('/status-chas/{id}', 'FinanceAccounting\MenuKeuangan\User\PengajuanDanaUserController@statusChas')->name('finance-accounting-menu-keuangan-user-pengajuan-dana-user-status-chas');
 
 
                 Route::post('/tambah-pengajuan-dana-user', 'FinanceAccounting\MenuKeuangan\User\PengajuanDanaUserController@store')->name('finance-accounting-menu-keuangan-user-pengajuan-dana-user-tambah-pengajuan-dana-user');
@@ -818,6 +818,7 @@ Route::group(
             });
 
 
+            //Administrasi
             Route::prefix('request-pengajuan-dana')->group(function () {
                 Route::get('/', 'FinanceAccounting\MenuKeuangan\Pimpinan\RequestPengajuanDanaController@index')->name('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-index');
                 Route::get('/detail-pengajuan/{id}', 'FinanceAccounting\MenuKeuangan\Pimpinan\RequestPengajuanDanaController@detail')->name('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-detail');
@@ -828,7 +829,7 @@ Route::group(
 
 
             });
-            #End Peter
+
 
 
             #region General

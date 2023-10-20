@@ -50,14 +50,14 @@
                           method="POST"
                           enctype="multipart/form-data">
                         @csrf
-                        <div class="row">
+
                             <div class="row col-md-12">
                                 <div class="col-md-3 col-sm-12">
                                     <div class="form-group">
                                         <div class="row">
-                                            <div class="col-md-4">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="">Upload Absensi (.xlsx) </label>
+                                                    <label for="" style="color: #9f191f">Upload Absensi (.xlsx) </label>
                                                     <input required type="file" name="form_upload_presensi"
                                                            accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
                                                            class="form-control" style="float: right!important;">
@@ -76,7 +76,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
                     </form>
 
                     <br>
