@@ -80,7 +80,7 @@
                             <table class="table datatables table-bordered table-hover"
                                    id="">
                                 <thead>
-                                <tr>
+                                <tr class="text-center">
                                     <th class="w-3p">No</th>
                                     <th class="w-5p">Tanggal Pengajuan</th>
                                     <th class="w-5p">No Pengajuan</th>
@@ -92,14 +92,15 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>#</td>
-                                    <td>#</td>
-                                    <td>#</td>
-                                    <td>#</td>
-                                    <td>#</td>
-                                    <td>#</td>
-                                    <td>#</td>
+                                @forelse($detail as $item)
+                                <tr class="text-center">
+                                    <td>{{$loop->iteration}}</td>
+                                    <td>{{$item->toko}}</td>
+                                    <td>{{$item->item}}</td>
+                                    <td>{{$item->kuantitas}}</td>
+                                    <td>@currency($item->kuantitas * $item->harga)</td>
+                                    <td></td>
+                                    <td></td>
                                     <td>
                                         <div class="d-flex">
                                             <div class="badge-circle badge-circle-sm badge-circle-primary pointer mr-1" title="detail"
@@ -109,6 +110,14 @@
                                         </div>
                                     </td>
                                 </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="15" class="text-center">Data tidak ditemukan</td>
+                                    </tr>
+                                    @endforelse
+
+
+
                                 </tbody>
                             </table>
                         </div>

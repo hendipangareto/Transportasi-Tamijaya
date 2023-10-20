@@ -89,7 +89,7 @@
                                                     <td>{{$item->kuantitas}}</td>
                                                     <td>{{$item->satuan}}</td>
                                                     <td>{{$item->harga}}</td>
-                                                    <td></td>
+                                                    <td>@currency($item->kuantitas * $item->harga)</td>
                                                     <td><b style="color: {{ (strtoupper($item->cara_bayar) === 'LUNAS') ? '#0077ff' : ((strtoupper($item->cara_bayar) === 'HUTANG') ? '#ff000c' : '') }};  ">{{ strtoupper($item->cara_bayar) }}</b></td>
                                                     <td class="text-center" style="color: #ff000c">
                                                         @php

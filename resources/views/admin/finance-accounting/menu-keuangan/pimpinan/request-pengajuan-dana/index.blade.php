@@ -71,6 +71,7 @@
                     </div>
                     <div class="card-body card-dashboard">
 
+
                         <div class="table-responsive">
                             <input type="hidden" id="totalTerpilih" value="{{$terpilih->count()}}">
                             <table class="table datatables table-bordered table-hover table-data"
@@ -120,7 +121,7 @@
                                                 </a>
                                             @endif
                                         </td>
- 
+
                                         <td>
                                             <div class="row d-flex">
                                                 <div class="col-md-2">
@@ -136,7 +137,7 @@
                                                     @php
                                                         if($terpilih->count() > 0){
                                                     @endphp
-                                                    <form action="{{route('master-logistik-proses-terpilih-pengajuan-pembelian')}}" class="d-inline" method="post">
+                                                    <form action="{{route('master-logistik-setuju-terpilih-pengajuan-pembelian')}}" class="d-inline" method="post">
                                                         @csrf
                                                         @foreach ($terpilih as $terpilihItem)
                                                             <input type="hidden" name="id_qs" value="{{$terpilihItem->id}}">
@@ -172,6 +173,7 @@
                                 </tbody>
                             </table>
                         </div>
+
                     </div>
 
 

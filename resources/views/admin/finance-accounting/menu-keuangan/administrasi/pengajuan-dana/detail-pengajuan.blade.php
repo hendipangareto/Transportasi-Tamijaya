@@ -69,16 +69,16 @@
                             <div class="table-responsive">
                                 <input type="hidden" id="totalTerpilih" value="{{$danaUser->count()}}">
                                 <table class="table datatables table-bordered table-hover table-data"
-                                       id="table-pengajuan-dana-detail">
+                                       id="table-rekapitulasi-pekerjaan-terpilih">
                                     <thead>
                                     <tr class="text-center">
                                         <th class="w-3p">No</th>
-                                        <th class="w-15p">Nama Toko</th>
-                                        <th class="w-15p">Nama Item</th>
-                                        <th class="w-5p">Kuantitas</th>
-                                        <th class="w-5p">Satuan</th>
-                                        <th class="w-10p">Harga Satuan</th>
-                                        <th class="w-10p">Harga Total</th>
+                                        <th class="w-10p">Nama Toko</th>
+                                        <th class="w-5p">Nama Item</th>
+                                        <th class="w-8p">Kuantitas</th>
+                                        <th class="w-10p">Satuan</th>
+                                        <th class="w-10p">Harga Satuan <br> (Rp.)</th>
+                                        <th class="w-10p">Harga Total <br> (Rp)</th>
                                         <th class="w-10p">Status Transaksi</th>
                                         <th class="w-10p">Akun Perkiraan <input type="checkbox" id="check-all"></th>
                                         <th class="w-10p">Approve Keuangan <input type="checkbox" id="check-all"></th>
@@ -98,15 +98,57 @@
                                             <td>{{$item->satuan}}</td>
                                             <td>{{$item->harga}}</td>
                                             <td>@currency($item->kuantitas * $item->harga)</td>
-                                            @if($item->status_pimpinan == 1)
-                                                <td><a class="badge bg-success" style="color: #ffffff">Disetujui
-                                                        Pimpinan</a></td>
-                                            @elseif($item->status_pimpinan == 2)
-                                                <td><a class="badge bg-danger" style="color: #ffffff">Di Tolak</a></td>
 
+                                            @if($item->status_pimpinan == null)
+                                                <td><a class="badge bg-warning" style="color: #ffffff">Required</a></td>
+                                            @elseif($item->status_pimpinan == 1)
+                                                <td><a class="badge bg-success" style="color: #ffffff">Disetujui Pimpinan</a></td>
                                             @endif
                                             <td></td>
-                                            <td></td>
+
+                                            <td>
+                                                <div class="row d-flex">
+
+                                                    <div class="col-md-2">
+                                                        @if($danaUser->count() > 0)
+                                                            <form action=" " method="post" class="d-inline">
+                                                                @csrf
+                                                                @foreach ($danaUser as $terpilihItem)
+
+                                                                @endforeach
+
+                                                            </form>
+                                                        @endif
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <form action="{{ route('master-logistik-cairkan-dana-pengajuan-pembelian') }}" method="post" class="mb-1">
+                                                            @csrf
+                                                            <input type="hidden" name="id_qs" value="{{$item->id}}">
+                                                            <button type="submit" class="badge-circle badge-circle-sm badge-circle-success mr-1 pointer">
+                                                                <span class="bx bx-check-circle"></span>
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        @php
+                                                            if($danaUser->count() > 0){
+                                                        @endphp
+                                                        <form action="{{route('master-logistik-proses-terpilih-pengajuan-pembelian')}}" class="d-inline" method="post">
+                                                            @csrf
+                                                            @foreach ($danaUser as $terpilihItem)
+                                                                <input type="hidden" name="id_qs" value="{{$terpilihItem->id}}">
+                                                            @endforeach
+                                                            <button type="submit" class="badge-circle badge-circle-sm badge-circle-warning mr-1 pointer" id="btn-submit-pengajuan-sm">
+                                                                <i class="bx bx-check-circle"></i>
+                                                            </button>
+                                                        </form>
+                                                        @php
+                                                            }
+                                                        @endphp
+                                                    </div>
+
+                                                </div>
+                                            </td>
 
                                         </tr>
                                     @empty
@@ -146,17 +188,20 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="float-right">
-                                        <button class="btn btn-success"><i class="bx bx-check-circle"></i> Simpan</button>
+                                        <button class="btn btn-success"><i class="bx bx-check-circle"></i> Simpan
+                                        </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+
                     </form>
                 </div>
+                <br>
             </div>
         </div>
     </div>
-
 
 @endsection
 
@@ -164,7 +209,115 @@
     <script>
 
         $(document).ready(function () {
-            $("#table-pengajuan-dana-detail").DataTable();
+            $("#table-rekapitulasi-pekerjaan-terpilih").DataTable();
         });
+
+        $("#table-rekapitulasi-pekerjaan-terpilih").on("click", ".btn-hapus-item-pekerjaan-terpilih", function (e) {
+            e.preventDefault();
+            var form = $(this).parents('form');
+            var rowData = $(this).closest("tr").find("td").map(function () {
+                return $(this).text();
+            }).get();
+
+            Swal.fire({
+                title: 'Apakah anda yakin?',
+                icon: 'warning',
+                confirmButtonText: 'Yes',
+                showCancelButton: true,
+                closeOnConfirm: false
+            }).then((result) => {
+                if (result['isConfirmed']) {
+                    sendToRekapTable(rowData); // Call the function to send data to the destination table
+                    form.submit(); // You may submit the form to delete the item from the current table
+                }
+            });
+        });
+
+        function sendToRekapTable(rowData) {
+            var newRow = "<tr>";
+            for (var i = 0; i < rowData.length; i++) {
+                newRow += "<td>" + rowData[i] + "</td>";
+            }
+            newRow += "</tr>";
+            $("#rekap-table-id").append(newRow); // Append to the rekap table, replace "rekap-table-id" with your actual table ID
+        }
+
+        $(function () {
+            var countSelected = 0;
+
+            if (parseInt($("#totalQsActual").val()) > 0) {
+                $("#table-daftar-pengajuan-pembelian").DataTable();
+            }
+
+            if (parseInt($("#totalTerpilih").val()) > 0) {
+                $("#table-rekapitulasi-pengajuan-pembelian").DataTable();
+            }
+
+            if (parseInt($("#totalPekerjaan").val()) > 0) {
+                $("#tbl-pekerjaan").DataTable();
+            }
+
+            $("#btn-modal-daftar-pilihan-pekerjaan").click(function () {
+                $("#modal-daftar-pilihan-pekerjaan").modal('show');
+            });
+            $("#btn-modal-daftar-pilihan-pekerjaan-terpilih").click(function () {
+                $("#modal-daftar-pilihan-pekerjaan-terpilih").modal('show');
+            });
+
+            $("#table-daftar-pengajuan-pembelian").on("click", ".check-terpilih-daftar-pilihan-pekerjaan", function (e) {
+                $('#btn-submit-daftar-pilihan-pekerjaan').prop('disabled', !$('.check-terpilih-daftar-pilihan-pekerjaan:checked').length);
+            });
+
+
+            $("#checkAll").click(function () {
+                $('.check-terpilih-daftar-pilihan-pekerjaan').not(this).prop('checked', this.checked);
+                $('#btn-submit-daftar-pilihan-pekerjaan').prop('disabled', !$('.check-terpilih-daftar-pilihan-pekerjaan:checked').length);
+            });
+
+            $("#table-rekapitulasi-pengajuan-pembelian").on("click", ".btn-hapus-item-pekerjaan-terpilih", function (e) {
+                e.preventDefault();
+                var form = $(this).parents('form');
+
+                Swal.fire({
+                    title: 'Apakah anda yakin?',
+                    icon: 'warning',
+                    confirmButtonText: 'Yes',
+                    showCancelButton: true,
+                    closeOnConfirm: false
+                }).then((result) => {
+                    if (result['isConfirmed']) {
+                        form.submit();
+                    }
+                });
+            });
+
+            $("#btn-submit-pekerjaan-sm").on("click", function (e) {
+                e.preventDefault();
+                var form = $(this).parents('form');
+
+                Swal.fire({
+                    title: 'Apakah anda yakin?',
+                    icon: 'warning',
+                    confirmButtonText: 'Yes',
+                    showCancelButton: true,
+                    closeOnConfirm: false
+                }).then((result) => {
+                    if (result['isConfirmed']) {
+                        form.submit();
+                    }
+                });
+            });
+
+
+        })
+
+
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            document.getElementById("fileNameInput").value = file.name;
+        }
+
+
     </script>
 @endpush
+

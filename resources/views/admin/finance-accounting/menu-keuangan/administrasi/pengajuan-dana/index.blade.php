@@ -81,7 +81,7 @@
                         <div class="table-responsive">
                             <input type="hidden" id="totalTerpilih" value="{{$danaUser->count()}}">
                             <table class="table datatables table-bordered table-hover table-data"
-                                   id="table-pengajuan-dana-administrasi">
+                                   id="table-rekapitulasi-pekerjaan-terpilih">
                                 <thead>
                                 <tr class="text-center">
                                     <th class="w-3p">No</th>
@@ -123,6 +123,107 @@
                             </table>
                         </div>
 
+{{--                            <div class="table-responsive">--}}
+{{--                                <input type="hidden" id="totalTerpilih" value="{{$terpilih->count()}}">--}}
+{{--                                <table class="table datatables table-bordered table-hover table-data"--}}
+{{--                                       id="table-rekapitulasi-pekerjaan-terpilih">--}}
+{{--                                    <thead>--}}
+{{--                                    <tr class="text-center">--}}
+{{--                                        <th class="w-3p">No</th>--}}
+{{--                                        <th class="w-10p">Nama Toko</th>--}}
+{{--                                        <th class="w-5p">Nama Item</th>--}}
+{{--                                        <th class="w-8p">Kuantitas</th>--}}
+{{--                                        <th class="w-10p">Satuan</th>--}}
+{{--                                        <th class="w-10p">Harga Satuan <br> (Rp.)</th>--}}
+{{--                                        <th class="w-10p">Harga Total <br> (Rp)</th>--}}
+{{--                                        <th class="w-10p">Status Transaksi</th>--}}
+
+{{--                                        <th class="w-5p">Action</th>--}}
+{{--                                    </tr>--}}
+{{--                                    </thead>--}}
+{{--                                    <tbody id="show-data-rencana-kerja-terpilih">--}}
+{{--                                    @php--}}
+{{--                                        $totalLunas = 0;--}}
+{{--                                        $totalHutang = 0;--}}
+{{--                                    @endphp--}}
+{{--                                    @forelse ($terpilih as $item)--}}
+{{--                                        <tr class="text-center">--}}
+{{--                                            <td>{{$loop->iteration}}</td>--}}
+{{--                                            <td>{{$item->toko}}</td>--}}
+{{--                                            <td>{{$item->item}}</td>--}}
+{{--                                            <td>{{$item->kuantitas}}</td>--}}
+{{--                                            <td>{{$item->satuan}}</td>--}}
+{{--                                            <td>{{$item->harga}}</td>--}}
+{{--                                            <td>@currency($item->kuantitas * $item->harga)</td>--}}
+
+{{--                                            <td>--}}
+{{--                                                @if($item->status_pimpinan != 2)--}}
+{{--                                                    <a href="{{ route('master-logistik-setujui-pengajuan-pembelian', $item->id) }}"--}}
+{{--                                                       class="btn btn-primary" id="btn-setujui-{{ $item->id }}"--}}
+{{--                                                       onclick="changeButtonColor('btn-setujui-{{ $item->id }}'); showButton('btn-tolak-{{ $item->id }}'); hideButton('btn-setujui-{{ $item->id }}')">--}}
+{{--                                                        <i class="bx bx-check-circle"></i> Setujui--}}
+{{--                                                    </a>--}}
+{{--                                                @endif--}}
+{{--                                                @if($item->status_pimpinan != 1)--}}
+{{--                                                    <a href="{{ route('master-logistik-tolak-pengajuan-pembelian', $item->id) }}"--}}
+{{--                                                       class="btn btn-danger" id="btn-tolak-{{ $item->id }}"--}}
+{{--                                                       onclick="changeButtonColor('btn-tolak-{{ $item->id }}'); showButton('btn-setujui-{{ $item->id }}'); hideButton('btn-tolak-{{ $item->id }}')">--}}
+{{--                                                        <i class="bx bx-x-circle"></i> Tolak--}}
+{{--                                                    </a>--}}
+{{--                                                @endif--}}
+{{--                                            </td>--}}
+
+{{--                                            <td>--}}
+{{--                                                <div class="row d-flex">--}}
+{{--                                                    <div class="col-md-2">--}}
+{{--                                                        <form action="{{ route('master-logistik-terpilih-delete-pengajuan-pembelian') }}" method="post" class="mb-1">--}}
+{{--                                                            @csrf--}}
+{{--                                                            <input type="hidden" name="id_qs" value="{{$item->id}}">--}}
+{{--                                                            <button type="submit" class="badge-circle badge-circle-sm badge-circle-danger mr-1 pointer">--}}
+{{--                                                                <span class="bx bx-x"></span>--}}
+{{--                                                            </button>--}}
+{{--                                                        </form>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="col-md-2">--}}
+{{--                                                        @php--}}
+{{--                                                            if($terpilih->count() > 0){--}}
+{{--                                                        @endphp--}}
+{{--                                                        <form action="{{route('master-logistik-proses-terpilih-pengajuan-pembelian')}}" class="d-inline" method="post">--}}
+{{--                                                            @csrf--}}
+{{--                                                            @foreach ($terpilih as $terpilihItem)--}}
+{{--                                                                <input type="hidden" name="id_qs" value="{{$terpilihItem->id}}">--}}
+{{--                                                            @endforeach--}}
+{{--                                                            <button type="submit" class="badge-circle badge-circle-sm badge-circle-warning mr-1 pointer" id="btn-submit-pekerjaan-sm">--}}
+{{--                                                                <i class="bx bx-check"></i>--}}
+{{--                                                            </button>--}}
+{{--                                                        </form>--}}
+{{--                                                        @php--}}
+{{--                                                            }--}}
+{{--                                                        @endphp--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="col-md-3">--}}
+{{--                                                        <div class="d-flex">--}}
+{{--                                                            <a class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer" href="{{ route('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-detail', $item->id) }}">--}}
+{{--                                                                <i class="bx bx-info-circle font-size-base"></i>--}}
+{{--                                                            </a>--}}
+{{--                                                            @if ($item->status === 'Request')--}}
+{{--                                                                <a class="badge-circle badge-circle-sm badge-circle-success mr-1 pointer" href="{{ route('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-detail', $item->id) }}">--}}
+{{--                                                                </a>--}}
+{{--                                                            @endif--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </td>--}}
+
+{{--                                        </tr>--}}
+{{--                                    @empty--}}
+{{--                                        <tr>--}}
+{{--                                            <td colspan="15" class="text-center">Data tidak ditemukan</td>--}}
+{{--                                        </tr>--}}
+{{--                                    @endforelse--}}
+{{--                                    </tbody>--}}
+{{--                                </table>--}}
+{{--                            </div>--}}
                     </div>
                 </div>
             </div>

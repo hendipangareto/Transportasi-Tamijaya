@@ -531,6 +531,11 @@ Route::group(
                         Route::post('/terpilih-delete-pengajuan-pembelian', 'MasterLogistik\PengajuanPembelianController@terpilihDelete')->name('master-logistik-terpilih-delete-pengajuan-pembelian');
                         Route::post('/proses-terpilih-pengajuan-pembelian', 'MasterLogistik\PengajuanPembelianController@prosesTerpilih')->name('master-logistik-proses-terpilih-pengajuan-pembelian');
 
+                        Route::post('/setuju-terpilih-pengajuan-pembelian', 'MasterLogistik\PengajuanPembelianController@setujuTerpilih')->name('master-logistik-setuju-terpilih-pengajuan-pembelian');
+                        Route::post('/cairkan-dana-pengajuan-pembelian', 'MasterLogistik\PengajuanPembelianController@CairkanDana')->name('master-logistik-cairkan-dana-pengajuan-pembelian');
+
+
+
                         Route::post('/update-pengajuan-pembelian/{id}', 'MasterLogistik\PengajuanPembelianController@UpdatePengajuanPembelian')->name('master-logistik-update-pengajuan-pembelian');
 
                         Route::post('/ajukan-pengajuan-pembelian', 'MasterLogistik\PengajuanPembelianController@AjukanPengajuanPembelian')->name('master-logistik.ajukan-pengajuan-pembelian');
@@ -758,6 +763,7 @@ Route::group(
                 });
             });
 
+//            Menu ADMINISTRASI
             Route::prefix('administrasi')->group(function () {
                 Route::prefix('voucher')->group(function () {
                     Route::get('/', 'FinanceAccounting\MenuKeuangan\Administrasi\VoucherController@index')->name('finance-accounting-menu-keuangan-administrasi-voucher-index');
@@ -768,6 +774,9 @@ Route::group(
                 Route::prefix('pengajuan-dana')->group(function () {
                     Route::get('/', 'FinanceAccounting\MenuKeuangan\Administrasi\PengajuanDanaController@index')->name('finance-accounting-menu-keuangan-administrasi-pengajuan-dana-index');
                     Route::get('/detail-pengajuan/{id}', 'FinanceAccounting\MenuKeuangan\Administrasi\PengajuanDanaController@detailPengajuan')->name('finance-accounting-menu-keuangan-administrasi-pengajuan-dana-detail-Pengajuan');
+
+//                    Route::post('/detail-pengajuan/terpilih-pengajuan', 'FinanceAccounting\MenuKeuangan\Administrasi\PengajuanDanaController@DataTerpilih')->name('finance.accounting.menu.keuangan.administrasi.pengajuan.dana.terpilih');
+
                     Route::get('/rekap', 'FinanceAccounting\MenuKeuangan\Administrasi\PengajuanDanaController@rekap')->name('finance-accounting-menu-keuangan-administrasi-pengajuan-dana-rekap');
                     Route::get('/rekap/detail-rekap', 'FinanceAccounting\MenuKeuangan\Administrasi\PengajuanDanaController@rekapDetail')->name('finance-accounting-menu-keuangan-administrasi-pengajuan-dana-rekap-detail');
                 });
@@ -779,6 +788,7 @@ Route::group(
                 });
                 Route::prefix('rekap-penagihan-transaksi')->group(function () {
                     Route::get('/', 'FinanceAccounting\MenuKeuangan\Administrasi\RekapPenagihanTransaksiController@index')->name('finance-accounting-menu-keuangan-administrasi-rekap-penagihan-transaksi-index');
+
                 });
                 Route::prefix('detail-pembelajaan')->group(function () {
                     Route::get('/', 'FinanceAccounting\MenuKeuangan\Administrasi\DetailPembelajaanController@index')->name('finance-accounting-menu-keuangan-administrasi-detail-pembelajaan-index');
@@ -822,6 +832,8 @@ Route::group(
             Route::prefix('request-pengajuan-dana')->group(function () {
                 Route::get('/', 'FinanceAccounting\MenuKeuangan\Pimpinan\RequestPengajuanDanaController@index')->name('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-index');
                 Route::get('/detail-pengajuan/{id}', 'FinanceAccounting\MenuKeuangan\Pimpinan\RequestPengajuanDanaController@detail')->name('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-detail');
+
+//                Route::post('/data-terpilih', 'FinanceAccounting\MenuKeuangan\Pimpinan\RequestPengajuanDanaController@terpilih')->name('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-terpilih');
 
                 Route::get('/approval-pengajuan', 'FinanceAccounting\MenuKeuangan\Pimpinan\RequestPengajuanDanaController@approvalPengajuan')->name('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-approval-pengajuan');
                 Route::get('/disetujui-pengajuan/{id}', 'FinanceAccounting\MenuKeuangan\Pimpinan\RequestPengajuanDanaController@DisetujuiPengajuanPembelian')->name('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-disetujui-pengajuan');
