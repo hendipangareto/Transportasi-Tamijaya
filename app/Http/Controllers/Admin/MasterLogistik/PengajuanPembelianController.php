@@ -107,7 +107,7 @@ class PengajuanPembelianController
         $qsActual->save();
 
         Session::flash('message', ['Berhasil menyetujui pengajuan data','success']);
-        return redirect()->route('finance-accounting-menu-keuangan-administrasi-pengajuan-dana-index');
+        return redirect()->route('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-index');
     }
 
     public function CairkanDana(Request $request)

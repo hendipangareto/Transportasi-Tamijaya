@@ -142,7 +142,7 @@
                                                         @foreach ($terpilih as $terpilihItem)
                                                             <input type="hidden" name="id_qs" value="{{$terpilihItem->id}}">
                                                         @endforeach
-                                                        <button type="submit" class="badge-circle badge-circle-sm badge-circle-warning mr-1 pointer" id="btn-submit-pekerjaan-sm">
+                                                        <button type="submit" class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer" id="btn-submit-pekerjaan-sm">
                                                             <i class="bx bx-check"></i>
                                                         </button>
                                                     </form>
@@ -150,17 +150,17 @@
                                                         }
                                                     @endphp
                                                 </div>
-                                                <div class="col-md-3">
-                                                    <div class="d-flex">
-                                                        <a class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer" href="{{ route('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-detail', $item->id) }}">
-                                                            <i class="bx bx-info-circle font-size-base"></i>
-                                                        </a>
-                                                        @if ($item->status === 'Request')
-                                                            <a class="badge-circle badge-circle-sm badge-circle-success mr-1 pointer" href="{{ route('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-detail', $item->id) }}">
-                                                            </a>
-                                                        @endif
-                                                    </div>
-                                                </div>
+{{--                                                <div class="col-md-3">--}}
+{{--                                                    <div class="d-flex">--}}
+{{--                                                        <a class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer" href="{{ route('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-detail', $item->id) }}">--}}
+{{--                                                            <i class="bx bx-info-circle font-size-base"></i>--}}
+{{--                                                        </a>--}}
+{{--                                                        @if ($item->status === 'Request')--}}
+{{--                                                            <a class="badge-circle badge-circle-sm badge-circle-success mr-1 pointer" href="{{ route('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-detail', $item->id) }}">--}}
+{{--                                                            </a>--}}
+{{--                                                        @endif--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
                                             </div>
                                         </td>
 
