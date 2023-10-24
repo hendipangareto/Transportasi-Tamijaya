@@ -77,6 +77,17 @@ class RequestPengajuanDanaController extends Controller
         return redirect()->route('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-index');
     }
 
+    public function DataDisetujiPimpinan(Request $request)
+    {
+        $id_qs = $request->id_qs;
+        $qsActual = QsActual::find($id_qs);
+        $qsActual->status = 5;
+        $qsActual->save();
+
+        Session::flash('message', ['Berhasil menyetujui pengajuan dana, akan diproses Administrasi', 'success']);
+        return redirect()->route('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-index');
+    }
+
 //    public function DitolakPengajuanPembelian($id)
 //    {
 //        $pengajuan = PengajuanPembelian::find($id);

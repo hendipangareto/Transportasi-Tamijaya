@@ -23,20 +23,19 @@
                 <div class="card-header">
                     <div class="toolbar row ">
                         <div class="col-md-12 d-flex">
-                            <h4 class="card-title">Detail Rekap Pengajuan Dana</h4>
+                            <h4 class="card-title">Rekap Pengajuan Dana</h4>
                             <div class="col ml-auto">
                                 <div class="dropdown float-right">
-                                    <a href="{{route('finance-accounting-menu-keuangan-administrasi-pengajuan-dana-index')}}"
-                                       type="button" class="btn btn-warning">
-                                        <i class="bx bx-arrow-back"></i> Kembali
-                                    </a>
+                                    <button type="button" class="btn btn-danger">
+                                        <i class="bx bxs-file-pdf"></i> Report Pdf
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="card-content pt-1">
-                    <div class="card-body card-dashboard">
+                    <div class="card-body">
                         <form action="">
                             <div class="row">
                                 <div class="col-md-2">
@@ -55,6 +54,14 @@
                                 </div>
                                 <div class="col-md-2">
                                     <div class="form-group">
+                                        <label for="">PIC</label>
+                                        <select name="pic_pengajuan" class="form-control">
+                                            <option value="" selected disabled>Pilih pic pengajuan</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
                                         <label for="" style="color: white">Filter</label><br>
                                         <button class="btn btn-outline-primary"> Filter <i class="bx bx-filter"></i>
                                         </button>
@@ -64,14 +71,24 @@
                             </div>
                         </form>
                     </div>
+                    <div class="card-header">
+                        <a href="{{route('finance-accounting-menu-keuangan-administrasi-pengajuan-dana-index')}}"
+                           class="btn btn-outline-primary">Pengajuan Dana</a>
+                        <a href=" "
+                           class="btn btn-outline-primary">Rekap Pengajuan Dana</a>
+                        <button class="btn btn-success">Dana Disetujui</button>
+                    </div>
+
+
+
                     <form action="">
                         <div class="card-body card-dashboard">
                             <div class="table-responsive">
-                                <input type="hidden" id="totalTerpilih" value="{{$danaUser->count()}}">
-                                <table class="table datatables table-bordered table-hover table-data"
-                                       id="table-rekapitulasi-pekerjaan-terpilih">
+                                <input type="hidden" id="totalTerpilih" value="{{$danaDisetujui->count()}}">
+                                <table class="table datatables table-bordered table-hover table-data" id="table-dana-disetuji-administrasi">
                                     <thead>
                                     <tr class="text-center">
+
                                         <th class="w-3p">No</th>
                                         <th class="w-10p">Nama Toko</th>
                                         <th class="w-5p">Nama Item</th>
@@ -89,7 +106,7 @@
                                         $totalLunas = 0;
                                         $totalHutang = 0;
                                     @endphp
-                                    @forelse ($danaUser as $item)
+                                    @forelse ($danaDisetujui as $item)
                                         <tr class="text-center">
                                             <td>{{$loop->iteration}}</td>
                                             <td>{{$item->toko}}</td>
@@ -98,58 +115,39 @@
                                             <td>{{$item->satuan}}</td>
                                             <td>{{$item->harga}}</td>
                                             <td>@currency($item->kuantitas * $item->harga)</td>
-
                                             @if($item->status_pimpinan == null)
                                                 <td><a class="badge bg-warning" style="color: #ffffff">Required</a></td>
                                             @elseif($item->status_pimpinan == 1)
                                                 <td><a class="badge bg-success" style="color: #ffffff">Disetujui Pimpinan</a></td>
                                             @endif
-                                            <td></td>
+                                            <td>
+                                                @if($item->status_keuangan != 3)
+                                                    <a href="{{ route('finance-accounting-menu-keuangan-administrasi-dana-ditransfer', $item->id) }}" class="btn btn-primary" id="btn-setujui-{{ $item->id }}" onclick="changeButtonColor('btn-setujui-{{ $item->id }}'); this.disabled=true;">
+                                                        <i class="bx bx-check-circle"></i> Transfer Dana
+                                                    </a>
+                                                @endif
+                                                @if($item->status_keuangan != 4)
+                                                    <a href="{{ route('master-logistik-tolak-pengajuan-pembelian', $item->id) }}" class="btn btn-danger" id="btn-tolak-{{ $item->id }}" onclick="changeButtonColor('btn-tolak-{{ $item->id }}'); this.disabled=true;">
+                                                        <i class="bx bx-x-circle"></i> Dana Khas
+                                                    </a>
+                                                @endif
+                                            </td>
 
                                             <td>
                                                 <div class="row d-flex">
-
                                                     <div class="col-md-2">
-                                                        @if($danaUser->count() > 0)
-                                                            <form action=" " method="post" class="d-inline">
+                                                        @if($danaDisetujui->count() > 0)
+                                                            <form action="{{ route('master-logistik-cairkan-dana-pengajuan-pembelian') }}" method="post" class="mb-1">
                                                                 @csrf
-                                                                @foreach ($danaUser as $terpilihItem)
-
-                                                                @endforeach
-
+                                                                <input type="hidden" name="id_qs" value="{{$item->id}}">
+                                                                <button type="submit" class="badge-circle badge-circle-sm badge-circle-success mr-1 pointer">
+                                                                    <span class="bx bx-check-circle"></span>
+                                                                </button>
                                                             </form>
                                                         @endif
                                                     </div>
-{{--                                                    <div class="col-md-2">--}}
-{{--                                                        <form action="{{ route('master-logistik-cairkan-dana-pengajuan-pembelian') }}" method="post" class="mb-1">--}}
-{{--                                                            @csrf--}}
-{{--                                                            <input type="hidden" name="id_qs" value="{{$item->id}}">--}}
-{{--                                                            <button type="submit" class="badge-circle badge-circle-sm badge-circle-success mr-1 pointer">--}}
-{{--                                                                <span class="bx bx-check-circle"></span>--}}
-{{--                                                            </button>--}}
-{{--                                                        </form>--}}
-{{--                                                    </div>--}}
-                                                    <div class="col-md-2">
-                                                        @php
-                                                            if($danaUser->count() > 0){
-                                                        @endphp
-                                                        <form action="{{route('master-logistik-proses-terpilih-pengajuan-pembelian')}}" class="d-inline" method="post">
-                                                            @csrf
-                                                            @foreach ($danaUser as $terpilihItem)
-                                                                <input type="hidden" name="id_qs" value="{{$terpilihItem->id}}">
-                                                            @endforeach
-                                                            <button type="submit" class="badge-circle badge-circle-sm badge-circle-warning mr-1 pointer" id="btn-submit-pengajuan-sm">
-                                                                <i class="bx bx-check-circle"></i>
-                                                            </button>
-                                                        </form>
-                                                        @php
-                                                            }
-                                                        @endphp
-                                                    </div>
-
                                                 </div>
                                             </td>
-
                                         </tr>
                                     @empty
                                         <tr>
@@ -188,136 +186,25 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="float-right">
-                                        <button class="btn btn-success"><i class="bx bx-check-circle"></i> Simpan
-                                        </button>
+                                        <button class="btn btn-success"><i class="bx bx-check-circle"></i> Simpan</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-
                     </form>
+
                 </div>
-                <br>
             </div>
         </div>
     </div>
 
+    {{--    @include('admin.finance-accounting.menu-keuangan.administrasi.rekap-penagihan-transaksi.modal')--}}
 @endsection
 
 @push('page-scripts')
     <script>
-
         $(document).ready(function () {
-            $("#table-rekapitulasi-pekerjaan-terpilih").DataTable();
+            $("#table-dana-disetuji-administrasi").DataTable();
         });
-
-        $("#table-rekapitulasi-pekerjaan-terpilih").on("click", ".btn-hapus-item-pekerjaan-terpilih", function (e) {
-            e.preventDefault();
-            var form = $(this).parents('form');
-            var rowData = $(this).closest("tr").find("td").map(function () {
-                return $(this).text();
-            }).get();
-
-            Swal.fire({
-                title: 'Apakah anda yakin?',
-                icon: 'warning',
-                confirmButtonText: 'Yes',
-                showCancelButton: true,
-                closeOnConfirm: false
-            }).then((result) => {
-                if (result['isConfirmed']) {
-                    sendToRekapTable(rowData); // Call the function to send data to the destination table
-                    form.submit(); // You may submit the form to delete the item from the current table
-                }
-            });
-        });
-
-        function sendToRekapTable(rowData) {
-            var newRow = "<tr>";
-            for (var i = 0; i < rowData.length; i++) {
-                newRow += "<td>" + rowData[i] + "</td>";
-            }
-            newRow += "</tr>";
-            $("#rekap-table-id").append(newRow); // Append to the rekap table, replace "rekap-table-id" with your actual table ID
-        }
-
-        $(function () {
-            var countSelected = 0;
-
-            if (parseInt($("#totalQsActual").val()) > 0) {
-                $("#table-daftar-pengajuan-pembelian").DataTable();
-            }
-
-            if (parseInt($("#totalTerpilih").val()) > 0) {
-                $("#table-rekapitulasi-pengajuan-pembelian").DataTable();
-            }
-
-            if (parseInt($("#totalPekerjaan").val()) > 0) {
-                $("#tbl-pekerjaan").DataTable();
-            }
-
-            $("#btn-modal-daftar-pilihan-pekerjaan").click(function () {
-                $("#modal-daftar-pilihan-pekerjaan").modal('show');
-            });
-            $("#btn-modal-daftar-pilihan-pekerjaan-terpilih").click(function () {
-                $("#modal-daftar-pilihan-pekerjaan-terpilih").modal('show');
-            });
-
-            $("#table-daftar-pengajuan-pembelian").on("click", ".check-terpilih-daftar-pilihan-pekerjaan", function (e) {
-                $('#btn-submit-daftar-pilihan-pekerjaan').prop('disabled', !$('.check-terpilih-daftar-pilihan-pekerjaan:checked').length);
-            });
-
-
-            $("#checkAll").click(function () {
-                $('.check-terpilih-daftar-pilihan-pekerjaan').not(this).prop('checked', this.checked);
-                $('#btn-submit-daftar-pilihan-pekerjaan').prop('disabled', !$('.check-terpilih-daftar-pilihan-pekerjaan:checked').length);
-            });
-
-            $("#table-rekapitulasi-pengajuan-pembelian").on("click", ".btn-hapus-item-pekerjaan-terpilih", function (e) {
-                e.preventDefault();
-                var form = $(this).parents('form');
-
-                Swal.fire({
-                    title: 'Apakah anda yakin?',
-                    icon: 'warning',
-                    confirmButtonText: 'Yes',
-                    showCancelButton: true,
-                    closeOnConfirm: false
-                }).then((result) => {
-                    if (result['isConfirmed']) {
-                        form.submit();
-                    }
-                });
-            });
-
-            $("#btn-submit-pekerjaan-sm").on("click", function (e) {
-                e.preventDefault();
-                var form = $(this).parents('form');
-
-                Swal.fire({
-                    title: 'Apakah anda yakin?',
-                    icon: 'warning',
-                    confirmButtonText: 'Yes',
-                    showCancelButton: true,
-                    closeOnConfirm: false
-                }).then((result) => {
-                    if (result['isConfirmed']) {
-                        form.submit();
-                    }
-                });
-            });
-
-
-        })
-
-
-        function handleFileSelect(event) {
-            const file = event.target.files[0];
-            document.getElementById("fileNameInput").value = file.name;
-        }
-
-
     </script>
 @endpush
-

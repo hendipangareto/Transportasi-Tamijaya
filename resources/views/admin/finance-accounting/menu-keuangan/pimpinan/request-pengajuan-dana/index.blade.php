@@ -137,7 +137,7 @@
                                                     @php
                                                         if($terpilih->count() > 0){
                                                     @endphp
-                                                    <form action="{{route('master-logistik-setuju-terpilih-pengajuan-pembelian')}}" class="d-inline" method="post">
+                                                    <form action="{{route('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-disetuju-pimpinan')}}" class="d-inline" method="post">
                                                         @csrf
                                                         @foreach ($terpilih as $terpilihItem)
                                                             <input type="hidden" name="id_qs" value="{{$terpilihItem->id}}">

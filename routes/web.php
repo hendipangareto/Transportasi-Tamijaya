@@ -525,7 +525,10 @@ Route::group(
                     //==================================Pengajuan Pembelian
                     Route::prefix('pengajuan-pembelian')->group(function () {
                         Route::get('/list-pengajuan-pembelian', 'MasterLogistik\PengajuanPembelianController@getPengajuanPembelian')->name('master-logistik-list-pengajuan-pembelian');
+
+                        Route::get('/detail-pengajuan-pembelian/{id}', 'MasterLogistik\PengajuanPembelianController@detailPengajuanPembelian')->name('master-logistik-detail-pengajuan-pembelian');
                         Route::post('/tambah-pengajuan-pembelian', 'MasterLogistik\PengajuanPembelianController@TambahPengajuanPembelian')->name('master-logistik-tambah-pengajuan-pembelian');
+                        Route::post('/tambah-item-pembelian', 'MasterLogistik\PengajuanPembelianController@TambahItemPembelian')->name('master-logistik-tambah-item-pembelian');
 
                         Route::post('/terpilih-pengajuan-pembelian', 'MasterLogistik\PengajuanPembelianController@terpilih')->name('master-logistik-terpilih-pengajuan-pembelian');
                         Route::post('/terpilih-delete-pengajuan-pembelian', 'MasterLogistik\PengajuanPembelianController@terpilihDelete')->name('master-logistik-terpilih-delete-pengajuan-pembelian');
@@ -780,6 +783,13 @@ Route::group(
                     Route::get('/rekap', 'FinanceAccounting\MenuKeuangan\Administrasi\PengajuanDanaController@rekap')->name('finance-accounting-menu-keuangan-administrasi-pengajuan-dana-rekap');
                     Route::get('/rekap/detail-rekap', 'FinanceAccounting\MenuKeuangan\Administrasi\PengajuanDanaController@rekapDetail')->name('finance-accounting-menu-keuangan-administrasi-pengajuan-dana-rekap-detail');
                 });
+
+                Route::prefix('disetujui-pimpinan')->group(function () {
+                    Route::get('/', 'FinanceAccounting\MenuKeuangan\Administrasi\PersetujuanPimpinanController@DiSetujuiPimpinan')->name('finance-accounting-menu-keuangan-administrasi-disetujui-pimpinan');
+                    Route::get('/dana-ditransfer/{id}', 'FinanceAccounting\MenuKeuangan\Administrasi\PersetujuanPimpinanController@DanaDitransfer')->name('finance-accounting-menu-keuangan-administrasi-dana-ditransfer');
+                    Route::get('/dana-chas/{id}', 'FinanceAccounting\MenuKeuangan\Administrasi\PersetujuanPimpinanController@DanaChas')->name('finance-accounting-menu-keuangan-administrasi-dana-chas');
+                });
+
                 Route::prefix('request-gaji')->group(function () {
                     Route::get('/', 'FinanceAccounting\MenuKeuangan\Administrasi\RequestGajiController@index')->name('finance-accounting-menu-keuangan-administrasi-request-gaji-index');
                 });
@@ -838,6 +848,7 @@ Route::group(
                 Route::get('/approval-pengajuan', 'FinanceAccounting\MenuKeuangan\Pimpinan\RequestPengajuanDanaController@approvalPengajuan')->name('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-approval-pengajuan');
                 Route::get('/disetujui-pengajuan/{id}', 'FinanceAccounting\MenuKeuangan\Pimpinan\RequestPengajuanDanaController@DisetujuiPengajuanPembelian')->name('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-disetujui-pengajuan');
                 Route::get('/ditolak-pengajuan/{id}', 'FinanceAccounting\MenuKeuangan\Pimpinan\RequestPengajuanDanaController@DitolakPengajuanPembelian')->name('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-ditolak-pengajuan');
+                Route::post('/dana-disetuju-pimpinan', 'FinanceAccounting\MenuKeuangan\Pimpinan\RequestPengajuanDanaController@DataDisetujiPimpinan')->name('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-disetuju-pimpinan');
 
 
             });

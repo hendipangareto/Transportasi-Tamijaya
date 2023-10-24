@@ -4,12 +4,13 @@ namespace App\Models\MasterDataLogistik;
 
 use Illuminate\Database\Eloquent\Model;
 
-class QsActual extends Model
+class TambahItem extends Model
 {
-    protected $table = 'qs_actuals';
+    protected $table = 'tambah_item';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'kode_pengajuan',
+
+        'qs_actual_id',
         'item',
         'harga',
         'kuantitas',
@@ -18,13 +19,7 @@ class QsActual extends Model
         'kategori_id',
         'satuan_id',
         'catatan_pembelian',
-        'batas_waktu_pembayaran',
-        'tanggal_pengajuan',
-
     ];
-    public function tambahItems()
-    {
-        return $this->hasMany(TambahItem::class);
-    }
 }
+
 

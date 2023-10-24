@@ -7,6 +7,7 @@ use App\Models\MasterData\Satuan;
 use App\Models\MasterDataLogistik\Kategori;
 use App\Models\MasterDataLogistik\PengajuanPembelian;
 use App\Models\MasterDataLogistik\QsActual;
+use App\Models\MasterDataLogistik\TambahItem;
 use App\Models\MasterDataLogistik\Toko;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -20,7 +21,7 @@ class PengajuanPembelianController
         $toko = Toko::get();
         $kategori = Kategori::get();
 
-        $qsActual  =  QsActual::select("qs_actuals.*", 'tokos.nama_toko as toko', 'satuans.nama_satuan as satuan', 'kategori.nama_kategori as kategori')
+        $qsActual = QsActual::select("qs_actuals.*", 'tokos.nama_toko as toko', 'satuans.nama_satuan as satuan', 'kategori.nama_kategori as kategori')
             ->join('tokos', 'tokos.id', '=', 'qs_actuals.toko_id')
             ->join('satuans', 'satuans.id', '=', 'qs_actuals.satuan_id')
             ->join('kategori', 'kategori.id', '=', 'qs_actuals.kategori_id')
@@ -28,14 +29,14 @@ class PengajuanPembelianController
             ->get();
 
 
-        $terpilih =  QsActual::select("qs_actuals.*", 'tokos.nama_toko as toko', 'satuans.nama_satuan as satuan', 'kategori.nama_kategori as kategori')
+        $terpilih = QsActual::select("qs_actuals.*", 'tokos.nama_toko as toko', 'satuans.nama_satuan as satuan', 'kategori.nama_kategori as kategori')
             ->join('tokos', 'tokos.id', '=', 'qs_actuals.toko_id')
             ->join('satuans', 'satuans.id', '=', 'qs_actuals.satuan_id')
             ->join('kategori', 'kategori.id', '=', 'qs_actuals.kategori_id')
             ->where('qs_actuals.status', '=', 2)
             ->get();
 
-        $pimpinan =  QsActual::select("qs_actuals.*", 'tokos.nama_toko as toko', 'satuans.nama_satuan as satuan', 'kategori.nama_kategori as kategori')
+        $pimpinan = QsActual::select("qs_actuals.*", 'tokos.nama_toko as toko', 'satuans.nama_satuan as satuan', 'kategori.nama_kategori as kategori')
             ->join('tokos', 'tokos.id', '=', 'qs_actuals.toko_id')
             ->join('satuans', 'satuans.id', '=', 'qs_actuals.satuan_id')
             ->join('kategori', 'kategori.id', '=', 'qs_actuals.kategori_id')
@@ -45,57 +46,49 @@ class PengajuanPembelianController
         return view('admin.master-logistik.pengajuan-pembelian.data-pembelian', compact('qsActual', 'terpilih', 'pimpinan', 'satuan', 'toko', 'kategori'));
     }
 
-    public function terpilih(Request $request){
+    public function terpilih(Request $request)
+    {
         DB::beginTransaction();
         try {
-            if(count($request->id_qs) > 0){
-                foreach ($request->id_qs as $key => $val){
+            if (count($request->id_qs) > 0) {
+                foreach ($request->id_qs as $key => $val) {
                     $qsActual = QsActual::find($val);
                     $qsActual->status = 2;
                     $qsActual->save();
                 }
             }
             DB::commit();
-            Session::flash('message', ['Berhasil mengajukan dana, akan ditinjau Admininstrasi !','success']);
+            Session::flash('message', ['Berhasil mengajukan dana, akan ditinjau Admininstrasi !', 'success']);
         } catch (\Exception $e) {
             DB::rollback();
-            Session::flash('message', ['Gagal mengajukan dana','error']);
+            Session::flash('message', ['Gagal mengajukan dana', 'error']);
         }
         return redirect()->route('master-logistik-list-pengajuan-pembelian');
     }
 
 
-    public function terpilihDelete(Request $request){
+    public function terpilihDelete(Request $request)
+    {
         $id_qs = $request->id_qs;
         $qsActual = QsActual::find($id_qs);
         $qsActual->status = 3;
         $qsActual->save();
 
-        Session::flash('message', ['Berhasil menolak pengajuan data','success']);
+        Session::flash('message', ['Berhasil menolak pengajuan data, akan dikembalikan pada rekap pengajuan pembelian', 'success']);
         return redirect()->route('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-index');
     }
 
 
-    public function statusTransfer($id)
+
+    public function prosesTerpilih(Request $request)
     {
-        QsActual::where('id', $id)->update(['status_keuangan' => 3]);
-        return redirect()->route('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-index');
-    }
-
-    public function statusChas($id)
-    {
-        QsActual::where('id', $id)->update(['status_keuangan' => 4]);
-        return redirect()->route('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-index');
-    }
-
-    public function prosesTerpilih(Request $request){
 
         $id_qs = $request->id_qs;
         $qsActual = QsActual::find($id_qs);
         $qsActual->status = 4;
         $qsActual->save();
 
-        Session::flash('message', ['Berhasil menyetujui pengajuan data','success']);
+        Session::flash('message', ['Berhasil menambahkan data, akan diperiksa pimpinan!', 'success']);
         return redirect()->route('finance-accounting-menu-keuangan-administrasi-pengajuan-dana-index');
     }
 
@@ -106,7 +99,7 @@ class PengajuanPembelianController
         $qsActual->status = 2;
         $qsActual->save();
 
-        Session::flash('message', ['Berhasil menyetujui pengajuan data','success']);
+        Session::flash('message', ['Berhasil menyetujui pengajuan data', 'success']);
         return redirect()->route('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-index');
     }
 
@@ -117,9 +110,10 @@ class PengajuanPembelianController
         $qsActual->status = 3;
         $qsActual->save();
 
-        Session::flash('message', ['Berhasil konfirmasi ke pengaju','success']);
+        Session::flash('message', ['Berhasil konfirmasi ke pengaju', 'success']);
         return redirect()->route('finance-accounting-menu-keuangan-administrasi-pengajuan-dana-index');
     }
+
     public function TambahPengajuanPembelian(Request $request)
     {
         DB::beginTransaction();
@@ -158,6 +152,50 @@ class PengajuanPembelianController
     }
 
 
+    public function TambahItemPembelian(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $qsActual = new TambahItem();
+            $qsActual->qs_actual_id = $request->qs_actual_id;
+            $qsActual->item = $request->item;
+            $qsActual->harga = $request->harga;
+            $qsActual->kuantitas = $request->kuantitas;
+            $qsActual->cara_bayar = $request->cara_bayar;
+            $qsActual->toko_id = $request->toko_id;
+            $qsActual->satuan_id = $request->satuan_id;
+            $qsActual->kategori_id = $request->kategori_id;
+            $qsActual->catatan_pembelian = $request->catatan_pembelian;
+
+            dd($qsActual);
+            $qsActual->save();
+
+            DB::commit();
+            Session::flash('message', 'Berhasil menyimpan data pengajuan pembelian');
+            Session::flash('alert-class', 'alert-success');
+        } catch (\Exception $e) {
+            DB::rollback();
+            Session::flash('message', 'Gagal menyimpan data pengajuan pembelian');
+            Session::flash('alert-class', 'alert-danger');
+        }
+
+        return redirect()->route('master-logistik-list-pengajuan-pembelian');
+    }
+
+    public function detailPengajuanPembelian(Request $request, $id)
+    {
+        $satuan = Satuan::get();
+        $toko = Toko::get();
+        $kategori = Kategori::get();
+        $QsActual = QsActual::get();
+        $data = TambahItem::select("tambah_item.*", 'qs_actuals.kode_pengajuan as kode')
+            ->join('qs_actuals', 'qs_actuals.id', '=', 'tambah_item.qs_actual_id')
+            ->where('tambah_item.id', $id)
+            ->get();
+
+        return view('admin.master-logistik.pengajuan-pembelian.detail', compact('data', 'satuan', 'toko', 'kategori', 'QsActual'));
+    }
+
 
 //    public function AjukanPengajuanPembelian(Request $request)
 //    {
@@ -190,7 +228,6 @@ class PengajuanPembelianController
 //        return redirect()->route('admin.master-logistik.pengajuan-pembelian.rekap-pengajuan.index');
 //
 //    }
-
 
 
     public function UpdatePengajuanPembelian(Request $request, $id)
