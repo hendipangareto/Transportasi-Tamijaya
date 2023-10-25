@@ -9,9 +9,9 @@ class SatuanSeeder extends Seeder
     public function run()
     {
         Satuan::create([
-            'kode_satuan' => 'STN-001',
-            'nama_satuan' => 'pcs',
-            'deskripsi_satuan' => 'jumlah perpcs',
+            'kode_satuan' => 'STN-0101',
+            'nama_satuan' => 'Pcs',
+            'deskripsi_satuan' => 'jumlah per pcs'
         ]);
     }
 }

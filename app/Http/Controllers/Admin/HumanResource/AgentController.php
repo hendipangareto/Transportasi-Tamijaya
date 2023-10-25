@@ -15,21 +15,21 @@ class AgentController extends Controller
 {
 
 
-    public function getListAgent()
+    public function index()
     {
-        $provinces = Province::all();
-        $city = City::all();
-        $agent = Agent::select("agents.*", 'provinces.state_name as state', 'cities.city_name as city')
-            ->join('provinces', 'provinces.id', '=', 'agents.id_province')
-            ->join('cities', 'cities.id', '=', 'agents.id_city')
-            ->orderBy('provinces.id')
-            ->orderBy('cities.id')
+        $provinces = Province::get();
+        $city = City::get();
+
+        $data = DB::table('agent')
+            ->select('agent.*', 'provinces.state_name', 'cities.city_name')
+            ->join('provinces', 'agent.id_province', 'provinces.id')
+            ->join('cities', 'agent.id_city', 'cities.id')
             ->get();
 
-        return view('admin.human-resource.agent.index', compact('agent', 'city', 'agent', 'provinces'));
+        return view('admin.human-resource.agent.index', ['provinces' => $provinces, 'city' => $city, 'data' => $data]);
     }
 
-    public function TambahAgent(Request $request)
+    public function store(Request $request)
     {
 
         DB::beginTransaction();
@@ -50,6 +50,7 @@ class AgentController extends Controller
             $agent->agent_tlp = $request->agent_tlp;
             $agent->agent_email = $request->agent_email;
             $agent->agent_alamat = $request->agent_alamat;
+            $agent->agent_domicile = $agent->agent_alamat;
 
 //            dd($agent);
             $agent->save();
@@ -61,36 +62,38 @@ class AgentController extends Controller
             Session::flash('message', ['Gagal mengubah data agen', 'error']);
         }
 
-        return redirect()->route('human-resource.data-agent.list-data-agent');
+        return redirect()->route('human-resource.agent.index');
     }
 
 
-    public function UpdateAgent(Request $request, $id)
+    public function update(Request $request, $id)
     {
         DB::beginTransaction();
         try {
+
             $agent = Agent::findOrFail($id);
 
             $agent->agent_name = $request->agent_name_update;
-            $agent->agent_description = $request->agent_description_update;
-            $agent->id_city = $request->id_city_update;
             $agent->id_province = $request->id_province_update;
+            $agent->id_city = $request->update_city_name;
             $agent->agent_hp = $request->agent_hp_update;
             $agent->agent_tlp = $request->agent_tlp_update;
             $agent->agent_email = $request->agent_email_update;
             $agent->agent_alamat = $request->agent_alamat_update;
+            $agent->agent_description = $request->agent_description_update;
+            $agent->agent_domicile = $agent->agent_alamat;
 
-            dd($agent);
+//            dd($agent);
             $agent->save();
 
             DB::commit();
-            Session::flash('message', ['Berhasil mengubah data agen', 'success']);
+            Session::flash('message', ['Berhasil mengubah data agent', 'success']);
         } catch (\Exception $e) {
             DB::rollback();
-            Session::flash('message', ['Gagal mengubah data agen', 'error']);
+            Session::flash('message', ['Gagal mengubah data agent', 'error']);
         }
 
-        return redirect()->route('human-resource.data-agent.list-data-agent');
+        return redirect()->route('human-resource.agent.index');
     }
 
     public function DeleteAgent(Request $request)
@@ -110,15 +113,14 @@ class AgentController extends Controller
     public function AgentPDF()
     {
 
-        $agent = Agent::select("agents.*", 'provinces.state_name as state', 'cities.city_name as city')
-            ->join('provinces', 'provinces.id', '=', 'agents.id_province')
-            ->join('cities', 'cities.id', '=', 'agents.id_city')
-            ->orderBy('provinces.id')
-            ->orderBy('cities.id')
+        $agent = DB::table('agent')
+            ->select('agent.*', 'provinces.state_name', 'cities.city_name')
+            ->join('provinces', 'agent.id_province', 'provinces.id')
+            ->join('cities', 'agent.id_city', 'cities.id')
             ->get();
         $filename = 'agent' . "_" . now()->format('Y_m_d_H_i_s') . '.pdf';
 
-        $pdf = PDF::loadView('admin.human-resource.agent.cetak-pdf', compact('agent') );
+        $pdf = PDF::loadView('admin.human-resource.agent.cetak-pdf', compact('agent'));
 
         $pdf->setPaper('A4', 'portrait');
 
@@ -129,7 +131,7 @@ class AgentController extends Controller
 
 
         $canvas->page_text(550 / 2, 820, now()->format('d-m-Y'), null, 8);
-        $canvas->page_text(550 / 16, 820,  'PT Anugerah Karya Utami Gemilang', null, 8);
+        $canvas->page_text(550 / 16, 820, 'PT Anugerah Karya Utami Gemilang', null, 8);
         return $pdf->stream($filename);
     }
 

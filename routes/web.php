@@ -278,6 +278,7 @@ Route::group(
                 Route::get('/list-status', 'HumanResource\StatusController@getListStatus')->name('human-resource.status.list-status');
                 Route::post('/tambah-status', 'HumanResource\StatusController@TambahStatus')->name('human-resource.status.tambah-status');
                 Route::post('/update-status/{id}', 'HumanResource\StatusController@UpdateStatus')->name('human-resource.status.update-status');
+                Route::delete('/delete-status', 'HumanResource\StatusController@delete')->name('human-resource-status-delete');
 
                 Route::get('/tambah-data-aset', 'HumanResource\Aset\DataAsetController@getTambahDataAset')->name('master-keuangan.aset.data-aset.tambah-data-aset');
             });
@@ -286,16 +287,17 @@ Route::group(
                 Route::post('/simpan-satuan', 'HumanResource\SatuanController@SimpanSatuan')->name('human-resource.status.simpan-satuan');
                 Route::post('/update-satuan/{id}', 'HumanResource\SatuanController@UpdateSatuan')->name('human-resource.status.update-satuan');
                 Route::get('/delete-satuan/{id}', 'HumanResource\SatuanController@DeleteSatuan')->name('human-resource.status.delete-satuan');
+                Route::delete('/delete-satuan', 'HumanResource\SatuanController@delete')->name('human-resource.status.delete');
 
                 Route::get('/tambah-data-aset', 'HumanResource\Aset\DataAsetController@getTambahDataAset')->name('master-keuangan.aset.data-aset.tambah-data-aset');
             });
 
-            Route::prefix('data-agent')->group(function () {
-                Route::get('/list-data-agent', 'HumanResource\AgentController@getListAgent')->name('human-resource.data-agent.list-data-agent');
-                Route::post('/tambah-data-agent', 'HumanResource\AgentController@TambahAgent')->name('human-resource.data-agent.tambah-data-agent');
-                Route::post('/update-data-agent/{id}', 'HumanResource\AgentController@UpdateAgent')->name('human-resource.data-agent.update-data-agent');
+            Route::prefix('agent')->group(function () {
+                Route::get('/', 'HumanResource\AgentController@index')->name('human-resource.agent.index');
+                Route::post('/store', 'HumanResource\AgentController@store')->name('human-resource-data-agent-store');
+                Route::post('/update/{id}', 'HumanResource\AgentController@update')->name('human-resource-agent-update');
                 Route::delete('/delete-data-agent', 'HumanResource\AgentController@DeleteAgent')->name('human-resource.data-agent.delete-data-agent');
-                Route::get('/cetak-pdf-agent', 'HumanResource\AgentController@AgentPDF')->name('human-resource.data-agent.cetak-pdf-agent');
+                Route::get('/cetak-pdf-agent', 'HumanResource\AgentController@AgentPDF')->name('human-resource-agent-cetak-pdf-agent');
             });
 
 

@@ -8,31 +8,37 @@
                     <i class="bx bx-x"></i>
                 </button>
             </div>
-                        <form action="{{ route('human-resource.status.tambah-status') }}" method="post" enctype="multipart/form-data">
-                            @csrf
-                            <div class="modal-body">
-                                <input type="hidden" id="status_code" name="status_code" value="">
-{{--                                <label>Kode Status: </label>--}}
-{{--                                <div class="form-group">--}}
-{{--                                    <input type="text" readonly id="status_code" name="status_code"--}}
-{{--                                        class="form-control bg-transparent">--}}
-{{--                                </div>--}}
-                                <label>Nama Status: </label>
-                                <div class="form-group">
-                                    <input type="text" placeholder="Silahkan masukan nama Agent" id="status_name" name="status_name"
-                                        class="form-control">
-                                </div>
-                                <label>Deskripsi Status: </label>
-                                <div class="form-group">
-                                    <textarea class="form-control" name="status_description" id="status_description" cols="30"
-                                        rows="3" placeholder="Silahkan masukan deskripsi agent"></textarea>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="submit" id="edit-agent" class="btn btn-success mr-1"><i
-                                        class="bx bx-save mt"></i> Update</button>
-                            </div>
-                        </form>
+            <form action="{{ route('human-resource.status.tambah-status') }}" method="post"
+                  enctype="multipart/form-data">
+                @csrf
+                <input type="hidden" id="id" name="id">
+                <div class="modal-body">
+                    <input type="hidden" id="status_code" name="status_code" value="">
+                    {{--                                <label>Kode Status: </label>--}}
+                    {{--                                <div class="form-group">--}}
+                    {{--                                    <input type="text" readonly id="status_code" name="status_code"--}}
+                    {{--                                        class="form-control bg-transparent">--}}
+                    {{--                                </div>--}}
+                    <label>Nama Status: </label>
+                    <div class="form-group">
+                        <input type="text" placeholder="Silahkan masukan status" id="status_name" name="status_name"
+                               class="form-control">
+                    </div>
+                    <label>Deskripsi Status: </label>
+                    <div class="form-group">
+                                    <textarea class="form-control" name="status_description" id="status_description"
+                                              cols="30"
+                                              rows="3" placeholder="Silahkan masukan deskripsi agent"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="float-right">
+                        <button type="submit" id="edit-agent" class="btn btn-success"><i
+                                class="bx bx-check-circle"></i> Simpan
+                        </button>
+                    </div>
+                </div>
+            </form>
 
 
         </div>

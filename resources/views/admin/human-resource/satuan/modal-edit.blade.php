@@ -31,8 +31,10 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-success mr-1"  ><i
-                            class="bx bx-save mt"></i> Simpan</button>
+                    <div class="float-right">
+                        <button type="submit" class="btn btn-warning"><i
+                                class="bx bx-check-circle"></i> Ubah</button>
+                    </div>
                 </div>
             </form>
 

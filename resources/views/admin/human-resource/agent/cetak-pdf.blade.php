@@ -39,9 +39,6 @@
         .font{
             font-size: 8pt !important;
         }
-        .posisi{
-            text-align: center;
-        }
     </style>
 </head>
 <body>
@@ -54,36 +51,36 @@
 <table class="font">
     <thead>
     <tr >
-        <th class="w-2p posisi">No</th>
-        <th class="w-10p posisi">Kode Agen</th>
-        <th class="w-25p posisi">Nama Agen</th>
-        <th class="w-25p posisi">Provinsi</th>
-        <th class="w-25p posisi">Kabupaten/Kota</th>
-        <th class="w-10p posisi">Hand Phone</th>
-        <th class="w-10p posisi">Telepon</th>
-        <th class="w-10p posisi">Email </th>
-        <th class="w-10p posisi">Alamat </th>
-        <th class="w-10p posisi">Keterangan </th>
+        <th class="w-3p">No</th>
+        <th class="w-5p">Kode Agen</th>
+        <th class="w-15p">Nama Agen</th>
+        <th class="w-15p">Provinsi</th>
+        <th class="w-15p">Kabupaten/Kota</th>
+        <th class="w-10p">Hand Phone</th>
+        <th class="w-10p">Telepon</th>
+        <th class="w-10p">Email </th>
+        <th class="w-15p">Alamat </th>
+        <th class="w-15p">Keterangan </th>
     </tr>
     </thead>
     <tbody >
 
     @forelse ($agent as $item)
         <tr>
-            <td class="posisi">{{ $loop->iteration }} </td>
-            <td class="posisi">{{ $item->agent_code }}</td>
-            <td class="posisi">{{ $item->agent_name }}</td>
-            <td class="posisi">{{ $item->state }}</td>
-            <td class="posisi">{{ $item->city }}</td>
-            <td class="posisi">{{ $item->agent_hp }}</td>
-            <td class="posisi">{{ $item->agent_tlp }}</td>
-            <td class="posisi">{{ $item->agent_email }}</td>
-            <td class="posisi">{{ $item->agent_alamat }}</td>
-            <td class="posisi">{{ $item->agent_description }}</td>
+            <td>{{ $loop->iteration }} </td>
+            <td>{{ $item->agent_code }}</td>
+            <td>{{ $item->agent_name }}</td>
+            <td>{{ $item->state_name }}</td>
+            <td>{{ $item->city_name }}</td>
+            <td>{{ $item->agent_hp }}</td>
+            <td>{{ $item->agent_tlp }}</td>
+            <td>{{ $item->agent_email }}</td>
+            <td>{{ $item->agent_alamat }}</td>
+            <td>{{ $item->agent_description }}</td>
 
     @empty
         <tr>
-            <td colspan="8" class="no-data">Data tidak ditemukan</td>
+            <td colspan="10" class="no-data">Data tidak ditemukan</td>
         </tr>
     @endforelse
     </tbody>
