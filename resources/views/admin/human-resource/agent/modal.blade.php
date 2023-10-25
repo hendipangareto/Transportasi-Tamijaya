@@ -8,28 +8,29 @@
                     <i class="bx bx-x"></i>
                 </button>
             </div>
-            <form action="{{ route('human-resource.data-agent.tambah-data-agent') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('human-resource-data-agent-store') }}" method="post"
+                  enctype="multipart/form-data">
                 @csrf
-                <div class="col-xxl">
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <input type="hidden" name="agent_code" id="agent_code">
-{{--                                <div class="row mb-1">--}}
-{{--                                    <label class="col-sm-3 col-form-label" for="basic-default-name">Kode</label>--}}
-{{--                                    <div class="col-sm-9">--}}
-{{--                                        <input type="text" class="form-control" id="basic-default-name" readonly/>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-                                <div class="row mb-1">
-                                    <label class="col-sm-3 col-form-label" for="basic-default-name">Nama Agent</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="agent_name" name="agent_name"/>
-                                    </div>
+                <div class="modal-body">
+                    <input type="hidden" name="agent_code" id="agent_code">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label" for="basic-default-name">Nama Agent</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="agent_name" name="agent_name"
+                                           placeholder="Silahkan masukan nama agent"/>
                                 </div>
-                            <div class="row mb-1">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group row">
                                 <label class="col-sm-3 col-form-label" for="basic-default-name">Provinsi</label>
                                 <div class="col-sm-9">
-                                    <select onchange="changeProvince()" id="id_province" name="id_province" class="form-control">
+                                    <select onchange="changeProvince()" id="id_province" name="id_province"
+                                            class="form-control">
                                         <option value="">Pilih Provinsi</option>
                                         @foreach ($provinces as $province)
                                             <option value="{{ $province->id }}">{{ $province->state_name }}</option>
@@ -37,7 +38,11 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="row mb-1">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group row">
                                 <label class="col-sm-3 col-form-label" for="basic-default-name">Kota</label>
                                 <div class="col-sm-9">
                                     <select name="id_city" id="id_city" class="form-control">
@@ -45,59 +50,73 @@
                                     </select>
                                 </div>
                             </div>
-
-
-                            <div class="row mb-1">
-                                    <label class="col-sm-3 col-form-label" for="basic-default-name">No. Telepon</label>
-                                    <div class="col-sm-9">
-                                        <input type="number" class="form-control" id="agent_tlp" name="agent_tlp"/>
-                                    </div>
-                                </div>
-                                <div class="row mb-1">
-                                    <label class="col-sm-3 col-form-label" for="basic-default-name">No. HP</label>
-                                    <div class="col-sm-9">
-                                        <input type="number" class="form-control" id="agent_hp" name="agent_hp"/>
-                                    </div>
-                                </div>
-                                <div class="row mb-1">
-                                    <label class="col-sm-3 col-form-label" for="basic-default-name">Email</label>
-                                    <div class="col-sm-9">
-                                        <input type="email" class="form-control" id="agent_email" name="agent_email"/>
-                                    </div>
-                                </div>
-                                <div class="row mb-1">
-                                    <label class="col-sm-3 col-form-label" for="basic-default-name">Alamat</label>
-                                    <div class="col-sm-9">
-                                      <textarea class="form-control" name="agent_alamat"
-                                                id="agent_alamat" cols="30"
-                                                rows="3">
-                                        </textarea>
-                                    </div>
-                                </div>
-                                <div class="row mb-1">
-                                    <label class="col-sm-3 col-form-label" for="basic-default-name">Keterangan</label>
-                                    <div class="col-sm-9">
-                                      <textarea class="form-control" name="agent_description"
-                                                id="agent_description" cols="30"
-                                                rows="3">
-                                        </textarea>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="submit" id="edit-agent" class="btn btn-success mr-1"><i
-                                            class="bx bx-save"></i> Submit
-                                    </button>
-                                </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label" for="basic-default-name">No. Telepon</label>
+                                <div class="col-sm-9">
+                                    <input type="number" class="form-control" id="agent_tlp" name="agent_tlp"
+                                           placeholder="Masukan no telepon"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label" for="basic-default-name">No. HP</label>
+                                <div class="col-sm-9">
+                                    <input type="number" class="form-control" id="agent_hp" name="agent_hp"
+                                           placeholder="Masukan no hp"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label" for="basic-default-name">Email</label>
+                                <div class="col-sm-9">
+                                    <input type="email" class="form-control" id="agent_email" name="agent_email"
+                                           placeholder="Masukan email"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label" for="basic-default-name">Alamat</label>
+                                <div class="col-sm-9">
+                                    <textarea id="agent_alamat" name="agent_alamat" class="form-control"
+                                              placeholder="Silahkan masukan alamat"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label" for="basic-default-name">Keterangan</label>
+                                <div class="col-sm-9">
+                                    <textarea id="agent_description" name="agent_description" class="form-control"
+                                              placeholder="Silahkan masukan deskripsi"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" id="edit-agent" class="btn btn-success"><i
+                            class="bx bx-check-circle"></i> Simpan
+                    </button>
                 </div>
             </form>
         </div>
     </div>
 </div>
-
-
-
 
 {{--DETAIL AGENT--}}
 <div class="modal fade text-left" id="modal-detail-agent" tabindex="-1" role="dialog" aria-labelledby="modal-title"

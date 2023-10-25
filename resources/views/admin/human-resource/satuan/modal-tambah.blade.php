@@ -21,16 +21,16 @@
                     <label>Deskripsi Satuan: </label>
                     <div class="form-group">
                                     <textarea class="form-control" name="deskripsi_satuan" id="deskripsi_satuan" cols="30"
-                                              rows="3" placeholder="Silahkan masukan deskripsi agent"></textarea>
+                                              rows="3" placeholder="Silahkan masukan deskripsi satuan"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-success mr-1"  ><i
-                            class="bx bx-save mt"></i> Simpan</button>
+                    <div class="float-right">
+                        <button type="submit" class="btn btn-success"><i
+                                class="bx bx-check-circle"></i> Simpan</button>
+                    </div>
                 </div>
             </form>
-
-
         </div>
     </div>
 </div>

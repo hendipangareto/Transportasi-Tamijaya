@@ -3,12 +3,12 @@
     <div class="content-header-left col-12 mb-2 mt-1">
         <div class="row breadcrumbs-top">
             <div class="col-12">
-                <h5 class="content-header-title float-left pr-1 mb-0">Human Resource</h5>
+                <h5 class="content-header-title float-left pr-1 mb-0">Master Umum</h5>
                 <div class="breadcrumb-wrapper col-12">
                     <ol class="breadcrumb p-0 mb-0">
                         <li class="breadcrumb-item"><a href=" "><i class="bx bx-home-alt"></i></a>
                         </li>
-                        <li class="breadcrumb-item active">Data Agent
+                        <li class="breadcrumb-item active">Data Master Agent
                         </li>
                     </ol>
                 </div>
@@ -20,30 +20,20 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-header" style="background-color: #00b3ff">
+                <div class="card-header">
                     <div class="toolbar row ">
                         <div class="col-md-12 d-flex">
                             <h2 class="h4 ">List Data Agent</h2>
                             <div class="col ml-auto">
                                 <div class="dropdown float-right">
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-header">
-                    <div class="toolbar row ">
-                        <div class="col-md-12 d-flex">
-                            <h2 class="h4"></h2>
-                            <div class="col ml-auto">
-                                <div class="dropdown float-right">
-                                    <button type="button" class="btn btn-primary mr-1" data-toggle="modal" data-target="#TambahAgent"><i
-                                            class="bx bx-plus-circle"></i> Tambah Data</button>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                            data-target="#TambahAgent"><i
+                                            class="bx bx-plus-circle"></i> Tambah Data
+                                    </button>
                                     <a target="_blank"
-                                       href="{{ route('human-resource.data-agent.cetak-pdf-agent') }}"
+                                       href="{{route('human-resource-agent-cetak-pdf-agent')}}"
                                        type="button"
-                                       class="btn btn-danger text-white mr-1">
+                                       class="btn btn-danger text-white">
                                         <i class="bx bx-printer"></i> Report PDF
                                     </a>
                                 </div>
@@ -51,28 +41,31 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-content pt-1">
+                <div class="card-content">
                     <div class="card-body card-dashboard">
                         <table class="table table-bordered table-hover" id="table-agent">
                             <thead>
                             <tr>
-                                <th class="w-2p">No</th>
-                                <th class="w-10p">Kode</th>
-                                <th class="w-25p">Nama Agen</th>
-                                <th class="w-25p">Provinsi</th>
-                                <th class="w-25p">Kota</th>
+                                <th class="w-3p">No</th>
+                                <th class="w-5p">Kode</th>
+                                <th class="w-15p">Nama Agen</th>
+                                <th class="w-10p">Provinsi</th>
+                                <th class="w-10p">Kota</th>
                                 <th class="w-10p">Keterangan</th>
-                                <th class="w-10p text-center">Action</th>
+                                <th class="w-5p text-center">Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @forelse ($agent as $key => $item)
-                                <tr id="row-agent-{{ $item->id }}">
-                                    <td>{{ $key + 1 }}</td>
+                            @php
+                                $no = 1;
+                            @endphp
+                            @forelse ($data as $item)
+                                <tr>
+                                    <td>{{ $no++ }}</td>
                                     <td>{{ $item->agent_code }}</td>
                                     <td>{{ $item->agent_name }}</td>
-                                    <td>{{ $item->city }}</td>
-                                    <td>{{ $item->state }}</td>
+                                    <td>{{ $item->state_name }}</td>
+                                    <td>{{ $item->city_name }}</td>
                                     <td>{{ $item->agent_description }}</td>
 
                                     <td class="text-center">
@@ -85,8 +78,9 @@
                                                  data-toggle="modal" data-target="#EditAgent-{{ $item->id }}">
                                                 <i class="bx bx-edit font-size-base"></i>
                                             </div>
-                                            <div class="badge-circle badge-circle-sm badge-circle-danger pointer delete-button "
-                                                 data-id="{{ $item->id }}">
+                                            <div
+                                                class="badge-circle badge-circle-sm badge-circle-danger pointer delete-button "
+                                                data-id="{{ $item->id }}">
                                                 <i class="bx bx-trash font-size-base"></i>
                                             </div>
                                         </div>
@@ -94,9 +88,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="6" class="text-center">
-                                        Tidak Terdapat Data Agent
-                                    </td>
+                                    <td colspan="7" class="text-center">Data tidak ditemukan</td>
                                 </tr>
                             @endforelse
 
@@ -127,7 +119,7 @@
                 url: `/admin/master-data/province/get-city-by-province/${id_province}`,
                 method: "get",
                 dataType: "json",
-                success: function(response) {
+                success: function (response) {
                     var cities = response.data;
                     var html = `<option value="">Pilih Kabupaten/Kota</option>`;
                     cities.forEach(city => {
@@ -135,9 +127,8 @@
                     });
                     $("#id_city").html(html);
                 },
-                error: function(err) {
+                error: function (err) {
                     console.log(err);
-                    // Handle the error here, e.g., display an error message to the user
                 }
             });
         }
@@ -173,7 +164,7 @@
                                 });
                             },
                             error: function (error) {
-                                console.log(err);
+                                console.log(error);
                             }
                         });
                     }

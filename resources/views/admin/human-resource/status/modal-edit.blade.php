@@ -12,8 +12,8 @@
                 </div>
                 <form action="{{ route('human-resource.status.update-status', $item->id) }}" method="post" enctype="multipart/form-data">
                     @csrf
+                    <input type="hidden" id="id" name="id" value="{{$item->id}}">
                     <div class="modal-body">
-
                         <label>Kode Status: </label>
                         <div class="form-group">
                             <input type="text" readonly id="status_code" name="status_code"
@@ -31,8 +31,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" id="edit-agent" class="btn btn-success mr-1"><i
-                                class="bx bx-save mt"></i> Update</button>
+                        <button type="submit" id="edit-agent" class="btn btn-warning"><i
+                                class="bx bx-check-circle"></i> Ubah</button>
                     </div>
                 </form>
 

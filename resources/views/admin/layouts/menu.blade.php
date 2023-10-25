@@ -824,21 +824,21 @@
                            MASTER UMUM</span></a>
                     <ul class="menu-content">
                         <li class=" nav-item @if (Request::segment(3) == 'customer') active @endif"><a
-                                href="{{ route('customer.index') }}"><i class="bx bx-group"></i><span
+                                href="{{ route('customer.index') }}"><i class="bx bx-right-arrow-alt"></i><span
                                     class="menu-title">Data Customer</span></a>
                         </li>
-                        <li @if (Request::segment(2) == 'data-agent') class="active" @endif>
-                            <a href="{{ route('human-resource.data-agent.list-data-agent') }}"><i
-                                    class="bx bx-file"></i><span
+                        <li @if (Request::segment(3) == 'agent') class="active" @endif>
+                            <a href="{{ route('human-resource.agent.index') }}"><i
+                                    class="bx bx-right-arrow-alt"></i><span
                                     class="menu-item">Data
                                     Agent</span></a>
                         </li>
                         <li @if (Request::segment(2) == 'status') class="active" @endif>
-                            <a href="{{ route('human-resource.status.list-status') }}"><i class="bx bx-file"></i><span
+                            <a href="{{ route('human-resource.status.list-status') }}"><i class="bx bx-right-arrow-alt"></i><span
                                     class="menu-item">Status</span></a>
                         </li>
                         <li @if (Request::segment(2) == 'satuan') class="active" @endif>
-                            <a href="{{ route('human-resource.status.list-satuan') }}"><i class="bx bx-file"></i><span
+                            <a href="{{ route('human-resource.status.list-satuan') }}"><i class="bx bx-right-arrow-alt"></i><span
                                     class="menu-item">Satuan</span></a>
                         </li>
 
