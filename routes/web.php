@@ -817,6 +817,14 @@ Route::group(
                     Route::get('/', 'FinanceAccounting\MenuKeuangan\Kasir\LaporanDanaDariPemanduController@index')->name('finance-accounting-menu-keuangan-kasir-laporan-dana-dari-pemandu-index');
                     Route::get('/print-pdf', 'FinanceAccounting\MenuKeuangan\Kasir\LaporanDanaDariPemanduController@printLaporanPemanduById')->name('finance-accounting-menu-keuangan-kasir-laporan-dana-dari-pemandu-print-pdf');
                 });
+
+                //KASIR
+                Route::prefix('pengiriman-dana')->group(function () {
+                    Route::get('/', 'FinanceAccounting\MenuKeuangan\Kasir\PengirimanDanaController@index')->name('finance-accounting-menu-keuangan-kasir-pengiriman-dana-index');
+                    Route::post('/dana-dikirim', 'FinanceAccounting\MenuKeuangan\Kasir\PengirimanDanaController@DanaDikirim')->name('finance-accounting-menu-keuangan-kasir-pengiriman-dana-dikirim');
+                    Route::get('/print-pdf', 'FinanceAccounting\MenuKeuangan\Kasir\PengirimanDanaController@cetakKwitansi')->name('finance-accounting-menu-keuangan-kasir-pengiriman-dana-print-pdf');
+
+                });
             });
 
             Route::prefix('pengajuan-dana-user')->group(function () {

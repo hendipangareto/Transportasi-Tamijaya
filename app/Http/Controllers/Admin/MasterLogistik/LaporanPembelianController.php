@@ -6,6 +6,7 @@ use App\Models\MasterData\Bank;
 use App\Models\MasterData\Satuan;
 use App\Models\MasterDataLogistik\LaporanPembelian;
 use App\Models\MasterDataLogistik\PengajuanPembelian;
+use App\Models\MasterDataLogistik\QsActual;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -19,14 +20,16 @@ class LaporanPembelianController
 //            ->join('satuans', 'satuans.id', '=', 'laporan_pembelian.satuan_id')
 //            ->join('pengajuan_pembelian', 'laporan_pembelian.id', '=', 'laporan_pembelian.pengajuan_pembelian_id')
 //            ->get();
-        $detail =  PengajuanPembelian::select("pengajuan_pembelian.*", 'tokos.nama_toko as toko', 'satuans.nama_satuan as satuan', 'kategori.nama_kategori as kategori')
-            ->join('tokos', 'tokos.id', '=', 'pengajuan_pembelian.toko_id')
-            ->join('satuans', 'satuans.id', '=', 'pengajuan_pembelian.satuan_id')
-            ->join('kategori', 'kategori.id', '=', 'pengajuan_pembelian.kategori_id')
+        $detail =  QsActual::select("qs_actuals.*", 'tokos.nama_toko as toko', 'satuans.nama_satuan as satuan', 'kategori.nama_kategori as kategori')
+            ->join('tokos', 'tokos.id', '=', 'qs_actuals.toko_id')
+            ->join('satuans', 'satuans.id', '=', 'qs_actuals.satuan_id')
+            ->join('kategori', 'kategori.id', '=', 'qs_actuals.kategori_id')
+            ->where('qs_actuals.status', '=', 7)
             ->get();
 //        dd($detail);
         return view('admin.master-logistik.laporan-pembelian.index', compact('detail'));
     }
+
 
     public function DetailLaporanPembelian(Request $request, $id)
     {

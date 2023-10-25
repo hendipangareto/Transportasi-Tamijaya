@@ -79,8 +79,6 @@
                         <button class="btn btn-success">Dana Disetujui</button>
                     </div>
 
-
-
                     <form action="">
                         <div class="card-body card-dashboard">
                             <div class="table-responsive">
@@ -118,21 +116,21 @@
                                             <td>@currency($item->kuantitas * $item->harga)</td>
                                             @if($item->status_pimpinan == null)
                                                 <td><a class="badge bg-warning" style="color: #ffffff">Required</a></td>
-                                            @elseif($item->status_pimpinan == 1)
+                                            @elseif($item->status_pimpinan == 2)
                                                 <td><a class="badge bg-success" style="color: #ffffff">Disetujui Pimpinan</a></td>
                                             @endif
-                                            <td>
-                                                @if($item->status_keuangan != 3)
-                                                    <a href="{{ route('finance-accounting-menu-keuangan-administrasi-dana-ditransfer', $item->id) }}" class="btn btn-secondary" id="btn-setujui-{{ $item->id }}" onclick="changeButtonColor('btn-setujui-{{ $item->id }}'); this.disabled=true;">
-                                                        <i class="bx bx-check-circle"></i> Transfer Dana
-                                                    </a>
-                                                @endif
-                                                @if($item->status_keuangan != 4)
-                                                    <a href="{{ route('finance-accounting-menu-keuangan-administrasi-dana-chas', $item->id) }}" class="btn btn-primary" id="btn-tolak-{{ $item->id }}" onclick="changeButtonColor('btn-tolak-{{ $item->id }}'); this.disabled=true;">
-                                                        <i class="bx bx-x-circle"></i> Dana Khas
-                                                    </a>
-                                                @endif
-                                            </td>
+{{--                                            <td>--}}
+{{--                                                @if($item->status_keuangan != 3)--}}
+{{--                                                    <a href="{{ route('finance-accounting-menu-keuangan-administrasi-dana-ditransfer', $item->id) }}" class="btn btn-secondary" id="btn-setujui-{{ $item->id }}" onclick="changeButtonColor('btn-setujui-{{ $item->id }}'); this.disabled=true;">--}}
+{{--                                                        <i class="bx bx-check-circle"></i> Transfer Dana--}}
+{{--                                                    </a>--}}
+{{--                                                @endif--}}
+{{--                                                @if($item->status_keuangan != 4)--}}
+{{--                                                    <a href="{{ route('finance-accounting-menu-keuangan-administrasi-dana-chas', $item->id) }}" class="btn btn-primary" id="btn-tolak-{{ $item->id }}" onclick="changeButtonColor('btn-tolak-{{ $item->id }}'); this.disabled=true;">--}}
+{{--                                                        <i class="bx bx-x-circle"></i> Dana Khas--}}
+{{--                                                    </a>--}}
+{{--                                                @endif--}}
+{{--                                            </td>--}}
 
                                             <td>
                                                 <div class="d-flex">

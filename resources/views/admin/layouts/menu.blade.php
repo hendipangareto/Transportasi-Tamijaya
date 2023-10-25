@@ -346,6 +346,11 @@
                                     class="bx bx-right-arrow-alt"></i><span
                                     class="menu-item ">Laporan Dana Pemandu</span></a>
                         </li>
+                        <li @if (Request::segment(3) == 'pengiriman-dana') class="active" @endif>
+                            <a href="{{ route('finance-accounting-menu-keuangan-kasir-pengiriman-dana-index') }}"><i
+                                    class="bx bx-right-arrow-alt"></i><span
+                                    class="menu-item ">Pengirman Dana</span></a>
+                        </li>
                     </ul>
                 </li>
                 {{--Pengajuan Dana User--}}
