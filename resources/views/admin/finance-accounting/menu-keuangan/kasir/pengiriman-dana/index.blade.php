@@ -5,49 +5,52 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between" style="background-color: #00b3ff">
-                    <h4 class="card-title" style="color: black"><b>Kasir </b>| Pengiriman Dana</h4>
+                    <h4 class="card-title" style="color: black"><b>LOGISTIK </b>| Pengajuan Pembelian</h4>
                 </div>
                 <div class="card-content mt-2">
                     <div class="card-body card-dashboard">
-                        <form action="">
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label for="">Tanggal Pengajuan</label>
-                                        <input type="date" name="date_pengajuan" class="form-control">
-                                    </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <div class="card-header  pb-0  d-flex justify-content-between">
+                                    <h4 class="card-title"></h4>
+                                    <a href="" class="btn btn-primary mr-1" data-toggle="modal"
+                                       data-target="#TambahPengajuanPembelian"><i class="bx bx-plus-circle"></i> Tambah
+                                        Data</a>
                                 </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label for="">No Pengajuan</label>
-                                        <select name="no_pengajuan" class="form-control">
-                                            <option value="" selected disabled>Pilih no pengajuan</option>
-                                        </select>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label for="defaultFormControlInput" class="form-label">No
+                                                    Pengajuan</label>
+                                                <input type="text" class="form-control" id="defaultFormControlInput"
+                                                       placeholder="Auto generate"
+                                                       aria-describedby="defaultFormControlHelp" readonly/>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label for="defaultFormControlInput" class="form-label">Tanggal
+                                                    Pengajuan</label>
+                                                <input type="date" class="form-control" id="defaultFormControlInput"
+                                                       placeholder="John Doe"
+                                                       aria-describedby="defaultFormControlHelp"/>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label for="" style="color: white">Filter</label><br>
-                                        <button class="btn btn-outline-primary"> Filter <i class="bx bx-filter"></i>
-                                        </button>
-                                        <a href="#" class="btn btn-outline-secondary"> Reset <i class="bx bx-reset"></i></a>
+                                    <div class="col-md-6">
                                     </div>
                                 </div>
                             </div>
-                        </form>
+                        </div>
                     </div>
-                    <div class="card-header">
-                        <button class="btn btn-primary">Pengiriman Dana</button>
-                        <a href=" "
-                           class="btn btn-outline-secondary">Rekap Dana Diberikan</a>
 
-                    </div>
-                    <form action="{{ route('finance-accounting-menu-keuangan-kasir-pengiriman-dana-dikirim') }}"
-                          method="post" enctype="multipart/form-data">
+                    <form action="{{ route('master-logistik-terkirim-pengajuan-dana')}}" method="post">
                         @csrf
                         <div class="card-body" id="data-rencana-belanja">
                             <div class="card-title">
+
                                 <div class="table-responsive">
+
                                     <input type="hidden" id="totalQsActual"
                                            value="{{ $dataIndex ->count()}}">
                                     <table class="table datatables table-bordered table-hover table-data"
@@ -63,7 +66,7 @@
                                             <th class="w-10p">Harga Total <br> (Rp)</th>
                                             <th class="w-5p">Status Transaksi</th>
                                             <th class="w-10p">Pilih <input type="checkbox" id="checkAll"></th>
-                                            {{--                                            <th class="w-5p">Action</th>--}}
+                                            <th class="w-5p">Action</th>
                                         </tr>
                                         </thead>
                                         <tbody id="show-data-rencana-kerja-terpilih">
@@ -87,21 +90,45 @@
                                                 <td>{{$item->satuan}}</td>
                                                 <td>{{$item->harga}}</td>
                                                 <td>@currency($item->kuantitas * $item->harga)</td>
-                                                @if($item->status_pimpinan == null)
-                                                    <td><a class="badge bg-warning" style="color: #ffffff">Required</a>
-                                                    </td>
-                                                @elseif($item->status_pimpinan == 1)
-                                                    <td><a class="badge bg-warning" style="color: #ffffff">Pencairan
-                                                            Dana</a></td>
-                                                @endif
+                                                <td>
+                                                    <b style="color: {{ (strtoupper($item->cara_bayar) === 'LUNAS') ? '#0077ff' : ((strtoupper($item->cara_bayar) === 'HUTANG') ? '#ff000c' : '') }};  ">{{ strtoupper($item->cara_bayar) }}</b>
+                                                </td>
                                                 <td class="text-center" style="color: #ff000c">
-                                                    @if($item->tanggal_pengajuan !== null)
-                                                        <input class="check-terpilih-daftar-pilihan-pekerjaan"
-                                                               name="id_qs[]" value="{{$item->id}}" type="checkbox">
-                                                    @else
-                                                        <input class="check-disabled-enabled-{{$no}}" disabled
-                                                               name="id_qs[]" value="{{$item->id}}" type="checkbox">
-                                                    @endif
+                                                    @php
+                                                        if($item->tanggal_pengajuan !== null){
+                                                    @endphp
+                                                    <input class="check-terpilih-daftar-pilihan-pekerjaan"
+                                                           name="id_qs[]"
+                                                           value="{{$item->id}}" type="checkbox">
+                                                    @php
+                                                        }else{
+                                                    @endphp
+                                                    <input class="check-disabled-enabled-{{$no}}" disabled
+                                                           name="id_qs[]" value="{{$item->id}}" type="checkbox">
+                                                    @php
+                                                        }
+                                                    @endphp
+                                                </td>
+                                                <td class="text-center">
+                                                    <div class="d-flex">
+                                                        <div
+                                                            class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"
+                                                            data-toggle="modal"
+                                                            data-target="#DetailSubBagian-{{ $item->id }}">
+                                                            <i class="bx bx-info-circle font-size-base"></i>
+                                                        </div>
+                                                        <div
+                                                            class="badge-circle badge-circle-sm badge-circle-warning mr-1 pointer"
+                                                            data-toggle="modal"
+                                                            data-target="#UpdatePengajuanPembelian-{{ $item->id }}">
+                                                            <i class="bx bx-edit font-size-base"></i>
+                                                        </div>
+                                                        <div
+                                                            class="badge-circle badge-circle-sm badge-circle-danger pointer delete-button"
+                                                            data-id="{{ $item->id }}">
+                                                            <i class="bx bx-trash font-size-base"></i>
+                                                        </div>
+                                                    </div>
                                                 </td>
 
                                             </tr>
@@ -115,6 +142,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="row mt-5 card-body">
                             <div class="col-md-6 col-12 ">
                                 <div class="row">
@@ -122,10 +150,9 @@
                                         <div class="card shadow-none bg-transparent border border-darken-4 mb-3">
                                             <div class="card-body">
                                                 <h5 class="card-title mt-1">Total Lunas/Cash</h5>
-                                                <p class="card-text" style="color: #9f191f" id="totalLunasValue">
+                                                <p class="card-text" style="color: #9f191f">
                                                     @currency($totalLunas)
                                                 </p>
-
                                             </div>
                                         </div>
                                     </div>
@@ -144,6 +171,7 @@
                             <div class="col-md-6 col-12">
                                 <div class="row">
                                     <div class="col-md-6">
+
                                     </div>
                                     <div class="col-md-6">
                                         <div class="card shadow-none bg-transparent border border-darken-4 mb-3">
@@ -173,14 +201,14 @@
         </div>
     </div>
 
+
+
     {{--    @include('admin.master-logistik.pengajuan-pembelian.modal-tambah')--}}
 @endsection
 
 @push('page-scripts')
     <script>
 
-
-        // =================================================================================================================
         $("#table-rekapitulasi-pekerjaan-terpilih").on("click", ".btn-hapus-item-pekerjaan-terpilih", function (e) {
             e.preventDefault();
             var form = $(this).parents('form');

@@ -25,27 +25,27 @@ class PengirimanDanaController extends Controller
         return view('admin.finance-accounting.menu-keuangan.kasir.pengiriman-dana.index', compact('dataIndex'));
     }
 
-    public function DanaDikirim(Request $request)
-    {
-        try {
-            DB::beginTransaction();
-            if (is_array($request->id_qs) && count($request->id_qs) > 0) {
-                foreach ($request->id_qs as $key => $val) {
-                    $dataIndex = QsActual::find($val);
-                    if ($dataIndex) {
-                        $dataIndex->status = 7;
-                        $dataIndex->save();
-                    }
-                }
-            }
-            DB::commit();
-            Session::flash('message', ['Berhasil mengajukan mengirimkan dana, akan masuk dalam rekap pengiriman dana!', 'success']);
-        } catch (\Exception $e) {
-            DB::rollback();
-            Session::flash('message', ['Gagal mengajukan dana', 'error']);
-        }
-        return redirect()->route('finance-accounting-menu-keuangan-kasir-pengiriman-dana-index');
-    }
+//    public function DanaDikirim(Request $request)
+//    {
+//        try {
+//            DB::beginTransaction();
+//            if (is_array($request->id_qs) && count($request->id_qs) > 0) {
+//                foreach ($request->id_qs as $key => $val) {
+//                    $dataIndex = QsActual::find($val);
+//                    if ($dataIndex) {
+//                        $dataIndex->status = 7;
+//                        $dataIndex->save();
+//                    }
+//                }
+//            }
+//            DB::commit();
+//            Session::flash('message', ['Berhasil mengajukan mengirimkan dana, akan masuk dalam rekap pengiriman dana!', 'success']);
+//        } catch (\Exception $e) {
+//            DB::rollback();
+//            Session::flash('message', ['Gagal mengajukan dana', 'error']);
+//        }
+//        return redirect()->route('finance-accounting-menu-keuangan-kasir-pengiriman-dana-index');
+//    }
 
     public function cetakKwitansi(Request $request)
     {

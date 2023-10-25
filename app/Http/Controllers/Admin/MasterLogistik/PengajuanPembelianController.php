@@ -46,6 +46,26 @@ class PengajuanPembelianController
         return view('admin.master-logistik.pengajuan-pembelian.data-pembelian', compact('qsActual', 'terpilih', 'pimpinan', 'satuan', 'toko', 'kategori'));
     }
 
+    public function LaporanDanaTerkirim(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            if (count($request->id_qs) > 0) {
+                foreach ($request->id_qs as $key => $val) {
+                    $qsActual = QsActual::find($val);
+                    $qsActual->status = 7;
+                    $qsActual->save();
+                }
+            }
+            DB::commit();
+            Session::flash('message', ['Berhasil mengajukan mengirimkan dana, akan masuk dalam rekap pengiriman dana!', 'success']);
+        } catch (\Exception $e) {
+            DB::rollback();
+            Session::flash('message', ['Gagal mengajukan dana', 'error']);
+        }
+        return redirect()->route('finance-accounting-menu-keuangan-kasir-pengiriman-dana-index');
+    }
+
     public function terpilih(Request $request)
     {
         DB::beginTransaction();
@@ -167,7 +187,7 @@ class PengajuanPembelianController
             $qsActual->kategori_id = $request->kategori_id;
             $qsActual->catatan_pembelian = $request->catatan_pembelian;
 
-            dd($qsActual);
+//            dd($qsActual);
             $qsActual->save();
 
             DB::commit();

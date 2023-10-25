@@ -533,6 +533,8 @@ Route::group(
                         Route::post('/tambah-item-pembelian', 'MasterLogistik\PengajuanPembelianController@TambahItemPembelian')->name('master-logistik-tambah-item-pembelian');
 
                         Route::post('/terpilih-pengajuan-pembelian', 'MasterLogistik\PengajuanPembelianController@terpilih')->name('master-logistik-terpilih-pengajuan-pembelian');
+                        Route::post('/dana-pengajuan-terkirim', 'MasterLogistik\PengajuanPembelianController@LaporanDanaTerkirim')->name('master-logistik-terkirim-pengajuan-dana');
+
                         Route::post('/terpilih-delete-pengajuan-pembelian', 'MasterLogistik\PengajuanPembelianController@terpilihDelete')->name('master-logistik-terpilih-delete-pengajuan-pembelian');
                         Route::post('/proses-terpilih-pengajuan-pembelian', 'MasterLogistik\PengajuanPembelianController@prosesTerpilih')->name('master-logistik-proses-terpilih-pengajuan-pembelian');
 
