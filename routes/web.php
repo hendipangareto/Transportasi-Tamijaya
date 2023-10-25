@@ -788,6 +788,8 @@ Route::group(
                     Route::get('/', 'FinanceAccounting\MenuKeuangan\Administrasi\PersetujuanPimpinanController@DiSetujuiPimpinan')->name('finance-accounting-menu-keuangan-administrasi-disetujui-pimpinan');
                     Route::get('/dana-ditransfer/{id}', 'FinanceAccounting\MenuKeuangan\Administrasi\PersetujuanPimpinanController@DanaDitransfer')->name('finance-accounting-menu-keuangan-administrasi-dana-ditransfer');
                     Route::get('/dana-chas/{id}', 'FinanceAccounting\MenuKeuangan\Administrasi\PersetujuanPimpinanController@DanaChas')->name('finance-accounting-menu-keuangan-administrasi-dana-chas');
+                    Route::get('/pengiriman-dana/{id}', 'FinanceAccounting\MenuKeuangan\Administrasi\PersetujuanPimpinanController@PengirimanDana')->name('finance-accounting-menu-keuangan-administrasi-pengiriman-dana');
+                    Route::post('/cairkan-dana-pengajuan', 'FinanceAccounting\MenuKeuangan\Administrasi\PersetujuanPimpinanController@CairkanDanaPengajuan')->name('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-cairkan-dana');
                 });
 
                 Route::prefix('request-gaji')->group(function () {
@@ -849,6 +851,8 @@ Route::group(
                 Route::get('/disetujui-pengajuan/{id}', 'FinanceAccounting\MenuKeuangan\Pimpinan\RequestPengajuanDanaController@DisetujuiPengajuanPembelian')->name('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-disetujui-pengajuan');
                 Route::get('/ditolak-pengajuan/{id}', 'FinanceAccounting\MenuKeuangan\Pimpinan\RequestPengajuanDanaController@DitolakPengajuanPembelian')->name('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-ditolak-pengajuan');
                 Route::post('/dana-disetuju-pimpinan', 'FinanceAccounting\MenuKeuangan\Pimpinan\RequestPengajuanDanaController@DataDisetujiPimpinan')->name('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-disetuju-pimpinan');
+
+
 
 
             });
