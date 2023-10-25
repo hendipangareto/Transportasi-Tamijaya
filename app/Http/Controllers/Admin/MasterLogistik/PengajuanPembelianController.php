@@ -110,7 +110,7 @@ class PengajuanPembelianController
         $qsActual->status = 3;
         $qsActual->save();
 
-        Session::flash('message', ['Berhasil konfirmasi ke pengaju', 'success']);
+        Session::flash('message', ['Berhasil konfirmasi ke user', 'success']);
         return redirect()->route('finance-accounting-menu-keuangan-administrasi-pengajuan-dana-index');
     }
 

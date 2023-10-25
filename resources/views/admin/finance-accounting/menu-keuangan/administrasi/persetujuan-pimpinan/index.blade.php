@@ -20,7 +20,7 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header justify-content-between" style="background-color: #00b3ff">
                     <div class="toolbar row ">
                         <div class="col-md-12 d-flex">
                             <h4 class="card-title">Rekap Pengajuan Dana</h4>
@@ -34,7 +34,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-content pt-1">
+                <div class="card-content pt-1 mt-1">
                     <div class="card-body">
                         <form action="">
                             <div class="row">
@@ -97,8 +97,9 @@
                                         <th class="w-10p">Harga Satuan <br> (Rp.)</th>
                                         <th class="w-10p">Harga Total <br> (Rp)</th>
                                         <th class="w-10p">Status Transaksi</th>
-                                        <th class="w-10p">Akun Perkiraan <input type="checkbox" id="check-all"></th>
-                                        <th class="w-10p">Approve Keuangan <input type="checkbox" id="check-all"></th>
+                                        <th class="w-10p">Detail</th>
+{{--                                        <th class="w-10p">Akun Perkiraan <input type="checkbox" id="check-all"></th>--}}
+{{--                                        <th class="w-10p">Approve Keuangan <input type="checkbox" id="check-all"></th>--}}
                                     </tr>
                                     </thead>
                                     <tbody id="show-data-rencana-kerja-terpilih">
@@ -122,32 +123,29 @@
                                             @endif
                                             <td>
                                                 @if($item->status_keuangan != 3)
-                                                    <a href="{{ route('finance-accounting-menu-keuangan-administrasi-dana-ditransfer', $item->id) }}" class="btn btn-primary" id="btn-setujui-{{ $item->id }}" onclick="changeButtonColor('btn-setujui-{{ $item->id }}'); this.disabled=true;">
+                                                    <a href="{{ route('finance-accounting-menu-keuangan-administrasi-dana-ditransfer', $item->id) }}" class="btn btn-secondary" id="btn-setujui-{{ $item->id }}" onclick="changeButtonColor('btn-setujui-{{ $item->id }}'); this.disabled=true;">
                                                         <i class="bx bx-check-circle"></i> Transfer Dana
                                                     </a>
                                                 @endif
                                                 @if($item->status_keuangan != 4)
-                                                    <a href="{{ route('master-logistik-tolak-pengajuan-pembelian', $item->id) }}" class="btn btn-danger" id="btn-tolak-{{ $item->id }}" onclick="changeButtonColor('btn-tolak-{{ $item->id }}'); this.disabled=true;">
+                                                    <a href="{{ route('finance-accounting-menu-keuangan-administrasi-dana-chas', $item->id) }}" class="btn btn-primary" id="btn-tolak-{{ $item->id }}" onclick="changeButtonColor('btn-tolak-{{ $item->id }}'); this.disabled=true;">
                                                         <i class="bx bx-x-circle"></i> Dana Khas
                                                     </a>
                                                 @endif
                                             </td>
 
                                             <td>
-                                                <div class="row d-flex">
-                                                    <div class="col-md-2">
-                                                        @if($danaDisetujui->count() > 0)
-                                                            <form action="{{ route('master-logistik-cairkan-dana-pengajuan-pembelian') }}" method="post" class="mb-1">
-                                                                @csrf
-                                                                <input type="hidden" name="id_qs" value="{{$item->id}}">
-                                                                <button type="submit" class="badge-circle badge-circle-sm badge-circle-success mr-1 pointer">
-                                                                    <span class="bx bx-check-circle"></span>
-                                                                </button>
-                                                            </form>
-                                                        @endif
+                                                <div class="d-flex">
+                                                    <div
+                                                        class="badge-circle badge-circle-sm badge-circle-primary pointer mr-1"
+                                                        title="view"
+                                                        data-toggle="modal" data-target="#">
+                                                        <a href="{{route('finance-accounting-menu-keuangan-administrasi-pengiriman-dana', $item->id)}}"
+                                                           class="bx bx-show" style="color: white"></a>
                                                     </div>
                                                 </div>
                                             </td>
+
                                         </tr>
                                     @empty
                                         <tr>
@@ -158,39 +156,39 @@
                                 </table>
                             </div>
                         </div>
-                        <div class="card-footer">
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label for="">Total Cash</label>
-                                        <input type="text" class="form-control" placeholder="Rp" readonly>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label for="">Total Hutang</label>
-                                        <input type="text" class="form-control" placeholder="Rp" readonly>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label for="">Total Pengajuan Dana</label>
-                                        <input type="text" class="form-control" placeholder="Rp" readonly>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="float-right">
-                                        <button class="btn btn-success"><i class="bx bx-check-circle"></i> Simpan</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+{{--                        <div class="card-footer">--}}
+{{--                            <div class="row">--}}
+{{--                                <div class="col-md-2">--}}
+{{--                                    <div class="form-group">--}}
+{{--                                        <label for="">Total Cash</label>--}}
+{{--                                        <input type="text" class="form-control" placeholder="Rp" readonly>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="col-md-2">--}}
+{{--                                    <div class="form-group">--}}
+{{--                                        <label for="">Total Hutang</label>--}}
+{{--                                        <input type="text" class="form-control" placeholder="Rp" readonly>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="col-md-6">--}}
+{{--                                    <div class="form-group">--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="col-md-2">--}}
+{{--                                    <div class="form-group">--}}
+{{--                                        <label for="">Total Pengajuan Dana</label>--}}
+{{--                                        <input type="text" class="form-control" placeholder="Rp" readonly>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <div class="row">--}}
+{{--                                <div class="col-md-12">--}}
+{{--                                    <div class="float-right">--}}
+{{--                                        <button class="btn btn-success"><i class="bx bx-check-circle"></i> Simpan</button>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                     </form>
 
                 </div>
