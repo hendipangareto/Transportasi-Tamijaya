@@ -224,7 +224,7 @@
 
                             <div class="col-md-12">
                                 <div class="float-left">
-                                    <a class="btn btn-danger" target="_blank"  href="{{ route('finance-accounting-menu-keuangan-kasir-pengiriman-dana-print-pdf') }}" id="cetakBtn" style="display: none;"><i class="bx bx-printer"></i> Cetak Kwitansi</a>
+                                    <a class="btn btn-danger" target="_blank"  href="{{ route('finance-accounting-menu-keuangan-kasir-pengiriman-dana-print-kwitansi-pengajuan-dana') }}" id="cetakBtn" style="display: none;"><i class="bx bx-printer"></i> Cetak Kwitansi</a>
                                 </div>
 {{--                                <div class="float-right">--}}
 {{--                                    <button class="btn btn-primary" onclick="submitForm()"><i class="bx bx-check"></i> Submit</button>--}}

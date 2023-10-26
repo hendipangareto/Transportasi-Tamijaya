@@ -139,6 +139,10 @@
                     $totalHutang = 0;
                 @endphp
                 @forelse ($dataIndex as $item)
+                    @php
+                        $totalLunas += (strtoupper($item->cara_bayar) === 'LUNAS') ? ($item->kuantitas * $item->harga) : 0;
+                        $totalHutang += (strtoupper($item->cara_bayar) === 'HUTANG') ? ($item->kuantitas * $item->harga) : 0;
+                    @endphp
                     <tr class="text-center">
                         <td>{{$loop->iteration}}</td>
                         <td>{{$item->toko}}</td>
@@ -165,13 +169,12 @@
         <br/>
         <div class="content">
             <p style="font-size: 10px !important; font-weight: bold">TOTAL LUNAS/CHAS : </p><br/>
-            <p style="font-size: 12px !important; background-color: #626262; font-weight: bold; color: #ffffff">Rp
-                4.500.000</p><br/>
+            <p style="font-size: 12px !important; background-color: #626262; font-weight: bold; color: #ffffff"> @currency($totalLunas)</p><br/>
             <p style="font-size: 10px !important; font-weight: bold">TOTAL HUTANG: </p><br/>
             <p style="font-size: 12px !important; background-color: #626262; font-weight: bold; color: #ffffff"># EMPAT
                 JUTA LIMA RATUS RIBU RUPIAH</p>
             <p style="font-size: 10px !important; font-weight: bold; margin-top: 10px">TOTAL PENGAJUAN DANA: </p><br/>
-            <p style="font-size: 12px !important; background-color: #626262; font-weight: bold; color: #ffffff">Rp.</p>
+            <p style="font-size: 12px !important; background-color: #626262; font-weight: bold; color: #ffffff"> @currency($totalLunas + $totalHutang)</p>
         </div>
     </div>
 </main>

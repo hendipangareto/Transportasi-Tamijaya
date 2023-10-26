@@ -830,7 +830,7 @@ Route::group(
                 Route::prefix('pengiriman-dana')->group(function () {
                     Route::get('/', 'FinanceAccounting\MenuKeuangan\Kasir\PengirimanDanaController@index')->name('finance-accounting-menu-keuangan-kasir-pengiriman-dana-index');
                     Route::post('/dana-dikirim', 'FinanceAccounting\MenuKeuangan\Kasir\PengirimanDanaController@DanaDikirim')->name('finance-accounting-menu-keuangan-kasir-pengiriman-dana-dikirim');
-                    Route::get('/print-pdf', 'FinanceAccounting\MenuKeuangan\Kasir\PengirimanDanaController@cetakKwitansi')->name('finance-accounting-menu-keuangan-kasir-pengiriman-dana-print-pdf');
+                    Route::get('/print-pdf', 'FinanceAccounting\MenuKeuangan\Kasir\PengirimanDanaController@cetakKwitansi')->name('finance-accounting-menu-keuangan-kasir-pengiriman-dana-print-kwitansi-pengajuan-dana');
 
                 });
             });

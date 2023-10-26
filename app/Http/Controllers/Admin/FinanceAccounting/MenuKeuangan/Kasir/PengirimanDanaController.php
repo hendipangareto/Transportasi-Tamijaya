@@ -61,7 +61,7 @@ class PengirimanDanaController extends Controller
 //        dd($dataIndex);
         $filename = 'QsActual' . "_" . now()->format('Y_m_d_H_i_s') . '.pdf';
 
-        $pdf = PDF::loadView('admin.finance-accounting.menu-keuangan.kasir.pengiriman-dana.print-pdf', compact('dataIndex'));
+        $pdf = PDF::loadView('admin.finance-accounting.menu-keuangan.kasir.pengiriman-dana.kwitansi-pengajuan-dana', compact('dataIndex'));
 
         $pdf->setPaper('A4', 'portrait');
 
