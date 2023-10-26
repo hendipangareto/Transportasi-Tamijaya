@@ -24,7 +24,7 @@
                     <div class="toolbar row ">
                         <div class="col-md-12 d-flex">
                             <h4 class="card-title" style="color: black"><b>Data Master </b>| <i
-                                    class="bx bx-mail-send"></i> Tata Kelola</h4>
+                                    class="bx bx-mail-send"></i> Template Surat</h4>
 
                             <div class="col ml-auto">
                                 <div class="dropdown float-right">
