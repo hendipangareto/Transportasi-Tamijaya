@@ -80,8 +80,9 @@
                                         <th class="w-10p">Harga Satuan <br> (Rp.)</th>
                                         <th class="w-10p">Harga Total <br> (Rp)</th>
                                         <th class="w-10p">Status Transaksi</th>
-                                        <th class="w-10p">Akun Perkiraan <input type="checkbox" id="check-all"></th>
-                                        <th class="w-10p">Approve Keuangan <input type="checkbox" id="check-all"></th>
+                                        <th class="w-10p">Aksi</th>
+{{--                                        <th class="w-10p">Akun Perkiraan <input type="checkbox" id="check-all"></th>--}}
+{{--                                        <th class="w-10p">Approve Keuangan <input type="checkbox" id="check-all"></th>--}}
                                     </tr>
                                     </thead>
                                     <tbody id="show-data-rencana-kerja-terpilih">
@@ -104,7 +105,7 @@
                                             @elseif($item->status_pimpinan == 1)
                                                 <td><a class="badge bg-success" style="color: #ffffff">Disetujui Pimpinan</a></td>
                                             @endif
-                                            <td></td>
+{{--                                            <td></td>--}}
 
                                             <td>
                                                 <div class="row d-flex">

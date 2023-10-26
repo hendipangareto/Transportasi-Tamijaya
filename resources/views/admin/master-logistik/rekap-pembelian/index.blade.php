@@ -19,9 +19,10 @@
                                             <div class="col-md-4">
                                                 <label for="defaultFormControlInput" class="form-label">No
                                                     Pengajuan</label>
-                                                <input type="text" class="form-control" id="defaultFormControlInput"
-                                                       placeholder="Auto generate"
-                                                       aria-describedby="defaultFormControlHelp" readonly/>
+                                                <select name="toko_id" id="toko_id" class="form-control">
+                                                    <option value=""></option>
+
+                                                </select>
                                             </div>
                                             <div class="col-md-4">
                                                 <label for="defaultFormControlInput" class="form-label">Tanggal

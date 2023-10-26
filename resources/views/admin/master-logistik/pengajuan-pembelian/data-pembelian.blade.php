@@ -21,13 +21,16 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="row">
+
                                             <div class="col-md-4">
                                                 <label for="defaultFormControlInput" class="form-label">No
                                                     Pengajuan</label>
-                                                <input type="text" class="form-control" id="defaultFormControlInput"
-                                                       placeholder="Auto generate"
-                                                       aria-describedby="defaultFormControlHelp" readonly/>
+                                                <select name="toko_id" id="toko_id" class="form-control">
+                                                    <option selected disabled>--Pilih No Pengajuan--</option>
+                                                    <option value=""></option>
+                                                </select>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <label for="defaultFormControlInput" class="form-label">Tanggal
                                                     Pengajuan</label>
@@ -44,112 +47,114 @@
                         </div>
                     </div>
 
-                        <form action="{{route('master-logistik-terpilih-pengajuan-pembelian')}}" method="post">
-                            @csrf
-                            <div class="card-body" id="data-rencana-belanja">
-                                <div class="card-title">
+                    <form action="{{route('master-logistik-terpilih-pengajuan-pembelian')}}" method="post">
+                        @csrf
+                        <div class="card-body" id="data-rencana-belanja">
+                            <div class="card-title">
 
-                                    <div class="table-responsive">
+                                <div class="table-responsive">
 
-                                        <input type="hidden" id="totalQsActual"
-                                               value="{{ $qsActual ->count()}}">
-                                        <table class="table datatables table-bordered table-hover table-data"
-                                               id="table-daftar-pengajuan-pembelian">
-                                            <thead>
+                                    <input type="hidden" id="totalQsActual"
+                                           value="{{ $qsActual ->count()}}">
+                                    <table class="table datatables table-bordered table-hover table-data"
+                                           id="table-daftar-pengajuan-pembelian">
+                                        <thead>
+                                        <tr class="text-center">
+                                            <th class="w-3p">No</th>
+                                            <th class="w-10p">Nama Toko</th>
+                                            <th class="w-5p">Nama Item</th>
+                                            <th class="w-8p">Kuantitas</th>
+                                            <th class="w-10p">Satuan</th>
+                                            <th class="w-10p">Harga Satuan <br> (Rp.)</th>
+                                            <th class="w-10p">Harga Total <br> (Rp)</th>
+                                            <th class="w-5p">Status Transaksi</th>
+                                            <th class="w-10p">Pilih <input type="checkbox" id="checkAll"></th>
+                                            <th class="w-5p">Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="show-data-rencana-kerja-terpilih">
+                                        @php
+                                            $no = 1;
+                                        @endphp
+                                        @php
+                                            $totalLunas = 0;
+                                            $totalHutang = 0;
+                                        @endphp
+                                        @forelse ($qsActual as $item)
+                                            @php
+                                                $totalLunas += (strtoupper($item->cara_bayar) === 'LUNAS') ? ($item->kuantitas * $item->harga) : 0;
+                                                $totalHutang += (strtoupper($item->cara_bayar) === 'HUTANG') ? ($item->kuantitas * $item->harga) : 0;
+                                            @endphp
                                             <tr class="text-center">
-                                                <th class="w-3p">No</th>
-                                                <th class="w-10p">Nama Toko</th>
-                                                <th class="w-5p">Nama Item</th>
-                                                <th class="w-8p">Kuantitas</th>
-                                                <th class="w-10p">Satuan</th>
-                                                <th class="w-10p">Harga Satuan <br> (Rp.)</th>
-                                                <th class="w-10p">Harga Total <br> (Rp)</th>
-                                                <th class="w-5p">Status Transaksi</th>
-                                                <th class="w-10p">Pilih <input type="checkbox" id="checkAll"></th>
-                                                <th class="w-5p">Action</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody id="show-data-rencana-kerja-terpilih">
-                                            @php
-                                                $no = 1;
-                                            @endphp
-                                            @php
-                                                $totalLunas = 0;
-                                                $totalHutang = 0;
-                                            @endphp
-                                            @forelse ($qsActual as $item)
-                                                @php
-                                                    $totalLunas += (strtoupper($item->cara_bayar) === 'LUNAS') ? ($item->kuantitas * $item->harga) : 0;
-                                                    $totalHutang += (strtoupper($item->cara_bayar) === 'HUTANG') ? ($item->kuantitas * $item->harga) : 0;
-                                                @endphp
-                                                <tr class="text-center">
-                                                    <td>{{$no++}}</td>
-                                                    <td>{{$item->toko}}</td>
-                                                    <td>{{$item->item}}</td>
-                                                    <td>{{$item->kuantitas}}</td>
-                                                    <td>{{$item->satuan}}</td>
-                                                    <td>{{$item->harga}}</td>
-                                                    <td>@currency($item->kuantitas * $item->harga)</td>
-                                                    <td><b style="color: {{ (strtoupper($item->cara_bayar) === 'LUNAS') ? '#0077ff' : ((strtoupper($item->cara_bayar) === 'HUTANG') ? '#ff000c' : '') }};  ">{{ strtoupper($item->cara_bayar) }}</b></td>
-                                                    <td class="text-center" style="color: #ff000c">
-                                                        @php
-                                                            if($item->tanggal_pengajuan !== null){
-                                                        @endphp
-                                                        <input class="check-terpilih-daftar-pilihan-pekerjaan"
-                                                               name="id_qs[]"
-                                                               value="{{$item->id}}" type="checkbox">
-                                                        @php
-                                                            }else{
-                                                        @endphp
-                                                        <input class="check-disabled-enabled-{{$no}}" disabled
-                                                               name="id_qs[]" value="{{$item->id}}" type="checkbox">
-                                                        @php
-                                                            }
-                                                        @endphp
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <div class="d-flex">
-                                                            <div
-                                                                class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"
-                                                                data-toggle="modal"
-                                                                data-target="#DetailSubBagian-{{ $item->id }}">
-                                                                <i class="bx bx-info-circle font-size-base"></i>
-                                                            </div>
-                                                            <div
-                                                                class="badge-circle badge-circle-sm badge-circle-warning mr-1 pointer"
-                                                                data-toggle="modal"
-                                                                data-target="#UpdatePengajuanPembelian-{{ $item->id }}">
-                                                                <i class="bx bx-edit font-size-base"></i>
-                                                            </div>
-                                                            <div
-                                                                class="badge-circle badge-circle-sm badge-circle-danger pointer delete-button"
-                                                                data-id="{{ $item->id }}">
-                                                                <i class="bx bx-trash font-size-base"></i>
-                                                            </div>
+                                                <td>{{$no++}}</td>
+                                                <td>{{$item->toko}}</td>
+                                                <td>{{$item->item}}</td>
+                                                <td>{{$item->kuantitas}}</td>
+                                                <td>{{$item->satuan}}</td>
+                                                <td>{{$item->harga}}</td>
+                                                <td>@currency($item->kuantitas * $item->harga)</td>
+                                                <td>
+                                                    <b style="color: {{ (strtoupper($item->cara_bayar) === 'LUNAS') ? '#0077ff' : ((strtoupper($item->cara_bayar) === 'HUTANG') ? '#ff000c' : '') }};  ">{{ strtoupper($item->cara_bayar) }}</b>
+                                                </td>
+                                                <td class="text-center" style="color: #ff000c">
+                                                    @php
+                                                        if($item->tanggal_pengajuan !== null){
+                                                    @endphp
+                                                    <input class="check-terpilih-daftar-pilihan-pekerjaan"
+                                                           name="id_qs[]"
+                                                           value="{{$item->id}}" type="checkbox">
+                                                    @php
+                                                        }else{
+                                                    @endphp
+                                                    <input class="check-disabled-enabled-{{$no}}" disabled
+                                                           name="id_qs[]" value="{{$item->id}}" type="checkbox">
+                                                    @php
+                                                        }
+                                                    @endphp
+                                                </td>
+                                                <td class="text-center">
+                                                    <div class="d-flex">
+                                                        <div
+                                                            class="badge-circle badge-circle-sm badge-circle-primary mr-1 pointer"
+                                                            data-toggle="modal"
+                                                            data-target="#DetailSubBagian-{{ $item->id }}">
+                                                            <i class="bx bx-info-circle font-size-base"></i>
                                                         </div>
-                                                    </td>
+                                                        <div
+                                                            class="badge-circle badge-circle-sm badge-circle-warning mr-1 pointer"
+                                                            data-toggle="modal"
+                                                            data-target="#UpdatePengajuanPembelian-{{ $item->id }}">
+                                                            <i class="bx bx-edit font-size-base"></i>
+                                                        </div>
+                                                        <div
+                                                            class="badge-circle badge-circle-sm badge-circle-danger pointer delete-button"
+                                                            data-id="{{ $item->id }}">
+                                                            <i class="bx bx-trash font-size-base"></i>
+                                                        </div>
+                                                    </div>
+                                                </td>
 
-                                                </tr>
-                                            @empty
-                                                <tr>
-                                                    <td colspan="15" class="text-center">Data tidak ditemukan</td>
-                                                </tr>
-                                            @endforelse
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="15" class="text-center">Data tidak ditemukan</td>
+                                            </tr>
+                                        @endforelse
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
-                            <div class="card-footer">
-                                <div class="float-right">
-                                    <button class="btn btn-warning d-inline" id="btn-submit-daftar-pilihan-pekerjaan"
-                                            disabled>
-                                        <i class="fe fe-check-circle"></i> Ajukan
-                                    </button>
-                                </div>
-                                <p>&nbsp;</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="float-right">
+                                <button class="btn btn-warning d-inline" id="btn-submit-daftar-pilihan-pekerjaan"
+                                        disabled>
+                                    <i class="fe fe-check-circle"></i> Ajukan
+                                </button>
                             </div>
-                        </form>
+                            <p>&nbsp;</p>
+                        </div>
+                    </form>
                     <div class="row mt-5 card-body">
                         <div class="col-md-6 col-12 ">
                             <div class="row">
@@ -210,7 +215,7 @@
         $("#table-rekapitulasi-pekerjaan-terpilih").on("click", ".btn-hapus-item-pekerjaan-terpilih", function (e) {
             e.preventDefault();
             var form = $(this).parents('form');
-            var rowData = $(this).closest("tr").find("td").map(function() {
+            var rowData = $(this).closest("tr").find("td").map(function () {
                 return $(this).text();
             }).get();
 

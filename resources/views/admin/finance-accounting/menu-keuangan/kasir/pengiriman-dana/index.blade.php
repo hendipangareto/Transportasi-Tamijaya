@@ -5,7 +5,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between" style="background-color: #00b3ff">
-                    <h4 class="card-title" style="color: black"><b>LOGISTIK </b>| Pengajuan Pembelian</h4>
+                    <h4 class="card-title" style="color: black"><b>Kasir </b>| Pengiriman Dana</h4>
                 </div>
                 <div class="card-content mt-2">
                     <div class="card-body card-dashboard">
@@ -24,9 +24,11 @@
                                             <div class="col-md-4">
                                                 <label for="defaultFormControlInput" class="form-label">No
                                                     Pengajuan</label>
-                                                <input type="text" class="form-control" id="defaultFormControlInput"
-                                                       placeholder="Auto generate"
-                                                       aria-describedby="defaultFormControlHelp" readonly/>
+                                                <select name="status_pengiriman" class="form-control">
+                                                    <option value="" selected disabled>--Pilih No Pengajuan--</option>
+                                                    <option value=" "> </option>
+                                                    <option value=" "> </option>
+                                                </select>
                                             </div>
                                             <div class="col-md-4">
                                                 <label for="defaultFormControlInput" class="form-label">Tanggal
@@ -185,6 +187,49 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="">Status Pengiriman Dana</label>
+                                    <select name="status_pengiriman" class="form-control" id="statusPengiriman">
+                                        <option value="" selected disabled>Pilih Status Pengiriman</option>
+                                        <option value="cash">Cash</option>
+                                        <option value="transfer">Transfer</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-2" id="tujuanDiv" style="display: none;">
+                                <div class="form-group">
+                                    <label for="">Tujuan</label>
+                                    <input type="text" name="tujuan" class="form-control" value="{{ Auth::user()->name }}">
+                                </div>
+                            </div>
+                            <div class="col-md-2" id="lampiranDiv" style="display: none;">
+                                <div class="form-group">
+                                    <label for="">Lampiran Dokumen</label>
+                                    <input type="file" name="lampiran" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-2" id="akunBankDiv" style="display: none;">
+                                <div class="form-group">
+                                    <label for="">Akun Bank</label>
+                                    <select name="akun_bank" class="form-control" id="akunBank">
+                                        <option value="" selected disabled>Pilih Akun Bank</option>
+                                        <option value="bca">BCA</option>
+                                        <option value="bri">BRI</option>
+                                        <option value="mandiri">MANDIRI</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="float-left">
+                                    <a class="btn btn-danger" target="_blank"  href="{{ route('finance-accounting-menu-keuangan-kasir-pengiriman-dana-print-pdf') }}" id="cetakBtn" style="display: none;"><i class="bx bx-printer"></i> Cetak Kwitansi</a>
+                                </div>
+{{--                                <div class="float-right">--}}
+{{--                                    <button class="btn btn-primary" onclick="submitForm()"><i class="bx bx-check"></i> Submit</button>--}}
+{{--                                </div>--}}
+                            </div>
                         </div>
                         <div class="card-footer">
                             <div class="float-right">
@@ -208,7 +253,48 @@
 
 @push('page-scripts')
     <script>
+        document.getElementById('statusPengiriman').addEventListener('change', function() {
+            const selectedOption = this.value;
+            const tujuanDiv = document.getElementById('tujuanDiv');
+            const lampiranDiv = document.getElementById('lampiranDiv');
+            const akunBankDiv = document.getElementById('akunBankDiv');
+            const cetakBtn = document.getElementById('cetakBtn');
 
+            if (selectedOption === 'cash') {
+                tujuanDiv.style.display = 'block';
+                lampiranDiv.style.display = 'block';
+                akunBankDiv.style.display = 'none';
+                cetakBtn.style.display = 'block';
+            } else if (selectedOption === 'transfer') {
+                tujuanDiv.style.display = 'none';
+                lampiranDiv.style.display = 'block';
+                akunBankDiv.style.display = 'block';
+                cetakBtn.style.display = 'none';
+            } else {
+                tujuanDiv.style.display = 'none';
+                lampiranDiv.style.display = 'none';
+                akunBankDiv.style.display = 'none';
+                cetakBtn.style.display = 'none';
+            }
+        });
+
+        function submitForm() {
+            const selectedOption = document.getElementById('statusPengiriman').value;
+            let message = '';
+            if (selectedOption === 'cash') {
+                message = 'Lampiran dokumen berisi bukti penerimaan dana cash (kuitansi)';
+            } else if (selectedOption === 'transfer') {
+                message = 'Lampiran dokumen berisi bukti transfer';
+            }
+
+            Swal.fire({
+                title: 'Notifikasi',
+                text: message,
+                icon: 'info',
+                confirmButtonText: 'OK'
+            });
+        }
+        // =================================================================================================================
         $("#table-rekapitulasi-pekerjaan-terpilih").on("click", ".btn-hapus-item-pekerjaan-terpilih", function (e) {
             e.preventDefault();
             var form = $(this).parents('form');

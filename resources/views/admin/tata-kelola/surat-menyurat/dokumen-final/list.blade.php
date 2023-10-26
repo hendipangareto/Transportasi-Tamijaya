@@ -106,13 +106,13 @@
             event.preventDefault();
             const form = button.closest('.delete-form');
             Swal.fire({
-            title: 'Are you sure?',
+            title: 'Apakah Kamu Yakin??',
             text: "You won't be able to revert this!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
+            confirmButtonText: 'Ya!'
         }).then((result) => {
             if (result.isConfirmed) {
             form.submit();
@@ -124,13 +124,13 @@
             event.preventDefault();
             const form = button.closest('.delete-form');
             Swal.fire({
-                title: 'Kamu Yakin?',
-                text: "Data Anda Akan Diarchiecekan!",
+                title: 'Apakah Kamu Yakin?',
+                text: "Data Anda Akan Diarchievekan!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: 'Ya!'
             }).then((result) => {
                 if (result.isConfirmed) {
                     form.submit();

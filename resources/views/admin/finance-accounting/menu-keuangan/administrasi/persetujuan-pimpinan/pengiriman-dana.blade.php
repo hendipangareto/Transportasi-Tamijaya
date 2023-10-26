@@ -56,9 +56,9 @@
                                 <div class="col-md-2">
                                     <div class="form-group">
                                         <label for="" style="color: white">Filter</label><br>
-                                        <button class="btn btn-outline-primary"> Filter <i class="bx bx-filter"></i>
+                                        <button class="btn btn-primary"> Filter <i class="bx bx-filter"></i>
                                         </button>
-                                        <a href="#" class="btn btn-outline-secondary"> Reset <i class="bx bx-reset"></i></a>
+                                        <a href="#" class="btn btn-warning"> Reset <i class="bx bx-reset"></i></a>
                                     </div>
                                 </div>
                             </div>

@@ -16,16 +16,16 @@
                     <label>Nama Surat: </label>
                     <div class="form-group">
                         <input type="text" id="nama_surat" name="nama_surat"
-                               class="form-control bg-transparent" placeholder="nama surat">
+                               class="form-control bg-transparent" placeholder="nama surat" required>
                     </div>
                     <label>Deskripsi Surat: </label>
                     <div class="form-group">
                         <textarea class="form-control" name="deskripsi" id="deskripsi" cols="30"
-                                  rows="3" placeholder="Silahkan masukan deskripsi surat"></textarea>
+                                  rows="3" placeholder="Silahkan masukan deskripsi surat" required></textarea>
                     </div>
                     <div class="form-group">
                         <label for="lampiran_dokumen">Lampiran Dokumen</label>
-                        <input type="file" class="form-control" name="lampiran_dokumen" id="lampiran_dokumen" onchange="previewFile()">
+                        <input type="file" class="form-control" name="lampiran_dokumen" id="lampiran_dokumen" onchange="previewFile()" required>
                     </div>
                     <div id="file-preview" class="col-md-9 mt-2"></div>
                 </div>

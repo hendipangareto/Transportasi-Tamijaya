@@ -37,16 +37,19 @@
                                                        aria-describedby="defaultFormControlHelp"/>
                                             </div>
                                             <div class="col-md-3">
-                                                <label for="defaultFormControlInput" class="form-label">No. Pengajuan</label>
-                                                <input type="text" class="form-control" id="defaultFormControlInput"
-                                                       placeholder=""
-                                                       aria-describedby="defaultFormControlHelp"/>
+                                                <label for="defaultFormControlInput" class="form-label">No
+                                                    Pengajuan</label>
+                                                <select name="toko_id" id="toko_id" class="form-control">
+                                                    <option selected disabled>--Pilih No Pengajuan--</option>
+                                                    <option value=""></option>
+                                                </select>
                                             </div>
-                                            <div class="col-md-3">
+                                            <div class="col-md-4">
                                                 <label for="defaultFormControlInput" class="form-label">Status Laporan</label>
-                                                <input type="text" class="form-control" id="defaultFormControlInput"
-                                                       placeholder=""
-                                                       aria-describedby="defaultFormControlHelp"/>
+                                                <select name="toko_id" id="toko_id" class="form-control">
+                                                    <option selected disabled>--Pilih No Pengajuan--</option>
+                                                    <option value=""></option>
+                                                </select>
                                             </div>
                                             <div class="col-md-3">
                                                 <label for="defaultFormControlInput" class="form-label"> </label>

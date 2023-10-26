@@ -86,19 +86,21 @@
 {{--                        </div>--}}
 
 
-                        <div class="col-md-2">
-                            @if($dokumen->count() > 0)
-                                <form action="{{ route('data-kelola.surat-menyurat.archieve-data') }}" class="d-inline delete-form" method="post">
-                                    @csrf
-                                    @foreach ($dokumen as $terpilihItem)
-                                        <input type="hidden" name="id_qs[]" value="{{ $terpilihItem->id }}">
-                                    @endforeach
-                                    <button type="submit" class="badge-circle badge-circle-sm badge-circle-danger mr-1 pointer" id="btn-submit-pekerjaan-sm" onclick="event.preventDefault(); showConfirmationModal(this);">
-                                        <i class="bx bx-trash"></i>
-                                    </button>
-                                </form>
-                            @endif
-                        </div>
+
+
+                            <div class="d-flex">
+                                <div class="col-md-2">
+                                    @if($item)
+                                        <form action="{{ route('data-kelola.surat-menyurat.archieve-data') }}" class="d-inline delete-form" method="post">
+                                            @csrf
+                                            <input type="hidden" name="id_qs[]" value="{{ $item->id }}">
+                                            <button type="submit" class="badge-circle badge-circle-sm badge-circle-danger mr-1 pointer" id="btn-submit-pekerjaan-sm" onclick="event.preventDefault(); showConfirmationModal(this);">
+                                                <i class="bx bx-trash"></i>
+                                            </button>
+                                        </form>
+                                    @endif
+                                </div>
+
 
 
 
