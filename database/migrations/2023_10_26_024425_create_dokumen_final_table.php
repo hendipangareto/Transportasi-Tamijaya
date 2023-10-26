@@ -23,6 +23,7 @@ class CreateDokumenFinalTable extends Migration
             $table->string('penerima_surat');
             $table->string('keterangan_surat');
             $table->string('lampiran_dokumen_final');
+            $table->integer('status')->default(1);
             $table->timestamps();
         });
     }

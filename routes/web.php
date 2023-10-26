@@ -325,6 +325,10 @@ Route::group(
                 Route::prefix('dokumen-final')->group(function () {
                     Route::get('/list-dokumen-final', 'TataKelola\DokumenFinalController@getDokumen')->name('data-kelola.surat-menyurat.list-dokumen-final');
                     Route::post('/tambah-dokumen-final', 'TataKelola\DokumenFinalController@TambahDokumen')->name('data-kelola.surat-menyurat.tambah-dokumen-final');
+
+                    Route::post('/archieve-data', 'TataKelola\DokumenFinalController@ArchieveData')->name('data-kelola.surat-menyurat.archieve-data');
+                    Route::post('/kembalikan-archieve-data', 'TataKelola\DokumenFinalController@kembalikanArchieveData')->name('data-kelola.surat-menyurat.kembalikan-archieve-data');
+
                     Route::delete('/delete-dokumen-final', 'TataKelola\DokumenFinalController@HapusDokumen')->name('data-kelola.surat-menyurat.delete-dokumen-final');
 
                     Route::get('/download-pdf/{filename}', 'TataKelola\DokumenFinalController@downloadPdf')->name('download-pdf-surat');

@@ -49,7 +49,7 @@
                                     <div class="col ml-auto">
                                         <div class="dropdown float-right">
                                             <a href="" class="btn btn-danger mr-1" data-toggle="modal"
-                                               data-target="#TambahSurat"><i class="bx bx-archive-in"></i>Archieve Data</a>
+                                               data-target="#ArchieceSuratMasuk"><i class="bx bx-archive-in"></i>Archieve Data</a>
                                             <a href="" class="btn btn-success mr-1" data-toggle="modal"
                                                data-target="#TambahSuratMasuk"><i class="bx bx-plus-circle"></i>Tambah
                                                 Data</a>
@@ -57,6 +57,7 @@
                                     </div>
                                     <h6 class="mt-2">Surat Masuk</h6>
                                     @include('admin.tata-kelola.surat-menyurat.dokumen-final.surat-masuk.modal')
+                                    @include('admin.tata-kelola.surat-menyurat.form-archieve.index')
                                 </div>
 
                                 <div class="tab-pane fade" id="horizontal-profile">
@@ -100,6 +101,42 @@
 
 @push('page-scripts')
     <script>
+
+            function showConfirmationModal(button) {
+            event.preventDefault();
+            const form = button.closest('.delete-form');
+            Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+            form.submit();
+        }
+        });
+        }
+
+        function showConfirmationModal(button) {
+            event.preventDefault();
+            const form = button.closest('.delete-form');
+            Swal.fire({
+                title: 'Kamu Yakin?',
+                text: "Data Anda Akan Diarchiecekan!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        }
         // Initialize DataTables when '#Tablesemployee' has a valid value
         $(function () {
             if (parseInt($("#Tablesemployee").val()) > 0) {

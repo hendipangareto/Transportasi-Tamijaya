@@ -80,11 +80,30 @@
 
 {{--                            <i class="bx bx-trash font-size-base"></i>--}}
 {{--                        </a>--}}
-                        <div class="badge-circle badge-circle-sm badge-circle-danger pointer delete-button "
-                             data-id="{{ $item->id }}">
-                            <i class="bx bx-trash font-size-base"></i>
+{{--                        <div class="badge-circle badge-circle-sm badge-circle-danger pointer delete-button "--}}
+{{--                             data-id="{{ $item->id }}">--}}
+{{--                            <i class="bx bx-trash font-size-base"></i>--}}
+{{--                        </div>--}}
+
+
+                        <div class="col-md-2">
+                            @if($dokumen->count() > 0)
+                                <form action="{{ route('data-kelola.surat-menyurat.archieve-data') }}" class="d-inline delete-form" method="post">
+                                    @csrf
+                                    @foreach ($dokumen as $terpilihItem)
+                                        <input type="hidden" name="id_qs[]" value="{{ $terpilihItem->id }}">
+                                    @endforeach
+                                    <button type="submit" class="badge-circle badge-circle-sm badge-circle-danger mr-1 pointer" id="btn-submit-pekerjaan-sm" onclick="event.preventDefault(); showConfirmationModal(this);">
+                                        <i class="bx bx-trash"></i>
+                                    </button>
+                                </form>
+                            @endif
                         </div>
+
+
+
                     </div>
+
                 </td>
             </tr>
         @empty

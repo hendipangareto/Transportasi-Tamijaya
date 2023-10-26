@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\TataKelola;
 
 use App\Http\Controllers\Controller;
+use App\Models\MasterDataLogistik\QsActual;
 use App\Models\TataKelola\DokumenFinal;
 
 use App\Models\TataKelola\Kontrak;
@@ -35,21 +36,62 @@ class DokumenFinalController extends Controller
             $query->where('tanggal_surat', $tanggal_surat);
         }
 
-//        if (!empty($tanggal_input) && !empty($tanggal_surat)) {
-//            $query->whereBetween('tanggal_input', [$tanggal_input, $tanggal_surat])
-//                ->orWhereBetween('tanggal_surat', [$tanggal_input, $tanggal_surat]);
-//        }
+        $dokumen = $query->where('status', 1)->get();
 
-        $dokumen = $query->get();
 
         $params = [
             'penerima_surat' => $penerima_surat,
             'tanggal_input' => $tanggal_input,
             'tanggal_surat' => $tanggal_surat,
         ];
-
-        return view('admin.tata-kelola.surat-menyurat.dokumen-final.list', compact('dokumen', 'SuratKeluar', 'kontrak', 'params'));
+        $archieveSuratMasuk = DB::table('dokumen_final')->where('status', 2)->get();
+        return view('admin.tata-kelola.surat-menyurat.dokumen-final.list', compact('dokumen', 'archieveSuratMasuk','SuratKeluar', 'kontrak', 'params'));
     }
+
+    public function ArchieveData(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            if (count($request->id_qs) > 0) {
+                foreach ($request->id_qs as $key => $val) {
+                    $dokumen = DokumenFinal::find($val);
+                    if ($dokumen) {
+                        $dokumen->status = 2;
+                        $dokumen->save();
+                    }
+                }
+            }
+            DB::commit();
+            Session::flash('message', 'Berhasil Menghapus Data, akan disimpan pada folder archive !');
+        } catch (\Exception $e) {
+            DB::rollback();
+            Session::flash('message', 'Gagal menghapus data!');
+        }
+        return redirect()->route('data-kelola.surat-menyurat.list-dokumen-final');
+    }
+
+    public function kembalikanArchieveData(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            if (count($request->id_qs) > 0) {
+                foreach ($request->id_qs as $key => $val) {
+                    $dokumen = DokumenFinal::find($val);
+                    if ($dokumen) {
+                        $dokumen->status = 1;
+                        $dokumen->save();
+                    }
+                }
+            }
+            DB::commit();
+            Session::flash('message', 'Berhasil Menghapus Data, akan disimpan pada folder archive !');
+        } catch (\Exception $e) {
+            DB::rollback();
+            Session::flash('message', 'Gagal menghapus data!');
+        }
+        return redirect()->route('data-kelola.surat-menyurat.list-dokumen-final');
+    }
+
 
 
     public function TambahDokumen(Request $request)
