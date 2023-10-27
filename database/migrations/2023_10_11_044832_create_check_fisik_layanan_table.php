@@ -17,11 +17,15 @@ class CreateCheckFisikLayananTable extends Migration
             $table->id();
             $table->integer('id_armada');
             $table->integer('bagian_id');
-//            $table->integer('id_pick_point');
-//            $table->integer('id_destination_wisata');
+
             $table->string('keluhan')->nullable();
             $table->integer('status')->nullable();
 
+            $table->timestamps();
+        });
+    }
+//            $table->integer('id_pick_point');
+//            $table->integer('id_destination_wisata');
 //            $table->string('keluhan');
 //            $table->string('armada_capacity');
 //            $table->unsignedBigInteger('id_armada');
@@ -37,10 +41,6 @@ class CreateCheckFisikLayananTable extends Migration
 //            $table->unsignedBigInteger('id_destination_wisata')->nullable();
 //            $table->foreign('id_destination_wisata')->references('id')->on('destination_wisatas');
 //            $table->integer('status')->nullable();
-            $table->timestamps();
-        });
-    }
-
     /**
      * Reverse the migrations.
      *

@@ -751,6 +751,7 @@ Route::group(
                 });
                 Route::prefix('pembayaran')->group(function () {
                     Route::get('/', 'FinanceAccounting\MenuKeuangan\Finance\PembayaranController@index')->name('finance-accounting-menu-keuangan-finance-pembayaran-index');
+                    Route::get('/notifikasi', 'FinanceAccounting\MenuKeuangan\Finance\PembayaranController@notifikasi')->name('finance-accounting-menu-keuangan-finance-pembayaran-notifikasi-pembayaran');
                     Route::post('/store', 'FinanceAccounting\MenuKeuangan\Finance\PembayaranController@store')->name('finance-accounting-menu-keuangan-finance-pembayaran-store');
                     Route::post('/update/{id}', 'FinanceAccounting\MenuKeuangan\Finance\PembayaranController@update')->name('finance-accounting-menu-keuangan-finance-pembayaran-update');
                     Route::delete('/delete', 'FinanceAccounting\MenuKeuangan\Finance\PembayaranController@delete')->name('finance-accounting-menu-keuangan-finance-pembayaran-delete');
@@ -797,7 +798,8 @@ Route::group(
                     Route::get('/dana-ditransfer/{id}', 'FinanceAccounting\MenuKeuangan\Administrasi\PersetujuanPimpinanController@DanaDitransfer')->name('finance-accounting-menu-keuangan-administrasi-dana-ditransfer');
                     Route::get('/dana-chas/{id}', 'FinanceAccounting\MenuKeuangan\Administrasi\PersetujuanPimpinanController@DanaChas')->name('finance-accounting-menu-keuangan-administrasi-dana-chas');
                     Route::get('/pengiriman-dana/{id}', 'FinanceAccounting\MenuKeuangan\Administrasi\PersetujuanPimpinanController@PengirimanDana')->name('finance-accounting-menu-keuangan-administrasi-pengiriman-dana');
-                    Route::post('/cairkan-dana-pengajuan', 'FinanceAccounting\MenuKeuangan\Administrasi\PersetujuanPimpinanController@CairkanDanaPengajuan')->name('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-cairkan-dana');
+                    Route::post('/cairkan-dana-pengajuan/{id}', 'FinanceAccounting\MenuKeuangan\Administrasi\PersetujuanPimpinanController@KirimDana')->name('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-cairkan-dana');
+//                    Route::post('/cairkan-dana-pengajuan', 'FinanceAccounting\MenuKeuangan\Administrasi\PersetujuanPimpinanController@CairkanDanaPengajuan')->name('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-cairkan-dana');
                 });
 
                 Route::prefix('request-gaji')->group(function () {

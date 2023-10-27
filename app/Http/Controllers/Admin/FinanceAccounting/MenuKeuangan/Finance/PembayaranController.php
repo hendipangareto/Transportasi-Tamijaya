@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\FinanceAccounting\MenuKeuangan\Finance\Pembayaran;
 use App\Models\FinanceAccounting\MenuKeuangan\Finance\Penerimaan;
 use App\Models\MasterData\Bank;
+use App\Models\MasterDataLogistik\QsActual;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Session;
@@ -15,6 +16,7 @@ class PembayaranController extends Controller
     public function index()
     {
         $bank = Bank::get();
+        $QsActual = QsActual::get();
 
         $data = DB::table('pembayaran')
             ->select('pembayaran.*', 'banks.bank_name', 'banks.bank_code')
@@ -42,6 +44,7 @@ class PembayaranController extends Controller
             $data->nominal_pengajuan = $request->nominal_pengajuan;
             $data->pic_pembayaran = $request->pic_pembayaran;
             $data->description_pembayaran = $request->description_pembayaran;
+//            dd($data);
             $data->save();
 
             DB::commit();

@@ -14,9 +14,9 @@
                             <div class="col-md-12">
                                 <div class="card-header  pb-0  d-flex justify-content-between">
                                     <h4 class="card-title"></h4>
-                                    <a href="" class="btn btn-primary mr-1" data-toggle="modal"
-                                       data-target="#TambahPengajuanPembelian"><i class="bx bx-plus-circle"></i> Tambah
-                                        Data</a>
+{{--                                    <a href="" class="btn btn-primary mr-1" data-toggle="modal"--}}
+{{--                                       data-target="#TambahPengajuanPembelian"><i class="bx bx-plus-circle"></i> Tambah--}}
+{{--                                        Data</a>--}}
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">

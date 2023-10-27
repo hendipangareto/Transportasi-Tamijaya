@@ -212,6 +212,49 @@
 @push('page-scripts')
     <script>
 
+        document.getElementById('statusPengiriman').addEventListener('change', function() {
+            const selectedOption = this.value;
+            const tujuanDiv = document.getElementById('tujuanDiv');
+            const lampiranDiv = document.getElementById('lampiranDiv');
+            const akunBankDiv = document.getElementById('akunBankDiv');
+            const cetakBtn = document.getElementById('cetakBtn');
+
+            if (selectedOption === 'cash') {
+                tujuanDiv.style.display = 'block';
+                lampiranDiv.style.display = 'block';
+                akunBankDiv.style.display = 'none';
+                cetakBtn.style.display = 'block';
+            } else if (selectedOption === 'transfer') {
+                tujuanDiv.style.display = 'none';
+                lampiranDiv.style.display = 'block';
+                akunBankDiv.style.display = 'block';
+                cetakBtn.style.display = 'none';
+            } else {
+                tujuanDiv.style.display = 'none';
+                lampiranDiv.style.display = 'none';
+                akunBankDiv.style.display = 'none';
+                cetakBtn.style.display = 'none';
+            }
+        });
+
+        function submitForm() {
+            const selectedOption = document.getElementById('statusPengiriman').value;
+            let message = '';
+            if (selectedOption === 'cash') {
+                message = 'Lampiran dokumen berisi bukti penerimaan dana cash (kuitansi)';
+            } else if (selectedOption === 'transfer') {
+                message = 'Lampiran dokumen berisi bukti transfer';
+            }
+
+            Swal.fire({
+                title: 'Notifikasi',
+                text: message,
+                icon: 'info',
+                confirmButtonText: 'OK'
+            });
+        }
+
+        // =============================================================================================================
         $("#table-rekapitulasi-pekerjaan-terpilih").on("click", ".btn-hapus-item-pekerjaan-terpilih", function (e) {
             e.preventDefault();
             var form = $(this).parents('form');

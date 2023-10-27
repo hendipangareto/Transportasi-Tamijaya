@@ -22,7 +22,7 @@ class CreatePengajuanPembelianTable extends Migration
             $table->integer('kuantitas');
             $table->enum('cara_bayar', ['lunas', 'hutang']);
             $table->unsignedBigInteger('toko_id');
-            $table->foreign('toko_id')->references('id')->on('tokos');
+                $table->foreign('toko_id')->references('id')->on('tokos');
             $table->unsignedBigInteger('satuan_id');
             $table->foreign('satuan_id')->references('id')->on('satuans');
             $table->unsignedBigInteger('kategori_id');

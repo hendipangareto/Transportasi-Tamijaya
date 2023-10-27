@@ -15,8 +15,8 @@ class CreateTambahItemTable extends Migration
     {
         Schema::create('tambah_item', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('qs_actual_id');
-            $table->foreign('qs_actual_id')->references('id')->on('qs_actuals');
+//            $table->unsignedBigInteger('qs_actual_id');
+//            $table->foreign('qs_actual_id')->references('id')->on('qs_actuals');
             $table->string('item');
             $table->double('harga');
             $table->integer('kuantitas');

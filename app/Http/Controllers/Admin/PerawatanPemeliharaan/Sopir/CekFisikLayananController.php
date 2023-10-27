@@ -63,6 +63,7 @@ class CekFisikLayananController extends Controller
                 'keluhan' => 'required|string',
             ]);
 
+            // Buat instance model CekLayananFisik
             $sopir = new CekLayananFisik();
             $sopir->id_armada = $validatedData['id_armada'];
             $sopir->bagian_id = $validatedData['bagian_id'];
@@ -78,6 +79,7 @@ class CekFisikLayananController extends Controller
 
         return redirect()->route('perawatan-pemeliharaan.sopir.check-fisik-layanan');
     }
+
 
     public function AjukanCuciArmada (Request $request)
     {

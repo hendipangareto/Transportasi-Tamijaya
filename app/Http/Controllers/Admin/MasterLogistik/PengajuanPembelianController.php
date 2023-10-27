@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\MasterLogistik;
 
 use App\Models\FinanceAccounting\MenuKeuangan\Finance\Pimpinan;
+use App\Models\MasterData\Bank;
 use App\Models\MasterData\Satuan;
 use App\Models\MasterDataLogistik\Kategori;
 use App\Models\MasterDataLogistik\PengajuanPembelian;
@@ -20,6 +21,7 @@ class PengajuanPembelianController
         $satuan = Satuan::get();
         $toko = Toko::get();
         $kategori = Kategori::get();
+        $bank = Bank::get();
 
         $qsActual = QsActual::select("qs_actuals.*", 'tokos.nama_toko as toko', 'satuans.nama_satuan as satuan', 'kategori.nama_kategori as kategori')
             ->join('tokos', 'tokos.id', '=', 'qs_actuals.toko_id')
@@ -43,7 +45,7 @@ class PengajuanPembelianController
             ->where('qs_actuals.status', '=', 5)
             ->get();
 
-        return view('admin.master-logistik.pengajuan-pembelian.data-pembelian', compact('qsActual', 'terpilih', 'pimpinan', 'satuan', 'toko', 'kategori'));
+        return view('admin.master-logistik.pengajuan-pembelian.data-pembelian', compact('bank', 'qsActual', 'terpilih', 'pimpinan', 'satuan', 'toko', 'kategori'));
     }
 
     public function LaporanDanaTerkirim(Request $request)
@@ -97,7 +99,6 @@ class PengajuanPembelianController
         Session::flash('message', ['Berhasil menolak pengajuan data, akan dikembalikan pada rekap pengajuan pembelian', 'success']);
         return redirect()->route('finance-accounting-menu-keuangan-pimpinan-request-pengajuan-dana-index');
     }
-
 
 
     public function prosesTerpilih(Request $request)
@@ -159,13 +160,12 @@ class PengajuanPembelianController
 //            dd($qsActual);
             $qsActual->save();
 
+
             DB::commit();
-            Session::flash('message', 'Berhasil menyimpan data pengajuan pembelian');
-            Session::flash('alert-class', 'alert-success');
+            Session::flash('message', ['Berhasil menyimpan data pengajuan pembelian', 'success']);
         } catch (\Exception $e) {
             DB::rollback();
-            Session::flash('message', 'Gagal menyimpan data pengajuan pembelian');
-            Session::flash('alert-class', 'alert-danger');
+            Session::flash('message', ['Gagal menyimpan data pengajuan pembelian', 'error']);
         }
 
         return redirect()->route('master-logistik-list-pengajuan-pembelian');
@@ -186,19 +186,19 @@ class PengajuanPembelianController
             $qsActual->satuan_id = $request->satuan_id;
             $qsActual->kategori_id = $request->kategori_id;
             $qsActual->catatan_pembelian = $request->catatan_pembelian;
+            $qsActual->catatan_pembelian = $request->catatan_pembelian;
+            $qsActual->catatan_pembelian = $request->catatan_pembelian;
 
 //            dd($qsActual);
             $qsActual->save();
 
+
             DB::commit();
-            Session::flash('message', 'Berhasil menyimpan data pengajuan pembelian');
-            Session::flash('alert-class', 'alert-success');
+            Session::flash('message', ['Berhasil menyimpan data pengajuan pembeliann', 'success']);
         } catch (\Exception $e) {
             DB::rollback();
-            Session::flash('message', 'Gagal menyimpan data pengajuan pembelian');
-            Session::flash('alert-class', 'alert-danger');
+            Session::flash('message', ['Gagal menyimpan data pengajuan pembelian', 'error']);
         }
-
         return redirect()->route('master-logistik-list-pengajuan-pembelian');
     }
 
@@ -256,6 +256,7 @@ class PengajuanPembelianController
         try {
             $qsActual = QsActual::findOrFail($id);
 
+            // Periksa bahwa setiap variabel di sini sesuai dengan nama yang diharapkan dari formulir HTML
             $qsActual->item = $request->item;
             $qsActual->harga = $request->harga;
             $qsActual->kuantitas = $request->kuantitas;
@@ -267,8 +268,21 @@ class PengajuanPembelianController
             $qsActual->batas_waktu_pembayaran = $request->batas_waktu_pembayaran;
             $qsActual->tanggal_pengajuan = $request->tanggal_pengajuan;
 
+            $qsActual->bank_id = $request->bank_id;
+            $qsActual->status_pengiriman = $request->status_pengiriman; // Periksa apakah ini telah diisi dengan benar dari formulir HTML
+            $qsActual->bukti_pengiriman = $request->bukti_pengiriman;
 
-            $qsActual->update();
+            // Pastikan bahwa jenis data yang dikirimkan ke Model sesuai dengan tipe data kolom yang diharapkan
+
+            if ($request->hasFile('bukti_pengiriman')) {
+                $file = $request->file('bukti_pengiriman');
+                $fileName = $file->getClientOriginalName();
+                $file->storeAs('bukti_pengiriman', $fileName);
+                $qsActual->bukti_pengiriman = $fileName;
+            }
+
+            // Pastikan bahwa update() digunakan setelah semua kolom diisi dengan nilai yang diinginkan
+            $qsActual->save();
 
             DB::commit();
             Session::flash('message', ['Berhasil mengubah data pengajuan pembelian', 'success']);

@@ -11,10 +11,11 @@ class CekLayananFisik extends Model
     protected $fillable = [
         'id_armada',
         'bagian_id',
-//        'id_pick_point',
-//        'id_destination_wisata',
+
         'keluhan',
         'status'
     ];
 
 }
+//        'id_pick_point',
+//        'id_destination_wisata',

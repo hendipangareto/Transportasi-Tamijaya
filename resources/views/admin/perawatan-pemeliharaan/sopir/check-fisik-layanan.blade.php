@@ -112,33 +112,29 @@
 
 
         function addDataToTable() {
-            var selectedBagian = document.getElementById("bagian_id").value;
-            var keluhan = document.getElementById("keluhan").value;
+            var bagian = document.getElementById('bagian_id');
+            var bagianText = bagian.options[bagian.selectedIndex].text;
+            var keluhan = document.getElementById('keluhan').value;
 
-            if (selectedBagian && keluhan) {
-                var tableBody = document.getElementById("detail-cek-layanan");
-                var newRow = tableBody.insertRow(tableBody.rows.length);
-                var cell1 = newRow.insertCell(0);
-                var cell2 = newRow.insertCell(1);
-                var cell3 = newRow.insertCell(2);
+            var table = document.getElementById('detail-cek-layanan');
+            var row = table.insertRow(-1);
 
-                cell1.innerHTML = selectedBagian;
-                cell2.innerHTML = keluhan;
-                cell3.innerHTML = '<button onclick="removeRow(this)">Hapus</button>';
+            var bagianCell = row.insertCell(0);
+            var keluhanCell = row.insertCell(1);
+            var actionCell = row.insertCell(2);
 
-                document.getElementById("bagian_id").value = "";
-                document.getElementById("keluhan").value = "";
-            } else {
-                alert("Harap pilih bagian dan isi keluhan terlebih dahulu.");
-            }
+            bagianCell.innerHTML = bagianText;
+            keluhanCell.innerHTML = keluhan;
+            actionCell.innerHTML = '<button type="button" class="btn btn-danger btn-sm" onclick="deleteRow(this)"><i class="bx bx-trash"></i> Hapus</button>';
+
+            document.getElementById('bagian_id').value = "";
+            document.getElementById('keluhan').value = "";
         }
 
-        function removeRow(button) {
-            var row = button.parentNode.parentNode;
+        function deleteRow(btn) {
+            var row = btn.parentNode.parentNode;
             row.parentNode.removeChild(row);
         }
-
-
         // ===============================
 
         $(document).ready(function () {

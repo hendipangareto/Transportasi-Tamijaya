@@ -21,10 +21,15 @@ class QsActual extends Model
         'batas_waktu_pembayaran',
         'tanggal_pengajuan',
 
+//        ========================
+        'bank_id',
+        'status_pengiriman',
+        'bukti_pengiriman'
+
     ];
-    public function tambahItems()
-    {
-        return $this->hasMany(TambahItem::class);
-    }
+//    public function tambahItems()
+//    {
+//        return $this->hasMany(TambahItem::class);
+//    }
 }
 
