@@ -674,7 +674,7 @@ Route::group(
             Route::get('transaction/reguler/schedule-reguler/get-data/armada', 'Transaction\Reguler\ScheduleRegulerController@getDataArmada');
             Route::get('transaction/reguler/schedule-reguler/get-data/driver', 'Transaction\Reguler\ScheduleRegulerController@getDataDriver');
             Route::get('transaction/reguler/schedule-reguler/get-data/conductor', 'Transaction\Reguler\ScheduleRegulerController@getDataConductor');
-            Route::post('transaction/reguler/schedule-reguler/check-schedule-reguler', 'Transaction\Reguler\ScheduleRegulerController@checkScheduleRegulerz');
+            Route::post('transaction/reguler/schedule-reguler/check-schedule-reguler', 'Transaction\Reguler\ScheduleRegulerController@checkScheduleReguler');
             Route::resource('transaction/reguler/reschedule-reguler', 'Transaction\Reguler\RescheduleRegulerController');
             Route::post('transaction/reguler/reschedule-reguler/re-schedule', 'Transaction\Reguler\RescheduleRegulerController@rescheduleReguler');
             // PARIWISATA
