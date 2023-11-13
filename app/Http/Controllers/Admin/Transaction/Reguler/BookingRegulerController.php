@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Transaction\Reguler;
 
 use App\Http\Controllers\Controller;
+use App\Models\MasterData\Province;
 use App\User;
 use Illuminate\Http\Request;
 use App\Models\MasterData\Bank;
@@ -21,7 +22,8 @@ class BookingRegulerController extends Controller
         $banks = Bank::orderBy('bank_name', 'ASC')->get();
         $agents = Agent::orderBy('agent_domicile', 'ASC')->get();
         $users = User::orderBy('name', 'ASC')->get();
-        return view('admin.transaction.reguler.booking.index', ['banks' => $banks, 'agents' => $agents, 'users' => $users]);
+        $provinces = Province::orderBy('state_name', 'ASC')->get();
+        return view('admin.transaction.reguler.booking.index', ['banks' => $banks, 'agents' => $agents, 'users' => $users, 'provinces' => $provinces]);
     }
     public function create()
     {
@@ -190,7 +192,7 @@ class BookingRegulerController extends Controller
 
         $emailData = array('name' => 'Keuangan Tamijaya', 'email' => 'keuangan@gmail.com', 'booking_transactions_code' => $data['booking_transactions_code']);
 
-        
+
         // Send Email
         \Mail::send('layouts.template.email', $emailData, function ($message) use ($emailData) {
             $message->to($emailData['email'], $emailData['name'])->subject('Notification Email to Finance ' . $emailData['booking_transactions_code']);

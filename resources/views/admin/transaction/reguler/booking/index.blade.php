@@ -79,3 +79,31 @@
 @push('page-scripts')
     <script src="{{ asset('script/admin/transaction/reguler.js') }}"></script>
 @endpush
+
+@include('admin.management-customer.customer.modal')
+
+@push('page-scripts')
+    <script src="{{ asset('script/admin/management-customer/index.js') }}"></script>
+
+    <script>
+        const changeProvince = () => {
+            var id_province = $("#id_province").val();
+            $.ajax({
+                url: `/admin/master-data/province/get-city-by-province/${id_province}`,
+                method: "get",
+                dataType: "json",
+                success: function(response) {
+                    var cities = response.data;
+                    var html = `<option value="">Pilih Kota</option>`;
+                    cities.forEach(city => {
+                        html += `<option value="${city.id}">${city.city_name}</option>`;
+                    });
+                    $("#id_city").html(html)
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            });
+        }
+    </script>
+@endpush

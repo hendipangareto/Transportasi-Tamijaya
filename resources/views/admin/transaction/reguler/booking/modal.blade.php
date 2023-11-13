@@ -61,7 +61,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="modal-title">Form customer</h4>
+                <h4 class="modal-title" id="modal-title">Form Tambah Customer</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i class="bx bx-x"></i>
                 </button>
@@ -69,10 +69,26 @@
             <form action="javascript:void(0)" id="form-customer" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
-                    <label>Nama customer: </label>
-                    <div class="form-group">
-                        <input type="text" placeholder="Silahkan masukan nama customer" id="customer_name"
-                            name="customer_name" class="form-control">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Nama Customer :</label>
+                            <div class="form-group">
+                                <div class="input-group">
+
+                                    <input type="text" id="customer_name" name="customer_name"
+                                           class="form-control" placeholder="Masukkan Nama">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Nik : </label>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="text" id="customer_nik" name="customer_nik"
+                                           class="form-control" placeholder="Masukan Nik">
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="row">
@@ -100,6 +116,33 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Provinsi: </label>
+                            <div class="form-group">
+                                <select onchange="changeProvince()" id="id_province" name="id_province" class="form-control">
+                                    <option value="">Pilih Provinsi</option>
+                                    @foreach ($provinces as $province)
+                                        <option value="{{ $province->id }}">{{ $province->state_name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Kota: </label>
+                            <div class="form-group">
+                                <select name="id_city" id="id_city" class="form-control">
+                                    <option value="">Pilih Kota</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <label>Alamat: </label>
+                    <div class="form-group">
+                        <textarea name="customer_address" id="customer_address" cols="30" rows="3" class="form-control"
+                                  placeholder="Silahkan masukan alamat customer"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
