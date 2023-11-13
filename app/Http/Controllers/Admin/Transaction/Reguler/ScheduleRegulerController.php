@@ -88,6 +88,8 @@ class ScheduleRegulerController extends Controller
     public function show($month)
     {
         $year = date('Y');
+        $month = date('m');
+
         $data = DB::select("SELECT sr.`id`, sr.`date_departure`, sr.`destination`, sr.`type_bus`,
         concat(a.armada_merk,' - ',a.armada_no_police) as armada,
         (SELECT e.employee_name FROM `employees` e WHERE e.id = sr.`driver_1`) AS driver_1,
