@@ -40,9 +40,9 @@
             <td class="w-10p">{{ $item->type_bus }}</td>
             <td>{{ $item->destination }}</td>
             <td>{{ $item->armada }}</td>
-            <td>{{ $item->driver_1 }}</td>
-            <td>{{ $item->driver_2 }}</td>
-            <td>{{ $item->conductor }}</td>
+            <td>{{ $item->driver_1_name }}</td>
+            <td>{{ $item->driver_2_name }}</td>
+            <td>{{ $item->conductor_name }}</td>
             <td class="text-center">
                 <div class="d-flex">
                     <div class="badge-circle badge-circle-sm badge-circle-warning mr-1 pointer"
